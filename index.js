@@ -304,7 +304,7 @@ query collectionByTitle($query: String!) {
 
 const COLLECTION_ADD_MUTATION = `
 mutation collectionAddProducts($collectionId: ID!, $productIds: [ID!]!) {
-  collectionAddProducts(collectionId: $collectionId, productIds: $productIds) {
+  collectionAddProducts(id: $collectionId, productIds: $productIds) {
     collection {
       id
     }
@@ -391,11 +391,13 @@ async function findCollectionIdByName(name, cache) {
   }
 
   const queryString = `title:'${trimmed.replace(/'/g, "\\'")}'`;
+  console.log(`Searching for collection with query: ${queryString}`);
   const response = await callShopify(
     COLLECTION_SEARCH_QUERY,
     { query: queryString },
     'collectionSearch'
   );
+  console.log('Collection search response:', JSON.stringify(response));
 
   const node = response.data?.collections?.edges?.[0]?.node;
   const collectionId = node?.id || null;
@@ -404,12 +406,14 @@ async function findCollectionIdByName(name, cache) {
 }
 
 async function addProductToCollection(collectionId, productId) {
+  console.log(`Adding product ${productId} to collection ${collectionId}`);
   const response = await callShopify(
     COLLECTION_ADD_MUTATION,
     { collectionId, productIds: [productId] },
     'collectionAddProducts'
   );
-
+  console.log('Collection add products response:', JSON.stringify(response));
+  
   const payload = response.data?.collectionAddProducts;
   const userErrors = payload?.userErrors || [];
   if (userErrors.length > 0) {
