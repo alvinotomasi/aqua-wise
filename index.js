@@ -195,6 +195,11 @@ function buildVariantInput(product) {
     return null;
   }
 
+  const inventoryItem = { tracked: false };
+  if (sku) {
+    inventoryItem.sku = String(sku);
+  }
+
   const variant = {
     price: price !== undefined && price !== null ? String(price) : undefined,
     compareAtPrice:
@@ -202,12 +207,8 @@ function buildVariantInput(product) {
         ? String(compareAtPrice)
         : undefined,
     inventoryPolicy: 'CONTINUE',
-    inventoryItem: sku ? { sku: String(sku) } : undefined,
+    inventoryItem,
   };
-
-  if (!variant.inventoryItem) {
-    delete variant.inventoryItem;
-  }
 
   if (!variant.options) {
     delete variant.options;
