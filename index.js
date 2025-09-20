@@ -97,7 +97,10 @@ function buildMetafields(product) {
     { key: 'Product_Dimensions', source: product['Product Dimensions'] },
     { key: 'Number_of_Bathroom', source: product['Number of Bathroom'] },
     { key: 'Micron', source: product.Micron || product['Micron'] },
-    { key: 'Media Type', source: product['Media Type'] },
+    { key: 'Practical Service Flow', source: product['Practical Service Flow (gpm @ EBCT≈2 min)'] },
+    { key: 'Backwash', source: product['Backwash (DLFC) (gpm)'] },
+    { key: 'Product Weight lb', source: product['Product Weight lb'] },
+    { key: 'Number of Bathroom', source: product['Number of Bathroom'] },
   ];
 
   for (const mapping of singleLineMappings) {
@@ -413,7 +416,7 @@ async function addProductToCollection(collectionId, productId) {
     'collectionAddProducts'
   );
   console.log('Collection add products response:', JSON.stringify(response));
-  
+
   const payload = response.data?.collectionAddProducts;
   const userErrors = payload?.userErrors || [];
   if (userErrors.length > 0) {
