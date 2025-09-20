@@ -7,7 +7,8 @@
     "start": "functions-framework --target=shopifyProductSync"
   },
   "dependencies": {
-    "@google-cloud/functions-framework": "^3.4.0"
+    "@google-cloud/functions-framework": "^3.4.0",
+    "dotenv": "^16.4.5"
   },
   "engines": {
     "node": ">=18"

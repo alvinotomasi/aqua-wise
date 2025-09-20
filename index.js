@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const API_VERSION = process.env.SHOPIFY_ADMIN_API_VERSION || '2024-07';
 const SHOPIFY_DOMAIN = process.env.SHOPIFY_STORE_DOMAIN;
 const SHOPIFY_TOKEN = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
@@ -94,6 +96,8 @@ function buildMetafields(product) {
     { key: 'City_or_Well', source: product['City/Well'] },
     { key: 'Product_Dimensions', source: product['Product Dimensions'] },
     { key: 'Number_of_Bathroom', source: product['Number of Bathroom'] },
+    { key: 'Micron', source: product.Micron || product['Micron'] },
+    { key: 'Media Type', source: product['Media Type'] },
   ];
 
   for (const mapping of singleLineMappings) {
@@ -143,9 +147,6 @@ function buildProductInput(product) {
     tags: normaliseArray(product.Collection).concat(normaliseArray(product['Problems solved (keywords)'])).filter(Boolean),
   };
 
-  if (product['Option 1 Name']) {
-    input.options = [String(product['Option 1 Name'])];
-  }
 
   if (!input.metafields.length) {
     delete input.metafields;
@@ -197,10 +198,8 @@ function buildVariantInput(product) {
       compareAtPrice !== undefined && compareAtPrice !== null
         ? String(compareAtPrice)
         : undefined,
-    sku: sku ? String(sku) : undefined,
     inventoryPolicy: 'CONTINUE',
     inventoryItem: sku ? { sku: String(sku) } : undefined,
-    options: product['Option 1 Value'] ? [String(product['Option 1 Value'])] : undefined,
   };
 
   if (!variant.inventoryItem) {
@@ -248,7 +247,13 @@ mutation productCreate($input: ProductInput!, $media: [CreateMediaInput!]) {
   productCreate(input: $input, media: $media) {
     product {
       id
-      title
+      variants(first: 1) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
     }
     userErrors {
       field
