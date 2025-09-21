@@ -251,6 +251,7 @@ mutation productCreate($input: ProductInput!, $media: [CreateMediaInput!]) {
   productCreate(input: $input, media: $media) {
     product {
       id
+      title
       variants(first: 1) {
         edges {
           node {
@@ -320,6 +321,40 @@ mutation collectionAddProducts($collectionId: ID!, $productIds: [ID!]!) {
 }
 `;
 
+const PUBLICATIONS_QUERY = `
+query publications($first: Int!) {
+  publications(first: $first) {
+    nodes {
+      id
+      name
+    }
+  }
+}
+`;
+
+const PUBLISHABLE_PUBLISH_MUTATION = `
+mutation publishablePublish($id: ID!, $input: [PublicationInput!]!) {
+  publishablePublish(id: $id, input: $input) {
+    publishable {
+      ... on Product {
+        id
+        status
+      }
+    }
+    shop {
+      id
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+`;
+
+let cachedPublicationIds = null;
+let publicationPromise = null;
+
 async function createProduct(product) {
   const input = buildProductInput(product);
   if (!input.title) {
@@ -348,7 +383,8 @@ async function createProduct(product) {
 
   return {
     productId,
-    productTitle: result.product.title,
+    productTitle: result.product?.title || input.title,
+    productStatus: input.status || 'ACTIVE',
   };
 }
 
@@ -395,13 +431,11 @@ async function findCollectionIdByName(name, cache) {
   }
 
   const queryString = `title:'${trimmed.replace(/'/g, "\\'")}'`;
-  console.log(`Searching for collection with query: ${queryString}`);
   const response = await callShopify(
     COLLECTION_SEARCH_QUERY,
     { query: queryString },
     'collectionSearch'
   );
-  console.log('Collection search response:', JSON.stringify(response));
 
   const node = response.data?.collections?.edges?.[0]?.node;
   const collectionId = node?.id || null;
@@ -416,7 +450,6 @@ async function addProductToCollection(collectionId, productId) {
     { collectionId, productIds: [productId] },
     'collectionAddProducts'
   );
-  console.log('Collection add products response:', JSON.stringify(response));
 
   const payload = response.data?.collectionAddProducts;
   const userErrors = payload?.userErrors || [];
@@ -451,6 +484,66 @@ async function attachCollections(productId, product, cache) {
   return { added, missing };
 }
 
+async function getPublicationIds() {
+  if (cachedPublicationIds !== null) {
+    return cachedPublicationIds;
+  }
+
+  if (!publicationPromise) {
+    publicationPromise = callShopify(
+      PUBLICATIONS_QUERY,
+      { first: 50 },
+      'publications'
+    )
+      .then((response) => {
+        const nodes = response.data?.publications?.nodes || [];
+        const onlineStorePublication = nodes.find((node) => node?.name === 'Online Store');
+        const ids = onlineStorePublication?.id ? [onlineStorePublication.id] : [];
+        if (!ids.length) {
+          console.warn('No publication named "Online Store" found.');
+        }
+        cachedPublicationIds = ids;
+        publicationPromise = null;
+        return ids;
+      })
+      .catch((error) => {
+        publicationPromise = null;
+        throw error;
+      });
+  }
+
+  return publicationPromise;
+}
+
+async function publishProduct(productId) {
+  const publicationIds = await getPublicationIds();
+  if (!publicationIds.length) {
+    console.warn('No publications available. Skipping publish step.');
+    return { published: false, publicationIds: [] };
+  }
+
+  const input = publicationIds.map((publicationId) => ({ publicationId }));
+  const response = await callShopify(
+    PUBLISHABLE_PUBLISH_MUTATION,
+    { id: productId, input },
+    'publishablePublish'
+  );
+
+  const payload = response.data?.publishablePublish;
+  const userErrors = payload?.userErrors || [];
+  if (userErrors.length > 0) {
+    const message = userErrors.map((error) => error.message).join('; ');
+    throw new Error(`publishablePublish userErrors: ${message}`);
+  }
+
+  const publishStatus = payload?.publishable?.status;
+  return {
+    published: publishStatus === 'ACTIVE',
+    publicationIds,
+    status: publishStatus,
+  };
+}
+
 exports.shopifyProductSync = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
@@ -472,13 +565,19 @@ exports.shopifyProductSync = async (req, res) => {
       const created = await createProduct(product);
       const variant = await createVariant(created.productId, product);
       const collections = await attachCollections(created.productId, product, collectionCache);
+      const publishResult =
+        created.productStatus === 'DRAFT'
+          ? { published: false, skipped: true, reason: 'Product created with DRAFT status.' }
+          : await publishProduct(created.productId);
 
       results.push({
         ...context,
         productId: created.productId,
         productTitle: created.productTitle,
+        productStatus: created.productStatus,
         variantIds: variant.variantIds,
         collections,
+        publish: publishResult,
         status: 'success',
       });
     } catch (error) {
