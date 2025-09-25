@@ -80,9 +80,52 @@ function asMultiLineValue(input) {
   return value.length > 0 ? value : undefined;
 }
 
+// --- Numeric parsing helpers for metafields ---
+function firstNumber(input) {
+  if (input === undefined || input === null) return undefined;
+  const text = Array.isArray(input) ? input.join(' ') : String(input);
+  const cleaned = text.replace(/,/g, ' ');
+  const match = cleaned.match(/-?\d+(\.\d+)?/);
+  if (!match) return undefined;
+  const num = Number(match[0]);
+  return Number.isNaN(num) ? undefined : num;
+}
+
+function toIntegerString(input) {
+  const n = firstNumber(input);
+  if (n === undefined) return undefined;
+  return String(Math.round(n));
+}
+
+function toDecimalString(input) {
+  const n = firstNumber(input);
+  if (n === undefined) return undefined;
+  return String(n);
+}
+
+function parseMinMax(input) {
+  if (input === undefined || input === null) return { min: undefined, max: undefined };
+  const text = Array.isArray(input) ? input.join(' ') : String(input);
+  const cleaned = text.replace(/,/g, ' ');
+  const matches = cleaned.match(/-?\d+(\.\d+)?/g) || [];
+  if (matches.length >= 2) {
+    const a = Number(matches[0]);
+    const b = Number(matches[1]);
+    const min = Math.min(a, b);
+    const max = Math.max(a, b);
+    return { min: String(min), max: String(max) };
+  }
+  if (matches.length === 1) {
+    const v = String(Number(matches[0]));
+    return { min: v, max: v };
+  }
+  return { min: undefined, max: undefined };
+}
+ 
 function buildMetafields(product) {
   const metafields = [];
 
+  // Existing "custom" namespace mappings (kept for backward compatibility)
   const singleLineMappings = [
     { key: 'Occupants', source: product.Occupants },
     { key: 'Household_Size', source: product['Household Size'] },
@@ -132,6 +175,199 @@ function buildMetafields(product) {
       key: 'Certifications',
       type: 'single_line_text_field',
       value: certifications,
+    });
+  }
+
+  // --- New Shopify Product namespace metafields (namespace: "product") ---
+
+  // Input & Output Line (text)
+  const inputOutputLine =
+    asSingleLineValue(
+      product['Input & Output Line'] ||
+      product['Input Output Line'] ||
+      product['Input/Output Line'] ||
+      product['Input & Output'] ||
+      product['Input and Output Line']
+    );
+  if (inputOutputLine) {
+    metafields.push({
+      namespace: 'product',
+      key: 'input_output_line',
+      type: 'single_line_text_field',
+      value: inputOutputLine,
+    });
+  }
+
+  // System Capacity (GPD) - integer
+  const systemCapacityGpd = toIntegerString(
+    product['System Capacity'] ||
+    product.Capacity ||
+    product['System Capacity (GPD)'] ||
+    product['Capacity (GPD)']
+  );
+  if (systemCapacityGpd) {
+    metafields.push({
+      namespace: 'product',
+      key: 'system_capacity_gpd',
+      type: 'number_integer',
+      value: systemCapacityGpd,
+    });
+  }
+
+  // Feed Water Pressure (psi) - decimal
+  const feedWaterPressurePsi = toDecimalString(
+    product['Feed Water Pressure'] ||
+    product['Feed Water Pressure (psi)'] ||
+    product['Water Pressure'] ||
+    product['Pressure']
+  );
+  if (feedWaterPressurePsi) {
+    metafields.push({
+      namespace: 'product',
+      key: 'feed_water_pressure_psi',
+      type: 'number_decimal',
+      value: feedWaterPressurePsi,
+    });
+  }
+
+  // Feed Water Temperature (°C) min/max - decimal
+  let tempMin = toDecimalString(
+    product['Feed Water Temperature Min'] ||
+    product['Feed Water Temp Min'] ||
+    product['Temperature Min (C)'] ||
+    product['Feed Water Temperature C Min']
+  );
+  let tempMax = toDecimalString(
+    product['Feed Water Temperature Max'] ||
+    product['Feed Water Temp Max'] ||
+    product['Temperature Max (C)'] ||
+    product['Feed Water Temperature C Max']
+  );
+  if (!tempMin && !tempMax) {
+    const parsed = parseMinMax(
+      product['Feed Water Temperature'] ||
+      product['Feed Water Temp'] ||
+      product['Feed Water Temperature Range'] ||
+      product['Temperature']
+    );
+    tempMin = parsed.min || tempMin;
+    tempMax = parsed.max || tempMax;
+  }
+  if (tempMin) {
+    metafields.push({
+      namespace: 'product',
+      key: 'feed_water_temperature_c_min',
+      type: 'number_decimal',
+      value: tempMin,
+    });
+  }
+  if (tempMax) {
+    metafields.push({
+      namespace: 'product',
+      key: 'feed_water_temperature_c_max',
+      type: 'number_decimal',
+      value: tempMax,
+    });
+  }
+
+  // Max Total Dissolved Solids (TDS, ppm) - integer
+  const maxTdsPpm = toIntegerString(
+    product['Max Total Dissolved Solids'] ||
+    product['Max Total Solids'] ||
+    product['Max Total Solid'] ||
+    product['Max TDS'] ||
+    product['TDS (max)']
+  );
+  if (maxTdsPpm) {
+    metafields.push({
+      namespace: 'product',
+      key: 'max_total_dissolved_solids_tds_ppm',
+      type: 'number_integer',
+      value: maxTdsPpm,
+    });
+  }
+
+  // Feed Water pH - decimal
+  const feedWaterPh = toDecimalString(
+    product['Feed Water pH'] ||
+    product['Feed Water ph'] ||
+    product['Feed water pH']
+  );
+  if (feedWaterPh) {
+    metafields.push({
+      namespace: 'product',
+      key: 'feed_water_ph',
+      type: 'number_decimal',
+      value: feedWaterPh,
+    });
+  }
+
+  // Source Type (City/Well) - text
+  const sourceType = asSingleLineValue(
+    product['City/Well'] ||
+    product['City or Well'] ||
+    product['city & well'] ||
+    product['Source Type']
+  );
+  if (sourceType) {
+    metafields.push({
+      namespace: 'product',
+      key: 'source_type',
+      type: 'single_line_text_field',
+      value: sourceType,
+    });
+  }
+
+  // Micron Rating (µm) - integer
+  const micronUm = toIntegerString(product['Micron'] || product.Micron);
+  if (micronUm) {
+    metafields.push({
+      namespace: 'product',
+      key: 'micron_rating_um',
+      type: 'number_integer',
+      value: micronUm,
+    });
+  }
+
+  // Voltage (VAC) - text to allow phase/Hz info
+  const voltageVac = asSingleLineValue(
+    product['Voltage'] ||
+    product['Volt'] ||
+    product['Valt'] ||
+    product['Voltage (VAC)']
+  );
+  if (voltageVac) {
+    metafields.push({
+      namespace: 'product',
+      key: 'voltage_vac',
+      type: 'single_line_text_field',
+      value: voltageVac,
+    });
+  }
+
+  // Media Type - text
+  const mediaType = asSingleLineValue(product['Media Type'] || product['Media']);
+  if (mediaType) {
+    metafields.push({
+      namespace: 'product',
+      key: 'media_type',
+      type: 'single_line_text_field',
+      value: mediaType,
+    });
+  }
+
+  // Brine Tank Size (L) - integer
+  const brineTankSizeL = toIntegerString(
+    product['Brine Tank Size'] ||
+    product['Brain Tank Size'] ||
+    product['Brine Tank (L)']
+  );
+  if (brineTankSizeL) {
+    metafields.push({
+      namespace: 'product',
+      key: 'brine_tank_size_l',
+      type: 'number_integer',
+      value: brineTankSizeL,
     });
   }
 
