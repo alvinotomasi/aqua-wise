@@ -398,28 +398,34 @@ function buildProductInput(product) {
   return input;
 }
 
-function buildProductMedia(product) {
+function buildProductMediaArray(product) {
   const images = Array.isArray(product.Image) ? product.Image : [];
-  if (images.length === 0) {
-    return null;
+  const media = [];
+
+  const baseAlt = String(product['Product Name'] || 'Product image');
+
+  for (let i = 0; i < images.length; i++) {
+    const img = images[i];
+    const candidates = [
+      img?.thumbnails?.full?.url,
+      img?.thumbnails?.large?.url,
+      img?.url,
+    ].filter(Boolean);
+
+    if (!candidates.length) {
+      continue;
+    }
+
+    const alt = images.length > 1 ? `${baseAlt} (${i + 1})` : baseAlt;
+
+    media.push({
+      alt,
+      mediaContentType: 'IMAGE',
+      originalSource: candidates[0],
+    });
   }
 
-  const [firstImage] = images;
-  const candidates = [
-    firstImage?.thumbnails?.full?.url,
-    firstImage?.thumbnails?.large?.url,
-    firstImage?.url,
-  ].filter(Boolean);
-
-  if (!candidates.length) {
-    return null;
-  }
-
-  return {
-    alt: String(product['Product Name'] || 'Product image'),
-    mediaContentType: 'IMAGE',
-    originalSource: candidates[0],
-  };
+  return media;
 }
 
 function buildVariantInput(product) {
@@ -597,10 +603,10 @@ async function createProduct(product) {
     throw new Error('Product name is required to create a product.');
   }
 
-  const media = buildProductMedia(product);
+  const media = buildProductMediaArray(product);
   const variables = {
     input,
-    media: media ? [media] : [],
+    media,
   };
 
   const response = await callShopify(PRODUCT_CREATE_MUTATION, variables, 'productCreate');
