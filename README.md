@@ -5,6 +5,8 @@ This repository contains Google Cloud Functions that synchronise Aqua Wise catal
 - `shopifyProductSync` (root `index.js`): receives standard product records and creates/publishes them in Shopify.
 - `createBundleProducts` (`bundles/AQUA-WISE/index.js`): receives bundle definitions plus supporting products and creates bundle products in Shopify.
 
+Both functions share a common Shopify helper module. When deploying only the bundle function, include `bundles/AQUA-WISE/shopify-helpers.js` in the build source (for example by deploying from repository root or keeping the helper alongside the function code).
+
 ## Bundle creation payload
 
 ```json

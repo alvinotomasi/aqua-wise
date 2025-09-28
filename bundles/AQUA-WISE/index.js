@@ -1,7 +1,5 @@
 'use strict';
 
-const { helpers } = require('../../index');
-
 const {
   normaliseArray,
   createProduct,
@@ -10,7 +8,7 @@ const {
   publishProduct,
   buildVariantInput,
   asSingleLineValue,
-} = helpers;
+} = require('./shopify-helpers');
 
 function ensureArray(value) {
   if (!value) return [];

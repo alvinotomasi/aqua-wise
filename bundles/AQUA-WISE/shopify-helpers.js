@@ -1010,113 +1010,34 @@ async function publishProduct(productId) {
   };
 }
 
-async function shopifyProductSync(req, res) {
-  if (req.method !== 'POST') {
-    res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
-    return;
-  }
-
-  if (!Array.isArray(req.body)) {
-    res.status(400).json({ error: 'Request body must be an array of product objects.' });
-    return;
-  }
-
-  const collectionCache = new Map();
-  const results = [];
-
-  // 1) Group incoming items so each group becomes a single Shopify product with multiple variants
-  const groups = new Map();
-  for (const record of req.body) {
-    const key = getGroupKey(record);
-    if (!key) {
-      // Fallback: treat as its own group by random key to not crash
-      const fallbackKey = `${String(record['Product Name'] || 'unknown').trim().toLowerCase()}::${Math.random()}`;
-      groups.set(fallbackKey, [record]);
-      continue;
-    }
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(record);
-  }
-
-  // 2) Process each group
-  for (const [groupKey, group] of groups.entries()) {
-    // Base item supplies core product fields
-    const base = group[0];
-    const sourceIds = group.map(g => g?.id || g?.ProductID).filter(Boolean);
-    const context = { sourceId: sourceIds.join(',') || 'unknown' };
-
-    try {
-      // Determine option name if we have multiple variants
-      const groupHasMultiple = group.length > 1;
-      const optionName =
-        group.find(r => r['Option 1 Name'])?.['Option 1 Name'] ||
-        (groupHasMultiple ? 'Size' : undefined);
-      const optionNames = optionName ? [optionName] : undefined;
-
-      // Create the Shopify product from the base with optionNames (ensures option schema exists)
-      const created = await createProduct(base, optionNames);
-
-      // Build all variants for this group
-      const variants = group.map((rec, idx) => {
-        const optionValue =
-          optionName
-            ? (rec['Option 1 Value'] || rec['Tank Size'] || rec.SKU || `Variant ${idx + 1}`)
-            : undefined;
-        return buildVariantInputFromRecord(rec, optionValue);
-      });
-
-      // Bulk create the group's variants (removes default standalone)
-      const variantResult = await createVariants(created.productId, variants);
-
-      // Merge collections across the group and attach product to all of them
-      const mergedCollections = Array.from(
-        new Set(
-          group.flatMap((r) => normaliseArray(r.Collection))
-               .map((v) => String(v || '').trim())
-               .filter(Boolean)
-        )
-      );
-
-      const collections = await attachCollections(
-        created.productId,
-        { Collection: mergedCollections },
-        collectionCache
-      );
-
-      // Publish (or skip if DRAFT)
-      const publishResult =
-        created.productStatus === 'DRAFT'
-          ? { published: false, skipped: true, reason: 'Product created with DRAFT status.' }
-          : await publishProduct(created.productId);
-
-      results.push({
-        ...context,
-        productId: created.productId,
-        productTitle: created.productTitle,
-        productStatus: created.productStatus,
-        variantIds: variantResult.variantIds,
-        collections,
-        publish: publishResult,
-        status: 'success',
-      });
-    } catch (error) {
-      console.error('Failed to process group', { groupKey, context }, error);
-      results.push({
-        ...context,
-        status: 'failed',
-        error: error.message,
-      });
-    }
-  }
-
-  res.status(200).json({
-    processed: results.length,
-    results,
-  });
-}
-
+const helpers = {
+  callShopify,
+  buildProductMediaArray,
+  buildMetafields,
+  buildVariantInput,
+  buildVariantInputFromRecord,
+  createProduct,
+  createVariant,
+  createVariants,
+  normaliseArray,
+  attachCollections,
+  publishProduct,
+  escapeHtml,
+  splitParagraphs,
+  asSingleLineValue,
+  asMultiLineValue,
+  firstNumber,
+  toIntegerString,
+  toDecimalString,
+  parseMinMax,
+  toDescriptionHtml,
+  buildProductInput,
+  findCollectionIdByName,
+  addProductToCollection,
+  getPublicationIds,
+};
 module.exports = {
-  shopifyProductSync,
+  helpers,
   callShopify,
   buildProductMediaArray,
   buildMetafields,
