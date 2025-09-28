@@ -130,7 +130,7 @@ function buildMetafields(product) {
     { key: 'Occupants', source: product.Occupants },
     { key: 'Household_Size', source: product['Household Size'] },
     { key: 'Stories_Max', source: product['Stories Max'] },
-    { key: 'Max_Flow_GPM', source: product['Max Flow GPM'] },
+    { key: 'Max_Flow_GPM', source: product['Max Flow Rate GPM'] || product['Max Flow GPM'] },
     { key: 'cu_ft', source: product['Cu.Ft'] },
     { key: 'Tank_Size', source: product['Tank Size'] },
     { key: 'Media_Type', source: product['Media Type'] },
@@ -143,7 +143,6 @@ function buildMetafields(product) {
     { key: 'Practical Service Flow', source: product['Practical Service Flow (gpm @ EBCT≈2 min)'] },
     { key: 'Backwash', source: product['Backwash (DLFC) (gpm)'] },
     { key: 'Product Weight lb', source: product['Product Weight lb'] },
-    { key: 'Number of Bathroom', source: product['Number of Bathroom'] },
   ];
 
   for (const mapping of singleLineMappings) {
@@ -187,7 +186,8 @@ function buildMetafields(product) {
       product['Input Output Line'] ||
       product['Input/Output Line'] ||
       product['Input & Output'] ||
-      product['Input and Output Line']
+      product['Input and Output Line'] ||
+      product['Input & Output Line Size']
     );
   if (inputOutputLine) {
     metafields.push({
@@ -231,6 +231,27 @@ function buildMetafields(product) {
   }
 
   // Feed Water Temperature (°C) min/max - decimal
+  // Detect if the provided values are in Fahrenheit and convert to Celsius if needed.
+  const rawTempSources = [
+    product['Feed Water Temperature Min'],
+    product['Feed Water Temp Min'],
+    product['Temperature Min (C)'],
+    product['Feed Water Temperature C Min'],
+    product['Feed Water Temperature Max'],
+    product['Feed Water Temp Max'],
+    product['Temperature Max (C)'],
+    product['Feed Water Temperature C Max'],
+    product['Feed Water Temperature'],
+    product['Feed Water Temp'],
+    product['Feed Water Temperature Range'],
+    product['Temperature'],
+  ].filter(Boolean);
+
+  const unitIsF = rawTempSources.some((val) => {
+    const text = Array.isArray(val) ? val.join(' ') : String(val);
+    return /(?:deg\s*F|°\s*F|\bF\b)/i.test(text);
+  });
+
   let tempMin = toDecimalString(
     product['Feed Water Temperature Min'] ||
     product['Feed Water Temp Min'] ||
@@ -253,6 +274,17 @@ function buildMetafields(product) {
     tempMin = parsed.min || tempMin;
     tempMax = parsed.max || tempMax;
   }
+
+  if (unitIsF) {
+    const toC = (nStr) => {
+      const n = Number(nStr);
+      if (!Number.isFinite(n)) return nStr;
+      return String(((n - 32) * 5) / 9);
+    };
+    if (tempMin) tempMin = toC(tempMin);
+    if (tempMax) tempMax = toC(tempMax);
+  }
+
   if (tempMin) {
     metafields.push({
       namespace: 'product',
@@ -356,18 +388,18 @@ function buildMetafields(product) {
     });
   }
 
-  // Brine Tank Size (L) - integer
-  const brineTankSizeL = toIntegerString(
+  // Brine Tank Size (text) - preserve descriptive values like 18"x36" Gray
+  const brineTankSizeText = asSingleLineValue(
     product['Brine Tank Size'] ||
     product['Brain Tank Size'] ||
     product['Brine Tank (L)']
   );
-  if (brineTankSizeL) {
+  if (brineTankSizeText) {
     metafields.push({
       namespace: 'product',
-      key: 'brine_tank_size_l',
-      type: 'number_integer',
-      value: brineTankSizeL,
+      key: 'brine_tank_size',
+      type: 'single_line_text_field',
+      value: brineTankSizeText,
     });
   }
 
