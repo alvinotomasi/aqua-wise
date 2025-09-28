@@ -177,6 +177,26 @@ function buildMetafields(product) {
     });
   }
 
+  const includedProducts = asMultiLineValue(product['Included Products']);
+  if (includedProducts) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'included_products',
+      type: 'multi_line_text_field',
+      value: includedProducts,
+    });
+  }
+
+  const includedProductIds = asMultiLineValue(product['Bundle Product IDs']);
+  if (includedProductIds) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'bundle_product_ids',
+      type: 'multi_line_text_field',
+      value: includedProductIds,
+    });
+  }
+
   // --- New Shopify Product namespace metafields (namespace: "product") ---
 
   // Input & Output Line (text)
@@ -990,7 +1010,7 @@ async function publishProduct(productId) {
   };
 }
 
-exports.shopifyProductSync = async (req, res) => {
+async function shopifyProductSync(req, res) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
     return;
@@ -1093,4 +1113,34 @@ exports.shopifyProductSync = async (req, res) => {
     processed: results.length,
     results,
   });
+}
+
+const helpers = {
+  callShopify,
+  buildProductMediaArray,
+  buildMetafields,
+  buildVariantInput,
+  buildVariantInputFromRecord,
+  createProduct,
+  createVariant,
+  createVariants,
+  normaliseArray,
+  attachCollections,
+  publishProduct,
+  escapeHtml,
+  splitParagraphs,
+  asSingleLineValue,
+  asMultiLineValue,
+  firstNumber,
+  toIntegerString,
+  toDecimalString,
+  parseMinMax,
+  toDescriptionHtml,
+  buildProductInput,
+  findCollectionIdByName,
+  addProductToCollection,
+  getPublicationIds,
 };
+
+exports.shopifyProductSync = shopifyProductSync;
+exports.helpers = helpers;

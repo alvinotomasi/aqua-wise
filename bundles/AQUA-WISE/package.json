@@ -1,0 +1,13 @@
+{
+  "name": "aqua-wise-bundle-function",
+  "version": "0.1.0",
+  "description": "Google Cloud Function to create Shopify bundle products.",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
+

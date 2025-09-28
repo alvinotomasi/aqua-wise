@@ -4,7 +4,8 @@
   "description": "Google Cloud Function to sync Aqua Wise catalog items to Shopify.",
   "main": "index.js",
   "scripts": {
-    "start": "functions-framework --target=shopifyProductSync"
+    "start": "functions-framework --target=shopifyProductSync",
+    "start:bundle": "functions-framework --target=createBundleProducts --source=bundles/AQUA-WISE/index.js"
   },
   "dependencies": {
     "@google-cloud/functions-framework": "^3.4.0",
