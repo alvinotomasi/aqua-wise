@@ -496,16 +496,95 @@ function buildVariantInput(product) {
  * Grouping helpers to treat incoming rows as product variants rather than separate products
  */
 
+// Heuristic sanitizers for fallback grouping when no explicit group identifiers are provided.
+function stripTrademark(text) {
+  return text.replace(/[™®]/g, '');
+}
+function stripQuotes(text) {
+  return text.replace(/[“”"']/g, '');
+}
+function stripCapacityTokens(text) {
+  // Remove tokens like "32K", "96 K", "120K Grain", "120 K Grains", "32,000 Grains"
+  return text
+    .replace(/\b\d{1,3}(?:,\d{3})*\s*(?:k|k\s+grains?|grains?)\b/gi, '')
+    .replace(/\b\d{1,3}(?:,\d{3})*\s*(?:grains?)\b/gi, '')
+    .replace(/\b\d{1,3}\s*k\b/gi, '');
+}
+function stripTankSize(text) {
+  // Remove 9x48, 10x54, 12x52, 13x54, 14x65, 16x53 forms with optional spaces and case
+  return text.replace(/\b\d{1,2}\s*[xX]\s*\d{1,2}\b/g, '');
+}
+function stripValveTokens(text) {
+  // Remove segments like " - WS1-1in" or " WS1.5-1.5in"
+  return text.replace(/\s*-\s*WS[0-9.]+(?:[-.][0-9]+)?in\b/gi, '').replace(/\bWS[0-9.]+(?:[-.][0-9]+)?in\b/gi, '');
+}
+function collapseWhitespace(text) {
+  return text.replace(/\s{2,}/g, ' ').trim();
+}
+function toKey(...parts) {
+  return parts
+    .filter(Boolean)
+    .map((p) => String(p).trim().toLowerCase())
+    .join('|');
+}
+
+// Build a heuristic key from Product Name + Vendor + Category, stripping size/finish tokens.
+// If Option 1 Value is present and appears inside the title, remove it for grouping.
+function heuristicGroupKey(product) {
+  const vendor = product.Vendor || '';
+  const category = product.Category || product['Category'] || '';
+  const optVal = (product['Option 1 Value'] || '').toString().trim().toLowerCase();
+
+  let title = (product['Product Name'] || '').toString();
+  title = stripTrademark(title);
+  title = stripQuotes(title);
+
+  let lower = title.toLowerCase();
+
+  // If option value appears in the title, remove it first to encourage grouping by base name
+  if (optVal && lower.includes(optVal)) {
+    const re = new RegExp(optVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    lower = lower.replace(re, ' ');
+  }
+
+  lower = stripCapacityTokens(lower);
+  lower = stripTankSize(lower);
+  lower = stripValveTokens(lower);
+  lower = collapseWhitespace(lower);
+
+  // Construct a conservative key that includes vendor and category to avoid over-grouping
+  if (lower) {
+    return toKey(vendor, category, lower);
+  }
+
+  // Fallback to simple product name key
+  return toKey(vendor, category, (product['Product Name'] || '').toString());
+}
+
 // Key used to group variant rows into a single Shopify product.
-// Preference order: Product Group | Parent ID | Handle | Product Name
+// Priority order:
+// 1. Product Group
+// 2. Parent ID
+// 3. Handle
+// 4. Link to Product Page
+// 5. URL
+// 6. Product Name (as-is)
+// 7. Heuristic normalized name (Vendor|Category|Sanitized Product Name)
 function getGroupKey(product) {
-  const raw =
+  const explicit =
     product['Product Group'] ||
     product['Parent ID'] ||
     product['Handle'] ||
+    product['Link to Product Page'] ||
+    product['URL'] ||
     product['Product Name'] ||
     '';
-  return String(raw).trim().toLowerCase();
+
+  const explicitKey = String(explicit).trim().toLowerCase();
+  if (explicitKey) return explicitKey;
+
+  // Heuristic fallback
+  return heuristicGroupKey(product);
 }
 
 // Build a variant input from a single record, optionally embedding the option value
