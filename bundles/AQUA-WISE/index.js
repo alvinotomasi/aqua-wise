@@ -51,27 +51,51 @@ function sumNumericField(records, field) {
 }
 
 function composeBundleDescription(bundle, includedProducts) {
-  const segments = [];
-
-  if (bundle.Description) {
-    segments.push(String(bundle.Description).trim());
+  const bundleDescription = String(bundle?.Description || '').trim();
+  if (bundleDescription) {
+    return bundleDescription;
   }
 
+  const productDescriptions = includedProducts
+    .map((product) => String(product.Description || product['Product Description'] || '').trim())
+    .filter(Boolean);
+
+  if (productDescriptions.length) {
+    return productDescriptions.join('\n\n');
+  }
+
+  const productNames = includedProducts
+    .map((product) => asSingleLineValue(product['Product Name'] || product.Name || product.id))
+    .filter(Boolean);
+
+  if (productNames.length) {
+    return productNames.join(', ');
+  }
+
+  return 'Bundle description not available.';
+}
+
+function buildBundleDetails(includedProducts) {
+  const details = [];
+
   for (const product of includedProducts) {
-    const name = asSingleLineValue(product['Product Name'] || product.Name || product.id) || 'Unnamed product';
+    const name = asSingleLineValue(product['Product Name'] || product.Name || product.id);
     const description = String(product.Description || product['Product Description'] || '').trim();
-    if (description) {
-      segments.push(`${name}: ${description}`);
-    } else {
-      segments.push(name);
+
+    if (name && description) {
+      details.push(`${name}: ${description}`);
+    } else if (name) {
+      details.push(name);
+    } else if (description) {
+      details.push(description);
     }
   }
 
-  if (!segments.length) {
-    return 'Bundle description not available.';
+  if (!details.length) {
+    return undefined;
   }
 
-  return segments.join('\n\n');
+  return details.join('\n\n');
 }
 
 function resolveBundleSku(bundle) {
@@ -110,6 +134,7 @@ function buildBundleProductRecord(bundle, includedProducts) {
   const description = composeBundleDescription(bundle, includedProducts);
   const includedNames = buildIncludedProductNames(includedProducts);
   const includedIds = buildIncludedProductIdentifiers(includedProducts);
+  const bundleDetails = buildBundleDetails(includedProducts);
 
   const resolvedPrice = Number(bundle['Website Retail Price']) > 0
     ? bundle['Website Retail Price']
@@ -133,6 +158,7 @@ function buildBundleProductRecord(bundle, includedProducts) {
     ...bundle,
     'Product Name': bundle['Bundle Name'] || bundle.Name || `Bundle ${bundle.id || ''}`,
     Description: description,
+    'Product Description': description,
     Collection: collections.length ? collections : bundle.Collection,
     'Website Retail Price': resolvedPrice ?? bundle['Website Retail Price'],
     MSRP: resolvedCompareAtPrice ?? bundle.MSRP,
@@ -144,6 +170,7 @@ function buildBundleProductRecord(bundle, includedProducts) {
     Image: bundle.Image,
     'Included Products': includedNames,
     'Bundle Product IDs': includedIds,
+    'Bundle Details': bundleDetails,
     'Sell on Website': bundle['Sell on Website'] === false ? false : true,
   };
 }

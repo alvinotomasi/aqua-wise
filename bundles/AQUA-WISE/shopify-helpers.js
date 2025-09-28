@@ -197,6 +197,16 @@ function buildMetafields(product) {
     });
   }
 
+  const bundleDetails = asMultiLineValue(product['Bundle Details']);
+  if (bundleDetails) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'bundle_details',
+      type: 'multi_line_text_field',
+      value: bundleDetails,
+    });
+  }
+
   // --- New Shopify Product namespace metafields (namespace: "product") ---
 
   // Input & Output Line (text)
