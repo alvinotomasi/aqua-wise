@@ -465,7 +465,8 @@ function buildVariantInput(product) {
   const compareAtPrice = product.MSRP;
   const sku = product.SKU;
 
-  if (!price && !sku) {
+  // If neither price nor sku is present, skip this variant
+  if ((price === undefined || price === null) && !sku) {
     return null;
   }
 
@@ -489,6 +490,93 @@ function buildVariantInput(product) {
   }
 
   return variant;
+}
+
+/**
+ * Grouping helpers to treat incoming rows as product variants rather than separate products
+ */
+
+// Key used to group variant rows into a single Shopify product.
+// Preference order: Product Group | Parent ID | Handle | Product Name
+function getGroupKey(product) {
+  const raw =
+    product['Product Group'] ||
+    product['Parent ID'] ||
+    product['Handle'] ||
+    product['Product Name'] ||
+    '';
+  return String(raw).trim().toLowerCase();
+}
+
+// Build a variant input from a single record, optionally embedding the option value
+function buildVariantInputFromRecord(product, optionValue) {
+  const price = product['Website Retail Price'];
+  const compareAtPrice = product.MSRP;
+  const sku = product.SKU;
+
+  // If neither price nor sku is present, skip creating a broken variant
+  if ((price === undefined || price === null) && !sku) {
+    return null;
+  }
+
+  const inventoryItem = { tracked: false };
+  if (sku) {
+    inventoryItem.sku = String(sku);
+  }
+
+  const variant = {
+    price: price !== undefined && price !== null ? String(price) : undefined,
+    compareAtPrice:
+      compareAtPrice !== undefined && compareAtPrice !== null
+        ? String(compareAtPrice)
+        : undefined,
+    inventoryPolicy: 'CONTINUE',
+    inventoryItem,
+  };
+
+  if (optionValue !== undefined && optionValue !== null) {
+    const v = String(optionValue).trim();
+    if (v) {
+      // Shopify expects an array of option values in the same order as product options
+      variant.options = [v];
+    }
+  }
+
+  return variant;
+}
+
+// Bulk create variants for a given product
+async function createVariants(productId, variants) {
+  // Filter out any nulls (e.g., missing price & sku)
+  const prepared = variants.filter(Boolean);
+  if (!prepared.length) {
+    return { variantIds: [], variantErrors: [] };
+  }
+
+  const variables = {
+    productId,
+    strategy: 'REMOVE_STANDALONE_VARIANT',
+    variants: prepared,
+  };
+
+  const response = await callShopify(
+    VARIANTS_BULK_MUTATION,
+    variables,
+    'productVariantsBulkCreate'
+  );
+
+  const payload = response.data?.productVariantsBulkCreate;
+  const userErrors = payload?.userErrors || [];
+  if (userErrors.length > 0) {
+    const message = userErrors.map((error) => error.message).join('; ');
+    throw new Error(`productVariantsBulkCreate userErrors: ${message}`);
+  }
+
+  const variantIds = (payload?.productVariants || []).map((variant) => variant.id);
+  return {
+    variantIds,
+    variantErrors: [],
+  };
 }
 
 async function callShopify(query, variables = {}, requestLabel = 'graphqlRequest') {
@@ -629,10 +717,15 @@ mutation publishablePublish($id: ID!, $input: [PublicationInput!]!) {
 let cachedPublicationIds = null;
 let publicationPromise = null;
 
-async function createProduct(product) {
+async function createProduct(product, optionNames) {
   const input = buildProductInput(product);
   if (!input.title) {
     throw new Error('Product name is required to create a product.');
+  }
+
+  // If variant option names are provided (e.g., ["Size"]), attach them
+  if (Array.isArray(optionNames) && optionNames.length > 0) {
+    input.options = optionNames;
   }
 
   const media = buildProductMediaArray(product);
@@ -832,13 +925,66 @@ exports.shopifyProductSync = async (req, res) => {
   const collectionCache = new Map();
   const results = [];
 
-  for (const product of req.body) {
-    const sourceId = product?.id || product?.ProductID || 'unknown';
-    const context = { sourceId };
+  // 1) Group incoming items so each group becomes a single Shopify product with multiple variants
+  const groups = new Map();
+  for (const record of req.body) {
+    const key = getGroupKey(record);
+    if (!key) {
+      // Fallback: treat as its own group by random key to not crash
+      const fallbackKey = `${String(record['Product Name'] || 'unknown').trim().toLowerCase()}::${Math.random()}`;
+      groups.set(fallbackKey, [record]);
+      continue;
+    }
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(record);
+  }
+
+  // 2) Process each group
+  for (const [groupKey, group] of groups.entries()) {
+    // Base item supplies core product fields
+    const base = group[0];
+    const sourceIds = group.map(g => g?.id || g?.ProductID).filter(Boolean);
+    const context = { sourceId: sourceIds.join(',') || 'unknown' };
+
     try {
-      const created = await createProduct(product);
-      const variant = await createVariant(created.productId, product);
-      const collections = await attachCollections(created.productId, product, collectionCache);
+      // Determine option name if we have multiple variants
+      const groupHasMultiple = group.length > 1;
+      const optionName =
+        group.find(r => r['Option 1 Name'])?.['Option 1 Name'] ||
+        (groupHasMultiple ? 'Size' : undefined);
+      const optionNames = optionName ? [optionName] : undefined;
+
+      // Create the Shopify product from the base with optionNames (ensures option schema exists)
+      const created = await createProduct(base, optionNames);
+
+      // Build all variants for this group
+      const variants = group.map((rec, idx) => {
+        const optionValue =
+          optionName
+            ? (rec['Option 1 Value'] || rec['Tank Size'] || rec.SKU || `Variant ${idx + 1}`)
+            : undefined;
+        return buildVariantInputFromRecord(rec, optionValue);
+      });
+
+      // Bulk create the group's variants (removes default standalone)
+      const variantResult = await createVariants(created.productId, variants);
+
+      // Merge collections across the group and attach product to all of them
+      const mergedCollections = Array.from(
+        new Set(
+          group.flatMap((r) => normaliseArray(r.Collection))
+               .map((v) => String(v || '').trim())
+               .filter(Boolean)
+        )
+      );
+
+      const collections = await attachCollections(
+        created.productId,
+        { Collection: mergedCollections },
+        collectionCache
+      );
+
+      // Publish (or skip if DRAFT)
       const publishResult =
         created.productStatus === 'DRAFT'
           ? { published: false, skipped: true, reason: 'Product created with DRAFT status.' }
@@ -849,13 +995,13 @@ exports.shopifyProductSync = async (req, res) => {
         productId: created.productId,
         productTitle: created.productTitle,
         productStatus: created.productStatus,
-        variantIds: variant.variantIds,
+        variantIds: variantResult.variantIds,
         collections,
         publish: publishResult,
         status: 'success',
       });
     } catch (error) {
-      console.error('Failed to process product', context, error);
+      console.error('Failed to process group', { groupKey, context }, error);
       results.push({
         ...context,
         status: 'failed',
