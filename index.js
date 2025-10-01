@@ -729,6 +729,21 @@ mutation productCreate($input: ProductInput!, $media: [CreateMediaInput!]) {
 }
 `;
 
+const PRODUCT_UPDATE_MUTATION = `
+mutation productUpdate($input: ProductInput!) {
+  productUpdate(input: $input) {
+    product {
+      id
+      title
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+`;
+
 const VARIANTS_BULK_MUTATION = `
 mutation productVariantsBulkCreate(
   $productId: ID!
@@ -849,6 +864,42 @@ async function createProduct(product, optionNames) {
 
   return {
     productId,
+    productTitle: result.product?.title || input.title,
+    productStatus: input.status || 'ACTIVE',
+  };
+}
+
+async function updateProduct(productId, product, optionNames) {
+  const input = buildProductInput(product);
+  
+  // Add the product ID to the input for updates
+  input.id = productId;
+
+  // If variant option names are provided (e.g., ["Size"]), attach them
+  if (Array.isArray(optionNames) && optionNames.length > 0) {
+    input.options = optionNames;
+  }
+
+  const variables = {
+    input,
+  };
+
+  const response = await callShopify(PRODUCT_UPDATE_MUTATION, variables, 'productUpdate');
+  const result = response.data?.productUpdate;
+  const userErrors = result?.userErrors || [];
+
+  if (userErrors.length > 0) {
+    const message = userErrors.map((error) => error.message).join('; ');
+    throw new Error(`productUpdate userErrors: ${message}`);
+  }
+
+  const updatedProductId = result?.product?.id;
+  if (!updatedProductId) {
+    throw new Error('productUpdate did not return a product id.');
+  }
+
+  return {
+    productId: updatedProductId,
     productTitle: result.product?.title || input.title,
     productStatus: input.status || 'ACTIVE',
   };
@@ -1053,8 +1104,11 @@ async function shopifyProductSync(req, res) {
         (groupHasMultiple ? 'Size' : undefined);
       const optionNames = optionName ? [optionName] : undefined;
 
-      // Create the Shopify product from the base with optionNames (ensures option schema exists)
-      const created = await createProduct(base, optionNames);
+      // Check if we should update or create
+      const existingProductId = base['Shopify Product Id'] || base['shopify_product_id'];
+      const created = existingProductId
+        ? await updateProduct(existingProductId, base, optionNames)
+        : await createProduct(base, optionNames);
 
       // Build all variants for this group
       const variants = group.map((rec, idx) => {
@@ -1098,6 +1152,7 @@ async function shopifyProductSync(req, res) {
         collections,
         publish: publishResult,
         status: 'success',
+        operation: existingProductId ? 'updated' : 'created',
       });
     } catch (error) {
       console.error('Failed to process group', { groupKey, context }, error);
@@ -1123,6 +1178,7 @@ module.exports = {
   buildVariantInput,
   buildVariantInputFromRecord,
   createProduct,
+  updateProduct,
   createVariant,
   createVariants,
   normaliseArray,
