@@ -433,7 +433,7 @@ function buildProductInput(product) {
     descriptionHtml,
     status: product['Sell on Website'] === false ? 'DRAFT' : 'ACTIVE',
     productType: asSingleLineValue(product.Category),
-    vendor: asSingleLineValue(product.Vendor),
+    vendor: asSingleLineValue(product['Sub Brand'] || product.Vendor),
     metafields: buildMetafields(product),
     tags: normaliseArray(product.Collection).concat(normaliseArray(product['Problems solved (keywords)'])).filter(Boolean),
   };
