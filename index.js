@@ -607,8 +607,8 @@ function getGroupKey(product) {
   return heuristicGroupKey(product);
 }
 
-// Build a variant input from a single record, optionally embedding the option value
-function buildVariantInputFromRecord(product, optionValue) {
+// Build a variant input from a single record, optionally embedding the option name and value
+function buildVariantInputFromRecord(product, optionName, optionValue) {
   const price = product['Website Retail Price'];
   const compareAtPrice = product.MSRP;
   const sku = product.SKU;
@@ -633,11 +633,17 @@ function buildVariantInputFromRecord(product, optionValue) {
     inventoryItem,
   };
 
-  if (optionValue !== undefined && optionValue !== null) {
+  // Add option values if both name and value are provided
+  if (optionName && optionValue !== undefined && optionValue !== null) {
     const v = String(optionValue).trim();
     if (v) {
-      // Shopify expects an array of option values in the same order as product options
-      variant.options = [v];
+      // Use optionValues array with optionName and name (value)
+      variant.optionValues = [
+        {
+          optionName: String(optionName),
+          name: v,
+        }
+      ];
     }
   }
 
@@ -837,10 +843,8 @@ async function createProduct(product, optionNames) {
     throw new Error('Product name is required to create a product.');
   }
 
-  // If variant option names are provided (e.g., ["Size"]), attach them
-  if (Array.isArray(optionNames) && optionNames.length > 0) {
-    input.options = optionNames;
-  }
+  // Note: options field is not supported in ProductInput for productCreate
+  // Options are inferred from variants when they are created
 
   const media = buildProductMediaArray(product);
   const variables = {
@@ -875,10 +879,8 @@ async function updateProduct(productId, product, optionNames) {
   // Add the product ID to the input for updates
   input.id = productId;
 
-  // If variant option names are provided (e.g., ["Size"]), attach them
-  if (Array.isArray(optionNames) && optionNames.length > 0) {
-    input.options = optionNames;
-  }
+  // Note: options field is not supported in ProductInput for productUpdate
+  // Options are managed through variants
 
   const variables = {
     input,
@@ -1116,7 +1118,7 @@ async function shopifyProductSync(req, res) {
           optionName
             ? (rec['Option 1 Value'] || rec['Tank Size'] || rec.SKU || `Variant ${idx + 1}`)
             : undefined;
-        return buildVariantInputFromRecord(rec, optionValue);
+        return buildVariantInputFromRecord(rec, optionName, optionValue);
       });
 
       // Bulk create the group's variants (removes default standalone)
