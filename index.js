@@ -591,19 +591,23 @@ function heuristicGroupKey(product) {
 // 6. Product Name (as-is)
 // 7. Heuristic normalized name (Vendor|Category|Sanitized Product Name)
 function getGroupKey(product) {
+  // Prefer explicit, stable identifiers when present.
+  // IMPORTANT: Do NOT use raw "Product Name" here because it often includes
+  // variant tokens (e.g., sizes/capacities) and will split variants into
+  // separate products. We always fall back to the heuristic key instead.
   const explicit =
     product['Product Group'] ||
     product['Parent ID'] ||
     product['Handle'] ||
     product['Link to Product Page'] ||
     product['URL'] ||
-    product['Product Name'] ||
     '';
 
   const explicitKey = String(explicit).trim().toLowerCase();
   if (explicitKey) return explicitKey;
 
-  // Heuristic fallback
+  // Heuristic fallback that normalizes the name and strips variant-like tokens
+  // to ensure all variants of the same base product group together.
   return heuristicGroupKey(product);
 }
 
