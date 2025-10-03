@@ -700,35 +700,45 @@
       }
   
       // Normalize various incoming recommendation ID formats into
-      // Shopify Product GIDs and/or product handles so we can query reliably.
+      // Shopify Product and ProductVariant GIDs and/or product handles.
       function normalizeRecommendationIds(recommendations) {
-        const gids = [];
+        const productGids = [];
+        const variantGids = [];
         const handles = [];
         const explanationMap = new Map();
 
         const toProductGid = (numericId) => `gid://shopify/Product/${numericId}`;
+        const toVariantGid = (numericId) => `gid://shopify/ProductVariant/${numericId}`;
 
         recommendations.forEach((rec) => {
           const original = String(rec?.id || '').trim();
           const explanation = String(rec?.explanation || '').trim();
           if (!original) return;
 
-          let gid = null;
+          let productGid = null;
+          let variantGid = null;
           let handle = null;
 
-          // 1) Direct GID or GID inside a URL/string
+          // 1) Direct GID -> keep exact type
           const gidMatch = original.match(/gid:\/\/shopify\/(Product|ProductVariant)\/(\d+)/);
           if (gidMatch) {
-            gid = toProductGid(gidMatch[2]);
+            const type = gidMatch[1];
+            const idNum = gidMatch[2];
+            if (type === 'Product') {
+              productGid = toProductGid(idNum);
+            } else if (type === 'ProductVariant') {
+              variantGid = toVariantGid(idNum);
+            }
           }
 
-          // 2) Numeric ID (admin/product ID)
-          if (!gid && /^\d+$/.test(original)) {
-            gid = toProductGid(original);
+          // 2) Numeric ID (unknown type) -> try both product and variant
+          if (!productGid && !variantGid && /^\d+$/.test(original)) {
+            productGid = toProductGid(original);
+            variantGid = toVariantGid(original);
           }
 
           // 3) Product URL -> extract handle
-          if (!gid && original.includes('/products/')) {
+          if (!productGid && !variantGid && original.includes('/products/')) {
             try {
               const url = new URL(original, window.location.origin);
               const m = url.pathname.match(/\/products\/([^\/?#]+)/);
@@ -739,13 +749,17 @@
           }
 
           // 4) Slug-like string -> assume handle
-          if (!gid && !handle && /^[a-z0-9-]+$/.test(original)) {
+          if (!productGid && !variantGid && !handle && /^[a-z0-9-]+$/.test(original)) {
             handle = original;
           }
 
-          if (gid) {
-            gids.push(gid);
-            if (explanation) explanationMap.set(gid, explanation);
+          if (productGid) {
+            productGids.push(productGid);
+            if (explanation) explanationMap.set(productGid, explanation);
+          }
+          if (variantGid) {
+            variantGids.push(variantGid);
+            if (explanation) explanationMap.set(variantGid, explanation);
           }
           if (handle) {
             handles.push(handle);
@@ -758,7 +772,7 @@
           }
         });
 
-        return { gids, handles, explanationMap };
+        return { productGids, variantGids, handles, explanationMap };
       }
 
       async function fetchProductsByGid(recommendations) {
@@ -768,143 +782,154 @@
         }
   
         // Normalize any non-GID inputs (numeric IDs, URLs, or handles)
-        const { gids, handles, explanationMap } = normalizeRecommendationIds(recommendations);
-        if (!gids.length && !handles.length) {
+        const { productGids, variantGids, handles, explanationMap } = normalizeRecommendationIds(recommendations);
+        if (!productGids.length && !variantGids.length && !handles.length) {
           console.warn('No valid product identifiers found in recommendations:', recommendations);
           return { products: [], error: 'no_valid_ids' };
         }
         const storeRoot = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
-        const queryNodesById = `
-          query ProductCards($ids: [ID!]!) {
-            nodes(ids: $ids) {
-              ... on Product {
+
+        const productSelection = `
+          id
+          handle
+          title
+          onlineStoreUrl
+          featuredImage { url altText }
+          priceRange { minVariantPrice { amount currencyCode } }
+          variants(first: 10) {
+            edges {
+              node {
                 id
-                handle
                 title
-                onlineStoreUrl
-                featuredImage {
-                  url
-                  altText
-                }
-                priceRange {
-                  minVariantPrice {
-                    amount
-                    currencyCode
-                  }
-                }
-                variants(first: 10) {
-                  nodes {
-                    id
-                    title
-                    availableForSale
-                    price {
-                      amount
-                      currencyCode
-                    }
-                  }
-                }
+                availableForSale
+                price { amount currencyCode }
+              }
+            }
+          }
+        `;
+
+        const queryGetProductById = `
+          query getProductById($id: ID!) {
+            product(id: $id) {
+              ${productSelection}
+            }
+          }
+        `;
+
+        const queryGetProductByHandle = `
+          query getProductByHandle($handle: String!) {
+            product(handle: $handle) {
+              ${productSelection}
+            }
+          }
+        `;
+
+        const queryGetProductByVariantId = `
+          query getProductByVariantId($id: ID!) {
+            productVariant(id: $id) {
+              id
+              product {
+                ${productSelection}
               }
             }
           }
         `;
   
         try {
-          const fetches = [];
+          const doFetch = (query, variables) =>
+            fetch(`${storeRoot}api/2024-07/graphql.json`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Shopify-Storefront-Access-Token': token
+              },
+              body: JSON.stringify({ query, variables })
+            }).then((res) => {
+              if (!res.ok) throw new Error(`GraphQL returned ${res.status}`);
+              return res.json();
+            });
 
-          if (gids.length) {
-            fetches.push(
-              fetch(`${storeRoot}api/2024-07/graphql.json`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json',
-                  'X-Shopify-Storefront-Access-Token': token
-                },
-                body: JSON.stringify({ query: queryNodesById, variables: { ids: gids } })
-              })
-                .then((res) => {
-                  if (!res.ok) throw new Error(`GraphQL (ids) returned ${res.status}`);
-                  return res.json();
-                })
-                .then((json) => (json?.data?.nodes || []).filter(Boolean))
-            );
-          }
-
-          if (handles.length) {
-            const selectionByHandle = handles
-              .map((h, i) => `
-                h${i}: product(handle: ${JSON.stringify(h)}) {
-                  id
-                  handle
-                  title
-                  onlineStoreUrl
-                  featuredImage { url altText }
-                  priceRange { minVariantPrice { amount currencyCode } }
-                  variants(first: 10) {
-                    nodes {
-                      id
-                      title
-                      availableForSale
-                      price { amount currencyCode }
-                    }
-                  }
-                }
-              `)
-              .join('\n');
-
-            const queryByHandle = `query ProductCardsByHandle {\n${selectionByHandle}\n}`;
-
-            fetches.push(
-              fetch(`${storeRoot}api/2024-07/graphql.json`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json',
-                  'X-Shopify-Storefront-Access-Token': token
-                },
-                body: JSON.stringify({ query: queryByHandle })
-              })
-                .then((res) => {
-                  if (!res.ok) throw new Error(`GraphQL (handles) returned ${res.status}`);
-                  return res.json();
-                })
-                .then((json) => {
-                  const data = json?.data || {};
-                  return Object.keys(data)
-                    .map((k) => data[k])
-                    .filter(Boolean);
-                })
-            );
-          }
-
-          const results = await Promise.all(fetches);
-          const nodes = results.flat();
-
-          const products = nodes.map((node) => {
-            const variants = node.variants?.nodes || [];
+          const toProductCard = (productNode, preferredVariantId, explanation) => {
+            const variantEdges = productNode?.variants?.edges || [];
+            const variants = variantEdges.map((e) => e.node).filter(Boolean);
             const preferredVariant =
-              variants.find((variant) => variant.availableForSale) || variants[0] || null;
+              (preferredVariantId && variants.find((v) => v.id === preferredVariantId)) ||
+              variants.find((v) => v.availableForSale) ||
+              variants[0] ||
+              null;
 
-            // Try explanation by GID, then by handle, then fallback
-            const explanation =
-              explanationMap.get(node.id) ||
-              explanationMap.get(node.handle) ||
+            const expl =
+              explanation ||
+              explanationMap.get(productNode?.id) ||
+              explanationMap.get(productNode?.handle) ||
+              (preferredVariantId ? explanationMap.get(preferredVariantId) : '') ||
               '';
 
             return {
-              id: node.id,
-              handle: node.handle,
-              title: node.title,
-              url: node.onlineStoreUrl || (node.handle ? `${storeRoot}products/${node.handle}` : null),
-              image: node.featuredImage?.url || null,
-              imageAlt: node.featuredImage?.altText || node.title,
-              price: preferredVariant?.price?.amount || node.priceRange?.minVariantPrice?.amount || null,
-              currency: preferredVariant?.price?.currencyCode || node.priceRange?.minVariantPrice?.currencyCode || null,
+              id: productNode.id,
+              handle: productNode.handle,
+              title: productNode.title,
+              url: productNode.onlineStoreUrl || (productNode.handle ? `${storeRoot}products/${productNode.handle}` : null),
+              image: productNode.featuredImage?.url || null,
+              imageAlt: productNode.featuredImage?.altText || productNode.title,
+              price:
+                preferredVariant?.price?.amount ||
+                productNode.priceRange?.minVariantPrice?.amount ||
+                null,
+              currency:
+                preferredVariant?.price?.currencyCode ||
+                productNode.priceRange?.minVariantPrice?.currencyCode ||
+                null,
               variantId: preferredVariant?.id || null,
               variants,
-              explanation
+              explanation: expl
             };
+          };
+
+          const requests = [];
+
+          // Fetch each Product by ID
+          productGids.forEach((productId) => {
+            requests.push(
+              doFetch(queryGetProductById, { id: productId })
+                .then((json) => json?.data?.product || null)
+                .then((product) => (product ? toProductCard(product, null, explanationMap.get(productId)) : null))
+                .catch(() => null)
+            );
           });
+
+          // Fetch each Product by Variant ID, then map to parent product
+          variantGids.forEach((variantId) => {
+            requests.push(
+              doFetch(queryGetProductByVariantId, { id: variantId })
+                .then((json) => json?.data?.productVariant || null)
+                .then((pv) => (pv && pv.product ? toProductCard(pv.product, pv.id, explanationMap.get(variantId)) : null))
+                .catch(() => null)
+            );
+          });
+
+          // Fetch by handle
+          handles.forEach((handle) => {
+            requests.push(
+              doFetch(queryGetProductByHandle, { handle })
+                .then((json) => json?.data?.product || null)
+                .then((product) => (product ? toProductCard(product, null, explanationMap.get(handle)) : null))
+                .catch(() => null)
+            );
+          });
+
+          const results = await Promise.all(requests);
+          // Dedupe by product id
+          const seen = new Set();
+          const products = results
+            .filter(Boolean)
+            .filter((p) => {
+              if (!p?.id) return false;
+              if (seen.has(p.id)) return false;
+              seen.add(p.id);
+              return true;
+            });
 
           return { products, error: null };
         } catch (error) {
