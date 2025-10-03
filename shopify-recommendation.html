@@ -1,0 +1,57 @@
+{%- comment -%}
+  Get the list of addon products from the metafield.
+  The '.value' is important to access the actual list of product objects.
+{%- endcomment -%}
+{%- assign addon_products = product.metafields.custom.addon.value -%}
+
+{%- comment -%}
+  Only render the section if the metafield contains products.
+{%- endcomment -%}
+{%- if addon_products != blank -%}
+  <div class="addon-products-section" style="margin-top: 40px; margin-bottom: 40px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
+    <h2 class="addon-products-title" style="font-size: 1.75rem; margin-bottom: 25px; font-weight: 600; text-align: left;">Goes well with</h2>
+    <div class="addon-products-list" style="display: grid; gap: 20px;">
+      {%- for addon_product in addon_products -%}
+        <div class="addon-product-card" style="display: flex; align-items: center; gap: 15px; padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9; justify-content: space-between;">
+          
+          <a href="{{ addon_product.url }}" title="{{ addon_product.title | escape }}" style="display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; flex-grow: 1;">
+            {%- if addon_product.featured_image -%}
+              <div class="addon-product-card__image-wrapper" style="flex-shrink: 0;">
+                <img
+                  src="{{ addon_product.featured_image | image_url: width: 200, height: 200, crop: 'center' }}"
+                  alt="{{ addon_product.featured_image.alt | escape }}"
+                  width="80"
+                  height="80"
+                  loading="lazy"
+                  style="display: block; border-radius: 4px; object-fit: cover;"
+                >
+              </div>
+            {%- endif -%}
+            
+            <div class="addon-product-card__info" style="display: flex; flex-direction: column;">
+              <h3 class="addon-product-card__title" style="font-size: 1rem; font-weight: 500; margin: 0 0 5px 0;">{{ addon_product.title }}</h3>
+              <div class="addon-product-card__price">
+                {%- if addon_product.compare_at_price > addon_product.price -%}
+                  <span class="price--on-sale" style="color: #d94d4d; font-weight: 600;">{{ addon_product.price | money }}</span>
+                  <s class="price--regular" style="color: #777; margin-left: 10px;">{{ addon_product.compare_at_price | money }}</s>
+                {%- else -%}
+                  <span class="price--regular">{{ addon_product.price | money }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </a>
+
+          <div class="addon-product-card__button-wrapper" style="margin-left: auto;">
+            <form method="post" action="/cart/add">
+              <input type="hidden" name="id" value="{{ addon_product.selected_or_first_available_variant.id }}">
+              <button type="submit" name="add" aria-label="Add {{ addon_product.title | escape }} to cart" style="display: inline-flex; align-items: center; justify-content: center; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: white; color: #333; cursor: pointer; transition: background-color 0.2s;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              </button>
+            </form>
+           </div>
+
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
