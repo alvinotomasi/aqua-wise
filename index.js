@@ -378,6 +378,16 @@ function buildMetafields(product, options = {}) {
     });
   }
 
+  const keyProductFeatures = asSingleLineValue(product['Key Product Features']);
+  if (keyProductFeatures) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'key_product_features',
+      type: 'single_line_text_field',
+      value: keyProductFeatures,
+    });
+  }
+
   const includedProductIds = asMultiLineValue(product['Bundle Product IDs']);
   if (includedProductIds) {
     metafields.push({
