@@ -245,224 +245,6 @@ function parseMinMax(input) {
   }
   return { min: undefined, max: undefined };
 }
-
-const MAX_OCCUPANT_VARIANTS = 15;
-
-function getRecordOccupantRanges(record) {
-  if (!record || typeof record !== 'object') {
-    return [];
-  }
-
-  const raw = record.Occupants !== undefined ? record.Occupants : record['Occupants'];
-  const values = normaliseArray(raw);
-  const ranges = [];
-
-  for (const entry of values) {
-    const text = String(entry).trim();
-    if (!text) {
-      continue;
-    }
-
-    const numberMatches = text.match(/\d+/g);
-    if (!numberMatches || !numberMatches.length) {
-      continue;
-    }
-
-    const numbers = numberMatches
-      .map((token) => Number(token))
-      .filter((num) => Number.isFinite(num));
-
-    if (!numbers.length) {
-      continue;
-    }
-
-    const isRangeFormat = /(?:-|–|—|to|through)/i.test(text);
-    let numericValues;
-
-    if (numbers.length >= 2 && isRangeFormat) {
-      let min = Math.min(...numbers);
-      let max = Math.max(...numbers);
-      if (max < min) {
-        const temp = min;
-        min = max;
-        max = temp;
-      }
-
-      numericValues = [];
-      for (let current = min; current <= max; current += 1) {
-        numericValues.push(current);
-        if (numericValues.length >= MAX_OCCUPANT_VARIANTS) {
-          break;
-        }
-      }
-
-      ranges.push({
-        raw: text,
-        min,
-        max,
-        numericValues,
-        values: numericValues.map((num) => String(num)),
-      });
-      continue;
-    }
-
-    const unique = [];
-    const seen = new Set();
-    for (const value of numbers) {
-      if (seen.has(value)) {
-        continue;
-      }
-      seen.add(value);
-      unique.push(value);
-      if (unique.length >= MAX_OCCUPANT_VARIANTS) {
-        break;
-      }
-    }
-
-    if (!unique.length) {
-      continue;
-    }
-
-    unique.sort((a, b) => a - b);
-
-    ranges.push({
-      raw: text,
-      min: unique[0],
-      max: unique[unique.length - 1],
-      numericValues: unique,
-      values: unique.map((num) => String(num)),
-    });
-  }
-
-  return ranges;
-}
-
-function collectOccupantVariantPlan(group) {
-  const numericSet = new Set();
-  const entries = [];
-  const valueToEntries = new Map();
-
-  for (const record of group) {
-    const ranges = getRecordOccupantRanges(record);
-    for (const range of ranges) {
-      const entry = {
-        record,
-        min: range.min,
-        max: range.max,
-        raw: range.raw,
-        numericValues: range.numericValues,
-      };
-      entries.push(entry);
-
-      for (const num of range.numericValues) {
-        if (Number.isFinite(num)) {
-          numericSet.add(num);
-        }
-        if (!valueToEntries.has(num)) {
-          valueToEntries.set(num, []);
-        }
-        valueToEntries.get(num).push(entry);
-      }
-    }
-  }
-
-  const numericValues = Array.from(numericSet).filter((num) => Number.isFinite(num));
-  numericValues.sort((a, b) => a - b);
-
-  if (numericValues.length > MAX_OCCUPANT_VARIANTS) {
-    console.warn('Occupant variant count exceeds limit; truncating additional values.', {
-      total: numericValues.length,
-      limit: MAX_OCCUPANT_VARIANTS,
-    });
-  }
-
-  const limited = numericValues.slice(0, MAX_OCCUPANT_VARIANTS);
-
-  return {
-    entries,
-    values: limited.map((num) => String(num)),
-    valueToEntries,
-  };
-}
-
-function occupantEntrySpan(entry) {
-  if (!entry || !Number.isFinite(entry.min) || !Number.isFinite(entry.max)) {
-    return Number.POSITIVE_INFINITY;
-  }
-  return Math.abs(entry.max - entry.min);
-}
-
-function chooseNarrowerEntry(current, candidate) {
-  if (!candidate) {
-    return current;
-  }
-  if (!current) {
-    return candidate;
-  }
-
-  const currentSpan = occupantEntrySpan(current);
-  const candidateSpan = occupantEntrySpan(candidate);
-
-  if (candidateSpan < currentSpan) {
-    return candidate;
-  }
-
-  if (candidateSpan === currentSpan) {
-    const currentWidth = Array.isArray(current.numericValues) ? current.numericValues.length : Number.POSITIVE_INFINITY;
-    const candidateWidth = Array.isArray(candidate.numericValues) ? candidate.numericValues.length : Number.POSITIVE_INFINITY;
-    if (candidateWidth < currentWidth) {
-      return candidate;
-    }
-  }
-
-  return current;
-}
-
-function findBestRecordForOccupant(plan, occupantValue) {
-  if (!plan || !Array.isArray(plan.entries) || plan.entries.length === 0) {
-    return undefined;
-  }
-
-  const numericValue = Number(occupantValue);
-  if (Number.isFinite(numericValue)) {
-    const directMatches = plan.valueToEntries.get(numericValue);
-    if (Array.isArray(directMatches) && directMatches.length > 0) {
-      let bestDirect = null;
-      for (const entry of directMatches) {
-        bestDirect = chooseNarrowerEntry(bestDirect, entry);
-      }
-      if (bestDirect) {
-        return bestDirect.record;
-      }
-    }
-  }
-
-  let best = null;
-  for (const entry of plan.entries) {
-    if (!Number.isFinite(entry.min) || !Number.isFinite(entry.max)) {
-      continue;
-    }
-    if (!Number.isFinite(numericValue)) {
-      continue;
-    }
-    if (numericValue >= entry.min && numericValue <= entry.max) {
-      best = chooseNarrowerEntry(best, entry);
-    }
-  }
-
-  return (best || plan.entries[0])?.record;
-}
-
-function recordHasVariantPricingOrSku(record) {
-  if (!record || typeof record !== 'object') {
-    return false;
-  }
-  const price = record['Website Retail Price'];
-  const sku = record.SKU;
-  const hasPrice = price !== undefined && price !== null;
-  const hasSku = sku !== undefined && sku !== null && String(sku).trim().length > 0;
-  return hasPrice || hasSku;
-}
  
 function buildAddonMetafield(addonShopifyProductIds) {
   if (!Array.isArray(addonShopifyProductIds) || addonShopifyProductIds.length === 0) {
@@ -899,6 +681,7 @@ function buildVariantInput(product) {
   const compareAtPrice = product.MSRP;
   const sku = product.SKU;
 
+  // If neither price nor sku is present, skip this variant
   if ((price === undefined || price === null) && !sku) {
     return null;
   }
@@ -917,6 +700,10 @@ function buildVariantInput(product) {
     inventoryPolicy: 'CONTINUE',
     inventoryItem,
   };
+
+  if (!variant.options) {
+    delete variant.options;
+  }
 
   return variant;
 }
@@ -1095,18 +882,6 @@ async function createVariants(productId, variants) {
     variantIds,
     variantErrors: [],
   };
-}
-
-function findPricingRecord(group) {
-  if (!Array.isArray(group) || !group.length) {
-    return undefined;
-  }
-  for (const record of group) {
-    if (recordHasVariantPricingOrSku(record)) {
-      return record;
-    }
-  }
-  return group[0];
 }
 
 async function callShopify(query, variables = {}, requestLabel = 'graphqlRequest') {
@@ -1298,9 +1073,8 @@ async function createProduct(product, optionNames, context = {}) {
     throw new Error('Product name is required to create a product.');
   }
 
-  if (Array.isArray(optionNames) && optionNames.length > 0) {
-    input.options = optionNames.map((name) => String(name));
-  }
+  // Note: options field is not supported in ProductInput for productCreate
+  // Options are inferred from variants when they are created
 
   const media = buildProductMediaArray(product);
   const variables = {
@@ -1336,9 +1110,8 @@ async function updateProduct(productId, product, optionNames, context = {}) {
   // Add the product ID to the input for updates
   input.id = productId;
 
-  if (Array.isArray(optionNames) && optionNames.length > 0) {
-    input.options = optionNames.map((name) => String(name));
-  }
+  // Note: options field is not supported in ProductInput for productUpdate
+  // Options are managed through variants
 
   const variables = {
     input,
@@ -1557,60 +1330,30 @@ async function shopifyProductSync(req, res) {
     const context = { sourceId: sourceIds.join(',') || 'unknown' };
 
     try {
-      const plan = collectOccupantVariantPlan(group);
-      const hasOccupantVariants = Array.isArray(plan.values) && plan.values.length > 0;
-
-      const optionName = hasOccupantVariants
-        ? 'Occupants'
-        : group.find(r => r['Option 1 Name'])?.['Option 1 Name'];
-
+      // Determine option name if we have multiple variants
+      const groupHasMultiple = group.length > 1;
+      const optionName =
+        group.find(r => r['Option 1 Name'])?.['Option 1 Name'] ||
+        (groupHasMultiple ? 'Size' : undefined);
       const optionNames = optionName ? [optionName] : undefined;
 
-      const pricingRecord = hasOccupantVariants ? findPricingRecord(group) : base;
-
-      const addonShopifyProductIds = extractAddonShopifyProductIds(pricingRecord);
+      const addonShopifyProductIds = extractAddonShopifyProductIds(base);
       const addonMetafieldResult = buildAddonMetafield(addonShopifyProductIds);
 
-      const productSource = pricingRecord || base;
+      // Check if we should update or create
       const existingProductId = base['Shopify Product Id'] || base['shopify_product_id'];
       const created = existingProductId
-        ? await updateProduct(existingProductId, productSource, optionNames, { addonMetafieldResult })
-        : await createProduct(productSource, optionNames, { addonMetafieldResult });
+        ? await updateProduct(existingProductId, base, optionNames, { addonMetafieldResult })
+        : await createProduct(base, optionNames, { addonMetafieldResult });
 
-      let variants;
-      if (hasOccupantVariants) {
-        variants = plan.values.map((value) => {
-          const matchedRecord = findBestRecordForOccupant(plan, value);
-          const productRecord = matchedRecord || pricingRecord || base;
-
-          const variantInput = buildVariantInputFromRecord(productRecord, optionName, value);
-          if (!variantInput) {
-            if (recordHasVariantPricingOrSku(productRecord)) {
-              return buildVariantInputFromRecord(productRecord, optionName, value);
-            }
-
-            const priceSource = pricingRecord || base;
-            if (priceSource !== productRecord) {
-              const fallbackVariant = buildVariantInputFromRecord(priceSource, optionName, value);
-              if (fallbackVariant) {
-                return fallbackVariant;
-              }
-            }
-
-            return null;
-          }
-
-          return variantInput;
-        });
-      } else {
-        variants = group.map((rec, idx) => {
-          const optionValue =
-            optionName
-              ? (rec['Option 1 Value'] || rec['Tank Size'] || rec.SKU || `Variant ${idx + 1}`)
-              : undefined;
-          return buildVariantInputFromRecord(rec, optionName, optionValue);
-        });
-      }
+      // Build all variants for this group
+      const variants = group.map((rec, idx) => {
+        const optionValue =
+          optionName
+            ? (rec['Option 1 Value'] || rec['Tank Size'] || rec.SKU || `Variant ${idx + 1}`)
+            : undefined;
+        return buildVariantInputFromRecord(rec, optionName, optionValue);
+      });
 
       // Bulk create the group's variants (removes default standalone)
       const variantResult = await createVariants(created.productId, variants);
