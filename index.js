@@ -276,7 +276,7 @@ function buildAddonMetafield(addonShopifyProductIds) {
   }
 
   return {
-    namespace: 'product',
+    namespace: 'custom',
     key: 'addons',
     type: 'list.product_reference',
     value: JSON.stringify(referenceIds),
@@ -860,6 +860,29 @@ async function callShopify(query, variables = {}, requestLabel = 'graphqlRequest
     throw new Error('Shopify configuration missing. Ensure SHOPIFY_STORE_DOMAIN and SHOPIFY_ADMIN_ACCESS_TOKEN env vars are set.');
   }
 
+  console.log('Calling Shopify GraphQL', {
+    requestLabel,
+    graphqlUrl: GRAPHQL_URL,
+    variableKeys: Object.keys(variables || {}),
+  });
+
+  if (variables?.input?.metafields) {
+    const metafieldsToLog = Array.isArray(variables.input.metafields)
+      ? variables.input.metafields.map((field, index) => ({
+          index,
+          namespace: field?.namespace,
+          key: field?.key,
+          type: field?.type,
+          value: field?.value,
+        }))
+      : variables.input.metafields;
+
+    console.log('Shopify metafields payload', {
+      requestLabel,
+      metafields: metafieldsToLog,
+    });
+  }
+
   const response = await fetch(GRAPHQL_URL, {
     method: 'POST',
     headers: {
@@ -867,6 +890,12 @@ async function callShopify(query, variables = {}, requestLabel = 'graphqlRequest
       'X-Shopify-Access-Token': SHOPIFY_TOKEN,
     },
     body: JSON.stringify({ query, variables }),
+  });
+
+  console.log('Shopify GraphQL response', {
+    requestLabel,
+    status: response.status,
+    ok: response.ok,
   });
 
   if (!response.ok) {
