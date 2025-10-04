@@ -2,7 +2,7 @@
   Get the list of addon products from the metafield.
   The '.value' is important to access the actual list of product objects.
 {%- endcomment -%}
-{%- assign addon_products = product.metafields.custom.addon.value -%}
+{%- assign addon_products = product.metafields.custom.addons.value -%}
 
 {%- comment -%}
   Only render the section if the metafield contains products.
