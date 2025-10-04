@@ -112,75 +112,40 @@ function getShopifyProductIdFromRecord(record) {
   return undefined;
 }
 
-function extractAddonRecordIds(product) {
-  if (!product) {
+function extractAddonShopifyProductIds(record) {
+  if (!record || typeof record !== 'object') {
     return [];
   }
-  const candidateKeys = ['Add-ons', 'Add Ons', 'Addons', 'addons', 'AddOns', 'addOns'];
-  const collected = [];
+
+  const candidateKeys = [
+    'Shopify Product Id (from Add-ons)',
+    'Shopify Product ID (from Add-ons)',
+    'Shopify Product Id (From Add-ons)',
+    'Shopify Product Id (from add-ons)',
+    'ShopifyProductIdFromAddOns',
+    'shopify_product_id_from_addons',
+    'Shopify Product Id (Add-ons)',
+  ];
+
+  const referenceIds = new Set();
+
   for (const key of candidateKeys) {
-    if (Object.prototype.hasOwnProperty.call(product, key)) {
-      collected.push(...normaliseArray(product[key]));
+    if (!Object.prototype.hasOwnProperty.call(record, key)) {
+      continue;
+    }
+    const values = normaliseArray(record[key]);
+    for (const value of values) {
+      if (value === undefined || value === null) {
+        continue;
+      }
+      const text = String(value).trim();
+      if (text) {
+        referenceIds.add(text);
+      }
     }
   }
 
-  const recordIds = new Set();
-
-  for (const entry of collected) {
-    if (entry === undefined || entry === null) {
-      continue;
-    }
-
-    if (typeof entry === 'object') {
-      const nestedIds = getRecordIds(entry);
-      for (const nestedId of nestedIds) {
-        recordIds.add(nestedId);
-      }
-      if (entry.id && typeof entry.id === 'string') {
-        const trimmed = entry.id.trim();
-        if (trimmed) {
-          recordIds.add(trimmed);
-        }
-      }
-      continue;
-    }
-
-    const text = String(entry).trim();
-    if (text.length > 0) {
-      recordIds.add(text);
-    }
-  }
-
-  return Array.from(recordIds);
-}
-
-function resolveAddonShopifyProductIds(addonRecordIds, shopifyIdLookup) {
-  const resolved = [];
-  const missing = [];
-  const seen = new Set();
-
-  for (const recordId of addonRecordIds) {
-    if (recordId === undefined || recordId === null) {
-      continue;
-    }
-    const trimmed = String(recordId).trim();
-    if (!trimmed) {
-      continue;
-    }
-
-    const shopifyProductId = shopifyIdLookup?.get(trimmed);
-    if (shopifyProductId) {
-      const referenceId = String(shopifyProductId).trim();
-      if (referenceId && !seen.has(referenceId)) {
-        seen.add(referenceId);
-        resolved.push(referenceId);
-      }
-    } else {
-      missing.push(trimmed);
-    }
-  }
-
-  return { resolved, missing };
+  return Array.from(referenceIds);
 }
 
 function asSingleLineValue(input) {
@@ -1279,65 +1244,6 @@ async function shopifyProductSync(req, res) {
   const collectionCache = new Map();
   const results = [];
 
-  const shopifyIdLookup = new Map();
-  for (const record of req.body) {
-    const shopifyProductId = getShopifyProductIdFromRecord(record);
-    if (!shopifyProductId) {
-      continue;
-    }
-
-    const normalisedShopifyId = String(shopifyProductId).trim();
-    if (!normalisedShopifyId) {
-      continue;
-    }
-
-    const recordIds = new Set();
-
-    if (record.id !== undefined && record.id !== null) {
-      const value = String(record.id).trim();
-      if (value) {
-        recordIds.add(value);
-      }
-    }
-
-    const explicitIdCandidates = [
-      record['Product ID'],
-      record['ProductID'],
-      record['product_id'],
-      record['id'],
-    ];
-
-    for (const candidate of explicitIdCandidates) {
-      if (candidate === undefined || candidate === null) {
-        continue;
-      }
-      const value = String(candidate).trim();
-      if (value) {
-        recordIds.add(value);
-      }
-    }
-
-    const addonRecordIds = extractAddonRecordIds(record);
-    for (const candidate of addonRecordIds) {
-      const value = String(candidate).trim();
-      if (value) {
-        recordIds.add(value);
-      }
-    }
-
-    for (const recordId of recordIds) {
-      if (!recordId) {
-        continue;
-      }
-      const trimmedRecordId = String(recordId).trim();
-      if (!trimmedRecordId || shopifyIdLookup.has(trimmedRecordId)) {
-        continue;
-      }
-
-      shopifyIdLookup.set(trimmedRecordId, normalisedShopifyId);
-    }
-  }
-
   // 1) Group incoming items so each group becomes a single Shopify product with multiple variants
   const groups = new Map();
   for (const record of req.body) {
@@ -1367,9 +1273,7 @@ async function shopifyProductSync(req, res) {
         (groupHasMultiple ? 'Size' : undefined);
       const optionNames = optionName ? [optionName] : undefined;
 
-      const addonRecordIds = extractAddonRecordIds(base);
-      const { resolved: addonShopifyProductIds, missing: missingAddonRecordIds } = resolveAddonShopifyProductIds(addonRecordIds, shopifyIdLookup);
-
+      const addonShopifyProductIds = extractAddonShopifyProductIds(base);
       const addonMetafield = buildAddonMetafield(addonShopifyProductIds);
       const addonMetafields = addonMetafield ? [addonMetafield] : [];
 
@@ -1421,9 +1325,7 @@ async function shopifyProductSync(req, res) {
         collections,
         publish: publishResult,
         addons: {
-          requested: addonRecordIds,
           resolved: addonShopifyProductIds,
-          missing: missingAddonRecordIds,
         },
         status: 'success',
         operation: existingProductId ? 'updated' : 'created',
