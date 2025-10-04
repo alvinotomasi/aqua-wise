@@ -148,6 +148,39 @@ function extractAddonShopifyProductIds(record) {
   return Array.from(referenceIds);
 }
 
+function normaliseShopifyProductGid(raw) {
+  if (raw === undefined || raw === null) {
+    return undefined;
+  }
+
+  const value = String(raw).trim();
+  if (!value) {
+    return undefined;
+  }
+
+  const gidMatch = value.match(/^gid:\/\/shopify\/Product\/(\d+)$/i);
+  if (gidMatch) {
+    return `gid://shopify/Product/${gidMatch[1]}`;
+  }
+
+  const numericMatch = value.match(/^(\d+)$/);
+  if (numericMatch) {
+    return `gid://shopify/Product/${numericMatch[1]}`;
+  }
+
+  const productPathMatch = value.match(/Product\/(\d+)/i);
+  if (productPathMatch) {
+    return `gid://shopify/Product/${productPathMatch[1]}`;
+  }
+
+  const urlMatch = value.match(/products\/(\d+)/i);
+  if (urlMatch) {
+    return `gid://shopify/Product/${urlMatch[1]}`;
+  }
+
+  return undefined;
+}
+
 function asSingleLineValue(input) {
   if (input === undefined || input === null) {
     return undefined;
@@ -215,41 +248,72 @@ function parseMinMax(input) {
  
 function buildAddonMetafield(addonShopifyProductIds) {
   if (!Array.isArray(addonShopifyProductIds) || addonShopifyProductIds.length === 0) {
-    return null;
+    return {
+      metafield: null,
+      validReferenceIds: [],
+      invalidReferenceIds: [],
+    };
   }
 
-  const referenceIds = [];
+  const validReferenceIds = [];
+  const invalidReferenceIds = [];
   const seen = new Set();
 
   for (const raw of addonShopifyProductIds) {
-    if (raw === undefined || raw === null) {
+    const normalised = normaliseShopifyProductGid(raw);
+    if (!normalised) {
+      if (raw !== undefined && raw !== null) {
+        invalidReferenceIds.push(String(raw).trim());
+      }
       continue;
     }
-    const referenceId = String(raw).trim();
-    if (!referenceId) {
+
+    if (seen.has(normalised)) {
       continue;
     }
-    if (seen.has(referenceId)) {
-      continue;
-    }
-    seen.add(referenceId);
-    referenceIds.push(referenceId);
+
+    seen.add(normalised);
+    validReferenceIds.push(normalised);
   }
 
-  if (!referenceIds.length) {
-    return null;
+  if (!validReferenceIds.length) {
+    if (invalidReferenceIds.length) {
+      console.warn('No valid Shopify product references found for addons metafield.', {
+        provided: addonShopifyProductIds,
+        invalidReferenceIds,
+      });
+    }
+    return {
+      metafield: null,
+      validReferenceIds,
+      invalidReferenceIds,
+    };
   }
 
-  return {
+  const metafield = {
     namespace: 'custom',
     key: 'addons',
     type: 'list.product_reference',
-    value: JSON.stringify(referenceIds),
+    value: JSON.stringify(validReferenceIds),
+  };
+
+  if (invalidReferenceIds.length) {
+    console.warn('Some addon references were skipped because they are not valid Shopify product IDs.', {
+      provided: addonShopifyProductIds,
+      validReferenceIds,
+      invalidReferenceIds,
+    });
+  }
+
+  return {
+    metafield,
+    validReferenceIds,
+    invalidReferenceIds,
   };
 }
 
 function buildMetafields(product, options = {}) {
-  const { addonMetafields } = options;
+  const { addonMetafieldResult } = options;
   const metafields = [];
 
   // Existing "custom" namespace mappings (kept for backward compatibility)
@@ -324,8 +388,8 @@ function buildMetafields(product, options = {}) {
     });
   }
 
-  if (Array.isArray(addonMetafields) && addonMetafields.length > 0) {
-    metafields.push(...addonMetafields.filter(Boolean));
+  if (addonMetafieldResult?.metafield) {
+    metafields.push(addonMetafieldResult.metafield);
   }
 
   // --- New Shopify Product namespace metafields (namespace: "product") ---
@@ -558,7 +622,7 @@ function buildMetafields(product, options = {}) {
 }
 
 function buildProductInput(product, options = {}) {
-  const { addonMetafields } = options;
+  const { addonMetafieldResult } = options;
   const descriptionHtml = toDescriptionHtml(product);
   const input = {
     title: product['Product Name'] ? String(product['Product Name']) : undefined,
@@ -566,7 +630,7 @@ function buildProductInput(product, options = {}) {
     status: product['Sell on Website'] === false ? 'DRAFT' : 'ACTIVE',
     productType: asSingleLineValue(product.Category),
     vendor: asSingleLineValue(product['Sub Brand'] || product.Vendor),
-    metafields: buildMetafields(product, { addonMetafields }),
+    metafields: buildMetafields(product, { addonMetafieldResult }),
     tags: normaliseArray(product.Collection).concat(normaliseArray(product['Problems solved (keywords)'])).filter(Boolean),
   };
 
@@ -1003,8 +1067,8 @@ let cachedPublicationIds = null;
 let publicationPromise = null;
 
 async function createProduct(product, optionNames, context = {}) {
-  const { addonMetafields } = context;
-  const input = buildProductInput(product, { addonMetafields });
+  const { addonMetafieldResult } = context;
+  const input = buildProductInput(product, { addonMetafieldResult });
   if (!input.title) {
     throw new Error('Product name is required to create a product.');
   }
@@ -1040,8 +1104,8 @@ async function createProduct(product, optionNames, context = {}) {
 }
 
 async function updateProduct(productId, product, optionNames, context = {}) {
-  const { addonMetafields } = context;
-  const input = buildProductInput(product, { addonMetafields });
+  const { addonMetafieldResult } = context;
+  const input = buildProductInput(product, { addonMetafieldResult });
   
   // Add the product ID to the input for updates
   input.id = productId;
@@ -1274,14 +1338,13 @@ async function shopifyProductSync(req, res) {
       const optionNames = optionName ? [optionName] : undefined;
 
       const addonShopifyProductIds = extractAddonShopifyProductIds(base);
-      const addonMetafield = buildAddonMetafield(addonShopifyProductIds);
-      const addonMetafields = addonMetafield ? [addonMetafield] : [];
+      const addonMetafieldResult = buildAddonMetafield(addonShopifyProductIds);
 
       // Check if we should update or create
       const existingProductId = base['Shopify Product Id'] || base['shopify_product_id'];
       const created = existingProductId
-        ? await updateProduct(existingProductId, base, optionNames, { addonMetafields })
-        : await createProduct(base, optionNames, { addonMetafields });
+        ? await updateProduct(existingProductId, base, optionNames, { addonMetafieldResult })
+        : await createProduct(base, optionNames, { addonMetafieldResult });
 
       // Build all variants for this group
       const variants = group.map((rec, idx) => {
@@ -1325,7 +1388,9 @@ async function shopifyProductSync(req, res) {
         collections,
         publish: publishResult,
         addons: {
-          resolved: addonShopifyProductIds,
+          input: addonShopifyProductIds,
+          valid: addonMetafieldResult.validReferenceIds,
+          invalid: addonMetafieldResult.invalidReferenceIds,
         },
         status: 'success',
         operation: existingProductId ? 'updated' : 'created',
