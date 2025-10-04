@@ -493,7 +493,6 @@
   
       const ENDPOINT = quiz.dataset.apiEndpoint;
       const PARTS_PAGE_URL = quiz.dataset.partsUrl || '/collections/parts-and-filters';
-      const STOREFRONT_TOKEN_FROM_DATA = quiz.dataset.storefrontToken || '0932f96dbb3d1ce17ecb1d1816adf97e';
   
       const form = quiz.querySelector('.quiz-form');
       const steps = Array.from(quiz.querySelectorAll('.quiz-step'));
@@ -646,297 +645,167 @@
         }
       }
   
-      function extractProductRecommendations(payload) {
-        if (!payload) return [];
-        
-        // Handle new format: { recommendedProductIds: [{productId, explanation}, ...] }
-        if (payload.recommendedProductIds && Array.isArray(payload.recommendedProductIds)) {
-          return payload.recommendedProductIds.map(item => ({
-            id: String(item.productId || item.id || '').trim(),
-            explanation: String(item.explanation || '').trim()
-          })).filter(item => item.id);
-        }
-  
-        // Fallback: handle old format with just IDs
-        const items = Array.isArray(payload) ? payload : [payload];
-        const recommendations = [];
-        
-        items.forEach((item) => {
-          if (!item || typeof item !== 'object') return;
-          
-          // Check for various possible array field names
-          const candidates = item.recommendationProductIds || item.recommendationProudctIds || item.productIds || item.ids;
-          
-          if (Array.isArray(candidates)) {
-            candidates.forEach((candidate) => {
-              if (candidate) {
-                // If candidate is an object with productId
-                if (typeof candidate === 'object' && candidate.productId) {
-                  recommendations.push({
-                    id: String(candidate.productId).trim(),
-                    explanation: String(candidate.explanation || '').trim()
-                  });
-                } else {
-                  // Just an ID string
-                  recommendations.push({
-                    id: String(candidate).trim(),
-                    explanation: ''
-                  });
-                }
-              }
-            });
-          }
-        });
-        
-        return recommendations;
-      }
-  
-      function findStorefrontToken() {
-        const meta =
-          document.querySelector('meta[name="storefront-access-token"]') ||
-          document.querySelector('meta[name="storefront-token"]') ||
-          document.querySelector('meta[name="shopify-x-storefront-access-token"]');
-        return (STOREFRONT_TOKEN_FROM_DATA || meta?.getAttribute('content') || '').trim();
-      }
-  
-      // Normalize various incoming recommendation ID formats into
-      // Shopify Product and ProductVariant GIDs and/or product handles.
-      function normalizeRecommendationIds(recommendations) {
-        const productGids = [];
-        const variantGids = [];
-        const handles = [];
-        const explanationMap = new Map();
+      function transformQuizProduct(rawNode, meta = {}) {
+        if (!rawNode || typeof rawNode !== 'object') return null;
 
-        const toProductGid = (numericId) => `gid://shopify/Product/${numericId}`;
-        const toVariantGid = (numericId) => `gid://shopify/ProductVariant/${numericId}`;
+        const productNode = rawNode.product && typeof rawNode.product === 'object' ? rawNode.product : rawNode;
 
-        recommendations.forEach((rec) => {
-          const original = String(rec?.id || '').trim();
-          const explanation = String(rec?.explanation || '').trim();
-          if (!original) return;
+        if (!productNode || typeof productNode !== 'object') return null;
 
-          let productGid = null;
-          let variantGid = null;
-          let handle = null;
+        const id = String(productNode.id || '').trim();
+        if (!id || !id.includes('/Product/')) return null;
 
-          // 1) Direct GID -> keep exact type
-          const gidMatch = original.match(/gid:\/\/shopify\/(Product|ProductVariant)\/(\d+)/);
-          if (gidMatch) {
-            const type = gidMatch[1];
-            const idNum = gidMatch[2];
-            if (type === 'Product') {
-              productGid = toProductGid(idNum);
-            } else if (type === 'ProductVariant') {
-              variantGid = toVariantGid(idNum);
-            }
-          }
-
-          // 2) Numeric ID (unknown type) -> try both product and variant
-          if (!productGid && !variantGid && /^\d+$/.test(original)) {
-            productGid = toProductGid(original);
-            variantGid = toVariantGid(original);
-          }
-
-          // 3) Product URL -> extract handle
-          if (!productGid && !variantGid && original.includes('/products/')) {
-            try {
-              const url = new URL(original, window.location.origin);
-              const m = url.pathname.match(/\/products\/([^\/?#]+)/);
-              if (m) handle = decodeURIComponent(m[1]);
-            } catch (_e) {
-              // Ignore URL parsing failures
-            }
-          }
-
-          // 4) Slug-like string -> assume handle
-          if (!productGid && !variantGid && !handle && /^[a-z0-9-]+$/.test(original)) {
-            handle = original;
-          }
-
-          if (productGid) {
-            productGids.push(productGid);
-            if (explanation) explanationMap.set(productGid, explanation);
-          }
-          if (variantGid) {
-            variantGids.push(variantGid);
-            if (explanation) explanationMap.set(variantGid, explanation);
-          }
-          if (handle) {
-            handles.push(handle);
-            if (explanation) explanationMap.set(handle, explanation);
-          }
-
-          // Also keep original mapping for any downstream matching attempts
-          if (explanation && !explanationMap.has(original)) {
-            explanationMap.set(original, explanation);
-          }
-        });
-
-        return { productGids, variantGids, handles, explanationMap };
-      }
-
-      async function fetchProductsByGid(recommendations) {
-        const token = findStorefrontToken();
-        if (!token) {
-          return { products: [], error: 'missing_token' };
-        }
-  
-        // Normalize any non-GID inputs (numeric IDs, URLs, or handles)
-        const { productGids, variantGids, handles, explanationMap } = normalizeRecommendationIds(recommendations);
-        if (!productGids.length && !variantGids.length && !handles.length) {
-          console.warn('No valid product identifiers found in recommendations:', recommendations);
-          return { products: [], error: 'no_valid_ids' };
-        }
         const storeRoot = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
 
-        const productSelection = `
-          id
-          handle
-          title
-          onlineStoreUrl
-          featuredImage { url altText }
-          priceRange { minVariantPrice { amount currencyCode } }
-          variants(first: 10) {
-            edges {
-              node {
-                id
-                title
-                availableForSale
-                price { amount currencyCode }
-              }
+        const variants = [];
+        if (Array.isArray(productNode.variants?.edges)) {
+          productNode.variants.edges.forEach((edge) => {
+            if (edge?.node && typeof edge.node === 'object') {
+              variants.push(edge.node);
             }
-          }
-        `;
-
-        const queryGetProductById = `
-          query getProductById($id: ID!) {
-            product(id: $id) {
-              ${productSelection}
-            }
-          }
-        `;
-
-        const queryGetProductByHandle = `
-          query getProductByHandle($handle: String!) {
-            product(handle: $handle) {
-              ${productSelection}
-            }
-          }
-        `;
-
-        const queryGetProductByVariantId = `
-          query getProductByVariantId($id: ID!) {
-            productVariant(id: $id) {
-              id
-              product {
-                ${productSelection}
-              }
-            }
-          }
-        `;
-  
-        try {
-          const doFetch = (query, variables) =>
-            fetch(`${storeRoot}api/2024-07/graphql.json`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-Shopify-Storefront-Access-Token': token
-              },
-              body: JSON.stringify({ query, variables })
-            }).then((res) => {
-              if (!res.ok) throw new Error(`GraphQL returned ${res.status}`);
-              return res.json();
-            });
-
-          const toProductCard = (productNode, preferredVariantId, explanation) => {
-            const variantEdges = productNode?.variants?.edges || [];
-            const variants = variantEdges.map((e) => e.node).filter(Boolean);
-            const preferredVariant =
-              (preferredVariantId && variants.find((v) => v.id === preferredVariantId)) ||
-              variants.find((v) => v.availableForSale) ||
-              variants[0] ||
-              null;
-
-            const expl =
-              explanation ||
-              explanationMap.get(productNode?.id) ||
-              explanationMap.get(productNode?.handle) ||
-              (preferredVariantId ? explanationMap.get(preferredVariantId) : '') ||
-              '';
-
-            return {
-              id: productNode.id,
-              handle: productNode.handle,
-              title: productNode.title,
-              url: productNode.onlineStoreUrl || (productNode.handle ? `${storeRoot}products/${productNode.handle}` : null),
-              image: productNode.featuredImage?.url || null,
-              imageAlt: productNode.featuredImage?.altText || productNode.title,
-              price:
-                preferredVariant?.price?.amount ||
-                productNode.priceRange?.minVariantPrice?.amount ||
-                null,
-              currency:
-                preferredVariant?.price?.currencyCode ||
-                productNode.priceRange?.minVariantPrice?.currencyCode ||
-                null,
-              variantId: preferredVariant?.id || null,
-              variants,
-              explanation: expl
-            };
-          };
-
-          const requests = [];
-
-          // Fetch each Product by ID
-          productGids.forEach((productId) => {
-            requests.push(
-              doFetch(queryGetProductById, { id: productId })
-                .then((json) => json?.data?.product || null)
-                .then((product) => (product ? toProductCard(product, null, explanationMap.get(productId)) : null))
-                .catch(() => null)
-            );
           });
-
-          // Fetch each Product by Variant ID, then map to parent product
-          variantGids.forEach((variantId) => {
-            requests.push(
-              doFetch(queryGetProductByVariantId, { id: variantId })
-                .then((json) => json?.data?.productVariant || null)
-                .then((pv) => (pv && pv.product ? toProductCard(pv.product, pv.id, explanationMap.get(variantId)) : null))
-                .catch(() => null)
-            );
-          });
-
-          // Fetch by handle
-          handles.forEach((handle) => {
-            requests.push(
-              doFetch(queryGetProductByHandle, { handle })
-                .then((json) => json?.data?.product || null)
-                .then((product) => (product ? toProductCard(product, null, explanationMap.get(handle)) : null))
-                .catch(() => null)
-            );
-          });
-
-          const results = await Promise.all(requests);
-          // Dedupe by product id
-          const seen = new Set();
-          const products = results
-            .filter(Boolean)
-            .filter((p) => {
-              if (!p?.id) return false;
-              if (seen.has(p.id)) return false;
-              seen.add(p.id);
-              return true;
-            });
-
-          return { products, error: null };
-        } catch (error) {
-          console.error('Failed to load product data:', error);
-          return { products: [], error: 'graphql_error' };
         }
+        if (Array.isArray(productNode.variants?.nodes)) {
+          productNode.variants.nodes.forEach((node) => {
+            if (node && typeof node === 'object') {
+              variants.push(node);
+            }
+          });
+        }
+
+        const preferredVariant =
+          variants.find((variant) => variant?.availableForSale) ||
+          variants[0] ||
+          null;
+
+        let imageUrl = null;
+        let imageAlt = productNode.title || '';
+
+        if (productNode.featuredImage?.url) {
+          imageUrl = productNode.featuredImage.url;
+          imageAlt = productNode.featuredImage.altText || imageAlt;
+        } else if (Array.isArray(productNode.images?.edges)) {
+          const firstImage = productNode.images.edges.find((edge) => edge?.node);
+          if (firstImage?.node) {
+            imageUrl = firstImage.node.originalSrc || firstImage.node.url || firstImage.node.src || imageUrl;
+            imageAlt = firstImage.node.altText || imageAlt;
+          }
+        } else if (Array.isArray(productNode.images?.nodes)) {
+          const firstImage = productNode.images.nodes.find(Boolean);
+          if (firstImage) {
+            imageUrl = firstImage.originalSrc || firstImage.url || firstImage.src || imageUrl;
+            imageAlt = firstImage.altText || imageAlt;
+          }
+        }
+
+        const explanationSource =
+          meta?.explanation ||
+          rawNode.explanation ||
+          productNode.explanation ||
+          productNode.description ||
+          productNode.descriptionHtml ||
+          '';
+
+        const explanation = typeof explanationSource === 'string' ? explanationSource.trim() : '';
+
+        const priceAmount =
+          preferredVariant?.price?.amount ??
+          preferredVariant?.price ??
+          productNode.priceRange?.minVariantPrice?.amount ??
+          null;
+
+        const currency =
+          preferredVariant?.price?.currencyCode ||
+          preferredVariant?.currencyCode ||
+          productNode.priceRange?.minVariantPrice?.currencyCode ||
+          'USD';
+
+        const handle = productNode.handle ? String(productNode.handle).trim() : '';
+        const url = productNode.onlineStoreUrl || (handle ? `${storeRoot}products/${handle}` : null);
+
+        return {
+          id,
+          handle: handle || null,
+          title: productNode.title || 'Recommended product',
+          url,
+          image: imageUrl,
+          imageAlt: imageAlt || productNode.title || 'Recommended product image',
+          price: priceAmount,
+          currency,
+          variantId: preferredVariant?.id || null,
+          variants,
+          explanation
+        };
       }
+
+      function extractProductRecommendations(payload) {
+        const products = [];
+        const seenIds = new Set();
+        const visited = new WeakSet();
+
+        const pushProduct = (candidate, meta = {}) => {
+          const product = transformQuizProduct(candidate, meta);
+          if (product && !seenIds.has(product.id)) {
+            seenIds.add(product.id);
+            products.push(product);
+          }
+        };
+
+        const visit = (item, meta = {}) => {
+          if (!item) return;
+
+          if (Array.isArray(item)) {
+            item.forEach((entry) => visit(entry, meta));
+            return;
+          }
+
+          if (typeof item !== 'object') {
+            return;
+          }
+
+          if (visited.has(item)) {
+            return;
+          }
+          visited.add(item);
+
+          let nextMeta = meta;
+          if (typeof item.explanation === 'string') {
+            const explanation = item.explanation.trim();
+            if (explanation) {
+              nextMeta = { ...meta, explanation };
+            }
+          }
+
+          let forwarded = false;
+
+          if (Array.isArray(item.edges)) {
+            forwarded = true;
+            item.edges.forEach((edge) => visit(edge, nextMeta));
+          }
+
+          if (item.node) {
+            forwarded = true;
+            visit(item.node, nextMeta);
+          }
+
+          for (const [key, value] of Object.entries(item)) {
+            if (value === undefined || value === null) continue;
+            if (key === 'edges' || key === 'node') continue;
+            if (Array.isArray(value) || (typeof value === 'object' && value !== item)) {
+              forwarded = true;
+              visit(value, nextMeta);
+            }
+          }
+
+          if (!forwarded || item.id) {
+            pushProduct(item, nextMeta);
+          }
+        };
+
+        visit(payload, {});
+        return products;
+      }
+  
   
       function formatMoney(amount, currency) {
         if (!amount) return '';
@@ -1152,22 +1021,9 @@
   
             const parsed = safeParseJSON(text);
             const recommendations = extractProductRecommendations(parsed);
-  
+
             if (recommendations.length) {
-              const { products, error } = await fetchProductsByGid(recommendations);
-              if (products.length) {
-                renderRecommendations(products);
-              } else if (error === 'missing_token') {
-                renderRecommendations([], {
-                  type: 'error',
-                  message: 'We need a Storefront API access token to load the recommended products. Add it as data-storefront-token on the quiz container or meta[name="storefront-access-token"].'
-                });
-              } else {
-                renderRecommendations([], {
-                  type: 'error',
-                  message: 'We couldn\'t load product details right now. Please refresh or try again shortly.'
-                });
-              }
+              renderRecommendations(recommendations);
             } else {
               renderRecommendations([], {
                 type: 'error',
