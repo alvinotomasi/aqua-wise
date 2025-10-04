@@ -33,12 +33,6 @@ function toDescriptionHtml(product) {
   if (product.Description) {
     sections.push(...splitParagraphs(String(product.Description)));
   }
-  if (product['Key Product Features']) {
-    sections.push(`Key product features: ${String(product['Key Product Features'])}`);
-  }
-  if (product['Problems solved (keywords)']) {
-    sections.push(`Problems solved: ${String(product['Problems solved (keywords)'])}`);
-  }
 
   if (sections.length === 0) {
     return '<p>No description provided.</p>';
@@ -385,6 +379,16 @@ function buildMetafields(product, options = {}) {
       key: 'key_product_features',
       type: 'single_line_text_field',
       value: keyProductFeatures,
+    });
+  }
+
+  const problemsSolvedKeywords = asMultiLineValue(product['Problems solved (keywords)']);
+  if (problemsSolvedKeywords) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'problems_solved',
+      type: 'single_line_text_field',
+      value: problemsSolvedKeywords,
     });
   }
 
