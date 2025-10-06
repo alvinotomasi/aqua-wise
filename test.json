@@ -1,0 +1,843 @@
+{
+    "name": "Update Google Sheet Leads from Airtable CRM GOOD (Fixed)",
+    "flow": [
+        {
+            "id": 63,
+            "module": "util:SetVariables",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "scope": "roundtrip",
+                "variables": [
+                    {
+                        "name": "spreadsheetID",
+                        "value": "19Vx1wgVoLSxlgGUE8NjuRm9znkbj8_qMXaqmoQZXR5M"
+                    },
+                    {
+                        "name": "gid",
+                        "value": "29718030"
+                    },
+                    {
+                        "name": "spreadsheetToUpdate",
+                        "value": "LEADS (WORKING)"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 300,
+                    "name": "Set Spreadsheet Identifiers"
+                },
+                "restore": {},
+                "expect": [],
+                "interface": []
+            }
+        },
+        {
+            "id": 53,
+            "module": "google-sheets:clearValuesFromRange",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 4540540
+            },
+            "mapper": {
+                "range": "A2:BB",
+                "sheet": "{{63.spreadsheetToUpdate}}",
+                "select": "map",
+                "spreadsheetId": "/19Vx1wgVoLSxlgGUE8NjuRm9znkbj8_qMXaqmoQZXR5M"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 300
+                },
+                "restore": {},
+                "parameters": [],
+                "expect": []
+            }
+        },
+        {
+            "id": 47,
+            "module": "google-sheets:filterRowsAdvanced",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 4540540
+            },
+            "mapper": {
+                "tq": "select *",
+                "from": "drive",
+                "select": "list",
+                "sheetId": 2109701694,
+                "spreadsheetId": "/19Vx1wgVoLSxlgGUE8NjuRm9znkbj8_qMXaqmoQZXR5M"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 300,
+                    "name": "Get Old Lead Data"
+                },
+                "restore": {},
+                "parameters": [],
+                "expect": [],
+                "interface": []
+            }
+        },
+        {
+            "id": 50,
+            "module": "util:TextAggregator",
+            "version": 1,
+            "parameters": {
+                "feeder": 47,
+                "rowSeparator": "other",
+                "otherRowSeparator": ","
+            },
+            "mapper": {
+                "value": "[\"{{formatDate(47.`0`; \"M/D/YYYY\")}}\", \n\"{{47.`1`}}\",\n \"{{47.`2`}}\",\n \"{{47.`3`}}\", \n\"{{47.`4`}}\", \n\"{{47.`5`}}\", \n\"{{47.`6`}}\", \n\"{{47.`7`}}\", \n\"{{47.`8`}}\", \n\"{{47.`9`}}\", \n\"{{47.`10`}}\", \n\"{{47.`11`}}\", \n\"{{formatDate(47.`12`; \"M/D/YYYY\")}}\", \n\"{{47.`13`}}\", \n\"{{47.`14`}}\", \n\"{{47.`15`}}\", \n\"{{47.`16`}}\", \n\"{{47.`17`}}\", \n\"{{47.`18`}}\", \n\"{{47.`19`}}\",\n\"{{formatDate(47.`20`; \"M/D/YYYY\")}}\", \n\"{{47.`21`}}\", \n\"{{47.`22`}}\", \n\"{{47.`23`}}\",  \n\"{{47.`24`}}\", \n\"{{formatDate(47.`25`; \"M/D/YYYY\")}}\", \n \"{{47.`26`}}\",\n\"{{47.`27`}}\",\n\"{{47.`28`}}\",\n\"{{47.`29`}}\",\n\"{{47.`30`}}\",\n\"{{47.`31`}}\",\n\"{{47.`32`}}\",\n\"{{47.`33`}}\", \n\"{{47.`34`}}\", \n\"{{47.`35`}}\", \n\"{{47.`36`}}\", \n\"{{47.`37`}}\", \n\"{{47.`38`}}\",\n \"{{47.`39`}}\", \n\"{{47.`40`}}\",\n \"{{47.`41`}}\",\n \"{{47.`42`}}\",\n \"{{47.`43`}}\", \n\"{{47.`44`}}\",\n \"{{47.`45`}}\",\n \"{{47.`46`}}\", \n\"{{47.`47`}}\",\n \"{{47.`48`}}\",\n \"{{47.`49`}}\",\n \"{{47.`50`}}\", \n\"{{47.`51`}}\", \n\"{{47.`52`}}\",\n ]"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 300,
+                    "name": "Aggregate Old Lead Data"
+                },
+                "restore": {},
+                "parameters": [],
+                "expect": [],
+                "advanced": true
+            }
+        },
+        {
+            "id": 51,
+            "module": "google-sheets:makeAPICall",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 4540540
+            },
+            "mapper": {
+                "qs": [
+                    {
+                        "key": "valueInputOption",
+                        "value": "USER_ENTERED"
+                    }
+                ],
+                "url": "spreadsheets/{{63.spreadsheetID}}/values/{{63.spreadsheetToUpdate}}!A:BZ:append",
+                "body": "{\"values\":[{{50.text}}]}",
+                "method": "POST",
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 300,
+                    "name": "Load Old Lead Data"
+                },
+                "restore": {},
+                "parameters": [],
+                "expect": []
+            }
+        },
+        {
+            "id": 36,
+            "module": "airtable:ActionSearchRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 1605841
+            },
+            "mapper": {
+                "base": "app66tj7sDENTQWkl",
+                "table": "tblPoAeRbmgzqerkP",
+                "fields": [],
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1500,
+                    "y": 300,
+                    "name": "Find Employees"
+                },
+                "restore": {},
+                "parameters": [],
+                "expect": [],
+                "interface": []
+            }
+        },
+        {
+            "id": 37,
+            "module": "builtin:BasicAggregator",
+            "version": 1,
+            "parameters": {
+                "feeder": 36
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 1800,
+                    "y": 300,
+                    "name": "Employees Array"
+                },
+                "restore": {}
+            }
+        },
+        {
+            "id": 38,
+            "module": "airtable:ActionSearchRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 1605841
+            },
+            "mapper": {
+                "base": "app66tj7sDENTQWkl",
+                "view": "viwTuuz5ipLQGyQVP",
+                "table": "tblCMWD0gqjx6bKCQ",
+                "fields": [],
+                "formula": "{Payment Status} = \"Order Paid\"",
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 2100,
+                    "y": 300,
+                    "name": "Find Paid Orders"
+                },
+                "restore": {},
+                "parameters": [],
+                "expect": [],
+                "interface": []
+            }
+        },
+        {
+            "id": 39,
+            "module": "builtin:BasicAggregator",
+            "version": 1,
+            "parameters": {
+                "feeder": 38
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 2400,
+                    "y": 300,
+                    "name": "Paid Orders Array"
+                },
+                "restore": {}
+            }
+        },
+        {
+            "id": 45,
+            "module": "airtable:ActionSearchRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 1605841
+            },
+            "mapper": {
+                "base": "app66tj7sDENTQWkl",
+                "table": "tblyFTcEJy0fTuBLP",
+                "fields": [],
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 2700,
+                    "y": 300,
+                    "name": "Find Invoices"
+                },
+                "restore": {},
+                "parameters": [],
+                "expect": [],
+                "interface": []
+            }
+        },
+        {
+            "id": 44,
+            "module": "builtin:BasicAggregator",
+            "version": 1,
+            "parameters": {
+                "feeder": 45
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 3000,
+                    "y": 300,
+                    "name": "Invoices Array"
+                },
+                "restore": {}
+            }
+        },
+        {
+            "id": 35,
+            "module": "airtable:ActionSearchRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 1605841
+            },
+            "mapper": {
+                "base": "app66tj7sDENTQWkl",
+                "view": "viwGdimVXKDTyqDA2",
+                "table": "tbl8TgXBl6t2mxy9d",
+                "fields": [],
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 3300,
+                    "y": 300,
+                    "name": "Get Clients from CRM"
+                },
+                "restore": {},
+                "parameters": [],
+                "expect": [],
+                "interface": []
+            }
+        },
+        {
+            "id": 54,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 3600,
+                    "y": 300
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 66,
+                            "module": "builtin:ArrayAggregator",
+                            "version": 1,
+                            "parameters": {
+                                "feeder": 35
+                            },
+                            "mapper": {
+                                "sourceModule": 35,
+                                "target": {
+                                    "type": "collection",
+                                    "items": [
+                                        {
+                                            "value": "{{formatDate(35.createdTime; \"M/D/YYYY\")}}"
+                                        },
+                                        {
+                                            "value": "{{35.Source}}"
+                                        },
+                                        {
+                                            "value": "{{35.Name}}"
+                                        },
+                                        {
+                                            "value": "{{35.Status}}"
+                                        },
+                                        {
+                                            "value": "{{35.Progress}}"
+                                        },
+                                        {
+                                            "value": "{{35.AUT}}"
+                                        },
+                                        {
+                                            "value": "{{join(35.Interest; \",\")}}"
+                                        },
+                                        {
+                                            "value": "{{35.Qualification}}"
+                                        },
+                                        {
+                                            "value": "{{35.Phone}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Phone 2`}}"
+                                        },
+                                        {
+                                            "value": "{{35.Note}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Quote Price`}}"
+                                        },
+                                        {
+                                            "value": "{{formatDate(35.`Appt. Date Start`; \"M/D/YYYY\")}}"
+                                        },
+                                        {
+                                            "value": "{{35.Address}}"
+                                        },
+                                        {
+                                            "value": "{{35.`City AUT`}}"
+                                        },
+                                        {
+                                            "value": "{{35.`ZIP AUT`}}"
+                                        },
+                                        {
+                                            "value": "{{35.Email}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Name (from Rep)`}}"
+                                        },
+                                        {
+                                            "value": "{{35.`W Source`}}"
+                                        },
+                                        {
+                                            "value": "{{35.Type}}"
+                                        },
+                                        {
+                                            "value": "{{formatDate(get(35.`Installation/Service Start Date`; 1); \"M/D/YYYY\")}}"
+                                        },
+                                        {
+                                            "value": "{{35.Company}}"
+                                        },
+                                        {
+                                            "value": "{{join(35.Industry; \",\")}}"
+                                        },
+                                        {
+                                            "value": "{{35.PO[]}}"
+                                        },
+                                        {
+                                            "value": "{{35.Invoice}}"
+                                        },
+                                        {
+                                            "value": "{{formatDate(35.`Paid date`[]; \"M/D/YYYY\")}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Payment Type (from Orders)`[]}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Total Due`[]}}"
+                                        },
+                                        {
+                                            "value": "{{35.`First Payment`[]}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Second Payment`[]}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Balance due`[]}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Total Paid Amount`[]}}"
+                                        },
+                                        {
+                                            "value": "{{35.Revenue}}"
+                                        },
+                                        {
+                                            "value": "{{35.NetCost[]}}"
+                                        },
+                                        {
+                                            "value": "{{35.NetProfit[]}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Payment Terms`[]}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Commission Amount`[]}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Installers Total cost`}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Installers Name`}}"
+                                        },
+                                        {
+                                            "value": "{{35.First}}"
+                                        },
+                                        {
+                                            "value": "{{35.Last}}"
+                                        },
+                                        {
+                                            "value": "{{35.Iron}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Tap TDS`}}"
+                                        },
+                                        {
+                                            "value": "{{35.W_TDS_Un}}"
+                                        },
+                                        {
+                                            "value": "{{35.W_TDS_Tre}}"
+                                        },
+                                        {
+                                            "value": "{{35.Hard}}"
+                                        },
+                                        {
+                                            "value": "{{35.Cl}}"
+                                        },
+                                        {
+                                            "value": "{{formatDate(get(map(39.array; \"Next RO Reminder Date\"; \"Client from CRM\"; 35.Record_Id); 1); \"M/D/YYYY\")}}"
+                                        },
+                                        {
+                                            "value": "{{formatDate(get(map(39.array; \"Next AQUAFLOW Reminder Date\"; \"Client from CRM\"; 35.Record_Id); 1); \"M/D/YYYY\")}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Order #`}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Payment Status`}}"
+                                        },
+                                        {
+                                            "value": "{{35.`Client Status`}}"
+                                        }
+                                    ]
+                                }
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 3900,
+                                    "y": 0,
+                                    "name": "Aggregate Unpaid Client Data into Array"
+                                }
+                            }
+                        },
+                        {
+                            "id": 67,
+                            "module": "json:CreateJSON",
+                            "version": 1,
+                            "parameters": {
+                                "dataStructure": {
+                                    "name": "values",
+                                    "spec": [
+                                        {
+                                            "name": "values",
+                                            "type": "array",
+                                            "spec": []
+                                        }
+                                    ]
+                                }
+                            },
+                            "mapper": {
+                                "values": "{{66.array}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 4200,
+                                    "y": 0,
+                                    "name": "Create Valid JSON Body"
+                                }
+                            }
+                        },
+                        {
+                            "id": 41,
+                            "module": "google-sheets:makeAPICall",
+                            "version": 2,
+                            "parameters": {
+                                "__IMTCONN__": 4480914
+                            },
+                            "mapper": {
+                                "qs": [
+                                    {
+                                        "key": "valueInputOption",
+                                        "value": "USER_ENTERED"
+                                    }
+                                ],
+                                "url": "spreadsheets/{{63.spreadsheetID}}/values/{{63.spreadsheetToUpdate}}!A:BZ:append",
+                                "body": "{{67.json}}",
+                                "method": "POST",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 4500,
+                                    "y": 0,
+                                    "name": "Load New CRM Data"
+                                },
+                                "restore": {},
+                                "parameters": [],
+                                "expect": []
+                            }
+                        },
+                        {
+                            "id": 65,
+                            "module": "google-sheets:makeAPICall",
+                            "version": 2,
+                            "parameters": {
+                                "__IMTCONN__": 4480914
+                            },
+                            "mapper": {
+                                "url": "spreadsheets/{{63.spreadsheetID}}:batchUpdate",
+                                "body": "{\n  \"requests\": [\n    {\n      \"sortRange\": {\n        \"range\": {\n          \"sheetId\":{{63.gid}},\n          \"startRowIndex\": 1,\n          \"startColumnIndex\": 0,\n          \"endColumnIndex\": 62\n        },\n        \"sortSpecs\": [\n          {\n            \"dimensionIndex\": 0,\n            \"sortOrder\": \"DESCENDING\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                                "method": "POST",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 4800,
+                                    "y": 0,
+                                    "name": "Sort CRM Data"
+                                },
+                                "restore": {},
+                                "parameters": [],
+                                "expect": []
+                            }
+                        }
+                    ],
+                    "filter": {
+                        "name": "Unpaid",
+                        "conditions": [
+                            [
+                                {
+                                    "a": "{{35.Status}}",
+                                    "b": "Paid",
+                                    "o": "text:notequal"
+                                }
+                            ]
+                        ]
+                    }
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 57,
+                            "module": "builtin:BasicRouter",
+                            "version": 1,
+                            "filter": {
+                                "name": "Paid",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{35.Status}}",
+                                            "b": "Paid",
+                                            "o": "text:equal"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": null,
+                            "metadata": {
+                                "designer": {
+                                    "x": 3900,
+                                    "y": 450
+                                }
+                            },
+                            "routes": [
+                                {
+                                    "flow": [
+                                        {
+                                            "id": 55,
+                                            "module": "util:TextAggregator",
+                                            "version": 1,
+                                            "parameters": {
+                                                "feeder": 35,
+                                                "rowSeparator": "other",
+                                                "otherRowSeparator": ","
+                                            },
+                                            "filter": {
+                                                "name": "0 or 1 Order",
+                                                "conditions": [
+                                                    [
+                                                        {
+                                                            "a": "{{length(35.Orders)}}",
+                                                            "b": "1",
+                                                            "o": "number:lessorequal"
+                                                        }
+                                                    ]
+                                                ]
+                                            },
+                                            "mapper": {
+                                                "value": "[\"{{formatDate(35.createdTime; \"M/D/YYYY\")}}\", \n\"{{35.Source}}\",\n\"{{35.Name}}\",\n\"{{35.Status}}\", \n\"{{35.Progress}}\", \n\"{{35.AUT}}\", \n\"{{join(35.Interest; \",\")}}\", \n\"{{35.Qualification}}\", \n\"{{35.Phone}}\", \n\"{{35.`Phone 2`}}\", \n\"{{35.Note}}\", \n\"{{35.`Quote Price`}}\", \n\"{{formatDate(35.`Appt. Date Start`; \"M/D/YYYY\")}}\", \n\"{{35.Address}}\", \n\"{{35.`City AUT`}}\", \n\"{{35.`ZIP AUT`}}\", \n\"{{35.Email}}\", \n\"{{35.`Name (from Rep)`}}\", \n\"{{35.`W Source`}}\", \n\"{{35.Type}}\", \"{{formatDate(get(35.`Installation/Service Start Date`; 1); \"M/D/YYYY\")}}\", \n\"{{35.Company}}\", \n\"{{join(35.Industry; \",\")}}\", \n\"{{35.PO[]}}\",  \n\"{{35.Invoice}}\", \n\"{{formatDate(35.`Paid date`[]; \"M/D/YYYY\")}}\",   \n\"{{35.`Payment Type (from Orders)`[]}}\", \n\"{{35.`Total Due`[]}}\", \n\"{{35.`First Payment`[]}}\", \n\"{{35.`Second Payment`[]}}\", \n\"{{35.`Balance due`[]}}\", \n\"{{35.`Total Paid Amount`[]}}\",\n\"{{35.Revenue}}\",\n\"{{35.NetCost[]}}\", \n\"{{35.NetProfit[]}}\",\n\"{{35.`Payment Terms`[]}}\", \n\"{{35.`Commission Amount`[]}}\",\n\"{{35.`Installers Total cost`}}\",\n\"{{35.`Installers Name`}}\",  \n\"{{35.First}}\", \n\"{{35.Last}}\", \n\"{{35.Iron}}\", \n\"{{35.`Tap TDS`}}\", \n\"{{35.W_TDS_Un}}\",\n\"{{35.W_TDS_Tre}}\",\n\"{{35.Hard}}\",\n\"{{35.Cl}}\",\n\"{{formatDate(get(map(39.array; \"Next RO Reminder Date\"; \"Client from CRM\"; 35.Record_Id); 1); \"M/D/YYYY\")}}\",\n\"{{formatDate(get(map(39.array; \"Next AQUAFLOW Reminder Date\"; \"Client from CRM\"; 35.Record_Id); 1); \"M/D/YYYY\")}}\", \n\"{{35.`Order #`}}\",\n\"{{35.`Payment Status`}}\",\n\"{{35.`Client Status`}}\"]\n"
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 4200,
+                                                    "y": 300
+                                                },
+                                                "restore": {},
+                                                "parameters": [],
+                                                "expect": [],
+                                                "advanced": true
+                                            }
+                                        },
+                                        {
+                                            "id": 56,
+                                            "module": "google-sheets:makeAPICall",
+                                            "version": 2,
+                                            "parameters": {
+                                                "__IMTCONN__": 4480914
+                                            },
+                                            "mapper": {
+                                                "qs": [
+                                                    {
+                                                        "key": "valueInputOption",
+                                                        "value": "USER_ENTERED"
+                                                    }
+                                                ],
+                                                "url": "spreadsheets/{{63.spreadsheetID}}/values/{{63.spreadsheetToUpdate}}!A:BZ:append",
+                                                "body": "{\"values\":[{{55.text}}]}",
+                                                "method": "POST",
+                                                "headers": [
+                                                    {
+                                                        "key": "Content-Type",
+                                                        "value": "application/json"
+                                                    }
+                                                ]
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 4500,
+                                                    "y": 300,
+                                                    "name": "Load New CRM Data"
+                                                },
+                                                "restore": {},
+                                                "parameters": [],
+                                                "expect": []
+                                            }
+                                        },
+                                        {
+                                            "id": 64,
+                                            "module": "google-sheets:makeAPICall",
+                                            "version": 2,
+                                            "parameters": {
+                                                "__IMTCONN__": 4480914
+                                            },
+                                            "mapper": {
+                                                "url": "spreadsheets/{{63.spreadsheetID}}:batchUpdate",
+                                                "body": "{\n  \"requests\": [\n    {\n      \"sortRange\": {\n        \"range\": {\n          \"sheetId\":{{63.gid}},\n          \"startRowIndex\": 1,\n          \"startColumnIndex\": 0,\n          \"endColumnIndex\": 62\n        },\n        \"sortSpecs\": [\n          {\n            \"dimensionIndex\": 0,\n            \"sortOrder\": \"DESCENDING\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                                                "method": "POST",
+                                                "headers": [
+                                                    {
+                                                        "key": "Content-Type",
+                                                        "value": "application/json"
+                                                    }
+                                                ]
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 4800,
+                                                    "y": 300,
+                                                    "name": "Sort CRM Data"
+                                                },
+                                                "restore": {},
+                                                "parameters": [],
+                                                "expect": []
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "flow": [
+                                        {
+                                            "id": 58,
+                                            "module": "builtin:BasicFeeder",
+                                            "version": 1,
+                                            "parameters": {},
+                                            "filter": {
+                                                "name": "2+ Orders",
+                                                "conditions": [
+                                                    [
+                                                        {
+                                                            "a": "{{length(35.Orders)}}",
+                                                            "b": "2",
+                                                            "o": "number:greaterorequal"
+                                                        }
+                                                    ]
+                                                ]
+                                            },
+                                            "mapper": {
+                                                "array": "{{35.Orders}}"
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 4200,
+                                                    "y": 600
+                                                },
+                                                "restore": {},
+                                                "expect": []
+                                            }
+                                        },
+                                        {
+                                            "id": 59,
+                                            "module": "google-sheets:addRow",
+                                            "version": 2,
+                                            "parameters": {
+                                                "__IMTCONN__": 4480914
+                                            },
+                                            "mapper": {
+                                                "mode": "map",
+                                                "values": {},
+                                                "sheetId": "{{63.spreadsheetToUpdate}}",
+                                                "spreadsheetId": "/{{63.spreadsheetID}}",
+                                                "tableFirstRow": "A1:BZ1",
+                                                "insertDataOption": "INSERT_ROWS",
+                                                "valueInputOption": "USER_ENTERED",
+                                                "insertUnformatted": false
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 4500,
+                                                    "y": 600
+                                                },
+                                                "restore": {},
+                                                "parameters": [],
+                                                "expect": []
+                                            }
+                                        },
+                                        {
+                                            "id": 61,
+                                            "module": "google-sheets:makeAPICall",
+                                            "version": 2,
+                                            "parameters": {
+                                                "__IMTCONN__": 4480914
+                                            },
+                                            "mapper": {
+                                                "url": "spreadsheets/{{63.spreadsheetID}}:batchUpdate",
+                                                "body": "{\n  \"requests\": [\n    {\n      \"sortRange\": {\n        \"range\": {\n          \"sheetId\":{{63.gid}},\n          \"startRowIndex\": 1,\n          \"startColumnIndex\": 0,\n          \"endColumnIndex\": 62\n        },\n        \"sortSpecs\": [\n          {\n            \"dimensionIndex\": 0,\n            \"sortOrder\": \"DESCENDING\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                                                "method": "POST",
+                                                "headers": [
+                                                    {
+                                                        "key": "Content-Type",
+                                                        "value": "application/json"
+                                                    }
+                                                ]
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 4800,
+                                                    "y": 600,
+                                                    "name": "Sort CRM Data"
+                                                },
+                                                "restore": {},
+                                                "parameters": [],
+                                                "expect": []
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    }
+}

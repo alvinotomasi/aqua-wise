@@ -312,22 +312,22 @@ function buildMetafields(product, options = {}) {
 
   // Existing "custom" namespace mappings (kept for backward compatibility)
   const singleLineMappings = [
-    { key: 'Occupants', source: product.Occupants },
-    { key: 'Household_Size', source: product['Household Size'] },
-    { key: 'Stories_Max', source: product['Stories Max'] },
-    { key: 'Max_Flow_GPM', source: product['Max Flow Rate GPM'] || product['Max Flow GPM'] },
-    { key: 'cu_ft', source: product['Cu.Ft'] },
-    { key: 'Tank_Size', source: product['Tank Size'] },
-    { key: 'Media_Type', source: product['Media Type'] },
-    { key: 'Capacity', source: product.Capacity },
-    { key: 'Valve', source: product.Valve },
-    { key: 'City_or_Well', source: product['City/Well'] },
-    { key: 'Product_Dimensions', source: product['Product Dimensions'] },
-    { key: 'Number_of_Bathroom', source: product['Number of Bathroom'] },
-    { key: 'Micron', source: product.Micron || product['Micron'] },
-    { key: 'Practical Service Flow', source: product['Practical Service Flow (gpm @ EBCT≈2 min)'] },
-    { key: 'Backwash', source: product['Backwash (DLFC) (gpm)'] },
-    { key: 'Product Weight lb', source: product['Product Weight lb'] },
+    { key: 'occupants', source: product.Occupants },
+    { key: 'household_size', source: product['Household Size'] },
+    { key: 'stories_max', source: product['Stories Max'] },
+    { key: 'max_flow_gpm', source: product['Max Flow Rate GPM'] || product['Max Flow GPM'] },
+    { key: 'cuft', source: product['Cu.Ft'] },
+    { key: 'tank_size', source: product['Tank Size'] },
+    { key: 'media_type', source: product['Media Type'] },
+    { key: 'capacity', source: product.Capacity },
+    { key: 'valve', source: product.Valve },
+    { key: 'city_or_well', source: product['City/Well'] },
+    { key: 'product_dimensions', source: product['Product Dimensions'] },
+    { key: 'number_of_bathroom', source: product['Number of Bathroom'] },
+    { key: 'micron', source: product.Micron || product['Micron'] },
+    { key: 'practical_service_flow', source: product['Practical Service Flow (gpm @ EBCT≈2 min)'] },
+    { key: 'backwash', source: product['Backwash (DLFC) (gpm)'] },
+    { key: 'product_weight_lb', source: product['Product Weight lb'] },
   ];
 
   for (const mapping of singleLineMappings) {
@@ -346,7 +346,7 @@ function buildMetafields(product, options = {}) {
   if (contaminants) {
     metafields.push({
       namespace: 'custom',
-      key: 'Contaminants_Removed',
+      key: 'contaminants_removed',
       type: 'multi_line_text_field',
       value: contaminants,
     });
@@ -356,7 +356,7 @@ function buildMetafields(product, options = {}) {
   if (certifications) {
     metafields.push({
       namespace: 'custom',
-      key: 'Certifications',
+      key: 'certifications',
       type: 'single_line_text_field',
       value: certifications,
     });
