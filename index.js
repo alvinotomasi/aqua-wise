@@ -315,19 +315,26 @@ function buildMetafields(product, options = {}) {
     { key: 'occupants', source: product.Occupants },
     { key: 'household_size', source: product['Household Size'] },
     { key: 'stories_max', source: product['Stories Max'] },
-    { key: 'max_flow_gpm', source: product['Max Flow Rate GPM'] || product['Max Flow GPM'] },
-    { key: 'cuft', source: product['Cu.Ft'] },
+    { key: 'max_flow_gpm', source: product['Max Flow Rate GPM'] || product['Max Flow GPM'] || product['Max Flow Rate (GPM)'] },
+    { key: 'cuft', source: product['Cu.Ft'] || product['Cu.Ft. (Media Volume)'] },
     { key: 'tank_size', source: product['Tank Size'] },
     { key: 'media_type', source: product['Media Type'] },
     { key: 'capacity', source: product.Capacity },
     { key: 'valve', source: product.Valve },
     { key: 'city_or_well', source: product['City/Well'] },
-    { key: 'product_dimensions', source: product['Product Dimensions'] },
-    { key: 'number_of_bathroom', source: product['Number of Bathroom'] },
+    { key: 'product_dimensions', source: product['Product Dimensions'] || product['Product Dimensions (H x W x D)'] },
+    { key: 'number_of_bathroom', source: product['Number of Bathroom'] || product['Number of Bathrooms'] },
     { key: 'micron', source: product.Micron || product['Micron'] },
     { key: 'practical_service_flow', source: product['Practical Service Flow (gpm @ EBCT≈2 min)'] },
     { key: 'backwash', source: product['Backwash (DLFC) (gpm)'] },
-    { key: 'product_weight_lb', source: product['Product Weight lb'] },
+    { key: 'product_weight_lb', source: product['Product Weight lb'] || product['Product Weight (lb)'] },
+    { key: 'power_requirement', source: product['Power Requirement'] },
+    { key: 'bypass_valve_included', source: product['Bypass Valve Included'] },
+    { key: 'operating_pressures', source: product['Operating Pressures'] },
+    { key: 'operating_temperatures', source: product['Operating Temperatures'] },
+    { key: 'drain_line', source: product['Drain Line'] },
+    { key: 'installation_type', source: product['Installation Type'] },
+    { key: 'estimated_installation_time', source: product['Estimated Installation Time'] },
   ];
 
   for (const mapping of singleLineMappings) {
@@ -382,6 +389,16 @@ function buildMetafields(product, options = {}) {
     });
   }
 
+  const idealFor = asSingleLineValue(product['Ideal For']);
+  if (idealFor) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'ideal_for',
+      type: 'single_line_text_field',
+      value: idealFor,
+    });
+  }
+
   const problemsSolvedKeywords = asMultiLineValue(product['Problems solved (keywords)']);
   if (problemsSolvedKeywords) {
     metafields.push({
@@ -399,6 +416,66 @@ function buildMetafields(product, options = {}) {
       key: 'bundle_product_ids',
       type: 'multi_line_text_field',
       value: includedProductIds,
+    });
+  }
+
+  const waterProblemsSolved = asMultiLineValue(product['Water Problems Solved']);
+  if (waterProblemsSolved) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'water_problems_solved',
+      type: 'multi_line_text_field',
+      value: waterProblemsSolved,
+    });
+  }
+
+  const sayGoodbyeTo = asMultiLineValue(product['Say Goodbye To']);
+  if (sayGoodbyeTo) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'say_goodbye_to',
+      type: 'multi_line_text_field',
+      value: sayGoodbyeTo,
+    });
+  }
+
+  const perfectForHomesWith = asMultiLineValue(product['Perfect For Homes With']);
+  if (perfectForHomesWith) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'perfect_for_homes_with',
+      type: 'multi_line_text_field',
+      value: perfectForHomesWith,
+    });
+  }
+
+  const optionalUpgrades = asMultiLineValue(product['Optional Upgrades']);
+  if (optionalUpgrades) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'optional_upgrades',
+      type: 'multi_line_text_field',
+      value: optionalUpgrades,
+    });
+  }
+
+  const warranty = asMultiLineValue(product['Warranty']);
+  if (warranty) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'warranty',
+      type: 'multi_line_text_field',
+      value: warranty,
+    });
+  }
+
+  const maintenanceRequirement = asMultiLineValue(product['Maintenance Requirement']);
+  if (maintenanceRequirement) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'maintenance_requirement',
+      type: 'multi_line_text_field',
+      value: maintenanceRequirement,
     });
   }
 
@@ -629,6 +706,76 @@ function buildMetafields(product, options = {}) {
       key: 'brine_tank_size',
       type: 'single_line_text_field',
       value: brineTankSizeText,
+    });
+  }
+
+  const operatingPressures = asSingleLineValue(product['Operating Pressures']);
+  if (operatingPressures) {
+    metafields.push({
+      namespace: 'product',
+      key: 'operating_pressures',
+      type: 'single_line_text_field',
+      value: operatingPressures,
+    });
+  }
+
+  const operatingTemperatures = asSingleLineValue(product['Operating Temperatures']);
+  if (operatingTemperatures) {
+    metafields.push({
+      namespace: 'product',
+      key: 'operating_temperatures',
+      type: 'single_line_text_field',
+      value: operatingTemperatures,
+    });
+  }
+
+  const drainLine = asSingleLineValue(product['Drain Line']);
+  if (drainLine) {
+    metafields.push({
+      namespace: 'product',
+      key: 'drain_line',
+      type: 'single_line_text_field',
+      value: drainLine,
+    });
+  }
+
+  const powerRequirement = asSingleLineValue(product['Power Requirement']);
+  if (powerRequirement) {
+    metafields.push({
+      namespace: 'product',
+      key: 'power_requirement',
+      type: 'single_line_text_field',
+      value: powerRequirement,
+    });
+  }
+
+  const bypassValveIncluded = asSingleLineValue(product['Bypass Valve Included']);
+  if (bypassValveIncluded) {
+    metafields.push({
+      namespace: 'product',
+      key: 'bypass_valve_included',
+      type: 'single_line_text_field',
+      value: bypassValveIncluded,
+    });
+  }
+
+  const installationType = asSingleLineValue(product['Installation Type']);
+  if (installationType) {
+    metafields.push({
+      namespace: 'product',
+      key: 'installation_type',
+      type: 'single_line_text_field',
+      value: installationType,
+    });
+  }
+
+  const estimatedInstallationTime = asSingleLineValue(product['Estimated Installation Time']);
+  if (estimatedInstallationTime) {
+    metafields.push({
+      namespace: 'product',
+      key: 'estimated_installation_time',
+      type: 'single_line_text_field',
+      value: estimatedInstallationTime,
     });
   }
 
