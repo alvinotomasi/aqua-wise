@@ -459,6 +459,26 @@ function buildMetafields(product, options = {}) {
     });
   }
 
+  const deliveryAndReturns = asMultiLineValue(product['Delivery & Returns']);
+  if (deliveryAndReturns) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'delivery_and_returns',
+      type: 'multi_line_text_field',
+      value: deliveryAndReturns,
+    });
+  }
+
+  const extendedDescription = asMultiLineValue(product['Extended Description']);
+  if (extendedDescription) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'extended_description',
+      type: 'multi_line_text_field',
+      value: extendedDescription,
+    });
+  }
+
   const warranty = asMultiLineValue(product['Warranty']);
   if (warranty) {
     metafields.push({
