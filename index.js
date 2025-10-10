@@ -351,22 +351,28 @@ function buildMetafields(product, options = {}) {
 
   const contaminants = asMultiLineValue(product['Contaminants removed']);
   if (contaminants) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'contaminants_removed',
-      type: 'multi_line_text_field',
-      value: contaminants,
-    });
+    const listValues = contaminants.split('\n').map(line => line.trim()).filter(Boolean);
+    if (listValues.length > 0) {
+      metafields.push({
+        namespace: 'custom',
+        key: 'contaminants_removed',
+        type: 'list.single_line_text_field',
+        value: JSON.stringify(listValues),
+      });
+    }
   }
 
   const certifications = asSingleLineValue(product.Certifications);
   if (certifications) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'certifications',
-      type: 'single_line_text_field',
-      value: certifications,
-    });
+    const listValues = certifications.split(',').map(item => item.trim()).filter(Boolean);
+    if (listValues.length > 0) {
+      metafields.push({
+        namespace: 'custom',
+        key: 'certifications',
+        type: 'list.single_line_text_field',
+        value: JSON.stringify(listValues),
+      });
+    }
   }
 
   const includedProducts = asMultiLineValue(product['Included Products']);
@@ -441,12 +447,15 @@ function buildMetafields(product, options = {}) {
 
   const perfectForHomesWith = asMultiLineValue(product['Perfect For Homes With']);
   if (perfectForHomesWith) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'perfect_for_homes_with',
-      type: 'multi_line_text_field',
-      value: perfectForHomesWith,
-    });
+    const listValues = perfectForHomesWith.split('\n').map(line => line.trim()).filter(Boolean);
+    if (listValues.length > 0) {
+      metafields.push({
+        namespace: 'custom',
+        key: 'perfect_for_homes_with',
+        type: 'list.single_line_text_field',
+        value: JSON.stringify(listValues),
+      });
+    }
   }
 
   const optionalUpgrades = asMultiLineValue(product['Optional Upgrades']);
