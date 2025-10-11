@@ -519,7 +519,7 @@ function buildMetafields(product, options = {}) {
     metafields.push({
       namespace: 'custom',
       key: 'product_documentation',
-      type: 'file_reference',
+      type: 'single_line_text_field',
       value: productDocumentation,
     });
   }
