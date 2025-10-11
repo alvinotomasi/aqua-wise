@@ -514,6 +514,16 @@ function buildMetafields(product, options = {}) {
     });
   }
 
+  const productDocumentation = asSingleLineValue(product['Product Documentation']);
+  if (productDocumentation) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'product_documentation',
+      type: 'file_reference',
+      value: productDocumentation,
+    });
+  }
+
   if (addonMetafieldResult?.metafield) {
     metafields.push(addonMetafieldResult.metafield);
   }
@@ -1575,9 +1585,17 @@ async function shopifyProductSync(req, res) {
           ? { published: false, skipped: true, reason: 'Product created with DRAFT status.' }
           : await publishProduct(created.productId);
 
+      // Extract numeric product ID from GID
+      const numericProductId = created.productId.replace('gid://shopify/Product/', '');
+      
+      // Construct product URL
+      const productUrl = `https://${SHOPIFY_DOMAIN}/admin/products/${numericProductId}`;
+
       results.push({
         ...context,
         productId: created.productId,
+        productIdNumeric: numericProductId,
+        productUrl: productUrl,
         productTitle: created.productTitle,
         productStatus: created.productStatus,
         variantIds: variantResult.variantIds,
