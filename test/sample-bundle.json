@@ -1,0 +1,36 @@
+{
+  "bundles": [
+    {
+      "id": "rec_bundle_001",
+      "Bundle Name": "Complete Water Treatment Bundle",
+      "Website Retail Price": 1200,
+      "MSRP": 1500,
+      "Products": ["rec_product_001", "rec_product_002"],
+      "Description": "A complete water treatment solution including filtration and softening components.",
+      "Category": "Bundles",
+      "Collection": ["Water Treatment Bundles"],
+      "Sell on Website": true,
+      "SKU": "BUNDLE-001"
+    }
+  ],
+  "products": [
+    {
+      "id": "rec_product_001",
+      "Product Name": "Water Filter Cartridge",
+      "Description": "High-efficiency water filter cartridge for sediment and chlorine removal.",
+      "Website Retail Price": 600,
+      "MSRP": 750,
+      "SKU": "FILTER-001",
+      "Collection": ["Water Filters"]
+    },
+    {
+      "id": "rec_product_002", 
+      "Product Name": "Water Softener System",
+      "Description": "Whole house water softener system for hard water treatment.",
+      "Website Retail Price": 600,
+      "MSRP": 750,
+      "SKU": "SOFTENER-001",
+      "Collection": ["Water Softeners"]
+    }
+  ]
+}

@@ -514,14 +514,29 @@ function buildMetafields(product, options = {}) {
     });
   }
 
-  const productDocumentation = asSingleLineValue(product['Product Documentation']);
-  if (productDocumentation) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'product_documentation',
-      type: 'single_line_text_field',
-      value: productDocumentation,
-    });
+  const productDocumentationRaw = product['Product Documentation'];
+  if (productDocumentationRaw) {
+    const describeDocumentation = () => {
+      if (Array.isArray(productDocumentationRaw)) {
+        return productDocumentationRaw
+          .map((entry) => {
+            if (entry && typeof entry === 'object') {
+              return entry.url || entry.id || '[object]';
+            }
+            return String(entry);
+          })
+          .join(', ');
+      }
+      return String(productDocumentationRaw);
+    };
+
+    console.warn(
+      'Skipping product documentation metafield because Shopify definition expects file_reference values.',
+      {
+        productDocumentation: describeDocumentation(),
+        productName: product['Product Name'] || product.title || product.Name,
+      }
+    );
   }
 
   if (addonMetafieldResult?.metafield) {
