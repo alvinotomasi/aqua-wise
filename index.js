@@ -1233,6 +1233,7 @@ query collectionByTitle($query: String!) {
       node {
         id
         title
+        collectionType
       }
     }
   }
@@ -1409,9 +1410,16 @@ async function findCollectionIdByName(name, cache) {
   );
 
   const node = response.data?.collections?.edges?.[0]?.node;
-  const collectionId = node?.id || null;
-  cache.set(trimmed, collectionId);
-  return collectionId;
+  const collectionRecord = node
+    ? {
+        id: node.id,
+        title: node.title,
+        collectionType: node.collectionType,
+      }
+    : null;
+
+  cache.set(trimmed, collectionRecord);
+  return collectionRecord;
 }
 
 async function addProductToCollection(collectionId, productId) {
@@ -1438,9 +1446,17 @@ async function attachCollections(productId, product, cache) {
   const missing = [];
 
   for (const name of names) {
-    const collectionId = await findCollectionIdByName(name, cache);
+    const collectionRecord = await findCollectionIdByName(name, cache);
+    const collectionId = collectionRecord && typeof collectionRecord === 'object' ? collectionRecord.id : collectionRecord;
+
     if (!collectionId) {
       missing.push(name);
+      continue;
+    }
+
+    const collectionType = collectionRecord && typeof collectionRecord === 'object' ? collectionRecord.collectionType : undefined;
+    if (collectionType && collectionType !== 'MANUAL') {
+      missing.push(`${name} (skipped: collection is ${collectionType.toLowerCase()} and cannot be modified manually)`);
       continue;
     }
 
