@@ -306,8 +306,290 @@ function buildAddonMetafield(addonShopifyProductIds) {
   };
 }
 
+function normaliseDocumentEntries(input) {
+  if (input === undefined || input === null) {
+    return [];
+  }
+  if (Array.isArray(input)) {
+    return input;
+  }
+  return [input];
+}
+
+function deriveDocumentUrl(entry) {
+  if (!entry) {
+    return undefined;
+  }
+  if (typeof entry === 'string') {
+    const trimmed = entry.trim();
+    return trimmed.length ? trimmed : undefined;
+  }
+  if (typeof entry === 'object') {
+    const candidates = [entry.url, entry.link, entry.href, entry.path];
+    for (const candidate of candidates) {
+      if (candidate === undefined || candidate === null) {
+        continue;
+      }
+      const text = String(candidate).trim();
+      if (text) {
+        return text;
+      }
+    }
+  }
+  return undefined;
+}
+
+function deriveDocumentFilename(entry, url) {
+  const fallbackBase = 'product-documentation';
+  let filename;
+
+  if (entry && typeof entry === 'object') {
+    const candidates = [entry.filename, entry.name, entry.title, entry.label];
+    for (const candidate of candidates) {
+      if (candidate === undefined || candidate === null) {
+        continue;
+      }
+      const text = String(candidate).trim();
+      if (text) {
+        filename = text;
+        break;
+      }
+    }
+  }
+
+  if (!filename && url) {
+    try {
+      const parsed = new URL(url);
+      const path = parsed.pathname || '';
+      const segments = path.split('/').filter(Boolean);
+      if (segments.length) {
+        filename = decodeURIComponent(segments[segments.length - 1]);
+      }
+    } catch (error) {
+      // Ignore URL parsing errors and fall back to default filename
+    }
+  }
+
+  if (!filename) {
+    filename = fallbackBase;
+  }
+
+  const hasExtension = /\.[A-Za-z0-9]{2,10}$/.test(filename);
+  if (!hasExtension) {
+    let extension;
+    if (entry && typeof entry === 'object' && entry.type) {
+      const match = String(entry.type).match(/\/([A-Za-z0-9.+-]+)$/);
+      if (match) {
+        extension = `.${match[1].toLowerCase()}`;
+      }
+    }
+    if (!extension && url) {
+      try {
+        const parsed = new URL(url);
+        const path = parsed.pathname || '';
+        const dotIndex = path.lastIndexOf('.');
+        if (dotIndex !== -1 && dotIndex < path.length - 1) {
+          extension = path.slice(dotIndex).split('?')[0];
+        }
+      } catch (error) {
+        // Ignore URL parsing errors and fall back to default extension
+      }
+    }
+    if (!extension) {
+      extension = '.pdf';
+    }
+    filename = `${filename}${extension}`;
+  }
+
+  return filename;
+}
+
+async function ensureShopifyFileReference(documentEntry, options = {}) {
+  const { fileCache } = options;
+
+  const url = deriveDocumentUrl(documentEntry);
+  if (!url) {
+    return {
+      fileId: null,
+      status: 'skipped',
+      reason: 'Missing URL',
+      url: undefined,
+      source: documentEntry,
+    };
+  }
+
+  const trimmedUrl = String(url).trim();
+  if (!/^https?:\/\//i.test(trimmedUrl)) {
+    return {
+      fileId: null,
+      status: 'skipped',
+      reason: 'Unsupported URL scheme',
+      url: trimmedUrl,
+      source: documentEntry,
+    };
+  }
+
+  const cacheKey =
+    (documentEntry && typeof documentEntry === 'object' && (documentEntry.id || documentEntry.url || documentEntry.link))
+      || trimmedUrl;
+
+  if (fileCache && cacheKey && fileCache.has(cacheKey)) {
+    return {
+      fileId: fileCache.get(cacheKey),
+      status: 'cached',
+      url: trimmedUrl,
+      filename: deriveDocumentFilename(documentEntry, trimmedUrl),
+      source: documentEntry,
+    };
+  }
+
+  const filename = deriveDocumentFilename(documentEntry, trimmedUrl);
+  const contentTypeCandidate =
+    (documentEntry && typeof documentEntry === 'object' && documentEntry.type) || '';
+  const looksLikeImage = /image\//i.test(String(contentTypeCandidate)) || /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(filename || '');
+  const contentType = looksLikeImage ? 'IMAGE' : 'FILE';
+
+  const fileInput = {
+    originalSource: trimmedUrl,
+    contentType,
+  };
+
+  if (filename) {
+    fileInput.filename = filename;
+  }
+
+  if (documentEntry && typeof documentEntry === 'object' && documentEntry.description) {
+    const alt = String(documentEntry.description).trim();
+    if (alt) {
+      fileInput.alt = alt;
+    }
+  }
+
+  try {
+    const response = await callShopify(
+      FILE_CREATE_MUTATION,
+      { files: [fileInput] },
+      'fileCreate'
+    );
+
+    const payload = response.data?.fileCreate;
+    if (!payload) {
+      throw new Error('fileCreate did not return a payload.');
+    }
+
+    const userErrors = payload.userErrors || [];
+    if (userErrors.length > 0) {
+      const message = userErrors.map((error) => error.message).join('; ');
+      throw new Error(`fileCreate userErrors: ${message}`);
+    }
+
+    const createdFile = payload.files?.[0];
+    if (!createdFile?.id) {
+      throw new Error('fileCreate did not return a file id.');
+    }
+
+    if (fileCache && cacheKey) {
+      fileCache.set(cacheKey, createdFile.id);
+    }
+
+    return {
+      fileId: createdFile.id,
+      status: 'created',
+      url: trimmedUrl,
+      filename: createdFile.filename || filename,
+      source: documentEntry,
+    };
+  } catch (error) {
+    return {
+      fileId: null,
+      status: 'error',
+      error: error.message,
+      url: trimmedUrl,
+      filename,
+      source: documentEntry,
+    };
+  }
+}
+
+async function buildProductDocumentationMetafield(product, options = {}) {
+  const { fileCache } = options;
+  const rawDocumentation = product ? product['Product Documentation'] : undefined;
+  const documentationEntries = normaliseDocumentEntries(rawDocumentation);
+
+  if (!documentationEntries.length) {
+    return {
+      metafield: null,
+      fileIds: [],
+      entries: [],
+      errors: [],
+      skipped: [],
+    };
+  }
+
+  const results = [];
+  const fileIds = [];
+  const seenFileIds = new Set();
+
+  for (const entry of documentationEntries) {
+    // eslint-disable-next-line no-await-in-loop
+    const outcome = await ensureShopifyFileReference(entry, { fileCache });
+    results.push(outcome);
+    if (outcome.fileId && !seenFileIds.has(outcome.fileId)) {
+      seenFileIds.add(outcome.fileId);
+      fileIds.push(outcome.fileId);
+    }
+  }
+
+  const errors = results
+    .filter((result) => result.status === 'error')
+    .map((result) => ({ url: result.url, message: result.error }));
+  const skipped = results
+    .filter((result) => result.status === 'skipped')
+    .map((result) => ({ url: result.url, reason: result.reason }));
+
+  const productName = product['Product Name'] || product.title || product.Name;
+
+  if (!fileIds.length) {
+    console.warn('Failed to create Shopify file references for product documentation.', {
+      productName,
+      documentationCount: documentationEntries.length,
+      errors,
+      skipped,
+    });
+    return {
+      metafield: null,
+      fileIds,
+      entries: results,
+      errors,
+      skipped,
+    };
+  }
+
+  if (errors.length || skipped.length) {
+    console.warn('Some product documentation entries could not be converted to Shopify file references.', {
+      productName,
+      errors,
+      skipped,
+      successfulReferences: fileIds.length,
+    });
+  }
+
+  return {
+    metafield: {
+      namespace: 'custom',
+      key: 'product_documentation',
+      type: 'list.file_reference',
+      value: JSON.stringify(fileIds),
+    },
+    fileIds,
+    entries: results,
+    errors,
+    skipped,
+  };
+}
+
 function buildMetafields(product, options = {}) {
-  const { addonMetafieldResult } = options;
+  const { addonMetafieldResult, documentationMetafieldResult } = options;
   const metafields = [];
 
   // Existing "custom" namespace mappings (kept for backward compatibility)
@@ -515,32 +797,12 @@ function buildMetafields(product, options = {}) {
   }
 
   const productDocumentationRaw = product['Product Documentation'];
-  if (productDocumentationRaw) {
-    const describeDocumentation = () => {
-      if (Array.isArray(productDocumentationRaw)) {
-        return productDocumentationRaw
-          .map((entry) => {
-            if (entry && typeof entry === 'object') {
-              return entry.url || entry.id || '[object]';
-            }
-            return String(entry);
-          })
-          .join(', ');
-      }
-      return String(productDocumentationRaw);
-    };
-
-    console.warn(
-      'Skipping product documentation metafield because Shopify definition expects file_reference values.',
-      {
-        productDocumentation: describeDocumentation(),
-        productName: product['Product Name'] || product.title || product.Name,
-      }
-    );
-  }
-
   if (addonMetafieldResult?.metafield) {
     metafields.push(addonMetafieldResult.metafield);
+  }
+
+  if (documentationMetafieldResult?.metafield) {
+    metafields.push(documentationMetafieldResult.metafield);
   }
 
   // --- New Shopify Product namespace metafields (namespace: "product") ---
@@ -843,7 +1105,7 @@ function buildMetafields(product, options = {}) {
 }
 
 function buildProductInput(product, options = {}) {
-  const { addonMetafieldResult } = options;
+  const { addonMetafieldResult, documentationMetafieldResult } = options;
   const descriptionHtml = toDescriptionHtml(product);
   const input = {
     title: product['Product Name'] ? String(product['Product Name']) : undefined,
@@ -851,7 +1113,7 @@ function buildProductInput(product, options = {}) {
     status: product['Sell on Website'] === false ? 'DRAFT' : 'ACTIVE',
     productType: asSingleLineValue(product.Category),
     vendor: asSingleLineValue(product['Sub Brand'] || product.Vendor),
-    metafields: buildMetafields(product, { addonMetafieldResult }),
+    metafields: buildMetafields(product, { addonMetafieldResult, documentationMetafieldResult }),
     tags: normaliseArray(product.Collection).concat(normaliseArray(product['Problems solved (keywords)'])).filter(Boolean),
   };
 
@@ -1200,6 +1462,21 @@ mutation productUpdate($input: ProductInput!) {
 }
 `;
 
+const FILE_CREATE_MUTATION = `
+mutation fileCreate($files: [FileCreateInput!]!) {
+  fileCreate(files: $files) {
+    files {
+      id
+      filename
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+`;
+
 const VARIANTS_BULK_MUTATION = `
 mutation productVariantsBulkCreate(
   $productId: ID!
@@ -1288,8 +1565,8 @@ let cachedPublicationIds = null;
 let publicationPromise = null;
 
 async function createProduct(product, optionNames, context = {}) {
-  const { addonMetafieldResult } = context;
-  const input = buildProductInput(product, { addonMetafieldResult });
+  const { addonMetafieldResult, documentationMetafieldResult } = context;
+  const input = buildProductInput(product, { addonMetafieldResult, documentationMetafieldResult });
   if (!input.title) {
     throw new Error('Product name is required to create a product.');
   }
@@ -1325,8 +1602,8 @@ async function createProduct(product, optionNames, context = {}) {
 }
 
 async function updateProduct(productId, product, optionNames, context = {}) {
-  const { addonMetafieldResult } = context;
-  const input = buildProductInput(product, { addonMetafieldResult });
+  const { addonMetafieldResult, documentationMetafieldResult } = context;
+  const input = buildProductInput(product, { addonMetafieldResult, documentationMetafieldResult });
   
   // Add the product ID to the input for updates
   input.id = productId;
@@ -1527,6 +1804,7 @@ async function shopifyProductSync(req, res) {
   }
 
   const collectionCache = new Map();
+  const fileReferenceCache = new Map();
   const results = [];
 
   // 1) Group incoming items so each group becomes a single Shopify product with multiple variants
@@ -1548,7 +1826,7 @@ async function shopifyProductSync(req, res) {
     // Base item supplies core product fields
     const base = group[0];
     const sourceIds = group.map(g => g?.id || g?.ProductID).filter(Boolean);
-    const context = { sourceId: sourceIds.join(',') || 'unknown' };
+    const context = { sourceId: sourceIds.join(',') || 'unknown', fileCache: fileReferenceCache };
 
     try {
       // Determine option name if we have multiple variants
@@ -1560,12 +1838,15 @@ async function shopifyProductSync(req, res) {
 
       const addonShopifyProductIds = extractAddonShopifyProductIds(base);
       const addonMetafieldResult = buildAddonMetafield(addonShopifyProductIds);
+      const documentationMetafieldResult = await buildProductDocumentationMetafield(base, {
+        fileCache: context.fileCache,
+      });
 
       // Check if we should update or create
       const existingProductId = base['Shopify Product Id'] || base['shopify_product_id'];
       const created = existingProductId
-        ? await updateProduct(existingProductId, base, optionNames, { addonMetafieldResult })
-        : await createProduct(base, optionNames, { addonMetafieldResult });
+        ? await updateProduct(existingProductId, base, optionNames, { addonMetafieldResult, documentationMetafieldResult })
+        : await createProduct(base, optionNames, { addonMetafieldResult, documentationMetafieldResult });
 
       // Build all variants for this group
       const variants = group.map((rec, idx) => {
@@ -1620,6 +1901,11 @@ async function shopifyProductSync(req, res) {
           input: addonShopifyProductIds,
           valid: addonMetafieldResult.validReferenceIds,
           invalid: addonMetafieldResult.invalidReferenceIds,
+        },
+        documentation: {
+          fileIds: documentationMetafieldResult.fileIds,
+          errors: documentationMetafieldResult.errors,
+          skipped: documentationMetafieldResult.skipped,
         },
         status: 'success',
         operation: existingProductId ? 'updated' : 'created',
