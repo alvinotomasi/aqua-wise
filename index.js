@@ -237,6 +237,7 @@ function extractAddonShopifyProductIds(record) {
     'Shopify Product ID (from Add-ons)',
     'Shopify Product Id (From Add-ons)',
     'Shopify Product Id (from add-ons)',
+    'Shopify Product Id (from Optional Upgrades)',
     'ShopifyProductIdFromAddOns',
     'shopify_product_id_from_addons',
     'Shopify Product Id (Add-ons)',
@@ -257,6 +258,48 @@ function extractAddonShopifyProductIds(record) {
       if (text) {
         referenceIds.add(text);
       }
+    }
+  }
+
+  return Array.from(referenceIds);
+}
+
+function extractOptionalUpgradeShopifyProductIds(record) {
+  if (!record || typeof record !== 'object') {
+    return [];
+  }
+
+  const values = normaliseArray(record['Shopify Product Id (from Optional Upgrades)']);
+  const referenceIds = new Set();
+
+  for (const value of values) {
+    if (value === undefined || value === null) {
+      continue;
+    }
+    const normalised = normaliseShopifyProductGid(value);
+    if (normalised) {
+      referenceIds.add(normalised);
+    }
+  }
+
+  return Array.from(referenceIds);
+}
+
+function extractReplacementShopifyProductIds(record) {
+  if (!record || typeof record !== 'object') {
+    return [];
+  }
+
+  const values = normaliseArray(record['Shopify Product Id (from Replacements)']);
+  const referenceIds = new Set();
+
+  for (const value of values) {
+    if (value === undefined || value === null) {
+      continue;
+    }
+    const normalised = normaliseShopifyProductGid(value);
+    if (normalised) {
+      referenceIds.add(normalised);
     }
   }
 
@@ -434,6 +477,82 @@ function buildAddonMetafield(addonShopifyProductIds) {
     metafield,
     validReferenceIds,
     invalidReferenceIds,
+  };
+}
+
+function buildOptionalUpgradesMetafield(optionalUpgradeIds) {
+  if (!Array.isArray(optionalUpgradeIds) || optionalUpgradeIds.length === 0) {
+    return {
+      metafield: null,
+      validReferenceIds: [],
+    };
+  }
+
+  const validReferenceIds = [];
+  const seen = new Set();
+
+  for (const raw of optionalUpgradeIds) {
+    const normalised = normaliseShopifyProductGid(raw);
+    if (!normalised || seen.has(normalised)) {
+      continue;
+    }
+    seen.add(normalised);
+    validReferenceIds.push(normalised);
+  }
+
+  if (!validReferenceIds.length) {
+    return {
+      metafield: null,
+      validReferenceIds,
+    };
+  }
+
+  return {
+    metafield: {
+      namespace: 'custom',
+      key: 'optional_upgrades',
+      type: 'list.product_reference',
+      value: JSON.stringify(validReferenceIds),
+    },
+    validReferenceIds,
+  };
+}
+
+function buildReplacementMetafield(replacementIds) {
+  if (!Array.isArray(replacementIds) || !replacementIds.length) {
+    return {
+      metafield: null,
+      validReferenceIds: [],
+    };
+  }
+
+  const validReferenceIds = [];
+  const seen = new Set();
+
+  for (const raw of replacementIds) {
+    const normalised = normaliseShopifyProductGid(raw);
+    if (!normalised || seen.has(normalised)) {
+      continue;
+    }
+    seen.add(normalised);
+    validReferenceIds.push(normalised);
+  }
+
+  if (!validReferenceIds.length) {
+    return {
+      metafield: null,
+      validReferenceIds,
+    };
+  }
+
+  return {
+    metafield: {
+      namespace: 'custom',
+      key: 'replacements',
+      type: 'list.product_reference',
+      value: JSON.stringify(validReferenceIds),
+    },
+    validReferenceIds,
   };
 }
 
@@ -672,7 +791,7 @@ async function buildProductDocumentationMetafield(product, options = {}) {
 }
 
 function buildMetafields(product, options = {}) {
-  const { addonMetafieldResult, documentationMetafieldResult } = options;
+  const { addonMetafieldResult, optionalUpgradesMetafieldResult, replacementsMetafieldResult, documentationMetafieldResult } = options;
   const metafields = [];
 
   // Existing "custom" namespace mappings (kept for backward compatibility)
@@ -909,6 +1028,14 @@ function buildMetafields(product, options = {}) {
     metafields.push(documentationMetafieldResult.metafield);
   }
 
+  if (optionalUpgradesMetafieldResult?.metafield) {
+    metafields.push(optionalUpgradesMetafieldResult.metafield);
+  }
+
+  if (replacementsMetafieldResult?.metafield) {
+    metafields.push(replacementsMetafieldResult.metafield);
+  }
+
   // --- New Shopify Product namespace metafields (namespace: "product") ---
 
   // Input & Output Line (text)
@@ -1137,7 +1264,7 @@ function buildMetafields(product, options = {}) {
 }
 
 function buildProductInput(product, options = {}) {
-  const { addonMetafieldResult, documentationMetafieldResult } = options;
+  const { addonMetafieldResult, optionalUpgradesMetafieldResult, replacementsMetafieldResult, documentationMetafieldResult } = options;
   const descriptionHtml = toDescriptionHtml(product);
   const input = {
     title: product['Product Name'] ? String(product['Product Name']) : undefined,
@@ -1145,7 +1272,7 @@ function buildProductInput(product, options = {}) {
     status: product['Sell on Website'] === false ? 'DRAFT' : 'ACTIVE',
     productType: asSingleLineValue(product.Category),
     vendor: asSingleLineValue(product['Sub Brand'] || product.Vendor),
-    metafields: buildMetafields(product, { addonMetafieldResult, documentationMetafieldResult }),
+    metafields: buildMetafields(product, { addonMetafieldResult, optionalUpgradesMetafieldResult, replacementsMetafieldResult, documentationMetafieldResult }),
     tags: normaliseArray(product.Collection).concat(normaliseArray(product['Problems solved (keywords)'])).filter(Boolean),
   };
 
@@ -1929,6 +2056,10 @@ async function shopifyProductSync(req, res) {
 
       const addonShopifyProductIds = extractAddonShopifyProductIds(base);
       const addonMetafieldResult = buildAddonMetafield(addonShopifyProductIds);
+      const optionalUpgradeIds = extractOptionalUpgradeShopifyProductIds(base);
+      const optionalUpgradesMetafieldResult = buildOptionalUpgradesMetafield(optionalUpgradeIds);
+      const replacementIds = extractReplacementShopifyProductIds(base);
+      const replacementsMetafieldResult = buildReplacementMetafield(replacementIds);
       const documentationMetafieldResult = await buildProductDocumentationMetafield(base, {
         fileCache: context.fileCache,
       });
@@ -1936,8 +2067,8 @@ async function shopifyProductSync(req, res) {
       // Check if we should update or create
       const existingProductId = base['Shopify Product Id'] || base['shopify_product_id'];
       const created = existingProductId
-        ? await updateProduct(existingProductId, base, optionNames, { addonMetafieldResult, documentationMetafieldResult })
-        : await createProduct(base, optionNames, { addonMetafieldResult, documentationMetafieldResult });
+        ? await updateProduct(existingProductId, base, optionNames, { addonMetafieldResult, optionalUpgradesMetafieldResult, replacementsMetafieldResult, documentationMetafieldResult })
+        : await createProduct(base, optionNames, { addonMetafieldResult, optionalUpgradesMetafieldResult, replacementsMetafieldResult, documentationMetafieldResult });
 
       // Build all variants for this group
       const variants = group.map((rec, idx) => {
@@ -1999,6 +2130,14 @@ async function shopifyProductSync(req, res) {
           input: addonShopifyProductIds,
           valid: addonMetafieldResult.validReferenceIds,
           invalid: addonMetafieldResult.invalidReferenceIds,
+        },
+        optionalUpgrades: {
+          input: optionalUpgradeIds,
+          valid: optionalUpgradesMetafieldResult.validReferenceIds,
+        },
+        replacements: {
+          input: replacementIds,
+          valid: replacementsMetafieldResult.validReferenceIds,
         },
         documentation: {
           fileIds: documentationMetafieldResult.fileIds,
