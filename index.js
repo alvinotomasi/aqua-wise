@@ -696,7 +696,7 @@ function buildMetafields(product, options = {}) {
     { key: 'power_requirement', source: product['Power Requirement'] },
     { key: 'bypass_valve_included', source: product['Bypass Valve Included'] },
     { key: 'operating_pressures', source: product['Operating Pressures'] },
-    { key: 'operating_temperatures', source: product['Operating Temperatures'] },
+    { key: 'operating_temperatures', source: product['Operating Temperatures'] || product['Max. operating temperature'] || product['Max. Operating Temperature'] },
     { key: 'drain_line', source: product['Drain Line'] },
     { key: 'installation_type', source: product['Installation Type'] },
     { key: 'estimated_installation_time', source: product['Estimated Installation Time'] },
@@ -705,7 +705,6 @@ function buildMetafields(product, options = {}) {
     { key: 'waste_to_pure_ratio', source: product['Waste-to-Pure Ratio'] },
     { key: 'feed_water_tds_limit', source: product['Feed Water TDS Limit'] },
     { key: 'feed_water_ph_range', source: product['Feed Water pH Range'] },
-    { key: 'max_operating_temperature', source: product['Max. operating temperature'] || product['Max. Operating Temperature'] },
     { key: 'operating_environment', source: product['Operating Environment'] },
     { key: 'tank_dimensions', source: product['Tank Dimensions'] },
     { key: 'maximum_pressure', source: product['Maximum Pressure'] },
@@ -851,6 +850,16 @@ function buildMetafields(product, options = {}) {
     });
   }
 
+  const replacements = asMultiLineValue(product['Replacements']);
+  if (replacements) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'replacements',
+      type: 'multi_line_text_field',
+      value: replacements,
+    });
+  }
+
   const deliveryAndReturns = asMultiLineValue(product['Delivery & Returns']);
   if (deliveryAndReturns) {
     metafields.push({
@@ -950,78 +959,6 @@ function buildMetafields(product, options = {}) {
       key: 'feed_water_pressure_psi',
       type: 'number_decimal',
       value: feedWaterPressurePsi,
-    });
-  }
-
-  // Feed Water Temperature (°C) min/max - decimal
-  // Detect if the provided values are in Fahrenheit and convert to Celsius if needed.
-  const rawTempSources = [
-    product['Feed Water Temperature Min'],
-    product['Feed Water Temp Min'],
-    product['Temperature Min (C)'],
-    product['Feed Water Temperature C Min'],
-    product['Feed Water Temperature Max'],
-    product['Feed Water Temp Max'],
-    product['Temperature Max (C)'],
-    product['Feed Water Temperature C Max'],
-    product['Feed Water Temperature'],
-    product['Feed Water Temp'],
-    product['Feed Water Temperature Range'],
-    product['Temperature'],
-  ].filter(Boolean);
-
-  const unitIsF = rawTempSources.some((val) => {
-    const text = Array.isArray(val) ? val.join(' ') : String(val);
-    return /(?:deg\s*F|°\s*F|\bF\b)/i.test(text);
-  });
-
-  let tempMin = toDecimalString(
-    product['Feed Water Temperature Min'] ||
-    product['Feed Water Temp Min'] ||
-    product['Temperature Min (C)'] ||
-    product['Feed Water Temperature C Min']
-  );
-  let tempMax = toDecimalString(
-    product['Feed Water Temperature Max'] ||
-    product['Feed Water Temp Max'] ||
-    product['Temperature Max (C)'] ||
-    product['Feed Water Temperature C Max']
-  );
-  if (!tempMin && !tempMax) {
-    const parsed = parseMinMax(
-      product['Feed Water Temperature'] ||
-      product['Feed Water Temp'] ||
-      product['Feed Water Temperature Range'] ||
-      product['Temperature']
-    );
-    tempMin = parsed.min || tempMin;
-    tempMax = parsed.max || tempMax;
-  }
-
-  if (unitIsF) {
-    const toC = (nStr) => {
-      const n = Number(nStr);
-      if (!Number.isFinite(n)) return nStr;
-      return String(((n - 32) * 5) / 9);
-    };
-    if (tempMin) tempMin = toC(tempMin);
-    if (tempMax) tempMax = toC(tempMax);
-  }
-
-  if (tempMin) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'feed_water_temperature_c_min',
-      type: 'number_decimal',
-      value: tempMin,
-    });
-  }
-  if (tempMax) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'feed_water_temperature_c_max',
-      type: 'number_decimal',
-      value: tempMax,
     });
   }
 
