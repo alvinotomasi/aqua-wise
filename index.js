@@ -339,41 +339,6 @@ function deriveDocumentUrl(entry) {
   return undefined;
 }
 
-function deriveDocumentFilename(entry, url) {
-  const extensionPattern = /\.[A-Za-z0-9]{2,10}$/;
-
-  if (entry && typeof entry === 'object') {
-    const candidates = [entry.filename, entry.name, entry.title, entry.label];
-    for (const candidate of candidates) {
-      if (candidate === undefined || candidate === null) {
-        continue;
-      }
-      const text = String(candidate).trim();
-      if (text && extensionPattern.test(text)) {
-        return text;
-      }
-    }
-  }
-
-  if (url) {
-    try {
-      const parsed = new URL(url);
-      const path = parsed.pathname || '';
-      const segments = path.split('/').filter(Boolean);
-      if (segments.length) {
-        const last = decodeURIComponent(segments[segments.length - 1]);
-        if (extensionPattern.test(last)) {
-          return last;
-        }
-      }
-    } catch (error) {
-      // Ignore URL parsing errors and fall back to undefined filename
-    }
-  }
-
-  return undefined;
-}
-
 async function ensureShopifyFileReference(documentEntry, options = {}) {
   const { fileCache } = options;
 
@@ -412,20 +377,26 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
     };
   }
 
-  const filename = deriveDocumentFilename(documentEntry, trimmedUrl);
   const contentTypeCandidate =
     (documentEntry && typeof documentEntry === 'object' && documentEntry.type) || '';
-  const looksLikeImage = /image\//i.test(String(contentTypeCandidate)) || /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(filename || '');
+
+  let urlPath = '';
+  try {
+    const parsed = new URL(trimmedUrl);
+    urlPath = parsed.pathname || '';
+  } catch (error) {
+    urlPath = '';
+  }
+
+  const looksLikeImage =
+    /image\//i.test(String(contentTypeCandidate)) ||
+    /\.(png|jpe?g|gif|webp|svg)$/i.test(urlPath);
   const contentType = looksLikeImage ? 'IMAGE' : 'FILE';
 
   const fileInput = {
     originalSource: trimmedUrl,
     contentType,
   };
-
-  if (filename) {
-    fileInput.filename = filename;
-  }
 
   if (documentEntry && typeof documentEntry === 'object' && documentEntry.description) {
     const alt = String(documentEntry.description).trim();
@@ -541,14 +512,28 @@ async function buildProductDocumentationMetafield(product, options = {}) {
     });
   }
 
+  let metafieldType = 'file_reference';
+  let metafieldValue = fileIds[0];
+  let unusedFileIds = [];
+
+  if (fileIds.length > 1) {
+    unusedFileIds = fileIds.slice(1);
+    console.warn('Multiple documentation files provided, but Shopify metafield definition expects a single file reference. Using the first file only.', {
+      productName,
+      usedFileId: metafieldValue,
+      unusedFileIds,
+    });
+  }
+
   return {
     metafield: {
       namespace: 'custom',
       key: 'product_documentation',
-      type: 'list.file_reference',
-      value: JSON.stringify(fileIds),
+      type: metafieldType,
+      value: metafieldValue,
     },
     fileIds,
+    unusedFileIds,
     entries: results,
     errors,
     skipped,
