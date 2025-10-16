@@ -8,6 +8,96 @@ const SHOPIFY_TOKEN = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
 const GRAPHQL_URL = SHOPIFY_DOMAIN
   ? `https://${SHOPIFY_DOMAIN}/admin/api/${API_VERSION}/graphql.json`
   : null;
+const SHOPIFY_STOREFRONT_DOMAIN = (process.env.SHOPIFY_STOREFRONT_DOMAIN || 'www.aqualivia.com')
+  .replace(/^https?:\/\//, '')
+  .replace(/\/$/, '');
+
+function slugifySegment(value) {
+  if (value === undefined || value === null) {
+    return undefined;
+  }
+  const text = String(value).trim().toLowerCase();
+  if (!text) {
+    return undefined;
+  }
+  const slug = text
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+  return slug || undefined;
+}
+
+function extractHandleFromCandidate(candidate) {
+  if (candidate === undefined || candidate === null) {
+    return undefined;
+  }
+
+  let text = String(candidate).trim();
+  if (!text) {
+    return undefined;
+  }
+
+  if (/^https?:\/\//i.test(text)) {
+    try {
+      const url = new URL(text);
+      if (/\/admin\//i.test(url.pathname || '')) {
+        return undefined;
+      }
+      text = url.pathname || '';
+    } catch (error) {
+      return undefined;
+    }
+  }
+
+  text = text.replace(/^\/+/, '').replace(/\/+$/, '');
+  if (!text) {
+    return undefined;
+  }
+
+  const productMatch = text.match(/products\/([^/?#]+)/i);
+  if (productMatch) {
+    text = productMatch[1];
+  }
+
+  text = text.split('?')[0].split('#')[0];
+
+  return slugifySegment(text);
+}
+
+function resolveProductHandle(record) {
+  const candidates = [
+    record?.Handle,
+    record?.handle,
+    record?.['Product Handle'],
+    record?.['Handle'],
+    record?.['Link to Product Page'],
+    record?.['URL'],
+    record?.['Product URL'],
+    record?.['Link to Product'],
+  ];
+
+  for (const raw of candidates) {
+    const handle = extractHandleFromCandidate(raw);
+    if (handle) {
+      return handle;
+    }
+  }
+
+  const nameFallback = extractHandleFromCandidate(record?.['Product Name']);
+  if (nameFallback) {
+    return nameFallback;
+  }
+
+  return undefined;
+}
+
+function resolvePrimaryCollectionSlug(record) {
+  const collections = normaliseArray(record?.Collection);
+  if (!collections.length) {
+    return undefined;
+  }
+  return slugifySegment(collections[0]);
+}
 
 // Temporary flag to disable grouping: each incoming record is treated as its own product.
 const GROUPING_ENABLED = false;
@@ -1861,7 +1951,20 @@ async function shopifyProductSync(req, res) {
       const numericProductId = created.productId.replace('gid://shopify/Product/', '');
       
       // Construct product URL
-      const productUrl = `https://${SHOPIFY_DOMAIN}/admin/products/${numericProductId}`;
+      const handle = resolveProductHandle(base);
+      const collectionSlug = resolvePrimaryCollectionSlug(base);
+
+      let productUrl;
+      if (SHOPIFY_STOREFRONT_DOMAIN && handle) {
+        const pathSegments = collectionSlug
+          ? ['collections', collectionSlug, 'products', handle]
+          : ['products', handle];
+        productUrl = `https://${SHOPIFY_STOREFRONT_DOMAIN}/${pathSegments.join('/')}`;
+      } else if (SHOPIFY_DOMAIN) {
+        productUrl = `https://${SHOPIFY_DOMAIN}/admin/products/${numericProductId}`;
+      } else {
+        productUrl = null;
+      }
 
       results.push({
         ...context,
