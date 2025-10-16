@@ -9,6 +9,9 @@ const GRAPHQL_URL = SHOPIFY_DOMAIN
   ? `https://${SHOPIFY_DOMAIN}/admin/api/${API_VERSION}/graphql.json`
   : null;
 
+// Temporary flag to disable grouping: each incoming record is treated as its own product.
+const GROUPING_ENABLED = false;
+
 /**
  * Basic HTML escaping to protect description payloads.
  */
@@ -1758,18 +1761,30 @@ async function shopifyProductSync(req, res) {
   const fileReferenceCache = new Map();
   const results = [];
 
-  // 1) Group incoming items so each group becomes a single Shopify product with multiple variants
+  // 1) Optional grouping of incoming items. Currently disabled so each record is processed individually.
   const groups = new Map();
-  for (const record of req.body) {
-    const key = getGroupKey(record);
-    if (!key) {
-      // Fallback: treat as its own group by random key to not crash
-      const fallbackKey = `${String(record['Product Name'] || 'unknown').trim().toLowerCase()}::${Math.random()}`;
-      groups.set(fallbackKey, [record]);
-      continue;
+  if (GROUPING_ENABLED) {
+    for (const record of req.body) {
+      const key = getGroupKey(record);
+      if (!key) {
+        const fallbackKey = `${String(record['Product Name'] || 'unknown').trim().toLowerCase()}::${Math.random()}`;
+        groups.set(fallbackKey, [record]);
+        continue;
+      }
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(record);
     }
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(record);
+  } else {
+    req.body.forEach((record, index) => {
+      const baseKey =
+        record?.id ||
+        record?.ProductID ||
+        record?.SKU ||
+        record?.['Product Name'] ||
+        'record';
+      const uniqueKey = `${String(baseKey).trim().toLowerCase()}::${index}`;
+      groups.set(uniqueKey, [record]);
+    });
   }
 
   // 2) Process each group
