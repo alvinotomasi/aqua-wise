@@ -1108,7 +1108,7 @@ function buildMetafields(product, options = {}) {
   if (brineTankSizeText) {
     metafields.push({
       namespace: 'custom',
-      key: 'brine_tank_size',
+      key: 'brine_tank_size_l',
       type: 'single_line_text_field',
       value: brineTankSizeText,
     });
