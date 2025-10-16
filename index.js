@@ -99,6 +99,34 @@ function resolvePrimaryCollectionSlug(record) {
   return slugifySegment(collections[0]);
 }
 
+function resolveProductUrl(options = {}) {
+  const {
+    handle,
+    onlineStoreUrl,
+    fallbackHandle,
+    collectionSlug,
+    numericProductId,
+  } = options;
+
+  if (onlineStoreUrl) {
+    return onlineStoreUrl;
+  }
+
+  const resolvedHandle = handle || fallbackHandle;
+  if (SHOPIFY_STOREFRONT_DOMAIN && resolvedHandle) {
+    const segments = collectionSlug
+      ? ['collections', collectionSlug, 'products', resolvedHandle]
+      : ['products', resolvedHandle];
+    return `https://${SHOPIFY_STOREFRONT_DOMAIN}/${segments.join('/')}`;
+  }
+
+  if (SHOPIFY_DOMAIN && numericProductId) {
+    return `https://${SHOPIFY_DOMAIN}/admin/products/${numericProductId}`;
+  }
+
+  return null;
+}
+
 // Temporary flag to disable grouping: each incoming record is treated as its own product.
 const GROUPING_ENABLED = false;
 
@@ -892,7 +920,7 @@ function buildMetafields(product, options = {}) {
     metafields.push({
       namespace: 'custom',
       key: 'system_capacity_gpd',
-      type: 'number_integer',
+      type: 'single_line_text_field',
       value: systemCapacityGpd,
     });
   }
@@ -1486,6 +1514,8 @@ mutation productCreate($input: ProductInput!, $media: [CreateMediaInput!]) {
     product {
       id
       title
+      handle
+      onlineStoreUrl
       variants(first: 1) {
         edges {
           node {
@@ -1508,6 +1538,8 @@ mutation productUpdate($input: ProductInput!) {
     product {
       id
       title
+      handle
+      onlineStoreUrl
     }
     userErrors {
       field
@@ -1618,6 +1650,16 @@ mutation publishablePublish($id: ID!, $input: [PublicationInput!]!) {
 let cachedPublicationIds = null;
 let publicationPromise = null;
 
+const PRODUCT_DETAILS_QUERY = `
+query productDetails($id: ID!) {
+  product(id: $id) {
+    id
+    handle
+    onlineStoreUrl
+  }
+}
+`;
+
 async function createProduct(product, optionNames, context = {}) {
   const { addonMetafieldResult, documentationMetafieldResult } = context;
   const input = buildProductInput(product, { addonMetafieldResult, documentationMetafieldResult });
@@ -1648,10 +1690,15 @@ async function createProduct(product, optionNames, context = {}) {
     throw new Error('productCreate did not return a product id.');
   }
 
+  const productHandle = result?.product?.handle;
+  const onlineStoreUrl = result?.product?.onlineStoreUrl;
+
   return {
     productId,
     productTitle: result.product?.title || input.title,
     productStatus: input.status || 'ACTIVE',
+    productHandle,
+    onlineStoreUrl,
   };
 }
 
@@ -1683,10 +1730,15 @@ async function updateProduct(productId, product, optionNames, context = {}) {
     throw new Error('productUpdate did not return a product id.');
   }
 
+  const productHandle = result?.product?.handle;
+  const onlineStoreUrl = result?.product?.onlineStoreUrl;
+
   return {
     productId: updatedProductId,
     productTitle: result.product?.title || input.title,
     productStatus: input.status || 'ACTIVE',
+    productHandle,
+    onlineStoreUrl,
   };
 }
 
@@ -1846,6 +1898,30 @@ async function publishProduct(productId) {
   };
 }
 
+async function fetchProductDetails(productId) {
+  try {
+    const response = await callShopify(
+      PRODUCT_DETAILS_QUERY,
+      { id: productId },
+      'productDetails'
+    );
+    const product = response.data?.product;
+    return {
+      handle: product?.handle || null,
+      onlineStoreUrl: product?.onlineStoreUrl || null,
+    };
+  } catch (error) {
+    console.warn('Failed to fetch product details after publish.', {
+      productId,
+      error: error.message,
+    });
+    return {
+      handle: null,
+      onlineStoreUrl: null,
+    };
+  }
+}
+
 async function shopifyProductSync(req, res) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
@@ -1941,30 +2017,24 @@ async function shopifyProductSync(req, res) {
         collectionCache
       );
 
-      // Publish (or skip if DRAFT)
-      const publishResult =
-        created.productStatus === 'DRAFT'
-          ? { published: false, skipped: true, reason: 'Product created with DRAFT status.' }
-          : await publishProduct(created.productId);
-
-      // Extract numeric product ID from GID
-      const numericProductId = created.productId.replace('gid://shopify/Product/', '');
-      
-      // Construct product URL
-      const handle = resolveProductHandle(base);
-      const collectionSlug = resolvePrimaryCollectionSlug(base);
-
-      let productUrl;
-      if (SHOPIFY_STOREFRONT_DOMAIN && handle) {
-        const pathSegments = collectionSlug
-          ? ['collections', collectionSlug, 'products', handle]
-          : ['products', handle];
-        productUrl = `https://${SHOPIFY_STOREFRONT_DOMAIN}/${pathSegments.join('/')}`;
-      } else if (SHOPIFY_DOMAIN) {
-        productUrl = `https://${SHOPIFY_DOMAIN}/admin/products/${numericProductId}`;
+      let publishResult;
+      if (created.productStatus === 'DRAFT') {
+        publishResult = { published: false, skipped: true, reason: 'Product created with DRAFT status.' };
       } else {
-        productUrl = null;
+        publishResult = await publishProduct(created.productId);
       }
+
+      const productDetails = await fetchProductDetails(created.productId);
+
+      const numericProductId = created.productId.replace('gid://shopify/Product/', '');
+
+      const productUrl = resolveProductUrl({
+        handle: productDetails.handle || created.productHandle,
+        onlineStoreUrl: productDetails.onlineStoreUrl || created.onlineStoreUrl,
+        fallbackHandle: resolveProductHandle(base),
+        collectionSlug: resolvePrimaryCollectionSlug(base),
+        numericProductId,
+      });
 
       results.push({
         ...context,
