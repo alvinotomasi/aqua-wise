@@ -681,7 +681,7 @@ function buildMetafields(product, options = {}) {
     { key: 'household_size', source: product['Household Size'] },
     { key: 'stories_max', source: product['Stories Max'] },
     { key: 'max_flow_gpm', source: product['Max Flow Rate GPM'] || product['Max Flow GPM'] || product['Max Flow Rate (GPM)'] },
-    { key: 'cuft', source: product['Cu.Ft'] || product['Cu.Ft. (Media Volume)'] },
+    { key: 'cu_ft', source: product['Cu.Ft'] || product['Cu.Ft. (Media Volume)'] },
     { key: 'tank_size', source: product['Tank Size'] },
     { key: 'media_type', source: product['Media Type'] },
     { key: 'capacity', source: product.Capacity },
