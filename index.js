@@ -1467,7 +1467,6 @@ mutation fileCreate($files: [FileCreateInput!]!) {
   fileCreate(files: $files) {
     files {
       id
-      filename
     }
     userErrors {
       field
