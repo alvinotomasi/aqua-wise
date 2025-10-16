@@ -700,6 +700,18 @@ function buildMetafields(product, options = {}) {
     { key: 'drain_line', source: product['Drain Line'] },
     { key: 'installation_type', source: product['Installation Type'] },
     { key: 'estimated_installation_time', source: product['Estimated Installation Time'] },
+    { key: 'recovery_rate', source: product['Recovery Rate'] },
+    { key: 'storage_tank_capacity', source: product['Storage Tank Capacity'] },
+    { key: 'waste_to_pure_ratio', source: product['Waste-to-Pure Ratio'] },
+    { key: 'feed_water_tds_limit', source: product['Feed Water TDS Limit'] },
+    { key: 'feed_water_ph_range', source: product['Feed Water pH Range'] },
+    { key: 'max_operating_temperature', source: product['Max. operating temperature'] || product['Max. Operating Temperature'] },
+    { key: 'operating_environment', source: product['Operating Environment'] },
+    { key: 'tank_dimensions', source: product['Tank Dimensions'] },
+    { key: 'maximum_pressure', source: product['Maximum Pressure'] },
+    { key: 'ozone_output', source: product['Ozone Output'] },
+    { key: 'operating_voltage', source: product['Operating Voltage'] },
+    { key: 'power_consumption', source: product['Power Consumption'] },
   ];
 
   for (const mapping of singleLineMappings) {
