@@ -183,10 +183,20 @@ function asSingleLineValue(input) {
     return undefined;
   }
   if (Array.isArray(input)) {
-    return input.map((item) => String(item).trim()).filter(Boolean).join(', ');
+    return input
+      .map((item) => String(item).trim().replace(/\s+/g, ' '))
+      .map((value) => value.trim())
+      .filter(Boolean)
+      .join(', ')
+      .trim() || undefined;
   }
   const value = String(input).trim();
-  return value.length > 0 ? value : undefined;
+  if (!value.length) {
+    return undefined;
+  }
+
+  const normalised = value.replace(/\s+/g, ' ').trim();
+  return normalised.length > 0 ? normalised : undefined;
 }
 
 function asMultiLineValue(input) {
