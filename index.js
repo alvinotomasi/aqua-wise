@@ -340,8 +340,7 @@ function deriveDocumentUrl(entry) {
 }
 
 function deriveDocumentFilename(entry, url) {
-  const fallbackBase = 'product-documentation';
-  let filename;
+  const extensionPattern = /\.[A-Za-z0-9]{2,10}$/;
 
   if (entry && typeof entry === 'object') {
     const candidates = [entry.filename, entry.name, entry.title, entry.label];
@@ -350,58 +349,29 @@ function deriveDocumentFilename(entry, url) {
         continue;
       }
       const text = String(candidate).trim();
-      if (text) {
-        filename = text;
-        break;
+      if (text && extensionPattern.test(text)) {
+        return text;
       }
     }
   }
 
-  if (!filename && url) {
+  if (url) {
     try {
       const parsed = new URL(url);
       const path = parsed.pathname || '';
       const segments = path.split('/').filter(Boolean);
       if (segments.length) {
-        filename = decodeURIComponent(segments[segments.length - 1]);
+        const last = decodeURIComponent(segments[segments.length - 1]);
+        if (extensionPattern.test(last)) {
+          return last;
+        }
       }
     } catch (error) {
-      // Ignore URL parsing errors and fall back to default filename
+      // Ignore URL parsing errors and fall back to undefined filename
     }
   }
 
-  if (!filename) {
-    filename = fallbackBase;
-  }
-
-  const hasExtension = /\.[A-Za-z0-9]{2,10}$/.test(filename);
-  if (!hasExtension) {
-    let extension;
-    if (entry && typeof entry === 'object' && entry.type) {
-      const match = String(entry.type).match(/\/([A-Za-z0-9.+-]+)$/);
-      if (match) {
-        extension = `.${match[1].toLowerCase()}`;
-      }
-    }
-    if (!extension && url) {
-      try {
-        const parsed = new URL(url);
-        const path = parsed.pathname || '';
-        const dotIndex = path.lastIndexOf('.');
-        if (dotIndex !== -1 && dotIndex < path.length - 1) {
-          extension = path.slice(dotIndex).split('?')[0];
-        }
-      } catch (error) {
-        // Ignore URL parsing errors and fall back to default extension
-      }
-    }
-    if (!extension) {
-      extension = '.pdf';
-    }
-    filename = `${filename}${extension}`;
-  }
-
-  return filename;
+  return undefined;
 }
 
 async function ensureShopifyFileReference(documentEntry, options = {}) {
@@ -438,7 +408,6 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
       fileId: fileCache.get(cacheKey),
       status: 'cached',
       url: trimmedUrl,
-      filename: deriveDocumentFilename(documentEntry, trimmedUrl),
       source: documentEntry,
     };
   }
@@ -496,7 +465,6 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
       fileId: createdFile.id,
       status: 'created',
       url: trimmedUrl,
-      filename: createdFile.filename || filename,
       source: documentEntry,
     };
   } catch (error) {
@@ -505,7 +473,6 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
       status: 'error',
       error: error.message,
       url: trimmedUrl,
-      filename,
       source: documentEntry,
     };
   }
