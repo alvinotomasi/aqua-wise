@@ -784,7 +784,7 @@ function buildMetafields(product, options = {}) {
     );
   if (inputOutputLine) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'input_output_line',
       type: 'single_line_text_field',
       value: inputOutputLine,
@@ -800,7 +800,7 @@ function buildMetafields(product, options = {}) {
   );
   if (systemCapacityGpd) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'system_capacity_gpd',
       type: 'number_integer',
       value: systemCapacityGpd,
@@ -816,7 +816,7 @@ function buildMetafields(product, options = {}) {
   );
   if (feedWaterPressurePsi) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'feed_water_pressure_psi',
       type: 'number_decimal',
       value: feedWaterPressurePsi,
@@ -880,7 +880,7 @@ function buildMetafields(product, options = {}) {
 
   if (tempMin) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'feed_water_temperature_c_min',
       type: 'number_decimal',
       value: tempMin,
@@ -888,7 +888,7 @@ function buildMetafields(product, options = {}) {
   }
   if (tempMax) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'feed_water_temperature_c_max',
       type: 'number_decimal',
       value: tempMax,
@@ -905,7 +905,7 @@ function buildMetafields(product, options = {}) {
   );
   if (maxTdsPpm) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'max_total_dissolved_solids_tds_ppm',
       type: 'number_integer',
       value: maxTdsPpm,
@@ -920,7 +920,7 @@ function buildMetafields(product, options = {}) {
   );
   if (feedWaterPh) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'feed_water_ph',
       type: 'number_decimal',
       value: feedWaterPh,
@@ -936,7 +936,7 @@ function buildMetafields(product, options = {}) {
   );
   if (sourceType) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'source_type',
       type: 'single_line_text_field',
       value: sourceType,
@@ -947,7 +947,7 @@ function buildMetafields(product, options = {}) {
   const micronUm = toIntegerString(product['Micron'] || product.Micron);
   if (micronUm) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'micron_rating_um',
       type: 'number_integer',
       value: micronUm,
@@ -963,7 +963,7 @@ function buildMetafields(product, options = {}) {
   );
   if (voltageVac) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'voltage_vac',
       type: 'single_line_text_field',
       value: voltageVac,
@@ -974,7 +974,7 @@ function buildMetafields(product, options = {}) {
   const mediaType = asSingleLineValue(product['Media Type'] || product['Media']);
   if (mediaType) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'media_type',
       type: 'single_line_text_field',
       value: mediaType,
@@ -989,7 +989,7 @@ function buildMetafields(product, options = {}) {
   );
   if (brineTankSizeText) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'brine_tank_size',
       type: 'single_line_text_field',
       value: brineTankSizeText,
@@ -999,7 +999,7 @@ function buildMetafields(product, options = {}) {
   const operatingPressures = asSingleLineValue(product['Operating Pressures']);
   if (operatingPressures) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'operating_pressures',
       type: 'single_line_text_field',
       value: operatingPressures,
@@ -1009,7 +1009,7 @@ function buildMetafields(product, options = {}) {
   const operatingTemperatures = asSingleLineValue(product['Operating Temperatures']);
   if (operatingTemperatures) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'operating_temperatures',
       type: 'single_line_text_field',
       value: operatingTemperatures,
@@ -1019,7 +1019,7 @@ function buildMetafields(product, options = {}) {
   const drainLine = asSingleLineValue(product['Drain Line']);
   if (drainLine) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'drain_line',
       type: 'single_line_text_field',
       value: drainLine,
@@ -1029,7 +1029,7 @@ function buildMetafields(product, options = {}) {
   const powerRequirement = asSingleLineValue(product['Power Requirement']);
   if (powerRequirement) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'power_requirement',
       type: 'single_line_text_field',
       value: powerRequirement,
@@ -1039,7 +1039,7 @@ function buildMetafields(product, options = {}) {
   const bypassValveIncluded = asSingleLineValue(product['Bypass Valve Included']);
   if (bypassValveIncluded) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'bypass_valve_included',
       type: 'single_line_text_field',
       value: bypassValveIncluded,
@@ -1049,7 +1049,7 @@ function buildMetafields(product, options = {}) {
   const installationType = asSingleLineValue(product['Installation Type']);
   if (installationType) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'installation_type',
       type: 'single_line_text_field',
       value: installationType,
@@ -1059,7 +1059,7 @@ function buildMetafields(product, options = {}) {
   const estimatedInstallationTime = asSingleLineValue(product['Estimated Installation Time']);
   if (estimatedInstallationTime) {
     metafields.push({
-      namespace: 'product',
+      namespace: 'custom',
       key: 'estimated_installation_time',
       type: 'single_line_text_field',
       value: estimatedInstallationTime,
