@@ -964,7 +964,7 @@ function buildMetafields(product, options = {}) {
     metafields.push({
       namespace: 'custom',
       key: 'optional_upgrades',
-      type: 'multi_line_text_field',
+      type: 'list.product_reference',
       value: optionalUpgrades,
     });
   }
@@ -974,7 +974,7 @@ function buildMetafields(product, options = {}) {
     metafields.push({
       namespace: 'custom',
       key: 'replacements',
-      type: 'multi_line_text_field',
+      type: 'list.product_reference',
       value: replacements,
     });
   }
