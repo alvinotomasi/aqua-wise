@@ -959,26 +959,6 @@ function buildMetafields(product, options = {}) {
     }
   }
 
-  const optionalUpgrades = asMultiLineValue(product['Optional Upgrades']);
-  if (optionalUpgrades) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'optional_upgrades',
-      type: 'list.product_reference',
-      value: optionalUpgrades,
-    });
-  }
-
-  const replacements = asMultiLineValue(product['Replacements']);
-  if (replacements) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'replacements',
-      type: 'list.product_reference',
-      value: replacements,
-    });
-  }
-
   const deliveryAndReturns = asMultiLineValue(product['Delivery & Returns']);
   if (deliveryAndReturns) {
     metafields.push({
@@ -1028,13 +1008,7 @@ function buildMetafields(product, options = {}) {
     metafields.push(documentationMetafieldResult.metafield);
   }
 
-  if (optionalUpgradesMetafieldResult?.metafield) {
-    metafields.push(optionalUpgradesMetafieldResult.metafield);
-  }
-
-  if (replacementsMetafieldResult?.metafield) {
-    metafields.push(replacementsMetafieldResult.metafield);
-  }
+  // optional_upgrades and replacements metafields are built upstream and passed via options
 
   // --- New Shopify Product namespace metafields (namespace: "product") ---
 
