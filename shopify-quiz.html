@@ -1,167 +1,230 @@
-<div class="aqualivia-quiz" data-api-endpoint="https://primary-production-dae8.up.railway.app/webhook/quiz" data-parts-url="/collections/parts-and-filters" data-storefront-token="0932f96dbb3d1ce17ecb1d1816adf97e">
+<div class="aqualivia-quiz" data-api-endpoint="https://primary-production-dae8.up.railway.app/webhook/quiz" data-storefront-token="0932f96dbb3d1ce17ecb1d1816adf97e">
     <h2 class="quiz-section-title">Quiz</h2>
     <form class="quiz-form" novalidate>
       <header class="quiz-header">
-        <h1>The AQUALIVIA Perfect Water System Finder</h1>
-        <p>Don't guess which water system you need. Answer a few key questions, and we'll build a personalized recommendation just for you.</p>
+        <h1>Design Your AQUALIVIA Water Solution</h1>
+        <p>Answer a few practical questions about your home so we can match you with systems that deliver the results you care about most.</p>
         <div class="quiz-progress" role="status" aria-live="polite">
           Step <span class="current-step">1</span> of <span class="total-steps">8</span>
         </div>
       </header>
   
-      <section class="quiz-step is-active" data-step="1" data-type="radio" data-question="What are you looking for today?">
-        <h2>Question 1: What are you looking for today?</h2>
-        <p class="quiz-help">This helps us direct you to the right place from the start.</p>
+      <section class="quiz-step is-active" data-step="1" data-type="radio" data-question="What is your home's water source?">
+        <h2>Question 1: What is your home's water source?</h2>
+        <p class="quiz-help">Help us understand the baseline for your water quality.</p>
         <label class="quiz-option">
-          <input type="radio" name="q1" value="new-system" data-answer="I'm looking for a new water treatment system for my home." required>
-          <span>I'm looking for a new water treatment system for my home.</span>
+          <input type="radio" name="q1" value="city" data-answer="City / Municipal Water" required>
+          <span>
+            <strong>City / Municipal Water</strong>
+            <span class="quiz-option-meta">Homes connected to public utilities.</span>
+          </span>
         </label>
         <label class="quiz-option">
-          <input type="radio" name="q1" value="parts" data-answer="I need replacement filters or parts for a system I already own.">
-          <span>I need replacement filters or parts for a system I already own.</span>
-        </label>
-        <p class="quiz-error" aria-live="polite"></p>
-      </section>
-  
-      <section class="quiz-step" data-step="2" data-type="radio" data-question="What is your home's water source?">
-        <h2>Question 2: What is your home's water source?</h2>
-        <p class="quiz-help">City and well water have very different treatment needs.</p>
-        <label class="quiz-option">
-          <input type="radio" name="q2" value="city" data-answer="City / Municipal Water">
-          <span>City / Municipal Water</span>
-        </label>
-        <label class="quiz-option">
-          <input type="radio" name="q2" value="well" data-answer="Private Well Water">
-          <span>Private Well Water</span>
+          <input type="radio" name="q1" value="well" data-answer="Private Well Water">
+          <span>
+            <strong>Private Well Water</strong>
+            <span class="quiz-option-meta">Independent wells with unique treatment needs.</span>
+          </span>
         </label>
         <p class="quiz-error" aria-live="polite"></p>
       </section>
-  
+
+      <section class="quiz-step" data-step="2" data-type="radio" data-question="How many people live in your home?">
+        <h2>Question 2: How many people live in your home?</h2>
+        <p class="quiz-help">We use this to size equipment for peak daily demand.</p>
+        <label class="quiz-option">
+          <input type="radio" name="q2" value="1" data-answer="Household size: 1 person (≈1,000 sq ft · 1 story · 1 bath)">
+          <span>
+            <strong>1 person</strong>
+            <span class="quiz-option-meta">Up to ~1,000 sq ft · 1 story · 1 bath</span>
+          </span>
+        </label>
+        <label class="quiz-option">
+          <input type="radio" name="q2" value="1-2" data-answer="Household size: 1-2 people (≈1,500 sq ft · 1-2 stories · 1-2 baths)">
+          <span>
+            <strong>1-2 people</strong>
+            <span class="quiz-option-meta">Up to ~1,500 sq ft · 1-2 stories · 1-2 baths</span>
+          </span>
+        </label>
+        <label class="quiz-option">
+          <input type="radio" name="q2" value="2-3" data-answer="Household size: 2-3 people (≈2,200 sq ft · 1-2 stories · 2 baths)">
+          <span>
+            <strong>2-3 people</strong>
+            <span class="quiz-option-meta">Up to ~2,200 sq ft · 1-2 stories · 2 baths</span>
+          </span>
+        </label>
+        <label class="quiz-option">
+          <input type="radio" name="q2" value="4-6" data-answer="Household size: 4-6 people (≈3,600 sq ft · 2 stories · 2-3 baths)">
+          <span>
+            <strong>4-6 people</strong>
+            <span class="quiz-option-meta">Up to ~3,600 sq ft · 2 stories · 2-3 baths</span>
+          </span>
+        </label>
+        <label class="quiz-option">
+          <input type="radio" name="q2" value="6-8" data-answer="Household size: 6-8 people (≈5,200 sq ft · 2-3 stories · 3-4 baths)">
+          <span>
+            <strong>6-8 people</strong>
+            <span class="quiz-option-meta">Up to ~5,200 sq ft · 2-3 stories · 3-4 baths</span>
+          </span>
+        </label>
+        <label class="quiz-option">
+          <input type="radio" name="q2" value="8-plus" data-answer="Household size: 8+ people (≈6,500+ sq ft · 3 stories · 4-5 baths)">
+          <span>
+            <strong>8+ people</strong>
+            <span class="quiz-option-meta">Up to ~6,500+ sq ft · 3 stories · 4-5 baths</span>
+          </span>
+        </label>
+        <p class="quiz-error" aria-live="polite"></p>
+      </section>
+
       <section class="quiz-step" data-step="3" data-type="checkbox" data-question="What water problems have you noticed?">
         <h2>Question 3: What water problems have you noticed? (Check all that apply)</h2>
-        <p class="quiz-help">This is the most important step. Tell us everything you're experiencing.</p>
+        <p class="quiz-help">Select every issue you want to fix so we can target the right treatment.</p>
         <label class="quiz-option">
-          <input type="checkbox" name="q3" value="hard-water" data-answer="Hard Water Signs">
-          <span>Hard Water Signs: White, chalky scale on faucets; spots on glassware; soap scum in showers; dry skin or dull hair.</span>
+          <input type="checkbox" name="q3" value="hardness" data-answer="Hardness issues (scale, soap scum, dry skin)">
+          <span>
+            <strong>Hardness issues (scale, soap scum, dry skin)</strong>
+          </span>
         </label>
         <label class="quiz-option">
-          <input type="checkbox" name="q3" value="bad-smells" data-answer="Bad Smells">
-          <span>Bad Smells: A "rotten egg," sulfur, or musty odor.</span>
+          <input type="checkbox" name="q3" value="odors-tastes" data-answer="Odors and tastes (sulfur, chlorine, metallic, musty)">
+          <span>
+            <strong>Odors and tastes (sulfur, chlorine, metallic, musty)</strong>
+          </span>
         </label>
         <label class="quiz-option">
-          <input type="checkbox" name="q3" value="chemical" data-answer="Chemical Tastes/Smells">
-          <span>Chemical Tastes/Smells: A distinct chlorine ("swimming pool") taste or other chemical odors.</span>
+          <input type="checkbox" name="q3" value="staining" data-answer="Staining or discoloration (iron, manganese, copper)">
+          <span>
+            <strong>Staining or discoloration (iron, manganese, copper)</strong>
+          </span>
         </label>
         <label class="quiz-option">
-          <input type="checkbox" name="q3" value="staining" data-answer="Staining">
-          <span>Staining: Orange, red, brown, or black stains in sinks, toilets, or on laundry.</span>
+          <input type="checkbox" name="q3" value="cloudiness" data-answer="Cloudiness or sediment">
+          <span>
+            <strong>Cloudiness or sediment</strong>
+          </span>
         </label>
         <label class="quiz-option">
-          <input type="checkbox" name="q3" value="bad-taste" data-answer="Bad Taste">
-          <span>Bad Taste: Water has a metallic, earthy, or generally unpleasant taste.</span>
+          <input type="checkbox" name="q3" value="health" data-answer="Health concerns (PFAS, lead, bacteria)">
+          <span>
+            <strong>Health concerns (PFAS, lead, bacteria)</strong>
+          </span>
         </label>
         <label class="quiz-option">
-          <input type="checkbox" name="q3" value="visible" data-answer="Visible Contaminants">
-          <span>Visible Contaminants: Water is cloudy, discolored, or you can see particles of sand, silt, or rust.</span>
-        </label>
-        <label class="quiz-option">
-          <input type="checkbox" name="q3" value="health" data-answer="Health Concerns">
-          <span>Health Concerns: I'm worried about invisible contaminants like bacteria, viruses, lead, or chemicals (PFAS).</span>
-        </label>
-        <label class="quiz-option">
-          <input type="checkbox" name="q3" value="upgrade" data-answer="No specific problems">
-          <span>No specific problems, I'm just looking for an upgrade to the best water quality possible.</span>
-        </label>
-        <p class="quiz-error" aria-live="polite"></p>
-      </section>
-  
-      <section class="quiz-step" data-step="4" data-type="radio" data-question="Where do you want to improve your water?">
-        <h2>Question 4: Where do you want to improve your water?</h2>
-        <p class="quiz-help">Are you looking for a whole-house solution or just better water from a specific tap?</p>
-        <label class="quiz-option">
-          <input type="radio" name="q4" value="whole-home" data-answer="The Entire Home">
-          <span>The Entire Home: Improve water at every faucet, shower, and appliance.</span>
-        </label>
-        <label class="quiz-option">
-          <input type="radio" name="q4" value="drinking" data-answer="Drinking &amp; Cooking Water">
-          <span>Drinking &amp; Cooking Water: Focus on high-purity water, typically at the kitchen sink.</span>
-        </label>
-        <label class="quiz-option">
-          <input type="radio" name="q4" value="specific" data-answer="A Specific Application">
-          <span>A Specific Application: Such as spot-free car washing or water for a commercial business.</span>
+          <input type="checkbox" name="q3" value="upgrade" data-answer="No specific issues, I just want the best water">
+          <span>
+            <strong>No specific issues, I just want the best water</strong>
+          </span>
         </label>
         <p class="quiz-error" aria-live="polite"></p>
       </section>
-  
-      <section class="quiz-step" data-step="5" data-type="radio" data-question="Do you own or rent your home?">
-        <h2>Question 5: Do you own or rent your home?</h2>
-        <p class="quiz-help">This helps us recommend solutions that are practical for your living situation.</p>
+
+      <section class="quiz-step" data-step="4" data-type="checkbox" data-question="Where do you want to improve your water?">
+        <h2>Question 4: Where do you want to improve your water? (Check all that apply)</h2>
+        <p class="quiz-help">Tell us which parts of your home need attention.</p>
         <label class="quiz-option">
-          <input type="radio" name="q5" value="own" data-answer="I own my home.">
-          <span>I own my home.</span>
+          <input type="checkbox" name="q4" value="whole-home" data-answer="The Entire Home: Improve water at every faucet, shower, and appliance.">
+          <span>
+            <strong>The Entire Home</strong>
+            <span class="quiz-option-meta">Improve water at every faucet, shower, and appliance.</span>
+          </span>
         </label>
         <label class="quiz-option">
-          <input type="radio" name="q5" value="rent" data-answer="I rent my home.">
-          <span>I rent my home.</span>
-        </label>
-        <p class="quiz-error" aria-live="polite"></p>
-      </section>
-  
-      <section class="quiz-step" data-step="6" data-type="radio" data-question="How many people live in your home?">
-        <h2>Question 6: How many people live in your home?</h2>
-        <p class="quiz-help">This helps us determine the right system capacity for your daily needs.</p>
-        <label class="quiz-option">
-          <input type="radio" name="q6" value="1-3" data-answer="1-3 People">
-          <span>1-3 People</span>
+          <input type="checkbox" name="q4" value="drinking" data-answer="Drinking &amp; Cooking Water: Focus on high-purity water, typically at the kitchen sink.">
+          <span>
+            <strong>Drinking &amp; Cooking Water</strong>
+            <span class="quiz-option-meta">Focus on high-purity water, typically at the kitchen sink.</span>
+          </span>
         </label>
         <label class="quiz-option">
-          <input type="radio" name="q6" value="4-6" data-answer="4-6 People">
-          <span>4-6 People</span>
-        </label>
-        <label class="quiz-option">
-          <input type="radio" name="q6" value="7-plus" data-answer="7+ People">
-          <span>7+ People</span>
+          <input type="checkbox" name="q4" value="pfas" data-answer="Extra protection for PFAS and lead">
+          <span>
+            <strong>Extra protection for PFAS and lead</strong>
+            <span class="quiz-option-meta">Add specialized filtration for emerging contaminants.</span>
+          </span>
         </label>
         <p class="quiz-error" aria-live="polite"></p>
       </section>
-  
-      <section class="quiz-step" data-step="7" data-type="radio" data-question="How many bathrooms does your home have?">
-        <h2>Question 7: How many bathrooms does your home have?</h2>
-        <p class="quiz-help">This helps us size a system that can handle peak water usage without a drop in performance.</p>
+
+      <section class="quiz-step" data-step="5" data-type="checkbox" data-question="Are you interested in any of these specific features?">
+        <h2>Question 5: Are you interested in any of these specific features? (Check all that apply)</h2>
+        <p class="quiz-help">Flag any preferences so we can highlight systems with those benefits.</p>
         <label class="quiz-option">
-          <input type="radio" name="q7" value="1-2" data-answer="1-2 Bathrooms">
-          <span>1-2 Bathrooms</span>
+          <input type="checkbox" name="q5" value="salt-free" data-answer="A salt-free system to prevent scale without using salt.">
+          <span>
+            <strong>A salt-free system to prevent scale without using salt.</strong>
+          </span>
         </label>
         <label class="quiz-option">
-          <input type="radio" name="q7" value="3-4" data-answer="3-4 Bathrooms">
-          <span>3-4 Bathrooms</span>
+          <input type="checkbox" name="q5" value="chemical-free" data-answer="Chemical-free disinfection to treat for bacteria and viruses.">
+          <span>
+            <strong>Chemical-free disinfection to treat for bacteria and viruses.</strong>
+          </span>
         </label>
         <label class="quiz-option">
-          <input type="radio" name="q7" value="5-plus" data-answer="5+ Bathrooms">
-          <span>5+ Bathrooms</span>
+          <input type="checkbox" name="q5" value="minerals" data-answer="Adding healthy minerals or making my drinking water alkaline.">
+          <span>
+            <strong>Adding healthy minerals or making my drinking water alkaline.</strong>
+          </span>
+        </label>
+        <label class="quiz-option">
+          <input type="checkbox" name="q5" value="no-preference" data-answer="No preference, just recommend the best solution for my issues.">
+          <span>
+            <strong>No preference, just recommend the best solution for my issues.</strong>
+          </span>
         </label>
         <p class="quiz-error" aria-live="polite"></p>
       </section>
-  
-      <section class="quiz-step" data-step="8" data-type="checkbox" data-question="Are you interested in any of these specific features?">
-        <h2>Question 8: Are you interested in any of these specific features?</h2>
-        <p class="quiz-help">Let us know if you have a preference for a certain technology.</p>
-        <label class="quiz-option">
-          <input type="checkbox" name="q8" value="salt-free" data-answer="A salt-free system to prevent scale without using salt.">
-          <span>A salt-free system to prevent scale without using salt.</span>
-        </label>
-        <label class="quiz-option">
-          <input type="checkbox" name="q8" value="chemical-free" data-answer="Chemical-free disinfection to treat for bacteria and viruses.">
-          <span>Chemical-free disinfection to treat for bacteria and viruses.</span>
-        </label>
-        <label class="quiz-option">
-          <input type="checkbox" name="q8" value="minerals" data-answer="Adding healthy minerals or making my drinking water alkaline.">
-          <span>Adding healthy minerals or making my drinking water alkaline.</span>
-        </label>
-        <label class="quiz-option">
-          <input type="checkbox" name="q8" value="no-preference" data-answer="No preference, just recommend the best solution for my issues.">
-          <span>No preference, just recommend the best solution for my issues.</span>
-        </label>
+
+      <section class="quiz-step" data-step="6" data-type="lab" data-question="Lab results (optional)">
+        <h2>Step 6: Lab results (optional)</h2>
+        <p class="quiz-help">If you have a recent water test, you can upload it or paste your key numbers. This helps us fine-tune your recommendation.</p>
+
+        <div class="quiz-note" role="note">
+          <strong>Tip:</strong>
+          <span>If you already have a softener, include that in your notes so we don’t suggest a duplicate system.</span>
+        </div>
+
+        <div class="quiz-field-group">
+          <label class="quiz-field-label" for="lab-file">Upload lab file (PDF or TXT)</label>
+          <input class="quiz-file-input" type="file" id="lab-file" name="lab-file" accept=".pdf,.txt,.csv">
+          <p class="quiz-field-help">TXT files are read automatically. PDFs are saved with your responses; for faster processing, paste key values below as well.</p>
+        </div>
+
+        <div class="quiz-field-group">
+          <label class="quiz-field-label" for="lab-values">Or paste lab values</label>
+          <textarea class="quiz-textarea" id="lab-values" name="lab-values" placeholder="Example: Hardness 12 gpg, Iron 0.5 mg/L, Manganese 0.06 mg/L, Turbidity 0.3 NTU, pH 7.4, PFAS detected."></textarea>
+        </div>
+
+        <p class="quiz-error" aria-live="polite"></p>
+      </section>
+
+      <section class="quiz-step" data-step="7" data-type="contact" data-question="Client details">
+        <h2>Question 7: Client details</h2>
+        <p class="quiz-help">Share the best way to reach you so we can deliver your personalized water system plan.</p>
+
+        <div class="quiz-field-grid">
+          <div class="quiz-field-group">
+            <label class="quiz-field-label" for="client-name">Full name</label>
+            <input class="quiz-input" type="text" id="client-name" name="client-name" autocomplete="name" placeholder="Jane Doe" required>
+          </div>
+
+          <div class="quiz-field-group">
+            <label class="quiz-field-label" for="client-phone">Phone</label>
+            <input class="quiz-input" type="tel" id="client-phone" name="client-phone" autocomplete="tel" placeholder="(555) 123-4567" required>
+          </div>
+
+          <div class="quiz-field-group">
+            <label class="quiz-field-label" for="client-email">Email</label>
+            <input class="quiz-input" type="email" id="client-email" name="client-email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+
+          <div class="quiz-field-group quiz-field-group-full">
+            <label class="quiz-field-label" for="client-address">Address</label>
+            <textarea class="quiz-textarea" id="client-address" name="client-address" autocomplete="street-address" placeholder="Street, City, State, ZIP" required></textarea>
+          </div>
+        </div>
+
         <p class="quiz-error" aria-live="polite"></p>
       </section>
   
@@ -273,6 +336,115 @@
       display: block;
       font-size: 16px;
       line-height: 1.4;
+    }
+
+    .quiz-option strong {
+      display: block;
+      font-weight: 600;
+      color: #1d2939;
+    }
+
+    .quiz-option-meta {
+      display: block;
+      margin-top: 4px;
+      font-size: 14px;
+      color: #475467;
+    }
+
+    .quiz-note {
+      margin: 0 0 20px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      color: #1d4ed8;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .quiz-note strong {
+      color: #1d4ed8;
+      margin-bottom: 4px;
+    }
+
+    .quiz-field-group {
+      margin-bottom: 20px;
+    }
+
+    .quiz-field-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .quiz-field-group-full {
+      grid-column: 1 / -1;
+    }
+
+    .quiz-field-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1d2939;
+    }
+
+    .quiz-field-help {
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: #475467;
+      line-height: 1.4;
+    }
+
+    .quiz-input {
+      display: block;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #d0d5dd;
+      font-size: 15px;
+      color: #1d2939;
+      background: #fff;
+    }
+
+    .quiz-input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .quiz-file-input {
+      display: block;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #d0d5dd;
+      background: #fff;
+      font-size: 15px;
+    }
+
+    .quiz-file-input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .quiz-textarea {
+      width: 100%;
+      min-height: 140px;
+      resize: vertical;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #d0d5dd;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #1d2939;
+      background: #fff;
+    }
+
+    .quiz-textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
   
     .quiz-option:hover,
@@ -497,6 +669,7 @@
       const form = quiz.querySelector('.quiz-form');
       const steps = Array.from(quiz.querySelectorAll('.quiz-step'));
       const totalSteps = steps.length;
+      const LAB_FILE_SIZE_LIMIT = 5 * 1024 * 1024; // 5 MB
   
       const nextBtn = quiz.querySelector('.quiz-next');
       const prevBtn = quiz.querySelector('.quiz-prev');
@@ -563,6 +736,13 @@
       function getCheckedAnswers(step) {
         if (!step) return [];
         const type = step.dataset.type;
+        const fileInput = step.querySelector('input[type="file"]');
+        if (fileInput) {
+          const file = fileInput.files?.[0];
+          if (file && file.size > LAB_FILE_SIZE_LIMIT) {
+            return false;
+          }
+        }
         if (type === 'checkbox') {
           return Array.from(step.querySelectorAll('input[type="checkbox"]:checked')).map((input) => input.dataset.answer);
         }
@@ -578,6 +758,62 @@
         const answers = getCheckedAnswers(step);
         const type = step.dataset.type;
   
+        if (type === 'lab') {
+          const fileInput = step.querySelector('input[type="file"]');
+          const file = fileInput?.files?.[0];
+
+          if (file && file.size > LAB_FILE_SIZE_LIMIT) {
+            step.classList.add('has-error');
+            if (errorEl) errorEl.textContent = `Please upload a file smaller than ${formatFileSize(LAB_FILE_SIZE_LIMIT)}.`;
+            return false;
+          }
+
+          step.classList.remove('has-error');
+          if (errorEl) errorEl.textContent = '';
+          return true;
+        }
+
+        if (type === 'contact') {
+          const nameInput = step.querySelector('#client-name');
+          const phoneInput = step.querySelector('#client-phone');
+          const emailInput = step.querySelector('#client-email');
+          const addressInput = step.querySelector('#client-address');
+
+          const missingFields = [];
+          if (!nameInput?.value.trim()) missingFields.push('name');
+          if (!phoneInput?.value.trim()) missingFields.push('phone');
+          if (!emailInput?.value.trim()) missingFields.push('email');
+          if (!addressInput?.value.trim()) missingFields.push('address');
+
+          if (missingFields.length) {
+            step.classList.add('has-error');
+            if (errorEl) errorEl.textContent = 'Please complete all contact details so we can follow up with your personalized plan.';
+            return false;
+          }
+
+          const email = emailInput.value.trim();
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(email)) {
+            step.classList.add('has-error');
+            if (errorEl) errorEl.textContent = 'Please enter a valid email address.';
+            emailInput.focus();
+            return false;
+          }
+
+          const phone = phoneInput.value.trim();
+          const phoneDigits = phone.replace(/[^0-9]/g, '');
+          if (phoneDigits.length < 10) {
+            step.classList.add('has-error');
+            if (errorEl) errorEl.textContent = 'Please enter a phone number with at least 10 digits.';
+            phoneInput.focus();
+            return false;
+          }
+
+          step.classList.remove('has-error');
+          if (errorEl) errorEl.textContent = '';
+          return true;
+        }
+
         if (type === 'checkbox' && answers.length === 0) {
           step.classList.add('has-error');
           if (errorEl) errorEl.textContent = 'Please select at least one option.';
@@ -595,16 +831,151 @@
         return true;
       }
   
-      function gatherPayload() {
-        const answers = steps.map((step) => ({
-          step: Number(step.dataset.step),
-          question: step.dataset.question,
-          answers: getCheckedAnswers(step)
-        }));
+      function formatFileSize(bytes) {
+        if (!Number.isFinite(bytes)) {
+          return `${bytes} bytes`;
+        }
+
+        const units = ['bytes', 'KB', 'MB', 'GB', 'TB'];
+        let value = bytes;
+        let unitIndex = 0;
+
+        while (value >= 1024 && unitIndex < units.length - 1) {
+          value /= 1024;
+          unitIndex += 1;
+        }
+
+        const display = value >= 10 || unitIndex === 0 ? Math.round(value) : value.toFixed(1);
+        return `${display} ${units[unitIndex]}`;
+      }
+
+      function readFileAsBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onerror = () => {
+            reader.abort();
+            reject(new Error('Unable to read the selected file.'));
+          };
+          reader.onload = () => {
+            const result = reader.result;
+            if (typeof result === 'string') {
+              const base64 = result.includes(',') ? result.split(',')[1] : result;
+              resolve(base64);
+            } else {
+              reject(new Error('Unsupported file format.'));
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      async function collectLabData(step) {
+        const textarea = step.querySelector('textarea');
+        const fileInput = step.querySelector('input[type="file"]');
+
+        const notes = textarea?.value?.trim() || '';
+        const file = fileInput?.files?.[0] || null;
+
+        const summary = [];
+        const detail = {};
+
+        if (notes) {
+          summary.push(`Lab notes: ${notes}`);
+          detail.notes = notes;
+        }
+
+        let filePayload = null;
+
+        if (file && file.size <= LAB_FILE_SIZE_LIMIT) {
+          const content = await readFileAsBase64(file);
+          filePayload = {
+            name: file.name,
+            size: file.size,
+            type: file.type || 'application/octet-stream',
+            lastModified: file.lastModified,
+            encoding: 'base64',
+            content
+          };
+
+          summary.push(`Lab file uploaded: ${file.name} (${formatFileSize(file.size)})`);
+          detail.file = filePayload;
+        }
+
+        return {
+          summary,
+          detail: Object.keys(detail).length ? detail : null
+        };
+      }
+
+      function collectContactData(step) {
+        const nameInput = step.querySelector('#client-name');
+        const phoneInput = step.querySelector('#client-phone');
+        const emailInput = step.querySelector('#client-email');
+        const addressInput = step.querySelector('#client-address');
+
+        const data = {
+          name: nameInput?.value?.trim() || '',
+          phone: phoneInput?.value?.trim() || '',
+          email: emailInput?.value?.trim() || '',
+          address: addressInput?.value?.trim() || ''
+        };
+
+        const summary = [];
+        if (data.name) summary.push(`Name: ${data.name}`);
+        if (data.phone) summary.push(`Phone: ${data.phone}`);
+        if (data.email) summary.push(`Email: ${data.email}`);
+        if (data.address) summary.push(`Address: ${data.address}`);
+
+        return { summary, detail: data };
+      }
+
+      async function gatherPayload() {
+        const answers = [];
+        let labDetail = null;
+        let contactDetail = null;
+
+        for (const step of steps) {
+          const type = step.dataset.type;
+          const base = {
+            step: Number(step.dataset.step),
+            question: step.dataset.question
+          };
+
+          if (type === 'lab') {
+            const labData = await collectLabData(step);
+            answers.push({
+              ...base,
+              answers: labData.summary
+            });
+
+            if (labData.detail) {
+              labDetail = labData.detail;
+            }
+            continue;
+          }
+
+          if (type === 'contact') {
+            const contactData = collectContactData(step);
+            answers.push({
+              ...base,
+              answers: contactData.summary
+            });
+            contactDetail = contactData.detail;
+            continue;
+          }
+
+          answers.push({
+            ...base,
+            answers: getCheckedAnswers(step)
+          });
+        }
+
         return {
           quizName: 'AQUALIVIA Perfect Water System Finder',
           submittedAt: new Date().toISOString(),
-          answers
+          answers,
+          lab: labDetail,
+          contact: contactDetail
         };
       }
   
@@ -998,7 +1369,15 @@
           event.preventDefault();
           if (!validateStep(currentStep)) return;
   
-          const payload = gatherPayload();
+          let payload;
+
+          try {
+            payload = await gatherPayload();
+          } catch (error) {
+            console.error('Failed to prepare submission payload:', error);
+            safeSetStatus('We could not prepare your submission. Please check your lab file and try again.');
+            return;
+          }
   
           safeSetStatus('Building your personalized recommendation...');
           if (submitBtn) submitBtn.disabled = true;
@@ -1048,4 +1427,5 @@
   
       showStep(0);
     })();
+  </script>
   </script>
