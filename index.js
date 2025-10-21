@@ -191,6 +191,14 @@ function renderInlineMarkdown(text, depth = 0) {
         return placeholderFor(`<a href="${safeHref}" target="_blank" rel="noopener noreferrer">${inner}</a>`);
       },
     },
+  ];
+
+  const renderNested = (value, tag) => {
+    const inner = depth < MAX_DEPTH ? renderInlineMarkdown(value, depth + 1) : escapeHtml(value);
+    return placeholderFor(`<${tag}>${inner}</${tag}>`);
+  };
+
+  const styleTransformers = [
     {
       regex: /\*\*([^*]+)\*\*/g,
       handler: (match, boldText) => renderNested(boldText, 'strong'),
@@ -210,6 +218,10 @@ function renderInlineMarkdown(text, depth = 0) {
   ];
 
   for (const transformer of transformers) {
+    working = working.replace(transformer.regex, transformer.handler);
+  }
+
+  for (const transformer of styleTransformers) {
     working = working.replace(transformer.regex, transformer.handler);
   }
 
