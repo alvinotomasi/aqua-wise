@@ -142,11 +142,177 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+function escapeHtmlAttribute(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function splitParagraphs(value) {
   return value
     .split(/\r?\n+/)
     .map((segment) => segment.trim())
     .filter((segment) => segment.length > 0);
+}
+
+function renderInlineMarkdown(text, depth = 0) {
+  if (text === undefined || text === null) {
+    return '';
+  }
+
+  const MAX_DEPTH = 10;
+  const content = String(text);
+  if (!content.trim()) {
+    return '';
+  }
+
+  const placeholders = [];
+  const placeholderFor = (html) => {
+    const key = `@@MARKDOWN_PLACEHOLDER_${placeholders.length}@@`;
+    placeholders.push({ key, html });
+    return key;
+  };
+
+  let working = content;
+
+  const transformers = [
+    {
+      regex: /`([^`]+)`/g,
+      handler: (match, code) => placeholderFor(`<code>${escapeHtml(code)}</code>`),
+    },
+    {
+      regex: /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+      handler: (match, label, href) => {
+        const safeHref = escapeHtmlAttribute(href);
+        const inner = depth < MAX_DEPTH ? renderInlineMarkdown(label, depth + 1) : escapeHtml(label);
+        return placeholderFor(`<a href="${safeHref}" target="_blank" rel="noopener noreferrer">${inner}</a>`);
+      },
+    },
+    {
+      regex: /\*\*([^*]+)\*\*/g,
+      handler: (match, boldText) => renderNested(boldText, 'strong'),
+    },
+    {
+      regex: /__([^_]+)__/g,
+      handler: (match, boldText) => renderNested(boldText, 'strong'),
+    },
+    {
+      regex: /(?<!\*)\*([^*]+)\*(?!\*)/g,
+      handler: (match, italicText) => renderNested(italicText, 'em'),
+    },
+    {
+      regex: /(?<!_)_([^_]+)_(?!_)/g,
+      handler: (match, italicText) => renderNested(italicText, 'em'),
+    },
+  ];
+
+  for (const transformer of transformers) {
+    working = working.replace(transformer.regex, transformer.handler);
+  }
+
+  let escaped = escapeHtml(working);
+
+  for (const { key, html } of placeholders) {
+    const pattern = new RegExp(key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+    escaped = escaped.replace(pattern, html);
+  }
+
+  return escaped;
+}
+
+function markdownToDivHtml(input) {
+  if (input === undefined || input === null) {
+    return undefined;
+  }
+
+  const text = String(input);
+  if (!text.trim()) {
+    return undefined;
+  }
+
+  const lines = text.split(/\r?\n/);
+  const htmlSegments = [];
+  const listBuffer = [];
+  let listType = null;
+  let paragraphBuffer = [];
+
+  const flushParagraph = () => {
+    if (!paragraphBuffer.length) {
+      return;
+    }
+    const paragraphText = paragraphBuffer.join(' ').trim();
+    if (paragraphText) {
+      htmlSegments.push(`<div>${renderInlineMarkdown(paragraphText)}</div>`);
+    }
+    paragraphBuffer = [];
+  };
+
+  const flushList = () => {
+    if (!listBuffer.length) {
+      listType = null;
+      return;
+    }
+    const className = listType === 'ordered' ? 'list ordered' : 'list';
+    htmlSegments.push(`<div class="${className}">`);
+    for (const item of listBuffer) {
+      htmlSegments.push(`<div class="list-item">${renderInlineMarkdown(item)}</div>`);
+    }
+    htmlSegments.push('</div>');
+    listBuffer.length = 0;
+    listType = null;
+  };
+
+  for (const rawLine of lines) {
+    const trimmedLine = rawLine.trim();
+
+    if (!trimmedLine) {
+      flushParagraph();
+      flushList();
+      continue;
+    }
+
+    const blockquoteMatch = trimmedLine.match(/^>\s?(.*)$/);
+    if (blockquoteMatch) {
+      flushParagraph();
+      flushList();
+      const quoteContent = blockquoteMatch[1];
+      htmlSegments.push(`<div class="blockquote">${renderInlineMarkdown(quoteContent)}</div>`);
+      continue;
+    }
+
+    const unorderedMatch = trimmedLine.match(/^[-*+]\s+(.*)$/);
+    if (unorderedMatch) {
+      flushParagraph();
+      if (listType && listType !== 'unordered') {
+        flushList();
+      }
+      listType = 'unordered';
+      listBuffer.push(unorderedMatch[1]);
+      continue;
+    }
+
+    const orderedMatch = trimmedLine.match(/^\d+[.)]\s+(.*)$/);
+    if (orderedMatch) {
+      flushParagraph();
+      if (listType && listType !== 'ordered') {
+        flushList();
+      }
+      listType = 'ordered';
+      listBuffer.push(orderedMatch[1]);
+      continue;
+    }
+
+    flushList();
+    paragraphBuffer.push(trimmedLine);
+  }
+
+  flushParagraph();
+  flushList();
+
+  return htmlSegments.join('');
 }
 
 function toDescriptionHtml(product) {
@@ -959,7 +1125,7 @@ function buildMetafields(product, options = {}) {
     }
   }
 
-  const deliveryAndReturns = asMultiLineValue(product['Delivery & Returns']);
+  const deliveryAndReturns = markdownToDivHtml(product['Delivery & Returns']);
   if (deliveryAndReturns) {
     metafields.push({
       namespace: 'custom',
