@@ -275,18 +275,20 @@ function markdownToDivHtml(input) {
       listContext = null;
       return;
     }
-    const listTag = listContext.type === 'ordered' ? 'ol' : 'ul';
-    const className = listContext.type === 'ordered' ? 'list list-ordered' : 'list list-unordered';
+    const isOrdered = listContext.type === 'ordered';
+    const listTag = isOrdered ? 'ol' : 'ul';
+    const className = isOrdered ? 'list list-ordered' : 'list list-unordered';
+    const startValue = isOrdered && listContext.items[0].ordinal ? listContext.items[0].ordinal : 1;
+    const startAttr = isOrdered && startValue !== 1 ? ` start="${startValue}"` : '';
     const items = listContext.items
       .map((item, index) => {
-        const marker = listContext.type === 'ordered'
-          ? `<span class="list-item-marker">${item.ordinal ?? index + 1}.</span>`
-          : '<span class="list-item-marker">&bull;</span>';
-        const content = `<span class="list-item-content">${renderInlineMarkdown(item.content)}</span>`;
-        return `<li class="list-item">${marker}${content}</li>`;
+        const valueAttr = isOrdered && item.ordinal && item.ordinal !== startValue + index
+          ? ` value="${item.ordinal}"`
+          : '';
+        return `<li${valueAttr}>${renderInlineMarkdown(item.content)}</li>`;
       })
       .join('');
-    segments.push(`<div class="${className}"><${listTag}>${items}</${listTag}></div>`);
+    segments.push(`<div class="${className}"><${listTag}${startAttr}>${items}</${listTag}></div>`);
     listContext = null;
   };
 
@@ -332,16 +334,23 @@ function markdownToDivHtml(input) {
     }
 
     const orderedMatch = trimmed.match(/^(\d+)[.)]\s+(.*)$/);
-    if (orderedMatch) {
+    if (orderedMatch && orderedMatch[2].trim()) {
       ensureList('ordered');
       listContext.items.push({ ordinal: Number(orderedMatch[1]), content: orderedMatch[2] });
       continue;
     }
 
     const unorderedMatch = trimmed.match(/^[-*+]\s+(.*)$/);
-    if (unorderedMatch) {
+    if (unorderedMatch && unorderedMatch[1].trim()) {
       ensureList('unordered');
-      listContext.items.push({ content: unorderedMatch[1] });
+      listContext.items.push({ ordinal: null, content: unorderedMatch[1] });
+      continue;
+    }
+
+    if (/^[-–—]$/.test(trimmed)) {
+      flushParagraph();
+      flushList();
+      segments.push('<div class="spacer"></div>');
       continue;
     }
 
