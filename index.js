@@ -1101,17 +1101,15 @@ function buildMetafields(product, options = {}) {
     });
   }
 
-  const keyProductFeatures = asSingleLineValue(product['Key Product Features']);
-  if (keyProductFeatures) {
-    const listValues = keyProductFeatures.split(',').map(item => item.trim()).filter(Boolean);
-    if (listValues.length > 0) {
-      metafields.push({
-        namespace: 'custom',
-        key: 'key_product_features',
-        type: 'list.single_line_text_field',
-        value: JSON.stringify(listValues),
-      });
-    }
+  const keyProductFeaturesRaw = asMultiLineValue(product['Key Product Features']);
+  const keyProductFeaturesHtml = markdownToDivHtml(keyProductFeaturesRaw);
+  if (keyProductFeaturesHtml) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'key_product_features',
+      type: 'multi_line_text_field',
+      value: keyProductFeaturesHtml,
+    });
   }
 
   const idealFor = asSingleLineValue(product['Ideal For']);
