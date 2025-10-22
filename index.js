@@ -255,85 +255,98 @@ function markdownToDivHtml(input) {
   }
 
   const lines = text.split(/\r?\n/);
-  const htmlSegments = [];
-  const listBuffer = [];
-  let listType = null;
+  const segments = [];
   let paragraphBuffer = [];
+  let listContext = null;
 
   const flushParagraph = () => {
     if (!paragraphBuffer.length) {
       return;
     }
-    const paragraphText = paragraphBuffer.join(' ').trim();
-    if (paragraphText) {
-      htmlSegments.push(`<div>${renderInlineMarkdown(paragraphText)}</div>`);
+    const content = paragraphBuffer.join(' ').trim();
+    if (content) {
+      segments.push(`<div class="paragraph">${renderInlineMarkdown(content)}</div>`);
     }
     paragraphBuffer = [];
   };
 
   const flushList = () => {
-    if (!listBuffer.length) {
-      listType = null;
+    if (!listContext || !listContext.items.length) {
+      listContext = null;
       return;
     }
-    const className = listType === 'ordered' ? 'list ordered' : 'list';
-    htmlSegments.push(`<div class="${className}">`);
-    for (const item of listBuffer) {
-      htmlSegments.push(`<div class="list-item">${renderInlineMarkdown(item)}</div>`);
+    const listTag = listContext.type === 'ordered' ? 'ol' : 'ul';
+    const className = listContext.type === 'ordered' ? 'list list-ordered' : 'list list-unordered';
+    const items = listContext.items
+      .map((item) => `<li class="list-item">${renderInlineMarkdown(item)}</li>`)
+      .join('');
+    segments.push(`<div class="${className}"><${listTag}>${items}</${listTag}></div>`);
+    listContext = null;
+  };
+
+  const ensureList = (type) => {
+    if (!listContext || listContext.type !== type) {
+      flushParagraph();
+      flushList();
+      listContext = { type, items: [] };
     }
-    htmlSegments.push('</div>');
-    listBuffer.length = 0;
-    listType = null;
   };
 
   for (const rawLine of lines) {
-    const trimmedLine = rawLine.trim();
+    const trimmed = rawLine.trim();
 
-    if (!trimmedLine) {
+    if (!trimmed) {
       flushParagraph();
       flushList();
       continue;
     }
 
-    const blockquoteMatch = trimmedLine.match(/^>\s?(.*)$/);
+    const headingMatch = trimmed.match(/^(#{1,6})\s+(.*)$/);
+    if (headingMatch) {
+      flushParagraph();
+      flushList();
+      const level = Math.min(headingMatch[1].length, 6);
+      segments.push(`<div class="heading heading-${level}">${renderInlineMarkdown(headingMatch[2])}</div>`);
+      continue;
+    }
+
+    if (/^(-{3,}|_{3,}|\*{3,})$/.test(trimmed)) {
+      flushParagraph();
+      flushList();
+      segments.push('<div class="divider"></div>');
+      continue;
+    }
+
+    const blockquoteMatch = trimmed.match(/^>\s?(.*)$/);
     if (blockquoteMatch) {
       flushParagraph();
       flushList();
-      const quoteContent = blockquoteMatch[1];
-      htmlSegments.push(`<div class="blockquote">${renderInlineMarkdown(quoteContent)}</div>`);
+      segments.push(`<div class="blockquote">${renderInlineMarkdown(blockquoteMatch[1])}</div>`);
       continue;
     }
 
-    const unorderedMatch = trimmedLine.match(/^[-*+]\s+(.*)$/);
-    if (unorderedMatch) {
-      flushParagraph();
-      if (listType && listType !== 'unordered') {
-        flushList();
-      }
-      listType = 'unordered';
-      listBuffer.push(unorderedMatch[1]);
-      continue;
-    }
-
-    const orderedMatch = trimmedLine.match(/^\d+[.)]\s+(.*)$/);
+    const orderedMatch = trimmed.match(/^(\d+)[.)]\s+(.*)$/);
     if (orderedMatch) {
-      flushParagraph();
-      if (listType && listType !== 'ordered') {
-        flushList();
-      }
-      listType = 'ordered';
-      listBuffer.push(orderedMatch[1]);
+      ensureList('ordered');
+      listContext.items.push(orderedMatch[2]);
+      continue;
+    }
+
+    const unorderedMatch = trimmed.match(/^[-*+]\s+(.*)$/);
+    if (unorderedMatch) {
+      ensureList('unordered');
+      listContext.items.push(unorderedMatch[1]);
       continue;
     }
 
     flushList();
-    paragraphBuffer.push(trimmedLine);
+    paragraphBuffer.push(trimmed);
   }
 
   flushParagraph();
   flushList();
 
-  return htmlSegments.join('');
+  return segments.join('');
 }
 
 function toDescriptionHtml(product) {
@@ -1520,7 +1533,7 @@ function stripTrademark(text) {
   return text.replace(/[™®]/g, '');
 }
 function stripQuotes(text) {
-  return text.replace(/[“”"']/g, '');
+  return text.replace(/["']/g, '');
 }
 function stripCapacityTokens(text) {
   // Remove tokens like "32K", "96 K", "120K Grain", "120 K Grains", "32,000 Grains"
