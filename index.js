@@ -171,9 +171,13 @@ function renderInlineMarkdown(text, depth = 0) {
 
   const placeholders = [];
   const placeholderFor = (html) => {
-    const key = `@@MARKDOWN_PLACEHOLDER_${placeholders.length}@@`;
-    placeholders.push({ key, html });
-    return key;
+    const key = `@@MDPH${placeholders.length}@@`;
+    placeholders.push({
+      key,
+      placeholder: `@@MD${placeholders.length}@@`,
+      html,
+    });
+    return placeholders[placeholders.length - 1].placeholder;
   };
 
   let working = content;
@@ -226,6 +230,11 @@ function renderInlineMarkdown(text, depth = 0) {
   }
 
   let escaped = escapeHtml(working);
+
+  for (const { key, placeholder, html } of placeholders) {
+    const placeholderPattern = new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+    escaped = escaped.replace(placeholderPattern, key);
+  }
 
   for (const { key, html } of placeholders) {
     const pattern = new RegExp(key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
