@@ -263,9 +263,9 @@ function markdownToDivHtml(input) {
     if (!paragraphBuffer.length) {
       return;
     }
-    const content = paragraphBuffer.join(' ').trim();
-    if (content) {
-      segments.push(`<div class="paragraph">${renderInlineMarkdown(content)}</div>`);
+    const textContent = paragraphBuffer.join(' ').replace(/\s+/g, ' ').trim();
+    if (textContent) {
+      segments.push(`<div class="paragraph">${renderInlineMarkdown(textContent)}</div>`);
     }
     paragraphBuffer = [];
   };
@@ -278,7 +278,13 @@ function markdownToDivHtml(input) {
     const listTag = listContext.type === 'ordered' ? 'ol' : 'ul';
     const className = listContext.type === 'ordered' ? 'list list-ordered' : 'list list-unordered';
     const items = listContext.items
-      .map((item) => `<li class="list-item">${renderInlineMarkdown(item)}</li>`)
+      .map((item, index) => {
+        const marker = listContext.type === 'ordered'
+          ? `<span class="list-item-marker">${item.ordinal ?? index + 1}.</span>`
+          : '<span class="list-item-marker">&bull;</span>';
+        const content = `<span class="list-item-content">${renderInlineMarkdown(item.content)}</span>`;
+        return `<li class="list-item">${marker}${content}</li>`;
+      })
       .join('');
     segments.push(`<div class="${className}"><${listTag}>${items}</${listTag}></div>`);
     listContext = null;
@@ -328,14 +334,20 @@ function markdownToDivHtml(input) {
     const orderedMatch = trimmed.match(/^(\d+)[.)]\s+(.*)$/);
     if (orderedMatch) {
       ensureList('ordered');
-      listContext.items.push(orderedMatch[2]);
+      listContext.items.push({ ordinal: Number(orderedMatch[1]), content: orderedMatch[2] });
       continue;
     }
 
     const unorderedMatch = trimmed.match(/^[-*+]\s+(.*)$/);
     if (unorderedMatch) {
       ensureList('unordered');
-      listContext.items.push(unorderedMatch[1]);
+      listContext.items.push({ content: unorderedMatch[1] });
+      continue;
+    }
+
+    const dashParagraph = trimmed.match(/^[-–—]\s*(.*)$/);
+    if (dashParagraph && dashParagraph[1]) {
+      paragraphBuffer.push(dashParagraph[1]);
       continue;
     }
 
