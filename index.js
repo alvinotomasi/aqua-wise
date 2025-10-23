@@ -1102,14 +1102,21 @@ function buildMetafields(product, options = {}) {
   }
 
   const keyProductFeaturesRaw = asMultiLineValue(product['Key Product Features']);
-  const keyProductFeaturesHtml = markdownToDivHtml(keyProductFeaturesRaw);
-  if (keyProductFeaturesHtml) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'key_product_features',
-      type: 'multi_line_text_field',
-      value: keyProductFeaturesHtml,
-    });
+  if (keyProductFeaturesRaw) {
+    const listValues = keyProductFeaturesRaw
+      .split('\n')
+      .map((line) => line.trim())
+      .map((line) => line.replace(/^[-*]\s+/, '').replace(/^\d+\.\s+/, ''))
+      .filter(Boolean);
+
+    if (listValues.length > 0) {
+      metafields.push({
+        namespace: 'custom',
+        key: 'key_product_features',
+        type: 'list.single_line_text_field',
+        value: JSON.stringify(listValues),
+      });
+    }
   }
 
   const idealFor = asSingleLineValue(product['Ideal For']);
