@@ -371,16 +371,20 @@ function markdownToDivHtml(input) {
 }
 
 function toDescriptionHtml(product) {
-  const sections = [];
-  if (product.Description) {
-    sections.push(...splitParagraphs(String(product.Description)));
+  const rawDescription = product?.Description;
+  if (rawDescription !== undefined && rawDescription !== null) {
+    const markdownHtml = markdownToDivHtml(rawDescription);
+    if (markdownHtml) {
+      return markdownHtml;
+    }
+
+    const sections = splitParagraphs(String(rawDescription));
+    if (sections.length > 0) {
+      return sections.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('');
+    }
   }
 
-  if (sections.length === 0) {
-    return '<p>No description provided.</p>';
-  }
-
-  return sections.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('');
+  return '<p>No description provided.</p>';
 }
 
 function normaliseArray(input) {
