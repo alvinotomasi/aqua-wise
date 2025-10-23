@@ -1195,33 +1195,43 @@ function buildMetafields(product, options = {}) {
     });
   }
 
-  const extendedDescription = asMultiLineValue(product['Extended Description']);
-  if (extendedDescription) {
+  const extendedDescriptionHtml = markdownToDivHtml(product['Extended Description']);
+  if (extendedDescriptionHtml) {
     metafields.push({
       namespace: 'custom',
       key: 'extended_description',
       type: 'multi_line_text_field',
-      value: extendedDescription,
+      value: extendedDescriptionHtml,
     });
   }
 
-  const warranty = asMultiLineValue(product['Warranty']);
-  if (warranty) {
+  const estimatedInstallationTimeHtml = markdownToDivHtml(product['Estimated Installation Time']);
+  if (estimatedInstallationTimeHtml) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'estimated_installation_time',
+      type: 'multi_line_text_field',
+      value: estimatedInstallationTimeHtml,
+    });
+  }
+
+  const warrantyHtml = markdownToDivHtml(product['Warranty']);
+  if (warrantyHtml) {
     metafields.push({
       namespace: 'custom',
       key: 'warranty',
       type: 'multi_line_text_field',
-      value: warranty,
+      value: warrantyHtml,
     });
   }
 
-  const maintenanceRequirement = asMultiLineValue(product['Maintenance Requirement']);
-  if (maintenanceRequirement) {
+  const maintenanceRequirementHtml = markdownToDivHtml(product['Maintenance Requirement']);
+  if (maintenanceRequirementHtml) {
     metafields.push({
       namespace: 'custom',
       key: 'maintenance_requirement',
       type: 'multi_line_text_field',
-      value: maintenanceRequirement,
+      value: maintenanceRequirementHtml,
     });
   }
 
