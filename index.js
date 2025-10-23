@@ -281,6 +281,7 @@ function markdownToDivHtml(input) {
     const startValue = isOrdered && listContext.items[0].ordinal ? listContext.items[0].ordinal : 1;
     const startAttr = isOrdered && startValue !== 1 ? ` start="${startValue}"` : '';
     const items = listContext.items
+      .filter((item) => item.content && item.content.trim())
       .map((item, index) => {
         const valueAttr = isOrdered && item.ordinal && item.ordinal !== startValue + index
           ? ` value="${item.ordinal}"`
@@ -288,7 +289,9 @@ function markdownToDivHtml(input) {
         return `<li${valueAttr}>${renderInlineMarkdown(item.content)}</li>`;
       })
       .join('');
-    segments.push(`<div class="${className}"><${listTag}${startAttr}>${items}</${listTag}></div>`);
+    if (items) {
+      segments.push(`<div class="${className}"><${listTag}${startAttr}>${items}</${listTag}></div>`);
+    }
     listContext = null;
   };
 
@@ -304,8 +307,11 @@ function markdownToDivHtml(input) {
     const trimmed = rawLine.trim();
 
     if (!trimmed) {
-      flushParagraph();
-      flushList();
+      if (listContext) {
+        listContext.items.push({ ordinal: null, content: '' });
+      } else {
+        flushParagraph();
+      }
       continue;
     }
 
@@ -349,13 +355,12 @@ function markdownToDivHtml(input) {
 
     if (/^[-–—]$/.test(trimmed)) {
       flushParagraph();
-      flushList();
-      segments.push('<div class="spacer"></div>');
       continue;
     }
 
     const dashParagraph = trimmed.match(/^[-–—]\s*(.*)$/);
     if (dashParagraph && dashParagraph[1]) {
+      flushParagraph();
       paragraphBuffer.push(dashParagraph[1]);
       continue;
     }
