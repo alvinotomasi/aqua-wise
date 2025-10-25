@@ -1495,7 +1495,7 @@ function buildProductInput(product, options = {}) {
     descriptionHtml,
     status: product['Sell on Website'] === false ? 'DRAFT' : 'ACTIVE',
     productType: asSingleLineValue(product.Category),
-    vendor: asSingleLineValue(product['Brand'] || product['Sub Brand'] || product.Vendor),
+    vendor: asSingleLineValue(product['Sub Brand'] || product['Brand'] || product.Vendor),
     metafields: buildMetafields(product, { addonMetafieldResult, optionalUpgradesMetafieldResult, replacementsMetafieldResult, documentationMetafieldResult }),
     tags: normaliseArray(product.Collection).concat(normaliseArray(product['Problems solved (keywords)'])).filter(Boolean),
   };
