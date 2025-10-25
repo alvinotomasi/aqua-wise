@@ -1370,7 +1370,7 @@ function buildMetafields(product, options = {}) {
     }
   }
 
-  const deliveryAndReturns = markdownToDivHtml(product['Delivery & Returns']);
+  const deliveryAndReturns = markdownToHtml(product['Delivery & Returns']);
   if (deliveryAndReturns) {
     metafields.push({
       namespace: 'custom',
@@ -1400,7 +1400,7 @@ function buildMetafields(product, options = {}) {
     });
   }
 
-  const warrantyHtml = markdownToDivHtml(product['Warranty']);
+  const warrantyHtml = markdownToHtml(product['Warranty']);
   if (warrantyHtml) {
     metafields.push({
       namespace: 'custom',
