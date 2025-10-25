@@ -413,17 +413,34 @@ function markdownToHtml(input) {
     const tag = isOrdered ? 'ol' : 'ul';
     const startValue = isOrdered && listContext.items[0].ordinal ? listContext.items[0].ordinal : 1;
     const startAttr = isOrdered && startValue !== 1 ? ` start="${startValue}"` : '';
-    const items = listContext.items
-      .filter((item) => (item.content || '').trim().length > 0)
-      .map((item, index) => {
-        const valueAttr = isOrdered && item.ordinal && item.ordinal !== startValue + index
-          ? ` value="${item.ordinal}"`
-          : '';
-        return `<li${valueAttr}>${renderInlineMarkdown(item.content)}</li>`;
-      })
-      .join('');
+    const styleAttr = isOrdered
+      ? ' style="padding-left: 25px;"'
+      : ' style="list-style-type: disc; padding-left: 25px;"';
+    let items = '';
+    const filtered = listContext.items.filter((item) => (item.content || '').trim().length > 0);
+    for (let i = 0; i < filtered.length; i += 1) {
+      const item = filtered[i];
+      const valueAttr = isOrdered && item.ordinal && item.ordinal !== startValue + i
+        ? ` value="${item.ordinal}"`
+        : '';
+
+      if (!isOrdered) {
+        const content = (item.content || '').trim();
+        const endsWithColon = /:\s*$/.test(content);
+        const hasNext = i + 1 < filtered.length;
+        if (endsWithColon && hasNext) {
+          const next = filtered[i + 1];
+          const nested = `<ul style="list-style-type: circle; padding-left: 20px;"><li>${renderInlineMarkdown(next.content)}</li></ul>`;
+          items += `<li>${renderInlineMarkdown(content.replace(/:\s*$/, ''))}${nested}</li>`;
+          i += 1; // consume the next item as nested
+          continue;
+        }
+      }
+
+      items += `<li${valueAttr}>${renderInlineMarkdown(item.content)}</li>`;
+    }
     if (items) {
-      segments.push(`<${tag}${startAttr}>${items}</${tag}>`);
+      segments.push(`<${tag}${startAttr}${styleAttr}>${items}</${tag}>`);
     }
     listContext = null;
   };
