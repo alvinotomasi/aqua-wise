@@ -375,6 +375,142 @@ function markdownToDivHtml(input) {
   return segments.join('');
 }
 
+function markdownToHtml(input) {
+  if (input === undefined || input === null) {
+    return undefined;
+  }
+
+  const text = String(input);
+  if (!text.trim()) {
+    return undefined;
+  }
+
+  const lines = text.split(/\r?\n/);
+  const segments = [];
+  let paragraphBuffer = [];
+  let listContext = null; // { type: 'ordered' | 'unordered', items: Array<{ ordinal?: number, content: string }> }
+
+  const flushParagraph = () => {
+    if (!paragraphBuffer.length) {
+      return;
+    }
+    const renderedLines = paragraphBuffer
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0)
+      .map((line) => renderInlineMarkdown(line));
+    if (renderedLines.length) {
+      segments.push(`<p>${renderedLines.join('<br />\n')}</p>`);
+    }
+    paragraphBuffer = [];
+  };
+
+  const flushList = () => {
+    if (!listContext || !listContext.items.length) {
+      listContext = null;
+      return;
+    }
+    const isOrdered = listContext.type === 'ordered';
+    const tag = isOrdered ? 'ol' : 'ul';
+    const startValue = isOrdered && listContext.items[0].ordinal ? listContext.items[0].ordinal : 1;
+    const startAttr = isOrdered && startValue !== 1 ? ` start="${startValue}"` : '';
+    const items = listContext.items
+      .filter((item) => (item.content || '').trim().length > 0)
+      .map((item, index) => {
+        const valueAttr = isOrdered && item.ordinal && item.ordinal !== startValue + index
+          ? ` value="${item.ordinal}"`
+          : '';
+        return `<li${valueAttr}>${renderInlineMarkdown(item.content)}</li>`;
+      })
+      .join('');
+    if (items) {
+      segments.push(`<${tag}${startAttr}>${items}</${tag}>`);
+    }
+    listContext = null;
+  };
+
+  const ensureList = (type) => {
+    if (!listContext || listContext.type !== type) {
+      flushParagraph();
+      flushList();
+      listContext = { type, items: [] };
+    }
+  };
+
+  for (const rawLine of lines) {
+    const trimmed = rawLine.trim();
+
+    if (!trimmed) {
+      if (listContext) {
+        // Allow blank lines within lists without breaking the list; treat as soft break inside item if needed later
+        // Here we simply ignore to avoid empty <li>
+      } else {
+        flushParagraph();
+      }
+      continue;
+    }
+
+    const headingMatch = trimmed.match(/^(#{1,6})\s*(.*)$/);
+    if (headingMatch) {
+      flushParagraph();
+      flushList();
+      const level = Math.min(headingMatch[1].length, 6);
+      const content = headingMatch[2] || '';
+      segments.push(`<h${level}>${renderInlineMarkdown(content)}</h${level}>`);
+      continue;
+    }
+
+    if (/^(-{3,}|_{3,}|\*{3,})$/.test(trimmed)) {
+      flushParagraph();
+      flushList();
+      segments.push('<hr />');
+      continue;
+    }
+
+    const blockquoteMatch = trimmed.match(/^>\s?(.*)$/);
+    if (blockquoteMatch) {
+      flushParagraph();
+      flushList();
+      segments.push(`<blockquote>${renderInlineMarkdown(blockquoteMatch[1])}</blockquote>`);
+      continue;
+    }
+
+    const orderedMatch = trimmed.match(/^(\d+)[.)]\s+(.*)$/);
+    if (orderedMatch && orderedMatch[2].trim()) {
+      ensureList('ordered');
+      listContext.items.push({ ordinal: Number(orderedMatch[1]), content: orderedMatch[2] });
+      continue;
+    }
+
+    const unorderedMatch = trimmed.match(/^[-*+]\s+(.*)$/);
+    if (unorderedMatch && unorderedMatch[1].trim()) {
+      ensureList('unordered');
+      listContext.items.push({ content: unorderedMatch[1] });
+      continue;
+    }
+
+    if (/^[-–—]$/.test(trimmed)) {
+      flushParagraph();
+      continue;
+    }
+
+    const dashParagraph = trimmed.match(/^[-–—]\s*(.*)$/);
+    if (dashParagraph && dashParagraph[1]) {
+      flushParagraph();
+      paragraphBuffer.push(dashParagraph[1]);
+      continue;
+    }
+
+    // Normal text line → part of paragraph
+    flushList();
+    paragraphBuffer.push(trimmed);
+  }
+
+  flushParagraph();
+  flushList();
+
+  return segments.join('');
+}
+
 function toDescriptionHtml(product) {
   const rawDescription = product?.Description;
   if (rawDescription !== undefined && rawDescription !== null) {
@@ -1227,7 +1363,7 @@ function buildMetafields(product, options = {}) {
     });
   }
 
-  const extendedDescriptionHtml = markdownToDivHtml(product['Extended Description']);
+  const extendedDescriptionHtml = markdownToHtml(product['Extended Description']);
   if (extendedDescriptionHtml) {
     metafields.push({
       namespace: 'custom',
