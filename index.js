@@ -1176,7 +1176,7 @@ function buildMetafields(product, options = {}) {
     }
   }
 
-  const sayGoodbyeTo = asMultiLineValue(product['Say Goodbye To']);
+  const sayGoodbyeTo = asMultiLineValue(product['Engineered to Reduce']);
   if (sayGoodbyeTo) {
     metafields.push({
       namespace: 'custom',

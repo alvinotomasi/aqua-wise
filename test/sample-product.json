@@ -1,436 +1,70 @@
 [
   {
-    "id": "recSKecXeJ6zsnzrj",
-    "createdTime": "2024-10-05T16:05:28.000Z",
-    "Product Name": "HydroClear™ Reverse Osmosis 50 Gallons per day 5 Stage",
-    "Product ID": 24,
+    "id": "rec0KlIeGC71LK9xZ",
+    "createdTime": "2025-02-21T21:57:11.000Z",
+    "Product Name": "Holding Tank 500 Gallons",
+    "Product ID": 148,
     "Image": [
       {
-        "id": "att1acVn4f04Txcbb",
-        "width": 1500,
-        "height": 1500,
-        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/cOkRb_xtmQYSLIMKf43-xw/Jr_ssCNdWRKOrcbp_whLlWWWcpRv2PPkSjNDok4IbWLKi0qxjPnAu8heBsml4LDatJI92MJddv_sYC-3rodTGilxLVZWYDCGAVBQRNw05pQY5j4IJKLWdUIhCLPS1uKVwGSPnN5rXJhjMLV0wY2O4_4r2T9zSNiA1ifM8I0WiGyqBc8Up63rSU3InIyLE5EdG4L8LvClSxkjTthy9-LRIWk2B__FjP5dOh0HTBlB_wU/RxZCyRaT8goNv-6cyK4hWPJQXR5jnPq6r73hupPrJuM",
-        "filename": "AQUALIVIA™ HydroClear™ Reverse Osmosis 50 Gallons per day 5 Stage.jpg",
-        "size": 499198,
+        "id": "att2tnk2jygH2iInm",
+        "width": 1728,
+        "height": 1728,
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761408000000/-q1jVeAJoNG6Jj4813ljqA/lUUPl8LfnSxb6mEHPtJ7aXH5NaCBpOWhzSfzBB011IuooioBUs5Ro4VPjMs-AMmySamf8pyRl1jhSM80pa4Ab7rf-vFvc5Q0nkzd-n0SuuRfJheUO4WvwYTrrLVvp7aLOYejR1vkLYTZtBRHT580Abij2Dz4RDWVkSFQuUhtbgQQ5BuMqtdVOKbAt2_5rlpa1TXJXmxlQZn895hxoVgVDw/LNJl1O9TAdspEIcS2JGsk4OFZLNS28LEKSjtpXkwuXw",
+        "filename": "500-Gallon-Norwesco-White-Vertical-Storage-Tank.jpg",
+        "size": 30278,
         "type": "image/jpeg",
         "thumbnails": {
           "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/vfugOMj0Oh9O_RtXSL0fMg/XeYCt5zYRcGqjVOzBTAjiL1AKa6eYV8f2ahvDDHsjPXS0FnXOM-2yV35Vb44bhivHJN-iazeGe_VelsamnUcBq6dgzhsPUTdx9NpyTTsR7Dl1irjBTSv4XTDfieEZgHnjYtMJMiWSujGqcshEL_yqA/71yejuDwMfplCkCYwNqaokX1-XaIHn55p8Ci3ajKko4",
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761408000000/z9Fk5oIIVQjTVu4gaQbQFA/Mi88aefioxOLs3E811PnZ-OFgYXf2cR2o4FhyhWQOg6BfVSG-Mnn_pD95vXTdPcZR4j0tOMAYIIyG1J_VMHww_-ezdKdzR7qtN8eVVIi7VWhQtz__7VXnOEBpBphKiIWq_1rLOIfaIE57IzjqxmEqA/I49-WnIN-EfNId1zWgdBePwqI7pX07wiehwEMroAVwU",
             "width": 36,
             "height": 36
           },
           "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/pL6gLRGbUp9lbBHmVYvjKg/bwgPDoqeqrW68_tpkLmkgoNXXriMfMH1ySt2i701xKxfo1aKgmJrTfQOOoYDNuTlEWcI5ZXwWOLX4wIl1-yMalrFcvZUZWCv32JeV3wC7ea2cN1HZSDB-DWSj2EQDJn793nZg0leMaFTY2Yrks7Wdw/6OJ3y5sp4AF8GVCexapFBUDMIPmGPSrhRkVN1xBQNLs",
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761408000000/kPRsFgA_3AsQf40uvZKMOw/V-rviEcEzpslSlAhUkARc6-q8sPyrM4WZw_L8tlUPE83CjYkGmJx0XfpbhGnHsjmcoSyM5_ccySILWWdeZO4R3xDxcQwPqN6_ms4Tdn95_dCVQJfr5FO8BweQ5bbcOAQVswE5furCTUVf1tpMQGjVg/YLNjyibOme4S2VruMY3fO6Er6B0TolGkFoZ0xhviFH8",
             "width": 512,
             "height": 512
           },
           "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/FSljCEfPLJLjDmFaqU1n3Q/aLKRAUGv2KVFE76TYHCYmqV-JJotukAp13g5VH9vn5j3TxvW1PBbPAGU55ebInWSNx2O1zXVuaUxsNoxFM_nep921Ve2PSO5Fink2YPTphFp8ZAfEl67UyVCEuV-9GqGiudclRMV-qXwqGFsVBrmSg/Mt4CO2QqSgXz-GOju12rQW2Q80q73v26e8Q9S32KGFM",
-            "width": 1500,
-            "height": 1500
-          }
-        }
-      },
-      {
-        "id": "attGGaw71rw85NtSI",
-        "width": 1024,
-        "height": 1024,
-        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/ewaK-44JoSJ9aXSsCrrHFQ/lP72l2Y8zitPXhQLzsawCej_5MKRSwe3GSnOAId75SrpCT4HuN7nEP4pqxkY7R9n1bv9EJF5LkqCdiVwTCA4ju-bI9zTc5MjqpY_FwdOCqhAEfXtX4dLmQ1iAZ2sM7GeCbhSevwZU63QuMetOXezLGyd51Uof7K7Ur0zdKl0CDw/j_6vTE1T-3ja9zdw0w02ii5dBy8K0wdpIWfdC8PpQdw",
-        "filename": "RO2 copy.jpg",
-        "size": 651702,
-        "type": "image/jpeg",
-        "thumbnails": {
-          "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/sSUntc-1HxUGTBsviPXShg/arjJvJkJfiTzu2EChJsRWcckTO2Tj5NQEJI7BmTpcI2uy6OO6ztxbsIn-1C5R7faEyrU0J104VWoOEL_sxW8vkcVWmhRPTISokREmTbhBLdE9JQo1R4EpPv2ZKjmkAEGFQwfsVJIzqN0QwbDvi9pbg/VzAL4IOv75e16qQ_nGddFBU790J1IJSshu9cbNMmgiA",
-            "width": 36,
-            "height": 36
-          },
-          "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/L5REMMiOmrF3IlXp2PIFnQ/qlrEmfU39C6XOUvgTTISayWwywGtS_yPDM7UYm4sCqOmJPKUuKvdG5OFcYfGQtC65k4hib4yroSMYsOLMgdgC0zoSxIb2S0jhi2AlCF8HweLCL-aRuInUM0aKHRNQR7vTaiqbwVsl6Ca0cwKByEzAg/n2mekxsq4a1qg0Pjuvh3WodccKks1raczO8LdGjbaoM",
-            "width": 512,
-            "height": 512
-          },
-          "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/LhluV-gAeWWExA5XNFkkWA/dJP8FjL54kKTtn-bKp2BN5dHAc1_xHovW6cqQp9lzzQ4NMN_evzJlWZt9AGg27rrGUCt0v0DasOdEwiU3tfl4am_ABxXFUOJl5-cV_cHX4nRByA-g7GwwWIcIj7OYXXpKJYEl6NKV_5WpiRrPSftNA/G3_blOeHi-U0BTB1D6opA2lyQtlzXcCJ-8WMepx8hGs",
-            "width": 1024,
-            "height": 1024
-          }
-        }
-      },
-      {
-        "id": "attVFGOtDZmSoXwLT",
-        "width": 1500,
-        "height": 1500,
-        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/4ZWzS-w3nXPCueNDoiidiA/CscgsYf_baF0hSi-aut7XqexqMUOl9zwQdSrNI3grWB1wwdau_mPNQyWEUifS6RW9rnAARQPPcUGWkCYCcIkyYQ0XkMSXLaARpqedCFyr0ME_AmBzUM5fMrxM8wHO6ilBo-DyXFkeUaAKHWUqEKG2zSUQsLLN4L5wa215ctwYwDrTL_gLj4CIbEr4dLbrJVSf7NAU4-zvi9n5iMC2-j2og/zV0zJjIvRZ3Z_r8Rb5vMISZPehys43YJ9BUWIugkQ4U",
-        "filename": "AQUALIVIA™ HydroClear™ Reverse Osmosis 50 GPD 5 Stage Blue.jpg",
-        "size": 926184,
-        "type": "image/jpeg",
-        "thumbnails": {
-          "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/gePPuLjRoVv7ZXrb1hqVpQ/hp3lVsOiXcqIl7u7kdRqV-kdwRIkY_ocftRpMs3MWzySNoWkcOrwe7g_9aw8E7KndrBOe_v0IWEGmaft1Q57W_8T6_oL7kZmn_PS2UNYRRMlb5Uo4An-BeM0aNuxj6vmdIgP53NSlFJpPhwZbmGI9w/K1608gv2sXUyt4HU6xZRMyg8fKsDL3z7axwiyEsKLBc",
-            "width": 36,
-            "height": 36
-          },
-          "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/FoZy9p0ve0lSHtttyg1DJw/F3YZXBfRZ9wpt08WnaPkKVCOiQ6d65lmYd0-3rAtAVk6whoSJeFefiOwU0hDHLUKHW0GsaTAz4UUzXwaREmgUfoRVROypydX3RJcWPZ8tH6xe3wzsDRLSej2Rpg1O4YJN87LTOMuKW0P23mvO9SumQ/5up7QMieHVbATevVQt4bI-7J0fP8AVnZqxRXxTdbmMM",
-            "width": 512,
-            "height": 512
-          },
-          "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/WXZtu_sZFqjrQeYEN-vdDw/p8O32KmYq3mG6iDg1A4j6qRYoZo-JbR6H52GtTf1VRn_yoZKLun2MU5cKnvmP1EpOHukVfHHXMN7QH5t6mriIfO6RbuJulQkrtGVmdCELjYsaytt537ZhAHYVfXmOW34huGlnu2qP1UrhP2Apdwh7g/0Xodc7Cny5t6QkJVwgnqEX_ZmJyq6Sb1C3BGAKJXSxU",
-            "width": 1500,
-            "height": 1500
-          }
-        }
-      },
-      {
-        "id": "attYZpSKKIkCBePfM",
-        "width": 2048,
-        "height": 2048,
-        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/-aC5QpGyGStGPFAk2mdUuQ/_gWzSgsz5Ao8BmbuN2AkIZKIjZ1ZurMnof_k6EO29EanunDqJRmZ6Sacp5WrbJq5eCQrH0OM_dH3sx-CdMVtlwKVKKzl_LVbvssHYo-nPpjaVRqXVT2uqY3siNcOq_45YGl9tnrOLqTbWuaehoDTavGM_r09bAYwMB9O3rmfO6Buuc4RQzfbmBkKWLgZqVAW/g-aGoEC7yXqEtxd9Q9O0yjUUz8Fy6MtmrpNrUymoHn0",
-        "filename": "AQUALIVIA™ HydroClear™ RO SEDIMENT FILTER.jpg",
-        "size": 1382560,
-        "type": "image/jpeg",
-        "thumbnails": {
-          "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/qy9NK35PSBCyYzRWP1h82g/az4pKFZ814dcJ4v-U88g9tfeUODrenBQCHGDyE3MJlXCpvspbz-RFdAj6whrBnf3vYkYBBXrqX9EAkX9ddwTkIm-65FkHK_SE2pNWW3IicvZnM-YGuZ6KTTm7E9cb0KX7BjLKJ-c-Eoa7dQSGtdcLw/0qmAZXNr_0_--yAI2TsNNN7oCFFMmFVmgVBkTTFt9c8",
-            "width": 36,
-            "height": 36
-          },
-          "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/mG9ZHgOlCK_CwXSmi67hcA/-8UQy2j4YZfAtO0eGm-HAroDj7PinLvWfRh8lMriP5au9oV4Z9NMuHa87tZgBlEu9bdmk8mQyk6C_Cj8ZtJcgaEQx9TOHoxHf24KojCPGUQ3PqP1Eht7suTteva-eG67N-tBDmRnxVAQEFcTCG--sQ/b99rLD2OI8fGU9SkweAjd0U8-qN0Ajr4D8BvOYLSETw",
-            "width": 512,
-            "height": 512
-          },
-          "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/RCEcQl6nTXPlpEGSyqSFrg/5J5AjPu-H-wquGzi56orVa3sjNV-Gx2qhyGOJlq3LjxUUP7VfGqWBqnlqLGCDgbwijprghs9rwLoEC0SfAl2wDDhm14ZAHsJDjPppk-3_vjhSmNb1u6lOf9TjnhejlMXtEK1XY7tH928ZqbqEJZ5Lw/EDl6tsdSeDrYqvn1vumGPNecMkY_M7J8es4XrUIlQag",
-            "width": 2048,
-            "height": 2048
-          }
-        }
-      },
-      {
-        "id": "attimUVwR7MED7whw",
-        "width": 2048,
-        "height": 2048,
-        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/lKtHElRpbsHxTPNzuYWumg/qrAk_4eLYHrCOnKdWvgCQw-D_Vf9srCJv90X8EwbJdMIjdcoCL9_oZZexJkkBGMxToFlHUUbsXxfvIrSHJKHQA59sUDfHlzUHJSrH3iPM9l5Ned5brqU-TAT8umujgS5bHyKcufUDxPSzSdGZGVz95Iy4MJxKkPXYgPUOPOpnjeJLxxn8LA9e47Dc4dZosIUIzrXGS3IJiYzMwDoHf45UD_fwh42olMsAXqN6Fvv2R--db9xWCbyK3eBKkfYYLxo/v-MPCOnnGSQXMfhXUK9XtbmK8V40FLAmzzbzGmyVlZE",
-        "filename": "AQUALIVIA™ HydroClear™ Reverse Osmosis Activated Carbon Block For Reverse Osmosis.jpg",
-        "size": 1600759,
-        "type": "image/jpeg",
-        "thumbnails": {
-          "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/Xr1Epxf_O-CVS9CNAi8ogg/urZP_XThj6-L8ghePitny1kgVVrnv9Hx2mninYKRG3uJ3cvmQjWq901thPr-3zTdYGQ1MotljnvxD5kBbP2PJZ2f2NRUGVIT7av8fDeu68OKJV9LIT1q8W4mK6VoQg7IN6wZvpTl09TeU15ypn6MCw/-gblj6wbgr1ZDXjCNV83ApUUhLWvrsG2hvp6SZTypcM",
-            "width": 36,
-            "height": 36
-          },
-          "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/s2qDvr_koc7pGVS_aVgt0w/5Sxa3N026p5vZy_spPEzl91-252IU8WQyKAc7pgou-DQiWvA_0OXMbRUU9qdwVTkK5gn5lAihcyvWWObOVKp2F-aBWieMFAY1Eb2frP4eTKlufvSaQ5zWk8jlPNViF_QF5Js8pTyJ7z5VsEhLv68Aw/Q-NlTvJjBOLmffuDlYZiDmgeYwYGqwPvfA58ag_LU_U",
-            "width": 512,
-            "height": 512
-          },
-          "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/Ft86hw82cgXCvQ_R42We4w/7WnDmM_bLHgO1fNXwkzLaLa07DZ5G5bnh2TdDZjFSjEQ4Wed4mtlh4Zp4cZpU52WeyLnSvSCaUkKCqTMnFWDwMdKmTqCZd_2x19wD1i_FyctJFyRvaaRWPYX9QRxPTIfK6-NqIkj-v3gT0JTQGWMcw/HviUDo5BNnfwzIRjFaBaUY7ykCFlH0GuPAS1gOv2b-E",
-            "width": 2048,
-            "height": 2048
-          }
-        }
-      },
-      {
-        "id": "attwhspOVMVd5RH9o",
-        "width": 2048,
-        "height": 2048,
-        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/0xJwzkIFKx5TM9NsEkGoQA/0Vj4-FMssz6HcmfWNVQ_7UYpldeTwZ6HBs4Ixu7VkMMYw4okIfsnJhCXIgbaffud3vZbj0rPPZo-uv9u-5j8PggbocxuVy6KBpHuXBwvdl_cxurXDYZYRlkUPis7g7rxmyTETPztcGNmxNapIhHfUhDuNIFvbU2b2pwCSEbTtHk-Rbtse66w2cB7SmBtOBVj/NKrRPht4gUqS_8A-j5WlgD3RjBspNLaeIdvwOR0XM7Q",
-        "filename": "AQUALIVIA™ HydroClear™ Membrane for RO.jpg",
-        "size": 1284028,
-        "type": "image/jpeg",
-        "thumbnails": {
-          "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/udzgboppCNqHe8t0vX6NwQ/RduykXi1_Xl4PiZAMSK6vSCuaqzajk1COsIqq2ZVjq9V8efNesovvmShyJGMEcQ4E_1k0llkR_8GljQhQUpNdMbIrTmusUZvJxYmVO-fl-jSQMoatoy6BxIWzXchiy3Pp_zD_ed_GjLF0euQDW1nBQ/unD066PHGVCz7z20VryvqgtPBT6gisDENpfvGC77iUw",
-            "width": 36,
-            "height": 36
-          },
-          "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/dvv9ob1E8cpOYWiohFWAog/hSB7CFi3dwcFpU5VoFO3Pu7D6e52oxvE8cBZ344hEAuHJK5E8uVzJdY7Eg7Y-w1-92G4h6hDSlD_Kf78IKRMFCfZD3FZ4hnvilvbbnW6v1fjVLY8EKTqM8mI1pPtSr8vAG0PSST-4hU4jEI16eQkBg/YkgWBMt-twzoT-pzjd9aZ2wQDXC5L3TN5OWVkMTK0bM",
-            "width": 512,
-            "height": 512
-          },
-          "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/Xc_XcJpSPK1pPRprheCqAA/yAn91KFx_MYXgoXQM5_tZ6mgtoWC3YGd_WGmy6wy9EwAGxsFbJ226k0EC6JOh4JD8K29cs_GznlUtj9MVvXO62ZPYcq0OJPpC09ogeb96DXgRxftOBMJBDn_mfQclgx6DMRC3TH4Tqk5UCooeLHN_Q/8RHM9jMAQ-7NLeRnLIVe6oyisGA6Jxm066A9TUNkw6A",
-            "width": 2048,
-            "height": 2048
-          }
-        }
-      },
-      {
-        "id": "attsWIAFF4cLtRSyE",
-        "width": 2048,
-        "height": 2048,
-        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/IInx2fI4g2-UjLQ_MdJdVA/dhtFGbIfOymfwL9F_qKOVeuUx0C7HQyyBaVKzPY8ixRfGltbU-up_Mv_HOCbH-yuyfPAprz82TPNqi6j9TD8DZm1h_PbVz-qb0PR7W6oI111u4WyXDW2-Lf1ahnVO48vdbwCKrg5C537XhKCFes_Mpu29EyANhYyHE4h6s2HmfpWX0CHjdKL-6ePj2SGKCik/06945vyXt-Vlm24KWQt3rEoltT0uOqYbNOc2yxYHw4E",
-        "filename": "AQUALIVIA™ HydroClear™ COONUT CARBON FILTER.jpg",
-        "size": 1223934,
-        "type": "image/jpeg",
-        "thumbnails": {
-          "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/6DcELe1tr-UvBRAl_e7Cjg/R8aB2Xk_ymWvYRDqyzbSuOIsHne7fod9k9R-vRiU4vpvzq91dv2yIxkoMZ4Rg4s89nmoTTyER3lhesGBUiN2qQogLstNKQxxjKl5SWDD6g76VR9ByzWf5ZRG6g8D2tJOOuYLL9SkdRxHaACCMVRKvA/rIHQjIpactSsTVatEP3XcBBfra6d7Q6Ciroer-YDHYw",
-            "width": 36,
-            "height": 36
-          },
-          "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/xKer7OQCMTQzLFy77S61Rw/32ZI-_zPJELLIGgMRhq9xQfSrVDISaeXlNsGm3dQtW027Xu6GbCbFV3mPxvpQ0YtjyzCfA1HvBw7XxohyXjx0Fw9cNBkvuQgcJIwUAM6piB2iizHCfkufwkt5UgBhn60tIfEiaCl9JNT8TfeYk_uVQ/GzrpITvKYkoBlc-c3dbeCfROD_NPevvce-ryiNeXZe0",
-            "width": 512,
-            "height": 512
-          },
-          "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/XnTT1E8sjju6PwVLZ0E_zw/vMnKroJlp_Q3a9x3IZcNLbq_SVCIwTCRV43qD_9jbdk3so8177Z9lLMPxltKP15iBPFvOR2Ag8Ucyv5cXZJWqB0GfBhldMlFbGzr4iE9TvCx-zcPZcxWtcmwFDsUx-gZwwA4RPzegSVsv9ERBOLmTw/AJcpHOWpLJCvKnCmHwhAaZMNLOO0Pi3EST3iBdHOXbc",
-            "width": 2048,
-            "height": 2048
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761408000000/FXRc0VtGRkRkip_SUWQwuw/PE-7aURhqQ8JjjSSihO-okZIDXFXYlHicSEgzFupAQbLSPiBwx0hEQsaa9PRAZ8tWDoFwkrO7GG9_u0lJCtfsAPy10DMaVEpAhTVTWfVwibGUaUqtB5GTO935ALfXp0cFJNwE7NLzwXqzmDOvf2exQ/eN7Bk_ooM7pgO7lz98F7tEyxL3LJlSPPQp2XGvXgedA",
+            "width": 1728,
+            "height": 1728
           }
         }
       }
     ],
-    "Category": "Reverse Osmosis",
-    "Vendor": "Amazon",
-    "Vendor Price": 300,
-    "Gross Profit": 432,
+    "Vendor": "Ntotank.com",
+    "Vendor Price": 1500,
+    "URL": "https://www.ntotank.com/500gallon-norwesco-white-vertical-storage-tank-x1038961?gad_source=1&gclid=CjwKCAiA5eC9BhAuEiwA3CKwQtYCBQGSWqZ6LxIxYchTMMheIIKGpRq32yjCVzhz1QSmr_Mpok0k_BoCOj4QAvD_BwE",
+    "Gross Profit": 1006,
     "Line Items": [
-      "recIWiLtOyT43YJdx",
-      "rec0eXjOyinHdVec2",
-      "recYLibs7XK1XDGJc",
-      "recID0HaH0Q7TXWS9",
-      "recgYYILn11P1sWhX",
-      "recEnvig5J2iMsVEp",
-      "recU2tsAwwd6sOgpU",
-      "recrE0IEaRwbFBIUo",
-      "recFUC3cC0VV2VNhb",
-      "recdUAKrF6fphiYVZ",
-      "recLuTKujj8xkOjsw",
-      "reckFmBhipoZSHLAT",
-      "rec6zIQ0OwBz5YHNN",
-      "recqVkep7tr0f9zCK",
-      "rec55HrnP4rDI7ZX4",
-      "recAY47Z2y4RQm2CY",
-      "recDTFhwGWSHhj27I",
-      "recVuoUnHZwaohTGL",
-      "recWAhQfjuTqg0Fr0",
-      "reczuhjs5W1NEUrFf",
-      "recuP94tRFKROHXHW",
-      "rec0HQS1ULhGmiM9E",
-      "recsd3ZFbikitLRAE",
-      "recizyuFztwqquL7B",
-      "recl9OqSRWF2rpGfW",
-      "rec1PGDc1gEFPQ3cW",
-      "recm7SQQ5ZERmCeti",
-      "recec63M3YzLkGFVN",
-      "recCn7nx5C2iEayxW",
-      "rec2jSF7sWUISC4mS",
-      "recqTGyBWQoi2BO2v",
-      "recSg9otDh3FeFPUx"
+      "recfwUuKrA7Q7RRTG"
     ],
-    "Shipping Price": 100,
-    "Website Retail Price": 1082,
-    "System Capacity": "50 gallons per day @ 60 psi, 30 gallons/day @50 psi and 77 deg F",
-    "Tank Dimensions": "4 Gallons 11\" x 11\" x 15\"",
-    "Certifications": [
-      "WQA Gold Seal Certified",
-      "NSF/ANSI standard 58. Ensures effective reduction of contaminants like lead, arsenic, nitrates, and fluoride.",
-      "NSF/ANSI standard 372. Ensures all system components in contact with water contain less than 0.25% lead, guaranteeing safety and compliance with lead-free requirements.",
-      "BPA-free and lead-free materials",
-      "Lead-free"
-    ],
-    "Max Flow Rate GPM": "0.03 GPM",
-    "SKU": "ARO-0009",
-    "Product Weight lb": 26,
-    "Product Dimensions": "16\"L x 5.25\"W x 17.5\"H",
-    "Link to Product Page": "https://www.aqualivia.com/collections/reverse-osmosis/products/hydroclear™-reverse-osmosis-50-gallons-per-day-5-stage",
-    "Key Product Features": "High purity drinking water\n",
-    "Sell on Website": true,
-    "Micron": "0.0001 µm",
-    "Margin": 0.4,
+    "URL2": "https://www.ntotank.com/500gallon-norwesco-white-vertical-storage-tank-x1038961?gad_source=1&gclid=CjwKCAiA5eC9BhAuEiwA3CKwQtYCBQGSWqZ6LxIxYchTMMheIIKGpRq32yjCVzhz1QSmr_Mpok0k_BoCOj4QAvD_BwE",
+    "Shipping Price": 600,
+    "Website Retail Price": 3356,
+    "SKU": "HT5-0147",
+    "Key Product Features": "RO or process water storage and buffering\n",
+    "Margin": 0.3,
     "Buffer (7%)": 0.07,
-    "True Web Cost": 650,
+    "True Web Cost": 2350,
     "CAC": 250,
-    "MSRP": 1407,
-    "Contaminants removed": [
-      "PFAS Forever Chemicals",
-      "Lead",
-      "Cadmium (Cd²⁺)",
-      "Arsenic (As³⁺, As⁵⁺)",
-      "Chromium (Cr³⁺, Cr⁶⁺)",
-      "Mercury (Hg²⁺)",
-      "Fluoride (F⁻)",
-      "Uranium (U⁴⁺, U⁶⁺)",
-      "Radium (Ra²⁺)",
-      "Cyanide (CN⁻)",
-      "Pharmaceuticals",
-      "Hormones",
-      "Pesticides",
-      "Herbicides",
-      "Volatile Organic Compounds (VOCs)",
-      "TDS (Total Dissolved Solids)",
-      "Turbidity",
-      "Bacteria",
-      "Viruses",
-      "Giardia",
-      "Cryptosporidium",
-      "Aluminum (Al³⁺)",
-      "Ameobic",
-      "Arsenic Plus 3 (As³⁺)",
-      "Arsenic Plus 5 (As⁵⁺)",
-      "Asbestos",
-      "Barium (Ba²⁺)",
-      "Bicarbonate (HCO₃⁻)",
-      "Boron (B³⁺)",
-      "Chloride (Cl⁻)",
-      "Chloramine (NH₂Cl)",
-      "Calcium (Ca²⁺)",
-      "Chlorine (Cl₂)",
-      "Chromate (CrO₄²⁻)",
-      "Copper (Cu²⁺)",
-      "Cysts",
-      "GenX",
-      "Haloacetic Acids (HAAs / HAA5)",
-      "Pesticides & Herbicides",
-      "Iron (Fe²⁺)",
-      "Manganese (Mn²⁺)",
-      "Magnesium",
-      "Nickel (Ni²⁺)",
-      "Nitrate (NO₃⁻)",
-      "Nitrite (NO₂⁻)",
-      "Perfluorooctanesulfonic Acid (PFOS)",
-      "Perfluorooctanoic Acid (PFOA)",
-      "Potassium (K⁺)",
-      "Protozoa",
-      "Radioactivity",
-      "Sediment",
-      "Selenium (Se⁴⁺, Se⁶⁺)",
-      "Silver (Ag⁺)",
-      "Sodium (Na⁺)",
-      "Strontium (Sr²⁺)",
-      "Sulfate",
-      "Total Trihalomethanes (TTHM)",
-      "Zinc (Zn²⁺)"
+    "MSRP": 4363,
+    "Engineered to Reduce": [
+      "N/A"
     ],
-    "Perfect For Homes With": [
-      "Well Water",
-      "City Water"
-    ],
-    "Bundles": "WellFusion™ Bundle 96K Iron Remover, WellFusion™ Bundle 64K Iron Remover copy",
-    "Description": "The HydroClear™ 50 GPD 5-Stage Reverse Osmosis system brings premium drinking water technology into your home or office. Engineered for performance, it delivers up to 50 gallons of pure, great-tasting water every day. Its advanced five-stage filtration removes chlorine, lead, PFAS, microplastics, and other contaminants that compromise water quality.\nEnjoy the peace of mind of crystal-clear water for cooking, coffee, baby formula, and daily hydration. Designed for families and professionals who demand only the best, HydroClear™ combines reliability with convenience, ensuring every glass is as pure as nature intended.\n",
-    "Collection": [
-      "Reverse Osmosis",
-      "City Water Systems",
-      "Under Sink Water Filters",
-      "Well Water Systems",
-      "Drinking Water System"
-    ],
-    "Feed Water Pressure": "40-85 psi",
     "Brand": "AQUALIVIA",
-    "Sub Brand": "HydroClear™",
-    "Warranty": "# AQUALIVIA™ Warranty Policy (Customer-Friendly Version)\nAt AQUALIVIA™, we stand behind the quality of our water treatment systems. Every product is carefully built to last, and we’re proud to offer strong warranty coverage to give you peace of mind.\n### What’s Covered\n- **Mineral Tanks:** 10 years (up to 13\" × 54\"), 5 years for larger tanks.\n- **Control Valves:** 5 years.\n- **Brine Tanks:** 5 years.\n- **Accessories & Components:** 1 year.\n- **AQUAREX™ Whole House Filter:** 5 years.\n- **OZONEX™ Ozone Systems:** 1 year.\n- **AquaVRay™ UV Systems:**\n    - Chambers: 10 years\n    - Controllers: 3 years\n    - Lamps & Quartz Sleeves: 1 year\n- **HydroClear™ & AquaRevive™ RO Systems:** 3 years (system only)\n### What’s Not Covered\n- Regular-use consumables (filters, resins, membranes, UV lamps, cartridges).\n- Damage caused by misuse, freezing, flooding, power surges, or improper installation.\n- Products used with non-AQUALIVIA™ parts or outside normal water conditions.\n### How to Make a Claim\n1. Contact our Support Team with proof of purchase.\n2. We’ll give you a **Return Authorization (RA)** number if the claim qualifies.\n3. Ship the product back (prepaid). If approved, we’ll repair or replace it.\n### Our Promise\nWe’ll repair, replace, or provide a comparable solution if your system has a covered defect. Our goal is to make sure your AQUALIVIA™ system works the way it should, so you can enjoy clean, pure water with confidence.\n👉 For warranty support, please contact AquaLiviaUSA@gmail.com.\n",
-    "Products copy": [
-      "recOa8cVaFOYJCrLK"
-    ],
-    "Shopify Product Id": "gid://shopify/Product/9082535706863",
-    "Water Problems Solved": "- Bad taste and odor in tap water\n- Chlorine and chloramine removal for clean drinking water\n- PFAS (“forever chemicals”) and PFOA contamination\n- Heavy metals such as lead, mercury, arsenic, and chromium\n- Fluoride reduction for improved taste and safety\n- Nitrates and sulfates from agricultural runoff\n- Bacteria, viruses, and cysts (with post-filtration UV option)\n- Cloudy or turbid water (sediment, silt, and rust)\n- Total Dissolved Solids (TDS) for ultra-pure water\n- Scale buildup inside coffee makers, ice machines, and appliances\n\n",
-    "Operating Pressure": "40–85 psi",
-    "Bundles 2": [
-      "recaMk4zsAeTNKo1Q",
-      "rec91UoOMpIuWTizn"
-    ],
-    "Optional Upgrades": [
-      "rec2439kslGPOGmck",
-      "rec2jnDcWAdQgZSLw",
-      "rec1mj2AbszvXldCa"
-    ],
-    "From field: Addons": [
-      "recNqbXrtWQzjmoiY",
-      "rech4a4IpvoK3NGlP",
-      "recSb4gSFoAyRNTP5",
-      "rechL8AixqB2py71s",
-      "recAEY58tqV7VnKSq",
-      "recBSeSQiRrnPA14N",
-      "recZzMjpymed3Y5Nq",
-      "recjWdkREqZJgyscU",
-      "recXBfonsRwyr2ATZ",
-      "recOMZFOfP4wXE6DO",
-      "recKrfVMHkU4IPfGC",
-      "recsZD7Z1HdKmZxe3",
-      "recbYMow9EdAWYZ2O",
-      "recLdyOHGlcyELGsw",
-      "recAW6Kjie1C5X0Pa",
-      "recXTYIF0Wea6kDvA",
-      "rec0cAhPwLEyk1Pnc",
-      "recbfJMGfOk8kh7mS",
-      "recXlkzied2tiQqup",
-      "recfUshGmphBDqeDH",
-      "reckfQTy6HW7KSbOW",
-      "recq5GUvT00AfbtUN",
-      "recDbVlT3gmrMLqwO",
-      "reciXvEjxfCZSuAiK",
-      "recjn7bQKlBRA21Hn",
-      "recZ4hLHmCOHMAacn"
-    ],
-    "Shopify Product Id (from Optional Upgrades)": [
-      "gid://shopify/Product/9082533970159",
-      "gid://shopify/Product/9082534035695",
-      "gid://shopify/Product/9082533871855"
-    ],
     "Sync": {
       "label": "Sync",
-      "url": "https://primary-production-dae8.up.railway.app/webhook/sync?recordId=recSKecXeJ6zsnzrj"
+      "url": "https://primary-production-dae8.up.railway.app/webhook/sync?recordId=rec0KlIeGC71LK9xZ"
     },
     "Sync All": {
       "label": "Sync All Data",
       "url": "https://primary-production-dae8.up.railway.app/webhook/sync-all"
     },
-    "Last Modified": "2025-10-17T23:10:42.000Z",
-    "Product Documentation": [
-      {
-        "id": "attQrCytqGtSfcsiH",
-        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/AyTy3W2zhei0xGURB6IyRg/-CRAeTgUoULZylEUZXgjeKmdz2BOhCNPCogmYS7Ph1Lh2SkWY0PKGKRZ33H9w7Rf_cTeRCxdeQaCWDDXMelNHUNqqZGzrwRzYeb9YXBlOEcmf3ipZmK03It5w-GgzMj0yJUHfF_y-kE5eLi999crfqLjbt2AWd8BiVv2nWWXpxom7OB84vYDBF-OBLcjRrpt0DR5GX3BZCi_FRcszZ3TSXTK_a-zmGSjm1PAA7qt0xSVZQC70OcXN8Kaa0HNDkKk/6xxKVAQoHjmR8QEsz__q01twXN3-K3uKd9mgFpL1fVQ",
-        "filename": "Katalox Light® Advanced Filtration Media for Iron, Manganese and Hydrogen Sulfide Removal.pdf",
-        "size": 7907538,
-        "type": "application/pdf",
-        "thumbnails": {
-          "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/VnCbm3ZMgmMH0qqf3j4U9w/qjqbVrU5kiyiFAFduE_gJ6ef36x-5wTnR4FwywIGcXf8GHjOZRXjNXvvdacsCWBLffBZMtOWhDMFDis_jv_F7qzxWJI6xukTJs3hS0ksVxv7YtgC6G8L4CORYVhICLNpFbA0xS6UHcpdOZMf-jrGcg/kJ2J-ARqiDqZ9_4G7VdhNoiIbYV4xn4TSzLEvL5ST5Q",
-            "width": 25,
-            "height": 35
-          },
-          "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1760803200000/dxDijJ168YTWdlYId5Yamg/3YfOsu5xfmqTqh7wtQkHYR0sTJDp3ux05FslR8oeKXUQ6UYx7_WRHhJFo5sI0VWVOOSrmmUf_2Vh4LIQ7pAH9vDi7WRJxyFEI4Pou_imvER_0vWfgRpFe8C6Tv2BS942XBlricdC9fyBdaokB8WPEA/w7XBWg2_BLYuFdxMfmXRZQnwUjyj2gwdkQatnV4oMeI",
-            "width": 512,
-            "height": 724
-          }
-        }
-      }
-    ],
-    "Extended Description": "# **REAP THE BENEFITS**\n## **Pure Water for Your Family of Four**\n💧 **Save Up to $1,000 a Year**\n** Stop overspending on bottled water. Enjoy unlimited purified water for less than 20¢ a day** — smarter than bottled and Brita® combined.\n♻️ **3,000+ Fewer Plastic Bottles Every Year**\n** Protect your family and the planet. Eco-friendly, sustainable, and built for long-term savings.**\n## **WHY REVERSE OSMOSIS IS SUPERIOR**\n**5,000× finer filtration than Brita®**\n** Removes what pitchers can’t — for truly pure, great-tasting water.**\n- **0.0001 Micron Filtration**\n- ** Removes up to 99.9% of total contaminants**, including:\n-  Lead, Arsenic, Fluoride, Chromium-6, PFAS, Bacteria, Viruses, Pharmaceuticals, and Nitrates.\n- **High-Capacity, Long-Lasting Filters**\n- ** Lasts 12+ months** or **2,500+ gallons per set**\n- ** (Brita® filters last ~40 gallons)**\n## \n### **FACT: What’s Really in Your Water**\nOnly Reverse Osmosis removes over **50+ contaminants** including:\n Aluminum, Arsenic (III & V), Asbestos, Barium, Cadmium, Chloramines, Cyanide, GenX, Herbicides, Mercury, Nitrates, PFAS, Pharmaceuticals, Protozoa, Radioactivity, Viruses, VOCs, Zinc, and more.\n## **Brita® filters can’t remove fluoride, arsenic, PFAS, bacteria, or viruses.**\n## \n## **Filtration Stages & Components**\n### **1st Stage – Sediment Pre-Filter**\nA high-capacity **polypropylene sediment filter** that removes **dust, sand, rust, and particles** from incoming water.\n This first line of defense **protects the RO membrane** and extends the life of all downstream filters and system components.\n### **2nd Stage – Carbon Block Filter**\nA premium **activated carbon block** designed to **remove chlorine, chloramine, odors, discoloration, and organic chemicals**.\n Effectively reduces **VOCs (volatile organic compounds)**, improving taste and preventing damage to the RO membrane.\n### **3rd Stage – Carbon Block Filter**\nA secondary **carbon block filter** provides **enhanced adsorption** for chlorine, taste, odor, and chemical reduction.\n This stage ensures the water entering the RO membrane is **free of chlorine and chemical residues**, maximizing system performance and longevity.\n### **4th Stage – High-Rejection TFC Reverse Osmosis Membrane**\nA **thin-film composite (TFC) membrane** engineered for superior purification.\n Removes **up to 99% of total dissolved solids (TDS)** including **arsenic, lead, fluoride, chromium, radium, bacteria, and other dissolved contaminants**, producing crystal-clear, great-tasting water.\n### \n### **5th Stage – Coconut Shell Carbon Polishing Filter**\nA **refining carbon filter** made from natural coconut shell carbon.\n It removes any **residual tastes or odors** from the storage tank, ensuring every glass of water is **fresh, crisp, and pure**.\n## \n## **Included System Components**\nThe HydroClear™ system includes:\n- Quick-connect fittings for easy installation\n- Stainless-steel check valve\n- Clog-free flow restrictor\n- 5 feet of NSF-certified food-grade tubing\n- ½\" feed-water adapter\n- High-quality lead-free faucet\n- 4-gallon pressurized storage tank\n## \n## **Complete Installation Hardware**\nEverything needed for a fast, professional setup is included:\n- Housing wrench\n- Tank ball valve\n- Feed-water valve\n- Drain saddle\n- Teflon tape\n- User manuals\n\nOptional **ice-maker kit** available at checkout for refrigerator or dispenser connection.\n",
-    "Power Requirement": "None (non-pump model)",
-    "Operating Temperatures": "40°F – 100°F (4°C – 37°C)",
-    "Installation Type": "Point of Use Indoor",
-    "Maintenance Requirement": "- **Stages 1–3 (Pre-Filters):** Replace every 6–12 months\n- **Stage 4 (Membrane):** Replace every 2–4 years\n- **Stage 5 (Post Carbon Filter):** Replace every 2–4 years\n- **Tank Sanitization:** Once a year\n- **Filter Housing O-rings:** Replace annually\n\n",
-    "Rejection Rate": "90–99% of total dissolved solids (TDS)",
-    "Feed Water TDS Limit": "Up to 2000 ppm",
-    "Recovery Rate": "~30%",
-    "Waste-to-Pure Ratio": "~3:1 (standard, varies with pressure and temperature)",
-    "Storage Tank Capacity": "4-gallon nominal (3.2 gallons usable at 80 psi)",
-    "Feed Water pH Range": "2–11",
-    "Operating Environment": "Indoor installation, protected from direct sunlight",
-    "Additional Components": "- 100% lead-free chrome faucet\n- 3.2-gallon pressurized storage tank\n- Automatic shut-off valve (ASO)\n- Feed water adapter and drain saddle\n- Quick-connect tubing and fittings\n\n",
-    "Estimated Installation Time": "- **Estimated Installation Time:** 1–2 hours for standard residential installation.\n- **Skill Level:** Beginner to intermediate DIY or professional plumber.\n\n",
-    "Delivery & Returns": "# **AQUALIVIA™ Shipping Policy**\n**Effective Date:** 10.17.2025\n **Last Updated:** 10.17.2025\n **Applies to:** All purchases made directly through AQUALIVIA™ or authorized distributors.\n## **1. General Overview**\nAt AQUALIVIA™, we take pride in ensuring your water treatment systems are built, packaged, and shipped with the highest level of care. Because most of our products are made-to-order or assembled at our Florida facility, please allow **an additional 1–2 business days for production and handling** before shipment.\nOur factory and fulfillment center operate **Monday through Friday, 8:00 AM to 4:00 PM (Eastern Time)**, excluding weekends and federal holidays. Orders placed outside operating hours will be processed on the next business day.\n## **2. Order Processing and Handling Time**\n- **Standard Orders:** Processed and shipped within **2–4 business days** after order confirmation.\n- \n- **Custom or Special Orders:** May require up to **7–10 business days** for assembly and quality testing prior to shipment.\n- \n- **Pre-Orders or Backorders:** Customers will be notified by email with the estimated ship date before payment is processed.\n- \n- Orders received **after 12:00 PM EST** are processed the following business day.\n- \nPlease note: Weekends and holidays are not considered business days.\n## **3. Shipping Options and Delivery Times**\nWe offer a range of shipping options through trusted carriers such as **UPS, FedEx, and USPS**. Estimated transit times apply **after the order has shipped** (not including handling time):\n**Shipping Method**\n**Estimated Delivery (U.S.)**\nStandard Ground\n4–7 business days\nExpedited (2-Day)\n2 business days\nExpress / Overnight\n1 business day\nFreight or Palletized Shipments\n5–10 business days\nInternational (FedEx or DHL)\n7–17 business days\nDelivery times may vary depending on your location, weather conditions, carrier delays, or customs clearance.\n## **4. Free Shipping Policy**\n- Free standard shipping applies to **orders over $99** within the **continental United States (48 contiguous states)**.\n- \n- Orders under $99 or requiring expedited service will incur shipping charges shown at checkout.\n- \n- **Hawaii, Alaska, Puerto Rico, and international destinations** are excluded from free shipping and will be charged the actual shipping rate based on weight and destination.\n- \n## **5. Freight Shipments (Large Equipment)**\nSome large systems (such as commercial units or whole-house filters) are shipped on pallets via freight carrier.\n**Freight delivery terms:**\n- The carrier will contact you to schedule delivery.\n- \n- Someone **18 years or older** must be present to inspect and sign for the shipment.\n- \n- The delivery address must be accessible to large trucks.\n- \n- Liftgate service can be requested for an additional fee.\n- \n## **6. Inspection and Damaged Shipments**\nCustomers are responsible for inspecting all shipments **at the time of delivery**.\n If there is any visible damage, note it on the carrier’s delivery receipt **before signing** and take photos of the box, label, and damaged areas.\n**To report damage:**\n1. Contact AQUALIVIA™ Customer Support within **3 business days** of delivery at 727-236-7161.\n2. \n3. Provide your order number, photos, and a brief description of the issue.\n4. \n5. Keep all original packaging until your claim is resolved.\n6. \nFailure to report damage within 5 business days may void your eligibility for a shipping claim or replacement.\n## **7. Lost or Missing Packages**\nIf tracking information shows “delivered” but the package is not received:\n- Verify the shipping address on your order confirmation.\n- \n- Check with neighbors or your local carrier office.\n- \n- Contact AQUALIVIA™ Customer Support within **7 business days** of the marked delivery date.\n- \nWe will work with the carrier to investigate. AQUALIVIA™ is **not responsible for packages stolen after confirmed delivery**.\n## **8. International Shipping**\nWe proudly ship to select international destinations via **FedEx International or DHL Express**.\n- Delivery time: **7–17 business days**, depending on customs processing.\n- \n- Customers are responsible for **all duties, taxes, import fees, and brokerage charges** imposed by their local authorities.\n- \n- We do not accept returns or exchanges on international orders unless covered under our warranty policy.\n- \n- Refused or unclaimed international shipments will be refunded **minus all shipping, customs, and handling fees**.\n- \n## **9. Refused or Undeliverable Shipments**\nIf an order is refused, undeliverable, or returned due to an incorrect address:\n- The customer is responsible for **all shipping charges (to and from)** and a **restocking fee of up to 25%**.\n- \n- These charges will be deducted from any applicable refund.\n- \n## **10. Delays and Force Majeure**\nAQUALIVIA™ is not responsible for delays caused by events beyond our control, including but not limited to natural disasters, weather conditions, labor strikes, pandemics, customs delays, or carrier errors.\nWe will make every effort to notify customers of significant delays.\n## **11. Order Changes and Cancellations**\n- Orders can be canceled or modified **before they enter the shipping process**.\n- \n- Once an order has shipped, standard **Return Policy** terms apply.\n- \n- Custom-built or made-to-order systems cannot be canceled once production begins.\n- \n## **12. Title and Risk of Loss**\nAll products become the property of the buyer **once shipped**. Title and risk of loss pass to the customer upon carrier pickup at our Florida facility.\n## **13. Governing Law**\nThis Shipping Policy is governed by the laws of the **State of Florida**. Any disputes relating to shipment or delivery will be resolved under the same **binding arbitration and venue provisions** described in the AQUALIVIA™ Terms and Conditions.\n\n",
-    "Replacements": [
-      "recmDmljjTnW3OaX3",
-      "recAw80Eo2M92EdWv",
-      "rec2jnDcWAdQgZSLw",
-      "rec8ILHivDiAyHEWz"
-    ],
-    "Shopify Product Id (from Replacements)": [
-      "gid://shopify/Product/9082538754287",
-      "gid://shopify/Product/9082534625519",
-      "gid://shopify/Product/9082534035695",
-      "gid://shopify/Product/9082534330607"
+    "Last Modified": "2025-10-23T15:20:07.000Z",
+    "Shopify Product Id (Number)": "#ERROR!",
+    "Partial or Conditional Reductions": [
+      "N/A"
     ]
   }
 ]
