@@ -878,6 +878,48 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
     contentType,
   };
 
+  // Infer a usable filename with extension so Shopify can determine file format
+  // Priority: provided filename/name -> URL basename -> default 'document'
+  const deriveFilename = () => {
+    const providedName =
+      (documentEntry && typeof documentEntry === 'object' && (documentEntry.filename || documentEntry.name || documentEntry.title)) || '';
+    const urlBase = (() => {
+      const parts = urlPath.split('/').filter(Boolean);
+      return parts.length ? parts[parts.length - 1] : '';
+    })();
+
+    const baseCandidate = String(providedName || urlBase || 'document').trim();
+
+    const hasKnownExt = /\.[A-Za-z0-9]{2,6}$/.test(baseCandidate);
+    if (hasKnownExt) return baseCandidate;
+
+    // Map MIME-like hints to extensions
+    const t = String(contentTypeCandidate).toLowerCase();
+    const extFromType = (() => {
+      if (/pdf/.test(t)) return '.pdf';
+      if (/svg/.test(t)) return '.svg';
+      if (/png/.test(t)) return '.png';
+      if (/jpe?g/.test(t)) return '.jpg';
+      if (/gif/.test(t)) return '.gif';
+      if (/webp/.test(t)) return '.webp';
+      if (/msword/.test(t)) return '.doc';
+      if (/officedocument\.wordprocessingml\.document/.test(t)) return '.docx';
+      if (/vnd\.ms-excel/.test(t)) return '.xls';
+      if (/officedocument\.spreadsheetml\.sheet/.test(t)) return '.xlsx';
+      return null;
+    })();
+
+    const extFallback = looksLikeImage ? '.jpg' : '.pdf';
+    const chosenExt = extFromType || extFallback;
+
+    return `${baseCandidate}${chosenExt}`;
+  };
+
+  const filename = deriveFilename();
+  if (filename) {
+    fileInput.filename = filename;
+  }
+
   if (documentEntry && typeof documentEntry === 'object' && documentEntry.description) {
     const alt = String(documentEntry.description).trim();
     if (alt) {
