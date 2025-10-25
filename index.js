@@ -1832,6 +1832,51 @@ mutation productCreate($input: ProductInput!, $media: [CreateMediaInput!]) {
 }
 `;
 
+async function replaceProductMedia(productId, product) {
+  const media = buildProductMediaArray(product);
+  const hasNewMedia = Array.isArray(media) && media.length > 0;
+  if (!hasNewMedia) {
+    return { replaced: false, reason: 'no-new-media' };
+  }
+
+  // 1) Fetch existing media IDs
+  const existing = await callShopify(
+    PRODUCT_MEDIA_IDS_QUERY,
+    { id: productId },
+    'productMediaFetch'
+  );
+  const edges = existing?.data?.product?.media?.edges || [];
+  const existingIds = edges.map((e) => e?.node?.id).filter(Boolean);
+
+  // 2) Delete existing media if any
+  if (existingIds.length > 0) {
+    const del = await callShopify(
+      PRODUCT_DELETE_MEDIA_MUTATION,
+      { productId, mediaIds: existingIds },
+      'productDeleteMedia'
+    );
+    const delErrors = del?.data?.productDeleteMedia?.userErrors || [];
+    if (delErrors.length > 0) {
+      const message = delErrors.map((e) => e.message).join('; ');
+      throw new Error(`productDeleteMedia userErrors: ${message}`);
+    }
+  }
+
+  // 3) Create new media
+  const crt = await callShopify(
+    PRODUCT_CREATE_MEDIA_MUTATION,
+    { productId, media },
+    'productCreateMedia'
+  );
+  const mediaErrors = crt?.data?.productCreateMedia?.mediaUserErrors || [];
+  if (mediaErrors.length > 0) {
+    const message = mediaErrors.map((e) => e.message).join('; ');
+    throw new Error(`productCreateMedia mediaUserErrors: ${message}`);
+  }
+
+  return { replaced: true, createdCount: (crt?.data?.productCreateMedia?.media || []).length };
+}
+
 const PRODUCT_UPDATE_MUTATION = `
 mutation productUpdate($input: ProductInput!) {
   productUpdate(input: $input) {
@@ -1960,6 +2005,37 @@ query productDetails($id: ID!) {
 }
 `;
 
+const PRODUCT_MEDIA_IDS_QUERY = `
+query productMedia($id: ID!) {
+  product(id: $id) {
+    id
+    media(first: 100) {
+      edges {
+        node { id }
+      }
+    }
+  }
+}
+`;
+
+const PRODUCT_DELETE_MEDIA_MUTATION = `
+mutation productDeleteMedia($productId: ID!, $mediaIds: [ID!]!) {
+  productDeleteMedia(productId: $productId, mediaIds: $mediaIds) {
+    deletedMediaIds
+    userErrors { field message }
+  }
+}
+`;
+
+const PRODUCT_CREATE_MEDIA_MUTATION = `
+mutation productCreateMedia($productId: ID!, $media: [CreateMediaInput!]!) {
+  productCreateMedia(productId: $productId, media: $media) {
+    media { id }
+    mediaUserErrors { field message }
+  }
+}
+`;
+
 async function createProduct(product, optionNames, context = {}) {
   const { addonMetafieldResult, documentationMetafieldResult } = context;
   const input = buildProductInput(product, { addonMetafieldResult, documentationMetafieldResult });
@@ -2032,6 +2108,13 @@ async function updateProduct(productId, product, optionNames, context = {}) {
 
   const productHandle = result?.product?.handle;
   const onlineStoreUrl = result?.product?.onlineStoreUrl;
+
+  // Replace media after product core fields are updated
+  try {
+    await replaceProductMedia(productId, product);
+  } catch (mediaError) {
+    console.warn('Failed to replace product media during update', { productId, error: mediaError.message });
+  }
 
   return {
     productId: updatedProductId,
