@@ -1160,7 +1160,12 @@ function buildMetafields(product, options = {}) {
 
   const waterProblemsSolved = asMultiLineValue(product['Water Problems Solved']);
   if (waterProblemsSolved) {
-    const listValues = waterProblemsSolved.split('\n').map(line => line.trim()).filter(Boolean);
+    const listValues = waterProblemsSolved
+      .split('\n')
+      .map((line) => line.trim())
+      // Remove common bullet markers so the theme's bullets don't duplicate them
+      .map((line) => line.replace(/^[-*+•]\s+/, '').replace(/^\d+\.\s+/, ''))
+      .filter(Boolean);
     if (listValues.length > 0) {
       metafields.push({
         namespace: 'custom',
