@@ -1038,54 +1038,113 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
     const extMatch = urlBase.match(/\.[A-Za-z0-9]{2,6}$/);
 
     let ext = '';
+    let baseFilename = 'document';
 
-    if (extMatch) {
-      // URL has extension, use it
+    // MIME type to extension mapping
+    const mimeToExt = {
+      'application/pdf': '.pdf',
+      'application/msword': '.doc',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '.docx',
+      'application/vnd.ms-excel': '.xls',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx',
+      'application/zip': '.zip',
+      'application/x-zip-compressed': '.zip',
+      'text/plain': '.txt',
+      'text/csv': '.csv',
+      'image/png': '.png',
+      'image/jpeg': '.jpg',
+      'image/jpg': '.jpg',
+      'image/gif': '.gif',
+      'image/webp': '.webp',
+      'image/svg+xml': '.svg',
+    };
+
+    // Priority 1: Get filename and extension from the documentEntry object (Airtable attachment)
+    if (documentEntry && typeof documentEntry === 'object') {
+      const providedFilename = documentEntry.filename || documentEntry.name || documentEntry.title;
+      if (providedFilename) {
+        const filenameStr = String(providedFilename).trim();
+        const filenameExtMatch = filenameStr.match(/\.[A-Za-z0-9]{2,6}$/);
+        if (filenameExtMatch) {
+          ext = filenameExtMatch[0].toLowerCase();
+          baseFilename = filenameStr.replace(/\.[A-Za-z0-9]{2,6}$/, '');
+          console.log('Using filename from attachment object', {
+            url: trimmedUrl,
+            originalFilename: filenameStr,
+            baseFilename,
+            ext,
+          });
+        } else {
+          baseFilename = filenameStr;
+        }
+      }
+
+      // Priority 2: Get extension from the type field (MIME type) if we don't have one yet
+      if (!ext && documentEntry.type) {
+        const mimeType = String(documentEntry.type).split(';')[0].trim().toLowerCase();
+        ext = mimeToExt[mimeType] || '';
+        if (ext) {
+          console.log('Using extension from MIME type in attachment object', {
+            url: trimmedUrl,
+            mimeType,
+            ext,
+          });
+        }
+      }
+    }
+
+    // Priority 3: Try URL path if still no extension
+    if (!ext && extMatch) {
       ext = extMatch[0].toLowerCase();
-    } else {
-      // No extension in URL - detect from Content-Type header
+      if (!baseFilename || baseFilename === 'document') {
+        baseFilename = urlBase.replace(/\.[A-Za-z0-9]{2,6}$/, '') || 'document';
+      }
+      console.log('Using extension from URL path', {
+        url: trimmedUrl,
+        baseFilename,
+        ext,
+      });
+    }
+
+    // Priority 4: Try HEAD request to detect content type
+    if (!ext) {
       try {
+        console.log('Attempting HEAD request to detect content type', { url: trimmedUrl });
         const headResponse = await fetch(trimmedUrl, { method: 'HEAD' });
         const contentTypeHeader = headResponse.headers.get('content-type') || '';
-
-        // Map common MIME types to extensions
-        const mimeToExt = {
-          'application/pdf': '.pdf',
-          'application/msword': '.doc',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '.docx',
-          'application/vnd.ms-excel': '.xls',
-          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx',
-          'application/zip': '.zip',
-          'application/x-zip-compressed': '.zip',
-          'text/plain': '.txt',
-          'text/csv': '.csv',
-          'image/png': '.png',
-          'image/jpeg': '.jpg',
-          'image/jpg': '.jpg',
-          'image/gif': '.gif',
-          'image/webp': '.webp',
-          'image/svg+xml': '.svg',
-        };
-
         const mimeType = contentTypeHeader.split(';')[0].trim().toLowerCase();
-        ext = mimeToExt[mimeType] || '.pdf'; // Default to .pdf for documents
-      } catch (fetchError) {
-        // If HEAD request fails, default to .pdf for documents or .jpg for images
-        ext = looksLikeImage ? '.jpg' : '.pdf';
-        console.warn('Failed to detect content type, using default extension', {
+        ext = mimeToExt[mimeType] || '';
+        console.log('HEAD request result', {
           url: trimmedUrl,
-          defaultExt: ext,
+          contentType: contentTypeHeader,
+          mimeType,
+          ext: ext || '(none detected)',
+        });
+      } catch (fetchError) {
+        console.warn('HEAD request failed', {
+          url: trimmedUrl,
           error: fetchError.message,
         });
       }
     }
 
-    const providedBase =
-      (documentEntry && typeof documentEntry === 'object' && (documentEntry.filename || documentEntry.name || documentEntry.title)) ||
-      urlBase.replace(/\.[A-Za-z0-9]{2,6}$/, '') ||
-      'document';
-    const cleanBase = String(providedBase).trim().replace(/\.[A-Za-z0-9]{2,6}$/, '');
-    fileInput.filename = `${cleanBase}${ext}`;
+    // Priority 5: Final fallback based on content type
+    if (!ext) {
+      ext = looksLikeImage ? '.jpg' : '.pdf';
+      console.warn('Using fallback extension', {
+        url: trimmedUrl,
+        looksLikeImage,
+        fallbackExt: ext,
+      });
+    }
+
+    fileInput.filename = `${baseFilename}${ext}`;
+    console.log('Final filename set', {
+      url: trimmedUrl,
+      filename: fileInput.filename,
+      baseFilename,
+      ext,
+    });
   })();
 
   if (documentEntry && typeof documentEntry === 'object' && documentEntry.description) {
