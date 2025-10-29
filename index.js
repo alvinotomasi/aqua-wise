@@ -796,7 +796,7 @@ function parseMinMax(input) {
   }
   return { min: undefined, max: undefined };
 }
- 
+
 function buildAddonMetafield(addonShopifyProductIds) {
   if (!Array.isArray(addonShopifyProductIds) || addonShopifyProductIds.length === 0) {
     return {
@@ -999,7 +999,7 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
 
   const cacheKey =
     (documentEntry && typeof documentEntry === 'object' && (documentEntry.id || documentEntry.url || documentEntry.link))
-      || trimmedUrl;
+    || trimmedUrl;
 
   if (fileCache && cacheKey && fileCache.has(cacheKey)) {
     return {
@@ -1031,16 +1031,55 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
     contentType,
   };
 
-  // Shopify requires filename extension to match the originalSource URL.
-  // Only set filename when the URL path itself includes an explicit extension.
-  (function maybeSetFilename() {
+  // Shopify requires filename with proper extension
+  await (async function setFilename() {
     const parts = urlPath.split('/').filter(Boolean);
     const urlBase = parts.length ? parts[parts.length - 1] : '';
     const extMatch = urlBase.match(/\.[A-Za-z0-9]{2,6}$/);
-    if (!extMatch) {
-      return; // URL has no extension (e.g., Airtable CDN) → omit filename to avoid Shopify error
+
+    let ext = '';
+
+    if (extMatch) {
+      // URL has extension, use it
+      ext = extMatch[0].toLowerCase();
+    } else {
+      // No extension in URL - detect from Content-Type header
+      try {
+        const headResponse = await fetch(trimmedUrl, { method: 'HEAD' });
+        const contentTypeHeader = headResponse.headers.get('content-type') || '';
+
+        // Map common MIME types to extensions
+        const mimeToExt = {
+          'application/pdf': '.pdf',
+          'application/msword': '.doc',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '.docx',
+          'application/vnd.ms-excel': '.xls',
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx',
+          'application/zip': '.zip',
+          'application/x-zip-compressed': '.zip',
+          'text/plain': '.txt',
+          'text/csv': '.csv',
+          'image/png': '.png',
+          'image/jpeg': '.jpg',
+          'image/jpg': '.jpg',
+          'image/gif': '.gif',
+          'image/webp': '.webp',
+          'image/svg+xml': '.svg',
+        };
+
+        const mimeType = contentTypeHeader.split(';')[0].trim().toLowerCase();
+        ext = mimeToExt[mimeType] || '.pdf'; // Default to .pdf for documents
+      } catch (fetchError) {
+        // If HEAD request fails, default to .pdf for documents or .jpg for images
+        ext = looksLikeImage ? '.jpg' : '.pdf';
+        console.warn('Failed to detect content type, using default extension', {
+          url: trimmedUrl,
+          defaultExt: ext,
+          error: fetchError.message,
+        });
+      }
     }
-    const ext = extMatch[0].toLowerCase();
+
     const providedBase =
       (documentEntry && typeof documentEntry === 'object' && (documentEntry.filename || documentEntry.name || documentEntry.title)) ||
       urlBase.replace(/\.[A-Za-z0-9]{2,6}$/, '') ||
@@ -1935,12 +1974,12 @@ async function callShopify(query, variables = {}, requestLabel = 'graphqlRequest
   if (variables?.input?.metafields) {
     const metafieldsToLog = Array.isArray(variables.input.metafields)
       ? variables.input.metafields.map((field, index) => ({
-          index,
-          namespace: field?.namespace,
-          key: field?.key,
-          type: field?.type,
-          value: field?.value,
-        }))
+        index,
+        namespace: field?.namespace,
+        key: field?.key,
+        type: field?.type,
+        value: field?.value,
+      }))
       : variables.input.metafields;
 
     console.log('Shopify metafields payload', {
@@ -2252,7 +2291,7 @@ async function createProduct(product, optionNames, context = {}) {
 async function updateProduct(productId, product, optionNames, context = {}) {
   const { addonMetafieldResult, documentationMetafieldResult } = context;
   const input = buildProductInput(product, { addonMetafieldResult, documentationMetafieldResult });
-  
+
   // Add the product ID to the input for updates
   input.id = productId;
 
@@ -2564,8 +2603,8 @@ async function shopifyProductSync(req, res) {
       const mergedCollections = Array.from(
         new Set(
           group.flatMap((r) => normaliseArray(r.Collection))
-               .map((v) => String(v || '').trim())
-               .filter(Boolean)
+            .map((v) => String(v || '').trim())
+            .filter(Boolean)
         )
       );
 
