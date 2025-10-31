@@ -1450,7 +1450,7 @@ function buildMetafields(product, options = {}) {
     metafields.push({
       namespace: 'custom',
       key: 'bundle_product_ids',
-      type: 'single_line_text_field',
+      type: 'multi_line_text_field',
       value: includedProductIds,
     });
   }
@@ -1460,7 +1460,7 @@ function buildMetafields(product, options = {}) {
     metafields.push({
       namespace: 'custom',
       key: 'water_problems_solved',
-      type: 'multi_line_text_field',
+      type: 'single_line_text_field',
       value: waterProblemsSolvedHtml,
     });
   }
