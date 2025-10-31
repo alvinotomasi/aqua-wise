@@ -1042,6 +1042,7 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
   // For Airtable URLs without file extensions in the path, we must NOT provide a filename
   // because Shopify validates that the filename extension matches the URL extension.
   // Shopify will automatically detect the file type from the content when it fetches the URL.
+  // Note: Shopify will serve these files as application/octet-stream, but they download correctly.
   const urlHasExtension = /\.[A-Za-z0-9]{2,6}(\?|$)/.test(urlPath);
   
   if (urlHasExtension) {
@@ -1062,10 +1063,11 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
   } else {
     // Airtable URLs don't have extensions in the path - let Shopify auto-detect
     // Shopify will fetch the file and determine its type automatically
+    // The file will be served as application/octet-stream but downloads and opens correctly
     console.log('Airtable URL without extension - Shopify will auto-detect file type', {
       url: trimmedUrl,
       originalFilename: documentEntry?.filename || 'N/A',
-      note: 'Shopify will fetch the file and set the correct extension automatically',
+      note: 'File will download correctly even with generic Content-Type',
     });
   }
 
@@ -2227,6 +2229,18 @@ mutation productCreateMedia($productId: ID!, $media: [CreateMediaInput!]!) {
 }
 `;
 
+const PRODUCT_DELETE_MUTATION = `
+mutation productDelete($input: ProductDeleteInput!) {
+  productDelete(input: $input) {
+    deletedProductId
+    userErrors {
+      field
+      message
+    }
+  }
+}
+`;
+
 async function createProduct(product, optionNames, context = {}) {
   const { addonMetafieldResult, documentationMetafieldResult } = context;
   const input = buildProductInput(product, { addonMetafieldResult, documentationMetafieldResult });
@@ -2496,6 +2510,25 @@ async function fetchProductDetails(productId) {
   }
 }
 
+async function deleteProduct(productId) {
+  const response = await callShopify(
+    PRODUCT_DELETE_MUTATION,
+    { input: { id: productId } },
+    'productDelete'
+  );
+
+  const payload = response.data?.productDelete;
+  const userErrors = payload?.userErrors || [];
+  if (userErrors.length > 0) {
+    const message = userErrors.map((error) => error.message).join('; ');
+    throw new Error(`productDelete userErrors: ${message}`);
+  }
+
+  return {
+    deletedProductId: payload?.deletedProductId || productId,
+  };
+}
+
 async function shopifyProductSync(req, res) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
@@ -2545,6 +2578,38 @@ async function shopifyProductSync(req, res) {
     const context = { sourceId: sourceIds.join(',') || 'unknown', fileCache: fileReferenceCache };
 
     try {
+      const existingProductId = base['Shopify Product Id'] || base['shopify_product_id'];
+      const shouldDelete = base['Sell on Website'] === false;
+
+      // If product should be deleted and exists in Shopify, delete it
+      if (shouldDelete && existingProductId) {
+        const normalizedProductId = normaliseShopifyProductGid(existingProductId);
+        if (normalizedProductId) {
+          const deleteResult = await deleteProduct(normalizedProductId);
+          results.push({
+            ...context,
+            productId: normalizedProductId,
+            productTitle: base['Product Name'] || 'Unknown',
+            status: 'success',
+            operation: 'deleted',
+            deletedProductId: deleteResult.deletedProductId,
+          });
+          continue;
+        }
+      }
+
+      // If product should be deleted but doesn't exist in Shopify, skip it
+      if (shouldDelete && !existingProductId) {
+        results.push({
+          ...context,
+          productTitle: base['Product Name'] || 'Unknown',
+          status: 'skipped',
+          operation: 'delete_skipped',
+          reason: 'No Shopify Product Id provided for deletion',
+        });
+        continue;
+      }
+
       // Determine option name if we have multiple variants
       const groupHasMultiple = group.length > 1;
       const optionName =
@@ -2563,7 +2628,6 @@ async function shopifyProductSync(req, res) {
       });
 
       // Check if we should update or create
-      const existingProductId = base['Shopify Product Id'] || base['shopify_product_id'];
       const created = existingProductId
         ? await updateProduct(existingProductId, base, optionNames, { addonMetafieldResult, optionalUpgradesMetafieldResult, replacementsMetafieldResult, documentationMetafieldResult })
         : await createProduct(base, optionNames, { addonMetafieldResult, optionalUpgradesMetafieldResult, replacementsMetafieldResult, documentationMetafieldResult });
@@ -2672,6 +2736,7 @@ module.exports = {
   updateProduct,
   createVariant,
   createVariants,
+  deleteProduct,
   normaliseArray,
   attachCollections,
   publishProduct,
