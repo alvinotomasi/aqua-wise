@@ -1031,121 +1031,43 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
     contentType,
   };
 
-  // Shopify requires filename with proper extension
-  await (async function setFilename() {
+  // Set alt text if available
+  if (documentEntry && typeof documentEntry === 'object' && documentEntry.description) {
+    const alt = String(documentEntry.description).trim();
+    if (alt) {
+      fileInput.alt = alt;
+    }
+  }
+
+  // For Airtable URLs without file extensions in the path, we must NOT provide a filename
+  // because Shopify validates that the filename extension matches the URL extension.
+  // Shopify will automatically detect the file type from the content when it fetches the URL.
+  const urlHasExtension = /\.[A-Za-z0-9]{2,6}(\?|$)/.test(urlPath);
+  
+  if (urlHasExtension) {
+    // URL has extension - extract and use it
     const parts = urlPath.split('/').filter(Boolean);
-    const urlBase = parts.length ? parts[parts.length - 1] : '';
-    const extMatch = urlBase.match(/\.[A-Za-z0-9]{2,6}$/);
-
-    let ext = '';
-    let baseFilename = 'document';
-
-    // MIME type to extension mapping
-    const mimeToExt = {
-      'application/pdf': '.pdf',
-      'application/msword': '.doc',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '.docx',
-      'application/vnd.ms-excel': '.xls',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx',
-      'application/zip': '.zip',
-      'application/x-zip-compressed': '.zip',
-      'text/plain': '.txt',
-      'text/csv': '.csv',
-      'image/png': '.png',
-      'image/jpeg': '.jpg',
-      'image/jpg': '.jpg',
-      'image/gif': '.gif',
-      'image/webp': '.webp',
-      'image/svg+xml': '.svg',
-    };
-
-    // Priority 1: Get filename and extension from the documentEntry object (Airtable attachment)
-    if (documentEntry && typeof documentEntry === 'object') {
-      const providedFilename = documentEntry.filename || documentEntry.name || documentEntry.title;
-      if (providedFilename) {
-        const filenameStr = String(providedFilename).trim();
-        const filenameExtMatch = filenameStr.match(/\.[A-Za-z0-9]{2,6}$/);
-        if (filenameExtMatch) {
-          ext = filenameExtMatch[0].toLowerCase();
-          baseFilename = filenameStr.replace(/\.[A-Za-z0-9]{2,6}$/, '');
-          console.log('Using filename from attachment object', {
-            url: trimmedUrl,
-            originalFilename: filenameStr,
-            baseFilename,
-            ext,
-          });
-        } else {
-          baseFilename = filenameStr;
-        }
-      }
-
-      // Priority 2: Get extension from the type field (MIME type) if we don't have one yet
-      if (!ext && documentEntry.type) {
-        const mimeType = String(documentEntry.type).split(';')[0].trim().toLowerCase();
-        ext = mimeToExt[mimeType] || '';
-        if (ext) {
-          console.log('Using extension from MIME type in attachment object', {
-            url: trimmedUrl,
-            mimeType,
-            ext,
-          });
-        }
-      }
-    }
-
-    // Priority 3: Try URL path if still no extension
-    if (!ext && extMatch) {
-      ext = extMatch[0].toLowerCase();
-      if (!baseFilename || baseFilename === 'document') {
-        baseFilename = urlBase.replace(/\.[A-Za-z0-9]{2,6}$/, '') || 'document';
-      }
-      console.log('Using extension from URL path', {
+    const urlBase = parts.length ? parts[parts.length - 1].split('?')[0] : '';
+    const extMatch = urlBase.match(/\.([A-Za-z0-9]{2,6})$/);
+    
+    if (extMatch) {
+      const ext = `.${extMatch[1].toLowerCase()}`;
+      const baseFilename = urlBase.substring(0, urlBase.lastIndexOf('.')) || 'document';
+      fileInput.filename = `${baseFilename}${ext}`;
+      console.log('Using filename from URL with extension', {
         url: trimmedUrl,
-        baseFilename,
-        ext,
+        filename: fileInput.filename,
       });
     }
-
-    // Priority 4: Try HEAD request to detect content type
-    if (!ext) {
-      try {
-        console.log('Attempting HEAD request to detect content type', { url: trimmedUrl });
-        const headResponse = await fetch(trimmedUrl, { method: 'HEAD' });
-        const contentTypeHeader = headResponse.headers.get('content-type') || '';
-        const mimeType = contentTypeHeader.split(';')[0].trim().toLowerCase();
-        ext = mimeToExt[mimeType] || '';
-        console.log('HEAD request result', {
-          url: trimmedUrl,
-          contentType: contentTypeHeader,
-          mimeType,
-          ext: ext || '(none detected)',
-        });
-      } catch (fetchError) {
-        console.warn('HEAD request failed', {
-          url: trimmedUrl,
-          error: fetchError.message,
-        });
-      }
-    }
-
-    // Priority 5: Final fallback based on content type
-    if (!ext) {
-      ext = looksLikeImage ? '.jpg' : '.pdf';
-      console.warn('Using fallback extension', {
-        url: trimmedUrl,
-        looksLikeImage,
-        fallbackExt: ext,
-      });
-    }
-
-    fileInput.filename = `${baseFilename}${ext}`;
-    console.log('Final filename set', {
+  } else {
+    // Airtable URLs don't have extensions in the path - let Shopify auto-detect
+    // Shopify will fetch the file and determine its type automatically
+    console.log('Airtable URL without extension - Shopify will auto-detect file type', {
       url: trimmedUrl,
-      filename: fileInput.filename,
-      baseFilename,
-      ext,
+      originalFilename: documentEntry?.filename || 'N/A',
+      note: 'Shopify will fetch the file and set the correct extension automatically',
     });
-  })();
+  }
 
   if (documentEntry && typeof documentEntry === 'object' && documentEntry.description) {
     const alt = String(documentEntry.description).trim();
