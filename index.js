@@ -1550,8 +1550,8 @@ function buildMetafields(product, options = {}) {
     });
   }
 
-  // System Capacity (GPD) - integer
-  const systemCapacityGpd = toIntegerString(
+  // System Capacity (GPD) - text
+  const systemCapacityGpd = asSingleLineValue(
     product['System Capacity'] ||
     product.Capacity ||
     product['System Capacity (GPD)'] ||
