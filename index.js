@@ -1460,7 +1460,7 @@ function buildMetafields(product, options = {}) {
     metafields.push({
       namespace: 'custom',
       key: 'water_problems_solved',
-      type: 'single_line_text_field',
+      type: 'list.single_line_text_field',
       value: waterProblemsSolvedHtml,
     });
   }
