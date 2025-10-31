@@ -972,6 +972,125 @@ function deriveDocumentUrl(entry) {
   return undefined;
 }
 
+/**
+ * Upload file using staged upload (download from Airtable, re-upload to Shopify)
+ * This ensures proper Content-Type headers
+ */
+async function uploadViaStagedUpload(trimmedUrl, documentEntry) {
+  console.log('Using staged upload for proper Content-Type', {
+    url: trimmedUrl,
+    filename: documentEntry?.filename || 'N/A',
+  });
+
+  // Step 1: Download file from Airtable
+  const fileResponse = await fetch(trimmedUrl);
+  if (!fileResponse.ok) {
+    throw new Error(`Failed to download file: ${fileResponse.status}`);
+  }
+
+  const fileBuffer = Buffer.from(await fileResponse.arrayBuffer());
+  const filename = documentEntry?.filename || 'document.pdf';
+  const mimeType = documentEntry?.type || 'application/pdf';
+
+  // Step 2: Request staged upload URL from Shopify
+  const STAGED_UPLOAD_MUTATION = `
+    mutation stagedUploadsCreate($input: [StagedUploadInput!]!) {
+      stagedUploadsCreate(input: $input) {
+        stagedTargets {
+          url
+          resourceUrl
+          parameters {
+            name
+            value
+          }
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+
+  const stagedResponse = await callShopify(
+    STAGED_UPLOAD_MUTATION,
+    {
+      input: [{
+        resource: 'FILE',
+        filename,
+        mimeType,
+        httpMethod: 'POST',
+        fileSize: fileBuffer.length.toString(),
+      }],
+    },
+    'stagedUploadsCreate'
+  );
+
+  const stagedTarget = stagedResponse.data?.stagedUploadsCreate?.stagedTargets?.[0];
+  if (!stagedTarget) {
+    const errors = stagedResponse.data?.stagedUploadsCreate?.userErrors || [];
+    throw new Error(`Failed to get staged upload URL: ${JSON.stringify(errors)}`);
+  }
+
+  // Step 3: Upload file to staged URL
+  const formData = new FormData();
+
+  // Add parameters from Shopify
+  stagedTarget.parameters.forEach(param => {
+    formData.append(param.name, param.value);
+  });
+
+  // Add the file
+  const blob = new Blob([fileBuffer], { type: mimeType });
+  formData.append('file', blob, filename);
+
+  const uploadResponse = await fetch(stagedTarget.url, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!uploadResponse.ok) {
+    throw new Error(`Staged upload failed: ${uploadResponse.status}`);
+  }
+
+  // Step 4: Create file reference in Shopify
+  const fileCreateResponse = await callShopify(
+    FILE_CREATE_MUTATION,
+    {
+      files: [{
+        originalSource: stagedTarget.resourceUrl,
+        contentType: 'FILE',
+        filename,
+      }],
+    },
+    'fileCreate'
+  );
+
+  const payload = fileCreateResponse.data?.fileCreate;
+  if (!payload) {
+    throw new Error('fileCreate did not return a payload.');
+  }
+
+  const userErrors = payload.userErrors || [];
+  if (userErrors.length > 0) {
+    const message = userErrors.map((error) => error.message).join('; ');
+    throw new Error(`fileCreate userErrors: ${message}`);
+  }
+
+  const createdFile = payload.files?.[0];
+  if (!createdFile?.id) {
+    throw new Error('fileCreate did not return a file id.');
+  }
+
+  console.log('✓ Staged upload successful with proper Content-Type', {
+    fileId: createdFile.id,
+    filename,
+    mimeType,
+  });
+
+  return createdFile.id;
+}
+
 async function ensureShopifyFileReference(documentEntry, options = {}) {
   const { fileCache } = options;
 
@@ -1024,88 +1143,74 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
   const looksLikeImage =
     /image\//i.test(String(contentTypeCandidate)) ||
     /\.(png|jpe?g|gif|webp|svg)$/i.test(urlPath);
-  const contentType = looksLikeImage ? 'IMAGE' : 'FILE';
 
-  const fileInput = {
-    originalSource: trimmedUrl,
-    contentType,
-  };
-
-  // Set alt text if available
-  if (documentEntry && typeof documentEntry === 'object' && documentEntry.description) {
-    const alt = String(documentEntry.description).trim();
-    if (alt) {
-      fileInput.alt = alt;
-    }
-  }
-
-  // Determine filename for Shopify
-  // For Airtable URLs without extensions: Don't provide filename to avoid validation error
-  // Shopify will auto-detect file type but serve as application/octet-stream
+  // Check if URL has extension
   const urlHasExtension = /\.[A-Za-z0-9]{2,6}(\?|$)/.test(urlPath);
-  
-  if (urlHasExtension) {
-    // URL has extension - extract and use it
-    const parts = urlPath.split('/').filter(Boolean);
-    const urlBase = parts.length ? parts[parts.length - 1].split('?')[0] : '';
-    const extMatch = urlBase.match(/\.([A-Za-z0-9]{2,6})$/);
-    
-    if (extMatch) {
-      const ext = `.${extMatch[1].toLowerCase()}`;
-      const baseFilename = urlBase.substring(0, urlBase.lastIndexOf('.')) || 'document';
-      fileInput.filename = `${baseFilename}${ext}`;
-      console.log('Using filename from URL with extension', {
-        url: trimmedUrl,
-        filename: fileInput.filename,
-      });
-    }
-  } else {
-    // Airtable URL without extension - don't provide filename
-    // Shopify validates filename extension against URL, which will fail
-    // File will work correctly but be served as application/octet-stream
-    console.log('Airtable URL without extension - no filename provided', {
-      url: trimmedUrl,
-      originalFilename: documentEntry?.filename || 'N/A',
-      note: 'File will be served as application/octet-stream but downloads correctly',
-    });
-  }
-
-  if (documentEntry && typeof documentEntry === 'object' && documentEntry.description) {
-    const alt = String(documentEntry.description).trim();
-    if (alt) {
-      fileInput.alt = alt;
-    }
-  }
 
   try {
-    const response = await callShopify(
-      FILE_CREATE_MUTATION,
-      { files: [fileInput] },
-      'fileCreate'
-    );
+    let fileId;
 
-    const payload = response.data?.fileCreate;
-    if (!payload) {
-      throw new Error('fileCreate did not return a payload.');
-    }
+    // For Airtable URLs without extensions: Use staged upload for proper Content-Type
+    if (!urlHasExtension && !looksLikeImage) {
+      fileId = await uploadViaStagedUpload(trimmedUrl, documentEntry);
+    } else {
+      // For URLs with extensions or images: Use direct URL upload
+      const contentType = looksLikeImage ? 'IMAGE' : 'FILE';
+      const fileInput = {
+        originalSource: trimmedUrl,
+        contentType,
+      };
 
-    const userErrors = payload.userErrors || [];
-    if (userErrors.length > 0) {
-      const message = userErrors.map((error) => error.message).join('; ');
-      throw new Error(`fileCreate userErrors: ${message}`);
-    }
+      if (urlHasExtension) {
+        const parts = urlPath.split('/').filter(Boolean);
+        const urlBase = parts.length ? parts[parts.length - 1].split('?')[0] : '';
+        const extMatch = urlBase.match(/\.([A-Za-z0-9]{2,6})$/);
 
-    const createdFile = payload.files?.[0];
-    if (!createdFile?.id) {
-      throw new Error('fileCreate did not return a file id.');
+        if (extMatch) {
+          const ext = `.${extMatch[1].toLowerCase()}`;
+          const baseFilename = urlBase.substring(0, urlBase.lastIndexOf('.')) || 'document';
+          fileInput.filename = `${baseFilename}${ext}`;
+        }
+      }
+
+      if (documentEntry && typeof documentEntry === 'object' && documentEntry.description) {
+        const alt = String(documentEntry.description).trim();
+        if (alt) {
+          fileInput.alt = alt;
+        }
+      }
+
+      const response = await callShopify(
+        FILE_CREATE_MUTATION,
+        { files: [fileInput] },
+        'fileCreate'
+      );
+
+      const payload = response.data?.fileCreate;
+      if (!payload) {
+        throw new Error('fileCreate did not return a payload.');
+      }
+
+      const userErrors = payload.userErrors || [];
+      if (userErrors.length > 0) {
+        const message = userErrors.map((error) => error.message).join('; ');
+        throw new Error(`fileCreate userErrors: ${message}`);
+      }
+
+      const createdFile = payload.files?.[0];
+      if (!createdFile?.id) {
+        throw new Error('fileCreate did not return a file id.');
+      }
+
+      fileId = createdFile.id;
     }
 
     if (fileCache && cacheKey) {
-      fileCache.set(cacheKey, createdFile.id);
+      fileCache.set(cacheKey, fileId);
     }
 
     return {
-      fileId: createdFile.id,
+      fileId,
       status: 'created',
       url: trimmedUrl,
       source: documentEntry,
@@ -1350,22 +1455,14 @@ function buildMetafields(product, options = {}) {
     });
   }
 
-  const waterProblemsSolved = asMultiLineValue(product['Water Problems Solved']);
-  if (waterProblemsSolved) {
-    const listValues = waterProblemsSolved
-      .split('\n')
-      .map((line) => line.trim())
-      // Remove common bullet markers so the theme's bullets don't duplicate them
-      .map((line) => line.replace(/^[-*+•]\s+/, '').replace(/^\d+\.\s+/, ''))
-      .filter(Boolean);
-    if (listValues.length > 0) {
-      metafields.push({
-        namespace: 'custom',
-        key: 'water_problems_solved',
-        type: 'list.single_line_text_field',
-        value: JSON.stringify(listValues),
-      });
-    }
+  const waterProblemsSolvedHtml = markdownToHtml(product['Water Problems Solved']);
+  if (waterProblemsSolvedHtml) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'water_problems_solved',
+      type: 'multi_line_text_field',
+      value: waterProblemsSolvedHtml,
+    });
   }
 
   const sayGoodbyeTo = asMultiLineValue(product['Engineered to Reduce']);
