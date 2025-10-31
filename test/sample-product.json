@@ -1,18 +1,251 @@
 [
   {
-    "id": "recAEY58tqV7VnKSq",
-    "createdTime": "2024-11-13T14:25:54.000Z",
-    "Product Name": "EVOSOFT™ Cabinet Style 32K Grain City Water Softener",
-    "Product ID": 82,
-    "Shopify Product Id": "gid://shopify/Product/9102772469999",
+    "id": "recfUshGmphBDqeDH",
+    "createdTime": "2025-08-29T15:23:03.000Z",
+    "Product Name": "ScaleProTec™ Prime 32K - Salt Free + Carbon Filter For City Water",
+    "Product ID": 242,
+    "Image": [
+      {
+        "id": "attTtCHBHL9jOYjSM",
+        "width": 2048,
+        "height": 2048,
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/jZJlE5yVBSY6n7xr072q_g/_6wDxaBzZpZTJLhN5w7EVD2PAPdzlm9Teac8e-PWYpZDce_kQ48sLQPayVDXe0gYomoC5Y00jDnbPoDyJ98i4pngLzmbjf4tboWY257PJGAwzOBXeiP-vX617_6uQZkNfI1omToBPIOZNqWDZ1ucIvk-uP8VPfQ2Tqrlp8MX3zD3CtiQY68UDFRvwRbyjGMCWtuS4g389X4HANHuG4f8Qw/3dWsWKAGV9mAP0pyTBdZQhKS09Brodcs5HlSqCtU-qk",
+        "filename": "AQUALIVIA™ ScaleProTec™ Salt Free Water Softener.jpg",
+        "size": 777207,
+        "type": "image/jpeg",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/k6BG2wUbYjCZJ-u6qEO0YQ/KuXNkXpCsWx6qvz3Rd8yoCxrx-c4oqV6HMWKjJivQLutOBrxy2lSmz-xVPi-CD_pQhacXlhytq6-savj_b6kt4SI5wGxTrhbHbXPhAiAFes_t3KcJ-9uIhmxkAvHI8XA5fi30zg573oe4z6-TInW4w/Ve2vybEygz-Ymjm-LDmC-en2Vn5NBh-78oWTH7oAgyk",
+            "width": 36,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/3-hUlGVnPRkf6LHTFaZZcA/AnzUfnHSgr-0yswYU1oKha6_k2TpJ9OleAJ0o3ixT5DpKZkO6R4Lp6HNLKjHJz7VqJdP3yqIHWhArzkRVGbD-Gua4jS0yKAAOxYJzc8nwSwCwIgzuVHOdG-K1kdFKAvhvxf9NffBwG7eTuRxHfIx0w/PtjhMKxFiWZKg-LyT6_c1hUiyGqNFn5cC6zwimcGEc8",
+            "width": 512,
+            "height": 512
+          },
+          "full": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/tpG8_UUArcZfEa-E_ArU7A/utt4WmSRy1ud5VLW_5_CTcXb_hPqFafVWFn865nwgwMg8MH5NOdY9vvVUy6aaWTXM5KzIlyVJ8W4bdLx7QRTzl8horMGW5xZMPuzcyLBpqYEWKhh7SK02tcejwChUjNuFU4lhCKtzvrknfxbh5ZA5A/ptbmzg2tSmCeZpYsLa-_JRqKgfSge8On_M2U2p7tGWs",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      },
+      {
+        "id": "att4djDhBhTmwpX7R",
+        "width": 1536,
+        "height": 1024,
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/pOuqZF4HWnGzlnDK1ju95Q/vNEdzrj9uHYqdNUorEJME0YxPhM0xrULwe-Gju2h7mZ4X7iiVIaxs_cI6HUO3E1CQ32ap9Ixol5lwwq7JjESKO_cAUL1Xhem8cymDPVdb16nDj9TkRaX8R1yC8FIe8bPLb47Qj064BQxDseIlb4spam4zRfQYlyn8J3fnsoJ15hZf0qVrEXVBE-60NXLC7MpCOhsxAHLBj8lbXKz_lfaiw/0Ha3zRdVBAiJ_5Iy6w9ArlRqXDTuB7Jm94OFdJZkn7Y",
+        "filename": "AQUALIVIA™ ScaleProTec™ Salt Free Water Softener-Size.jpg",
+        "size": 567806,
+        "type": "image/jpeg",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/SRimTp_GM5jMmCvA8lJK-g/ChqVOxn71yJV5Xwx-quRelTlizRnvNYIScVXGJCI4Wo5Vl4Z0XPLmQvfuEen0vw6IyZ68V2B8HVoeFR19lwEV5WAbS4L4XdlqZmZWxmU3I9oj4H2wkXquKspr5lVfqFewOxhaoyNHQRazIwACSTjNg/q93ED_GeGxsxGPqAzhlzfhqV7MaYucQJxL3fAI_L6Pk",
+            "width": 54,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/3Wir93dz5wqs9eg0A-Uung/LA5nUgaLQeMrL9vZgpFbqXoT5lHmbatrJMWUHVIDFRXfFeM6JrYn7xcavUteQQaDG5SUVVM2dr5G1bNuXdHpGzOLGzGhV4kLFc_DwU1u9JUZxUhFZ0asM6uzWZqt1NwWuQzpL_3-Mu7zf9CO6VX9aw/n7IUeEr0-0B4b2IXJm0bT04Bt_VYfbT7ObguVYYoOdQ",
+            "width": 768,
+            "height": 512
+          },
+          "full": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/f4gguzB_agG1wcxceVkUXg/rLRs2VOAt9Igx3GoFyaX02RE_T_-Yf1nAOHZJeLrmWDeYkb7IKC63WWJbPeSIUAFiBoJkI-hi59EMa2EMdSltu-VEVgBHgW6lnmP7ffxkEm8wcw1JGdVHsn3wLf7QrCQ5LPnfLjBM4sM4kDwvlXN6A/vSb5LRQJ6UBYX8VYnonbc23lFUs1xTk-848zYTig_x0",
+            "width": 1536,
+            "height": 1024
+          }
+        }
+      },
+      {
+        "id": "attqWUA1pIskInoGX",
+        "width": 2048,
+        "height": 2048,
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/_iabASmNHL4I4Vg0fbTDpw/PA2OsE0x3I0aWKY2ya_tgGxA15FAFaJuzvgJ59SBAUUhgUEF-wVoNwNFelxh3Dmdh1Bz_8zfv_wHofvsNE6QPDIGc59Plt8Gn6LkuCyckaJTSjWRMg1QPDG-IkToGk8i0CBHBSyyQguaHcLRkDtd3SqLgsLVw6Ga-wZl_0weYTU9y2HkvMDiNmlAamffobersmZV5nu2Pn_nQNRRWthYHA/1QAI9KB8chaJDpeCkbD33DLQw1nMlK53qPLWUngePjQ",
+        "filename": "AQUALIVIA™ ScaleProTec™ Salt Free Water Softener Jacket.jpg",
+        "size": 729494,
+        "type": "image/jpeg",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/yftPHS-m5SpOBVQKoFszfA/jRhPIvPGoHqSUZ4TE9TsnRm6fxXSrcTp20veTev6m-6kPq5an_aGHzqtXNZQIk2SRa-DiMfiZ4J_-35Ala3IYBBBfHAjL8mYRO98m4iY2OcRjMubcKI1Ebd0NvatTEJvPu9ISnhli0N-MUTt4lQybg/Jx-BNO6LX4RPtRVu5eBZnws6XatLyRNiENqI5iW9yE4",
+            "width": 36,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/ceu2Jbzvv1a5NIDgGThxyQ/leChKgOzor3X3xG-Y7fVuHGo3L_ZdH46iqugttwvDpE4mUmbgciZInX3sRZjFLk7EWcZlSYL2xE-uHJQ0iwk9wUffpSQ_hZmD5DP064iQEI7YDn_S7ZWVnt8oVwAITf2RXAS_ZwonGdy_sgiq2rwAA/m9vJLa9gQhn_0-2j7zie55pZcAz3QpABV8inRXSHNHk",
+            "width": 512,
+            "height": 512
+          },
+          "full": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/1GKb1NGkLVwmcfpis9c97w/-D6hR6Ekki_7x_VmqBRGh60SV2zB0p61HMMcG1PZWwxo84FDnAAE2MEGM-QzVEwrkJ-t48o6H-SlUNjuN4OPt1UoINP-RJTghCSAYoVlMoC3JabNqmVl-4RBSNKPoybmNmA5wkL4Y7_HPxuu38iCGg/Ah6hOv6qBBcyWXteqgAS7BTvMt4GoOfkQDspxeZ54Ys",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      },
+      {
+        "id": "attOdoolvfoCo90K5",
+        "width": 2048,
+        "height": 2048,
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/-Z1ppHQOhqrLg859rBPZ5A/_HgqahvP6W2mXUzrbB20Nb4CinmBkT4Y0w9DnKDgypMu-lUGB-l6HMXKS4r9c01KR6Kb5_hlVyBHRCcTIYTMiJtOHkQOhVfH3kFK32bYDEu71KfD4HO2camllVfn4CRBYjz3MD5e_WddpO74XCn7Q0MEcq4-CJ4o7g1ZBn6cGxSecqnbsfkFlMln8q-F9y3QDkQBYRdDDKxu7ECwCqf6TQ/KcAMZOUs1kyqPi6w6h-serZIUlNFyU7n5Bum8sKuK54",
+        "filename": "AQUALIVIA™ AquaProTec™ Catalytic Carbon Filter For City-Media.jpg",
+        "size": 1208470,
+        "type": "image/jpeg",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/BIig7mP68-nnlSkmqUo2IQ/szjG08Q3uYcxd96_FUPs-E1lgG4C7Fox40bUBZgJKMmyuxVE6X41wQa17EwIqR5rHENWKmrSoVMbqO8EDpbEgpIo6Z0Q31xR2r_9rSx_kdm55YynZogfzmVz0ibOsVwsbuL59WHOEGLdy4DRG1WFtg/DTtJVRXic6nc4PHY8TWA3K-NQUq2y9ziPvY6W1gs-2c",
+            "width": 36,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/NB6ml8Ux9AyskpvFK8hOoA/8ljXvFXl5h9ooHD9PRD5JTgpdyXYY2s3Q5oLhbx8UfcILlKvywHlKly6GcvQ9L87AAiJA_q7H_HlnpdP2gOGuOUZBIy8lBi0eIuQpm0LjMJWUWHndogBmQmEsUWOrpJTCvcb_Vu04sh7Ptf4P27o4w/jjg_cfu0fiSsVeBOxhmwPkFqd-6IQJh6QeFolnUUEFU",
+            "width": 512,
+            "height": 512
+          },
+          "full": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/n18WbtXtqv-yz8C_D3sXHQ/y0Nyup02LoeQx3SnRr9IQBhszPOHG8L_nbyYToOKNLezBBbiI8HnAdCqSPiG7JqzUrn8cV_RqN2t8KsDV7H8pQ8xcQe9GGgvb8tnW4fyVqHYlGnqWMpVhFhkqIubMrquRzIvXsxC8jXf0b-8HW6Frg/ijRujHcVThozSsOgZ2z6GRejgQifYUi7D7vG6Bwe0Gc",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    ],
+    "Category": "Salt-Free",
+    "Vendor": "Charger",
+    "Vendor Price": 1228,
+    "Gross Profit": 2277,
+    "Line Items": [
+      "recm2mPQI9mh15p4u",
+      "recbVtJIfU5ghfTLQ",
+      "recvv219tdu54ldRR",
+      "recxA2c3FUA96Ud3g"
+    ],
+    "Shipping Price": 800,
+    "Website Retail Price": 4555,
+    "System Capacity": "32,000 Grains",
+    "Tank Dimensions": "9x48",
+    "Cu.Ft. (Media Volume)": "1 Cu.Ft",
+    "Certifications": [
+      "NSF/ANSI 44 Certification ",
+      "NSF/ANSI/CAN Standard 61"
+    ],
+    "Max Flow Rate GPM": "27 GPM at 15 psi drop",
+    "SKU": "W9I-0047",
+    "Product Dimensions": "9\"L × 9\"W × 55\"H (Each Tank)",
+    "Occupants": "1-2",
+    "Ideal For": "One-story homes (with standard water pressure 50–70 PSI)",
+    "Link to Product Page": "https://www.aqualivia.com/collections/salt-free/products/scaleprotec™-prime-32k-salt-free-carbon-filter-for-city-water",
+    "Key Product Features": "- Advanced dual-media design: Salt-Free Conditioner (FILTERSORB® SP3 / CT®) + Granular Activated Carbon.\n- Prevents scale formation without using salt, sodium, or chemicals.\n- High-efficiency carbon stage removes chlorine, chloramine, taste, and odor.\n- Eco-friendly and maintenance-light: no backwash waste, no salt bags.\n- Durable fiberglass tank with premium WS valve for long service life.\n- Protects plumbing, fixtures, and appliances while improving water taste and clarity.\n\n",
+    "Sell on Website": true,
+    "Media Type": [
+      "FILTERSORB® SP3 (City Water)"
+    ],
+    "Household Size": "Up to ~1,000 sq ft",
+    "Margin": 0.5,
+    "Buffer (7%)": 0.07,
+    "True Web Cost": 2278,
+    "CAC": 250,
+    "MSRP": 5922,
+    "Engineered to Reduce": [
+      "Scale",
+      "Hard-water deposits",
+      "Calcium (Ca²⁺)",
+      "Magnesium (Mg²⁺)",
+      "Hardness (Ca²⁺ Mg²⁺)",
+      "Limescale",
+      "Hard water stains",
+      "Existing scale removal",
+      "Iron (Fe²⁺ Fe³⁺)",
+      "Manganese (Mn²⁺)",
+      "Copper (Cu²⁺)",
+      "Zinc (Zn²⁺)",
+      "Lead (Pb²⁺)",
+      "Salt-free conditioning",
+      "Chemical-free scale prevention",
+      "Eco-friendly water conditioning"
+    ],
+    "Perfect For Homes With": [
+      "City Water"
+    ],
+    "Backwash (DLFC) (gpm)": "2.2",
+    "Description": "**ScaleProTec™** uses advanced **Template Assisted Crystallization (TAC)** technology to prevent scale buildup — without salt, chemicals, or waste discharge.\nThe ScaleProTec™ 32K combines salt-free scale prevention with premium carbon filtration, making it ideal for small households and condos. Using advanced media technology, it conditions water without chemicals or added sodium while reducing chlorine, taste, and odor. Enjoy cleaner, fresher water for drinking and cooking, plus protection against scale buildup on fixtures and appliances — all with an eco-friendly, low-maintenance design.\n",
+    "Number of Bathroom": [
+      "1"
+    ],
+    "Collection": [
+      "Salt-Free"
+    ],
+    "Input & Output Line Size": "¾” or 1” NPT",
+    "Brand": "AQUALIVIA",
+    "Sub Brand": "ScaleProTec™",
+    "Warranty": "At AQUALIVIA™, we stand behind the quality of our water treatment systems. Every product is carefully built to last, and we’re proud to offer strong warranty coverage to give you peace of mind.\n### What’s Covered\n- **Mineral Tanks:** 10 years (up to 13\" × 54\"), 5 years for larger tanks.\n- **Control Valves:** 5 years.\n- **Brine Tanks:** 5 years.\n- **Accessories & Components:** 1 year.\n- **AQUAREX™ Whole House Filter:** 5 years.\n- **OZONEX™ Ozone Systems:** 1 year.\n- **AquaVRay™ UV Systems: **1 year.\n- **HydroClear™: **1 year** **(system only)\n- **AquaRevive™ RO Systems:** 1 year** **(system only)\n### What’s Not Covered\n- Regular-use consumables (filters, resins, membranes, UV lamps, cartridges).\n- Damage caused by misuse, freezing, flooding, power surges, or improper installation.\n- Products used with non-AQUALIVIA™ parts or outside normal water conditions.\n### \n### Our Promise\nWe’ll repair, replace, or provide a comparable solution if your system has a covered defect. Our goal is to make sure your AQUALIVIA™ system works the way it should, so you can enjoy clean, pure water with confidence.\n👉 For warranty support, please contact AquaLiviaUSA@gmail.com.\n",
+    "Shopify Product Id": "gid://shopify/Product/9082537771247",
+    "Water Problems Solved": "**Prevents Scale Formation:** Transforms hardness minerals into stable crystals that won’t stick to pipes, heaters, or fixtures.\n**No Salt or Chemicals:** Operates without brine, regeneration, or discharge — environmentally responsible.\n**Maintenance-Free:** No power, timers, or service cycles required; media typically lasts 3–5 years.\n**Protects Equipment:** Extends life and efficiency of water heaters, dishwashers, and plumbing systems.\n**Keeps Healthy Minerals:** Retains natural calcium and magnesium in the water.\n**Compact & Efficient:** Simple installation, zero wastewater, and no moving parts.\n\n",
+    "Optional Upgrades": [
+      "rec1NUEaQWzKizm3c",
+      "recsaTQEJfcSqhhhE",
+      "recSKecXeJ6zsnzrj",
+      "recw46ojY6K8f02qV",
+      "recpgq1iEWsBUz7X4",
+      "rec59SBimbIROyLbq",
+      "recSXgtm7lTCB8Koy"
+    ],
+    "Shopify Product Id (from Optional Upgrades)": [
+      "gid://shopify/Product/9117018652911",
+      "gid://shopify/Product/9102801305839",
+      "gid://shopify/Product/9082535706863",
+      "gid://shopify/Product/9082539966703",
+      "gid://shopify/Product/9082535706863",
+      "gid://shopify/Product/9082535706863",
+      "gid://shopify/Product/9082535706863"
+    ],
+    "Sync": {
+      "label": "Sync",
+      "url": "https://primary-production-dae8.up.railway.app/webhook/sync?recordId=recfUshGmphBDqeDH"
+    },
+    "Sync All": {
+      "label": "Sync All Data",
+      "url": "https://primary-production-dae8.up.railway.app/webhook/sync-all"
+    },
+    "Last Modified": "2025-10-31T15:31:22.000Z",
     "Product Documentation": [
       {
-        "id": "attgYnBidEqfiajND",
-        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761926400000/3F2pGQPLOsNf1QQIbJuL3Q/c06Z2RCd8FYAV2Nc5Mn_0S8f1SCjo5CTXw6Lbb_h42eUCCD0ChOht0JG6v9Awueggeq2CDOTm4DsoeaKm68GvO3eFYlASA-GxY-J61Up-PtccsMvhPJUSPHVXKYmZsn0dCvui5wywklq8rTVeemzOmwRtSh57FWbQrjmU0UDbXU/enqTzqbjCfypCTghZwL8IMjz-WvtzWDz1nDXFHABX_I",
-        "filename": "Clack-WS1.pdf",
-        "size": 2933232,
-        "type": "application/pdf"
+        "id": "attQrCytqGtSfcsiH",
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/-oPWugdMCX4bHOOjRdoMug/uI21I5KXgu7LPAdhCqSLPkZZI-JuQPkkqhHS2q6HhIvjWo3sX0nAkRc3TrNxxU85k0iI5ERzAb8HqRNzb1jfEr5NdGEsHLJKIu4hj3mMFBptkvggO-lktkpm_TyKo8bXVY4cuHrqQFQWZH4Pd_dpu1ijfyrLdJ3IRCMpgNFBHViRphiKAoCuJRR13IoUvh5WJ0pdcbVVhAdKrQOFw6nP12gVJou6em_daCjAdc0WWyGT-wBkuiUDBXq23PC4TFiE/6LL5jgPx9HO-sZuNntaX-Bz_VZrAd38kz77Ib9j7WV4",
+        "filename": "Katalox Light® Advanced Filtration Media for Iron, Manganese and Hydrogen Sulfide Removal.pdf",
+        "size": 7907538,
+        "type": "application/pdf",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/3-1PDYh8OH15ey0jvU2e_A/tgCcWqZ3jpwwzJ8b9YsWZFqrlSZAmuv30nnp7R8b9VQnIaSl7iE_JK-O81YQ7iIffmUE9hEs_IF_sO5MOJX-IJIIEVF6hIZ2UVvaFiy7yrdtcpJIAj9SsaOWAMEscR4lHf5-ZfTgQISN7xO0iLbBQw/R4g_EAmC-YOpVa3c26CRV9T2uAItn63NdmOBZgJfMes",
+            "width": 25,
+            "height": 35
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1761933600000/Nt4g1DMu46kHYX2gJgHtiQ/p9_JQ6knKB9_W2wLyv1CcVVh2GK2YVJGq7hD7lf99_9PBPBpfy2qicx8LtF79rcr5ZAIxYpufYwJ1PbSCSbTRibZW8he7T9PqxzC5lEjHvx6eF1mHPzz91z3_dYjt02rbgseeKhW2qvqnRwE2mde8g/TsDI3jCHrtrnm1tVB7R-GIy1BO-_q8ONuh1wgw1nnk8",
+            "width": 512,
+            "height": 724
+          }
+        }
       }
-    ]
+    ],
+    "Extended Description": "Designed for compact households that value sustainability and performance, the Prime 32K uses FILTERSORB® SP3 media to neutralize hardness minerals, preventing scale formation without salt or waste. The carbon stage removes chlorine and odors, ensuring every tap delivers clean, refreshing water for drinking, bathing, and cooking.\nUpgrade your home with smarter water technology and enjoy healthier water for your family and your home.\nProtect your home from scale and chlorine — choose ScaleProTec™ Prime 32K today.\n\n**Note:** ScaleProTec™ is a _scale prevention system_, not a traditional water softener. Hardness remains measurable, but scale adhesion is minimized.\n",
+    "Power Requirement": "None",
+    "Drain Line": "¾” or 1” NPT",
+    "Bypass Valve Included": "Yes",
+    "Installation Type": "Indoor or Outdoor (Whole-House Point of Entry)",
+    "Estimated Installation Time": "A professional ScaleProTec™ system installation typically takes 2 to 4 hours, but this can vary depending on the complexity of the job and the type of system. Replacing an existing unit might take less time, sometimes as little as an hour, while a new installation with additional plumbing will take longer. \n",
+    "Delivery & Returns": "# **AQUALIVIA™ Shipping Policy**\n**Effective Date:** 10.17.2025\n **Last Updated:** 10.17.2025\n **Applies to:** All purchases made directly through AQUALIVIA™ or authorized distributors.\n## **1. General Overview**\nAt AQUALIVIA™, we take pride in ensuring your water treatment systems are built, packaged, and shipped with the highest level of care. Because most of our products are made-to-order or assembled at our Florida facility, please allow **an additional 1–2 business days for production and handling** before shipment.\nOur factory and fulfillment center operate **Monday through Friday, 8:00 AM to 4:00 PM (Eastern Time)**, excluding weekends and federal holidays. Orders placed outside operating hours will be processed on the next business day.\n## **2. Order Processing and Handling Time**\n- **Standard Orders:** Processed and shipped within **2–4 business days** after order confirmation.\n- \n- **Custom or Special Orders:** May require up to **7–10 business days** for assembly and quality testing prior to shipment.\n- \n- **Pre-Orders or Backorders:** Customers will be notified by email with the estimated ship date before payment is processed.\n- \n- Orders received **after 12:00 PM EST** are processed the following business day.\n- \nPlease note: Weekends and holidays are not considered business days.\n## **3. Shipping Options and Delivery Times**\nWe offer a range of shipping options through trusted carriers such as **UPS, FedEx, and USPS**. Estimated transit times apply **after the order has shipped** (not including handling time):\n**Shipping Method**\n**Estimated Delivery (U.S.)**\nStandard Ground\n4–7 business days\nExpedited (2-Day)\n2 business days\nExpress / Overnight\n1 business day\nFreight or Palletized Shipments\n5–10 business days\nInternational (FedEx or DHL)\n7–17 business days\nDelivery times may vary depending on your location, weather conditions, carrier delays, or customs clearance.\n## **4. Free Shipping Policy**\n- Free standard shipping applies to **orders over $99** within the **continental United States (48 contiguous states)**.\n- \n- Orders under $99 or requiring expedited service will incur shipping charges shown at checkout.\n- \n- **Hawaii, Alaska, Puerto Rico, and international destinations** are excluded from free shipping and will be charged the actual shipping rate based on weight and destination.\n- \n## **5. Freight Shipments (Large Equipment)**\nSome large systems (such as commercial units or whole-house filters) are shipped on pallets via freight carrier.\n**Freight delivery terms:**\n- The carrier will contact you to schedule delivery.\n- \n- Someone **18 years or older** must be present to inspect and sign for the shipment.\n- \n- The delivery address must be accessible to large trucks.\n- \n- Liftgate service can be requested for an additional fee.\n- \n## **6. Inspection and Damaged Shipments**\nCustomers are responsible for inspecting all shipments **at the time of delivery**.\n If there is any visible damage, note it on the carrier’s delivery receipt **before signing** and take photos of the box, label, and damaged areas.\n**To report damage:**\n1. Contact AQUALIVIA™ Customer Support within **3 business days** of delivery at 727-236-7161.\n2. \n3. Provide your order number, photos, and a brief description of the issue.\n4. \n5. Keep all original packaging until your claim is resolved.\n6. \nFailure to report damage within 5 business days may void your eligibility for a shipping claim or replacement.\n## **7. Lost or Missing Packages**\nIf tracking information shows “delivered” but the package is not received:\n- Verify the shipping address on your order confirmation.\n- \n- Check with neighbors or your local carrier office.\n- \n- Contact AQUALIVIA™ Customer Support within **7 business days** of the marked delivery date.\n- \nWe will work with the carrier to investigate. AQUALIVIA™ is **not responsible for packages stolen after confirmed delivery**.\n## **8. International Shipping**\nWe proudly ship to select international destinations via **FedEx International or DHL Express**.\n- Delivery time: **7–17 business days**, depending on customs processing.\n- \n- Customers are responsible for **all duties, taxes, import fees, and brokerage charges** imposed by their local authorities.\n- \n- We do not accept returns or exchanges on international orders unless covered under our warranty policy.\n- \n- Refused or unclaimed international shipments will be refunded **minus all shipping, customs, and handling fees**.\n- \n## **9. Refused or Undeliverable Shipments**\nIf an order is refused, undeliverable, or returned due to an incorrect address:\n- The customer is responsible for **all shipping charges (to and from)** and a **restocking fee of up to 25%**.\n- \n- These charges will be deducted from any applicable refund.\n- \n## **10. Delays and Force Majeure**\nAQUALIVIA™ is not responsible for delays caused by events beyond our control, including but not limited to natural disasters, weather conditions, labor strikes, pandemics, customs delays, or carrier errors.\nWe will make every effort to notify customers of significant delays.\n## **11. Order Changes and Cancellations**\n- Orders can be canceled or modified **before they enter the shipping process**.\n- \n- Once an order has shipped, standard **Return Policy** terms apply.\n- \n- Custom-built or made-to-order systems cannot be canceled once production begins.\n- \n## **12. Title and Risk of Loss**\nAll products become the property of the buyer **once shipped**. Title and risk of loss pass to the customer upon carrier pickup at our Florida facility.\n## **13. Governing Law**\nThis Shipping Policy is governed by the laws of the **State of Florida**. Any disputes relating to shipment or delivery will be resolved under the same **binding arbitration and venue provisions** described in the AQUALIVIA™ Terms and Conditions.\n\n",
+    "Partial or Conditional Reductions": [
+      "Iron (Fe²⁺) at high concentration",
+      "Manganese (Mn²⁺) under specific pH",
+      "Heavy metals (Pb²⁺ Zn²⁺ Cu²⁺) partial reduction",
+      "Biological contaminants (bacteria viruses) limited biocidal effect",
+      "Hardness ions remain but transformed",
+      "Not TDS reduction",
+      "Not microbial removal"
+    ],
+    "Sync Status": "Processing",
+    "available": true
   }
 ]

@@ -1455,14 +1455,21 @@ function buildMetafields(product, options = {}) {
     });
   }
 
-  const waterProblemsSolvedHtml = markdownToHtml(product['Water Problems Solved']);
-  if (waterProblemsSolvedHtml) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'water_problems_solved',
-      type: 'list.single_line_text_field',
-      value: waterProblemsSolvedHtml,
-    });
+  const waterProblemsSolved = asMultiLineValue(product['Water Problems Solved']);
+  if (waterProblemsSolved) {
+    const listValues = waterProblemsSolved
+      .split('\n')
+      .map(line => line.trim())
+      .filter(Boolean)
+      .map(line => renderInlineMarkdown(line));
+    if (listValues.length > 0) {
+      metafields.push({
+        namespace: 'custom',
+        key: 'water_problems_solved',
+        type: 'list.single_line_text_field',
+        value: JSON.stringify(listValues),
+      });
+    }
   }
 
   const sayGoodbyeTo = asMultiLineValue(product['Engineered to Reduce']);
