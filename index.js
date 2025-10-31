@@ -1450,7 +1450,7 @@ function buildMetafields(product, options = {}) {
     metafields.push({
       namespace: 'custom',
       key: 'bundle_product_ids',
-      type: 'multi_line_text_field',
+      type: 'single_line_text_field',
       value: includedProductIds,
     });
   }
