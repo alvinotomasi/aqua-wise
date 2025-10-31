@@ -1842,6 +1842,7 @@ function buildVariantInput(product) {
   const price = product['Website Retail Price'];
   const compareAtPrice = product.MSRP;
   const sku = product.SKU;
+  const available = product.available;
 
   // If neither price nor sku is present, skip this variant
   if ((price === undefined || price === null) && !sku) {
@@ -1859,7 +1860,7 @@ function buildVariantInput(product) {
       compareAtPrice !== undefined && compareAtPrice !== null
         ? String(compareAtPrice)
         : undefined,
-    inventoryPolicy: 'CONTINUE',
+    inventoryPolicy: available === false ? 'DENY' : 'CONTINUE',
     inventoryItem,
   };
 
@@ -1974,6 +1975,7 @@ function buildVariantInputFromRecord(product, optionName, optionValue) {
   const price = product['Website Retail Price'];
   const compareAtPrice = product.MSRP;
   const sku = product.SKU;
+  const available = product.available;
 
   // If neither price nor sku is present, skip creating a broken variant
   if ((price === undefined || price === null) && !sku) {
@@ -1991,7 +1993,7 @@ function buildVariantInputFromRecord(product, optionName, optionValue) {
       compareAtPrice !== undefined && compareAtPrice !== null
         ? String(compareAtPrice)
         : undefined,
-    inventoryPolicy: 'CONTINUE',
+    inventoryPolicy: available === false ? 'DENY' : 'CONTINUE',
     inventoryItem,
   };
 
