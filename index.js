@@ -1039,10 +1039,9 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
     }
   }
 
-  // For Airtable URLs without file extensions in the path, we must NOT provide a filename
-  // because Shopify validates that the filename extension matches the URL extension.
-  // Shopify will automatically detect the file type from the content when it fetches the URL.
-  // Note: Shopify will serve these files as application/octet-stream, but they download correctly.
+  // Determine filename for Shopify
+  // For Airtable URLs without extensions: Don't provide filename to avoid validation error
+  // Shopify will auto-detect file type but serve as application/octet-stream
   const urlHasExtension = /\.[A-Za-z0-9]{2,6}(\?|$)/.test(urlPath);
   
   if (urlHasExtension) {
@@ -1061,13 +1060,13 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
       });
     }
   } else {
-    // Airtable URLs don't have extensions in the path - let Shopify auto-detect
-    // Shopify will fetch the file and determine its type automatically
-    // The file will be served as application/octet-stream but downloads and opens correctly
-    console.log('Airtable URL without extension - Shopify will auto-detect file type', {
+    // Airtable URL without extension - don't provide filename
+    // Shopify validates filename extension against URL, which will fail
+    // File will work correctly but be served as application/octet-stream
+    console.log('Airtable URL without extension - no filename provided', {
       url: trimmedUrl,
       originalFilename: documentEntry?.filename || 'N/A',
-      note: 'File will download correctly even with generic Content-Type',
+      note: 'File will be served as application/octet-stream but downloads correctly',
     });
   }
 
