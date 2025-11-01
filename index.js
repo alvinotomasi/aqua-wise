@@ -1357,7 +1357,7 @@ function buildMetafields(product, options = {}) {
     { key: 'product_weight_lb', source: product['Product Weight lb'] || product['Product Weight (lb)'] },
     { key: 'power_requirement', source: product['Power Requirement'] },
     { key: 'bypass_valve_included', source: product['Bypass Valve Included'] },
-    { key: 'operating_pressures', source: product['Operating Pressures'] },
+    { key: 'operating_pressures', source: product['Operating Pressure'] },
     { key: 'operating_temperatures', source: product['Operating Temperatures'] || product['Max. operating temperature'] || product['Max. Operating Temperature'] },
     { key: 'drain_line', source: product['Drain Line'] },
     { key: 'installation_type', source: product['Installation Type'] },

@@ -1,181 +1,264 @@
-[{
-  "id": "rec2jnDcWAdQgZSLw",
-  "createdTime": "2025-05-13T18:34:22.000Z",
-  "Product Name": "HydroClear™ Reverse Osmosis ReMineralizer Filter",
-  "Product ID": 170,
-  "Image": [
-    {
-      "id": "att20L5M35AOxEC0I",
-      "width": 2048,
-      "height": 2048,
-      "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762012800000/hYg8R8a7pH4cueT7wpj3EA/W3ysMqS5CFefMvpBNGPuTge6jBSthymbsy2bzo5tbGma_fu_lGLPIg-oK5-VM3Rdt-7xgGe377uwCvomoJUL5GycpegpEvHVrFFfxGai8_NzmJm6qubZxtvXUIF41uazhqJIbJxBhCklLaJ2AnQZmRTp9fM4FRbFHd5UUUc7V_E581R0zdU2jmvFGX8i5Zxx/osT_hpX3DA1wskemHvTrKEW6evBzfmNfSZ8zpVSYN_M",
-      "filename": "AQUALIVIA™ HydroClear™ ALKALINE FILTER.jpg",
-      "size": 1217470,
-      "type": "image/jpeg",
-      "thumbnails": {
-        "small": {
-          "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762012800000/4K_tt6zEjWKAYFPMlTA5Zw/95-WlhN4w4qSXXET5qoFIcw-o6pxLM89veySV2QRNHoFiaOPNmfCE0NzMnFZuJoOllfFJhZMLrXCK47TRANDOShmoBm8p5baD0w7GFOeVLKtaazolG6Y_D3d06UMxdMntqtBjCW__NiQJh1KytxHmg/bAIW3mRDs8dKu1Z9rBmQIUP3TI6WVFiADS8DKBuNq0w",
-          "width": 36,
-          "height": 36
-        },
-        "large": {
-          "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762012800000/jgrshkl-Mr4ir19vXG2y5Q/s7epjzpD5FFYRx6GS2oqUPmi9joiX4Yb4FXUqMqXd2OniqUOH5tVNLwiQuqry7Rr4gFMrSJBBHuolhGY3pWd1DipGfuBOuhk2hvjPuY14CPwAvd3SPEmm6BeeoPL9co5qZSS9vw55BZ5NTUMDvC5Gw/GzbufvhNNsj_5-0YhbyMKTlDPaUgf6-zpgdEm_tYXzU",
-          "width": 512,
-          "height": 512
-        },
-        "full": {
-          "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762012800000/1ON544OACbdTuHkm_zEDOA/JdLFQT0AF1xgnf58UhVQFTB_Uuw7SL9Gn3tpAgSzrg6yvKgke9L6kThoSUmFJd184HbqvahF46s_rFwePdWDIZtqpdmndaArCRuhlZNTE8LY-5v_O9D02sdOPDhSEI8_QTas7PbTJvcyZMmtU2NuXw/8bNGjaxG8cJ04xWdZI2_7432I4psTr5UuCAVtmpR-Ts",
-          "width": 2048,
-          "height": 2048
+[
+  {
+    "id": "recAEY58tqV7VnKSq",
+    "createdTime": "2024-11-13T14:25:54.000Z",
+    "Product Name": "EVOSOFT™ Cabinet Style 32K Grain City Water Softener",
+    "Product ID": 82,
+    "Image": [
+      {
+        "id": "attl1KVkgwH7KRhTD",
+        "width": 2048,
+        "height": 2048,
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/MvAKdvLTACnR8X3xhLtFog/WUG6keBtbJNvl3FKg_xOYmGDrTOmUCLQKGSoIf3b7xafAcOVtu2mSQf9k19baxzAXrtfBoL_fhLX4QGo9mmKdrLAIlCvyO0rHpxnAadg_JDM4WYfAIOgC3gjg9UbaYVtfoGn3_7JC8F6xox6oZIls6jykgXPYbi5N7cVrGCp13XkRvKu2fuqe23gRHzEPq7CcKcJM2HLHjN4GSK5tHQrlA/bKznAURZiyLe-9ncLr-gMCqlla4tGqFahTMP32OSnIg",
+        "filename": "AQUALIVIA™ EVOSOFT™ City Water Softener 32K Cabinet.jpg",
+        "size": 677799,
+        "type": "image/jpeg",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/TP93gpB2tLWkX6H30m8xyw/B6hfqcUlWIHPDhHOuwNAA8aSP8WWpNn1BEIiWTlM8QROlM1hvaYVUyYh5K_7SyX_SJkmj2Vd2HRq5SjCuvEFj4JkOxU74tBRtTiMT4ZsLcQ0LtyHBFe0HDOoL3qHwe6Rc1AsdTfgmeL7B59v8f57-g/sRItZa6QiioVj60NxlSxh60oUxybmK3BCiXeoBx1mHk",
+            "width": 36,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/O8QiWZ-fZ0dok0NXKFx3aw/AE5N2Mrsiea2YFrwBUc5_aYAsPbO2ZHKSZATun5IlModiT3whxcXP3dW-ptDBLpQ2PsQS-VQCBw95Pmo7iaZpxj_PQLsIaT1GLGuEYvBUnOtHpmEoOQXZebzyH9B8L57T48voNJYxOQzfyqEjKizgw/9KOBhbCTZa5jxFwhmRtgG8URhN5LeA0s2rJV3qxxCIo",
+            "width": 512,
+            "height": 512
+          },
+          "full": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/sxasZgrPbQudWkaWlIE4gA/jCEH5-BidRz_5fd0Eslyp6QsXXpstEu41UqIqf1h3_lVWGemp4TKUPUsx2phDDUkaDd_1Dzr24tf4DhTDZKvz9Ys1C7I_pS1UTAQT2T0aRA-gNSrlyKEqDrILn13Ouz0HDjb-040F2g7fYiGXoiu9A/4hTUYpFS7nPEVuozPntgJgdphJfoZK9ZVdiJSPijtsU",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      },
+      {
+        "id": "atteHXeksmYGhAXos",
+        "width": 2048,
+        "height": 2048,
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/rWWHsOg4u1i50MCSw0Se8g/GGIEB3phPQ_uANl_bq0sQkdF8wjIXsql_gwyqQGY9xXAfTcIXF0UuwYPWIpKnp1f5bE1p3aSwLJlbcC8PUVVk-jzIQ_fuhS0gjTpQ-w0x1_hYmRDqgWfPpGG7OI-JgNdk228tiXz7a9qhyQAVeCF2V0WyM8uXtIv_cEMjwA7-PYfOPT04Di-C7peO2EgcwpyHGpA1ICJgklXL2x3NtTZMQ/hbMiwRrojTn9HTviwzhUtR7cEAjdJzZzZMmIiR78F_4",
+        "filename": "AQUALIVIA™ EVOSOFT™ City Water Softener 32000K Cabinet Style.jpg",
+        "size": 771717,
+        "type": "image/jpeg",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/dXIeFCn1hkHlYzp8Lvb6FQ/ZrvucnsAlBvzsrBE3ECAdOOzO-HxYrfp5jAybdsBKgffiPo1nuM-BC8soWv5Q99nmU3Lk_8-ioH6QPWLCgWYoabGX6bPOzCvKw5bbCJ9kBYvxn3v085svOF9Q5nMMJxOY-_sHPmKi6Zor6QPkx0SzQ/xRtN_jGBs3rQ31FHGmd9YEmgZYJ_6GFG05vox-GNOuo",
+            "width": 36,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/i4-0m_qy0yoYCms9iE3x_Q/23XZoiYtG2U876mHzYl5Ad8toqMkqWV6QkcPnlXnJ_w5mTWeQ9bFwMu5A2NNCYhLvF9cAXqf0p6_l8Dn57YiNGaTYGBQxkjb4gpOCoJ02POiVlQFVjDkWGSPDvI6nz2MM0PPfltvgMTHLTmbdz1Duw/vhY5RGnoYTpF59FCQCotajMlGy8JlBwUchl46Xs2dVU",
+            "width": 512,
+            "height": 512
+          },
+          "full": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/mnQUFzpsRrpxJh8bTGZ1YA/s97W74l-7YUzQaoMORiCHCSu-PPat2kZ_AUMz5-P9sA-b9vx15WWUjCaZHbMOLda-jB2EoRCXU3e1smg_auF16OFyTs7ZwCpHitJ-47PtG6JojqbLmaaeSIhhRgDOlWfktrcLkatx5xwqN1W_mDG2w/bMnbN9yUY3T8jsNtkBWp7LGxhhiqhVligvGb5BzBTH4",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      },
+      {
+        "id": "attzL5s1el34bYsy6",
+        "width": 2048,
+        "height": 2048,
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/mS_pSB82ElGS_Z_Y4KNd6w/Ey_Nb3kucsLFSbPt7K6ZW4VV8VacTpvYptOEK7QWfjylcdlw00aaozR3VTk2pFS8r2NfOaEC6DDw8dV50syHpXVQBgfKCEAGu9QLYi142qqaIPiJkpbvcfhelzlC9FJtjtggQ-jfGFPnFCQER0cBRMLFvJW6M3AtBqK0eYwDqhBKvUqYJciJekQsu393VQ6wZSAd5P0JbYcgjWhF3BCAfA/UHJIIL4aA-M6QFQPg1mjiCOQQffLX-cNUga_Zlc9-3w",
+        "filename": "AQUALIVIA™ EVOSOFT™ City Water Softener 32K Cabinet Style.jpg",
+        "size": 1175541,
+        "type": "image/jpeg",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/wni38UR22nvJSWoNELhJbA/YlW5jacu3Eonl__hNGgTDK-jxgJMqnChkAGy9kHaQlUcAljPKDjTZJ8wMP4lJouzEjzrXcF-YzB7Ct4zPJJD1D9KrBiXbnXw1LyddgK7HX79ZZoOPyDdpmopgZx-pW6i5lSONAmrMmZijDrpfSWKRA/EkKTVijAGtetLIMniuVQQZ2KPmvFNs60Cp6MWTeOd7A",
+            "width": 36,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/yrUI14k2Z8fGEHdjy1KTdg/GOQBBQl6zzdV4JtOTuTtm5Qkg8bOmiB8zVv234UsRhxrumn-nJXUYU_S60GNyCEgf02vMntcoPY1_VUioS9SDvQAE2OeeEtIYoXs4WW4C5x8J3LUpX00K9oENGoFXWDY4jriMz9yB_g0o865f9ucmw/PJGEX9lP62w14ywJ5hckqITxQvBtwk22SWhmInqa5ns",
+            "width": 512,
+            "height": 512
+          },
+          "full": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/8fU9BNl7JWoAIFn4L6ogPA/oUX8Cn7qV78PXxkNvsQynBKvHzt4f3HvsA6fD5f1vCPDiScZPhuQrN2ECJHeTAfqjtMrcI5_nWsJI5czcyok3ZKoHSlKXLepDgrm0siR1QtWUYB4pC-bWY9tv6d9bu8-2G02p5QXe6tWuHbdfurdbw/vRlTkpk37thEckft-UeInegndaziguoWsmhlBDrV014",
+            "width": 2048,
+            "height": 2048
+          }
         }
       }
-    }
-  ],
-  "Category": "Filter Replacement",
-  "Vendor": "Charger",
-  "Vendor Price": 22,
-  "Gross Profit": 34,
-  "Line Items": [
-    "recDWRENChTS1MCP3",
-    "recGXscRFUKVr96gy",
-    "recevTA5EJE8RBUIJ",
-    "recQ8nchlQAlkmPNW"
-  ],
-  "Shipping Price": 0,
-  "Website Retail Price": 86,
-  "Certifications": [
-    "WQA Gold Seal Certified"
-  ],
-  "Max Flow Rate GPM": "1 GPM (3.8 L/min)",
-  "SKU": "ARO-0052",
-  "Product Weight lb": "1 lb",
-  "Product Dimensions": "2\"D x 2\"W x 10\"H",
-  "Link to Product Page": "https://www.aqualivia.com/collections/replacement-filters/products/hydroclear™-reverse-osmosis-remineralizer-filter",
-  "Key Product Features": "High purity drinking water, lab or equipment feed, scale control upstream\n",
-  "Sell on Website": true,
-  "Media Type": [
-    "Calcite and Coconut Shell Granular Activated Carbon"
-  ],
-  "Margin": 0.4,
-  "Buffer (7%)": 0.07,
-  "True Web Cost": 52,
-  "CAC": 30,
-  "MSRP": 112,
-  "Engineered to Reduce": [
-    "PFAS Forever Chemicals",
-    "Lead",
-    "Cadmium (Cd²⁺)",
-    "Arsenic (As³⁺, As⁵⁺)",
-    "Chromium (Cr³⁺, Cr⁶⁺)",
-    "Mercury (Hg²⁺)",
-    "Fluoride (F⁻)",
-    "Uranium (U⁴⁺, U⁶⁺)",
-    "Radium (Ra²⁺)",
-    "Cyanide (CN⁻)",
-    "Pharmaceuticals",
-    "Hormones",
-    "Pesticides",
-    "Herbicides",
-    "Volatile Organic Compounds (VOCs)",
-    "TDS (Total Dissolved Solids)",
-    "Turbidity",
-    "Bacteria",
-    "Viruses",
-    "Giardia",
-    "Cryptosporidium"
-  ],
-  "Perfect For Homes With": [
-    "Well Water",
-    "City Water"
-  ],
-  "Description": "The HydroClear™ ReMineralizer Filter restores healthy minerals like calcium and magnesium to your purified water, enhancing both taste and balance. Designed for use with HydroClear™ RO systems, it ensures every glass of water is refreshing, crisp, and naturally mineral-rich — just as nature intended. Ideal for families seeking premium hydration with added health benefits.\n",
-  "Collection": [
-    "Replacement Filters"
-  ],
-  "Input & Output Line Size": "¼ Threaded",
-  "Brand": "AQUALIVIA",
-  "Sub Brand": "HydroClear™",
-  "Part Number": "GS-10CAL/RO",
-  "Warranty": "At AQUALIVIA™, we stand behind the quality of our water treatment systems. Every product is carefully built to last, and we’re proud to offer strong warranty coverage to give you peace of mind.\n### What’s Covered\n- **Mineral Tanks:** 10 years (up to 13\" × 54\"), 5 years for larger tanks.\n- **Control Valves:** 5 years.\n- **Brine Tanks:** 5 years.\n- **Accessories & Components:** 1 year.\n- **AQUAREX™ Whole House Filter:** 5 years.\n- **OZONEX™ Ozone Systems:** 1 year.\n- **AquaVRay™ UV Systems: **1 year.\n- **HydroClear™: **1 year** **(system only)\n- **AquaRevive™ RO Systems:** 1 year** **(system only)\n### What’s Not Covered\n- Regular-use consumables (filters, resins, membranes, UV lamps, cartridges).\n- Damage caused by misuse, freezing, flooding, power surges, or improper installation.\n- Products used with non-AQUALIVIA™ parts or outside normal water conditions.\n### \n### Our Promise\nWe’ll repair, replace, or provide a comparable solution if your system has a covered defect. Our goal is to make sure your AQUALIVIA™ system works the way it should, so you can enjoy clean, pure water with confidence.\n👉 For warranty support, please contact AquaLiviaUSA@gmail.com.\n",
-  "Shopify Product Id": "gid://shopify/Product/9082534035695",
-  "Water Problems Solved": "\n",
-  "Operating Pressure": "20 - 125 psi (1.4 - 8.6 bar)",
-  "From field: Addons": [
-    "recSKecXeJ6zsnzrj",
-    "recpgq1iEWsBUz7X4",
-    "recdh2waRWqrRfNcd"
-  ],
-  "Sync": {
-    "label": "Sync",
-    "url": "https://primary-production-dae8.up.railway.app/webhook/sync?recordId=rec2jnDcWAdQgZSLw"
-  },
-  "Sync All": {
-    "label": "Sync All Data",
-    "url": "https://primary-production-dae8.up.railway.app/webhook/sync-all"
-  },
-  "Last Modified": "2025-11-01T13:24:43.000Z",
-  "Product Documentation": [
-    {
-      "id": "attQrCytqGtSfcsiH",
-      "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762012800000/gFaByRHj5muG4hI67HpYSA/ktIke0fGoFq9rqcLwqKX-2XScicxuMkDdFhpc8Xz2zAF2_rRDetCKDKnOFye1NNqlmqQ12TKppyNdDAhqd-a1J7N67c0ponA-K2MPvZNpn8XOgxqU70fpQsrdO9TkEvq0TFNBVyDssnoMv_JpEK5vhqKmGa6J7sd_bF83NmKxhwsbzbmjkj2ruFqaHtSt4q0NjIo43G4gh-Mgz9dAplQE7-N3ofN_w4A9lId_RLEzAtP0LRlobkIX0mbOFa30Kz_/t96EZ20mr61orCIDu78S2JiPAXdBwiWkwVA7z3kDAaA",
-      "filename": "Katalox Light® Advanced Filtration Media for Iron, Manganese and Hydrogen Sulfide Removal.pdf",
-      "size": 7907538,
-      "type": "application/pdf",
-      "thumbnails": {
-        "small": {
-          "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762012800000/NgyLyYHvowdGVrDsuRdrDA/KBtDBClorLFwgOoN-g9ImCZR286UMSq__-tDl73xUCZE1npl-vOkl5Q7qlLMPHbc2cqkeposJGuICWD5YpTh4Xsl-coEj-V9drO35nsmo5ClVqQKLIpI3oGj8fxhGWomjWG5Wf6s1u2aqRLwx7RpDA/DAFzl19y_l7II2RsuUnGMrdcuKa_vcCUaxEVM3pqLUE",
-          "width": 25,
-          "height": 35
-        },
-        "large": {
-          "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762012800000/l5O9gwDphWuv6BjY8UTwzA/fWUd2Tqar8MYlZqqzVnP42We3LXspSx1QJ3z9VN5WOFMc9fxCzfIipz24bXE8sjb2Ul0UZ0WxuXXFtYByRW1IeD46k0jPlifzbqQjbmygzcr98RSZmGHIi5Ge5mAgY-_GrI6wKoYOHmztpxmUbY8Kw/TAMtN3U4y-fgOXLDTacRp3oWV65lnU4dX2GOkf3YDOI",
-          "width": 512,
-          "height": 724
+    ],
+    "Category": "Water Softener",
+    "Vendor": "Charger",
+    "Vendor Price": 650,
+    "URL": "https://www.aqua-wise.com/water-softeners-in-tampa",
+    "Gross Profit": 1099,
+    "Line Items": [
+      "rec6rh9JXb4wYgErV",
+      "recepIrSTP7t0i85z",
+      "recJ3PD1umzQ1Sl93",
+      "reclvQi629c4RuNuX",
+      "reck7qh79d7drmlTt",
+      "recvYJrEBtkH6e83Q",
+      "recsXdQKGQ8GDhWHK",
+      "recHJRdOf2LbooMLg",
+      "recBcvhAu8dRhiQ1K",
+      "reckoTSmGpKZXvUg0",
+      "recVG1WSIJhIWdvQn",
+      "rec6TTGUPfkr1ePy1",
+      "rec6zWKQx5ILVsQBM"
+    ],
+    "QTY": 10,
+    "Shipping Price": 200,
+    "Website Retail Price": 2199,
+    "System Capacity": "32,000 Grains",
+    "Tank Dimensions": "9x48 Cabinet",
+    "Cu.Ft. (Media Volume)": "1 Cu.Ft",
+    "Certifications": [
+      "NSF/ANSI 44 Certification ",
+      "NSF/ANSI/CAN Standard 61",
+      "WQA Gold Seal Certified",
+      "NSF/ANSI standard 372",
+      "CSA B483.1: Plumbing materials standard"
+    ],
+    "Max Flow Rate GPM": "27 GPM at 15 psi drop",
+    "SKU": "EVO-CWS-001",
+    "Product Weight lb": "105 lb",
+    "Product Dimensions": "20\"L × 13\"W × 45\"H",
+    "Occupants": "1-2",
+    "Ideal For": "One-story homes (with standard water pressure 50–70 PSI)",
+    "Link to Product Page": "https://www.aqualivia.com/collections/city-water-systems/products/evosoft™-cabinet-style-32k-grain-city-water-softener-1",
+    "Key Product Features": "- Compact cabinet-style design – combines high efficiency and modern aesthetics.\n- 32,000-grain capacity ideal for small to mid-size households on city water.\n- Uses premium Aldex C-800 10% crosslinked resin for longer life and chlorine resistance.\n- Reduces hardness minerals that cause scale buildup and soap scum.\n- Efficient regeneration system for lower salt and water consumption.\n\n",
+    "Sell on Website": true,
+    "Media Type": [
+      "Aldex C-800 10% Crosslinked Resin"
+    ],
+    "Household Size": "Up to ~1,000 sq ft",
+    "Margin": 0.5,
+    "Buffer (7%)": 0.07,
+    "True Web Cost": 1100,
+    "CAC": 250,
+    "MSRP": 2859,
+    "Engineered to Reduce": [
+      "Hard water stains",
+      "Hardness (Ca²⁺ Mg²⁺)",
+      "Calcium (Ca²⁺)",
+      "Magnesium",
+      "Scale",
+      "Limescale",
+      "Iron (Fe²⁺)",
+      "Manganese (Mn²⁺)",
+      "Barium (Ba²⁺)",
+      "Strontium (Sr²⁺)",
+      "Copper (Cu²⁺)",
+      "Nickel (Ni²⁺)",
+      "Zinc (Zn²⁺)"
+    ],
+    "Valve": "Clack WS1",
+    "Perfect For Homes With": [
+      "City Water"
+    ],
+    "Backwash (DLFC) (gpm)": "27 GPM at 25 psi drop",
+    "Description": "The EVOSOFT™ Cabinet Style 32K is a space-saving, high-performance water softener designed for modern homes on city water. It eliminates hard water problems, protects your plumbing and appliances, and delivers silky-smooth water for your entire household — all in a clean, compact design.\n",
+    "Number of Bathroom": [
+      "1"
+    ],
+    "Collection": [
+      "City Water Systems",
+      "Whole House Water Softeners",
+      "City Water Softeners",
+      "Water Softeners",
+      "Best Seller"
+    ],
+    "Input & Output Line Size": "¾” or 1” NPT",
+    "Feed Water Pressure": "Standard water pressure 50–70 PSI",
+    "Brand": "AQUALIVIA",
+    "Sub Brand": "EVOSOFT™",
+    "Warranty": "At AQUALIVIA™, we stand behind the quality of our water treatment systems. Every product is carefully built to last, and we’re proud to offer strong warranty coverage to give you peace of mind.\n### What’s Covered\n- **Mineral Tanks:** 10 years (up to 13\" × 54\"), 5 years for larger tanks.\n- **Control Valves:** 5 years.\n- **Brine Tanks:** 5 years.\n- **Accessories & Components:** 1 year.\n- **AQUAREX™ Whole House Filter:** 5 years.\n- **OZONEX™ Ozone Systems:** 1 year.\n- **AquaVRay™ UV Systems: **1 year.\n- **HydroClear™: **1 year** **(system only)\n- **AquaRevive™ RO Systems:** 1 year** **(system only)\n### What’s Not Covered\n- Regular-use consumables (filters, resins, membranes, UV lamps, cartridges).\n- Damage caused by misuse, freezing, flooding, power surges, or improper installation.\n- Products used with non-AQUALIVIA™ parts or outside normal water conditions.\n### \n### Our Promise\nWe’ll repair, replace, or provide a comparable solution if your system has a covered defect. Our goal is to make sure your AQUALIVIA™ system works the way it should, so you can enjoy clean, pure water with confidence.\n👉 For warranty support, please contact AquaLiviaUSA@gmail.com.\n",
+    "Shopify Product Id": "gid://shopify/Product/9102772469999",
+    "Water Problems Solved": "Hard water and limescale buildup\nWhite spots on faucets, dishes, and shower glass\nDry skin, dull hair, and soap that doesn’t lather\nScale damage in water heaters and appliances\nClogged plumbing from mineral deposits\nLow water pressure caused by scale buildup\nRust stains from high iron levels in city water\nBlue-green stains from low pH or corrosion\nMetallic or salty taste from unconditioned water\nHigh hardness minerals (calcium and magnesium)\n\n",
+    "Operating Pressure": "20 - 125 psi (1.4 - 8.6 bar)",
+    "Optional Upgrades": [
+      "recSKecXeJ6zsnzrj",
+      "recsaTQEJfcSqhhhE",
+      "recw46ojY6K8f02qV",
+      "recpgq1iEWsBUz7X4",
+      "rec59SBimbIROyLbq",
+      "recSXgtm7lTCB8Koy"
+    ],
+    "Shopify Product Id (from Optional Upgrades)": [
+      "gid://shopify/Product/9082535706863",
+      "gid://shopify/Product/9102801305839",
+      "gid://shopify/Product/9082539966703",
+      "gid://shopify/Product/9082535706863",
+      "gid://shopify/Product/9082535706863",
+      "gid://shopify/Product/9082535706863"
+    ],
+    "Sync": {
+      "label": "Sync",
+      "url": "https://primary-production-dae8.up.railway.app/webhook/sync?recordId=recAEY58tqV7VnKSq"
+    },
+    "Sync All": {
+      "label": "Sync All Data",
+      "url": "https://primary-production-dae8.up.railway.app/webhook/sync-all"
+    },
+    "Last Modified": "2025-11-01T14:01:54.000Z",
+    "Product Documentation": [
+      {
+        "id": "attgYnBidEqfiajND",
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/hMaMIy2cHlUSKSbieyXgGQ/mOluXsldGr0BtsTm5aHy80aWDiLftjTWTbImJtFDdsNQ4RMyWsfB1NTz9TXw64pV4h4d9p4IEFVUqL-_X5U1UqX_ZeTqTKeohfguKfvO-AZA7Q4jcF6ElEYPEmWCMI1UDL5lCOmM1gVlSWZ5pL5649EwZ7KiSb9qcquZAbxwqPQ/2qJ2PFH-qD1E32ABXoFgwVTShAqQ4q0-D8xFufY8hKo",
+        "filename": "Clack-WS1.pdf",
+        "size": 2933232,
+        "type": "application/pdf",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/ihhQYrv2BTvRpsEFfjXYbw/QZS8ruaikNuB-vpjzo8nfrkXZuc7rlcc9vysEOxXtyB2piGl2Nk7u2-s04eqxX1rDJt0O74ZyQwhdOTdstywQJ-DsXpGpxN1NbSw5eOQudgr16q681m0gxUMopaMbkcT6exe7K3DCzrqb65v1KTqug/kunH_tRENclhA5-oeTlaR9DslLz_eapUCZ6v9cIoN9U",
+            "width": 28,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/CHpISfO7NRxkp0cf7g3C6A/48PPc6dTwCKBVwz84CPr72t_rbZKUvr83cvUcJjxO6la8NCY0V6o4u9d1Z1sr27XDKuxagZ-Y6rMHQex4y9tSzGm5l_blic0j93aJQ-J6TAG6hCt3QbYt0MXseImJsKLQdD96i1Dw_KTHhStkd6E0g/_LE94sG4upfUVb8-Iloe9mZk8rKfODxh2UjguzTNVIk",
+            "width": 512,
+            "height": 663
+          }
+        }
+      },
+      {
+        "id": "attEwSthPN4MOG6TP",
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/FSTsGLOBEPVmXHlmAf7rQA/9fcaB9XRgyYxeEC4tJl_q6k_-JauZ27EUUqpqfs5pldLHAr4FgC91PnHp2sIKT7bML79JKwSX8r0-jB8dxFt0Q5Kp-BNI4-honCd9gNJexncP5Ot7JMLuyp0ENtsqONq222eglkpF8UHhdxAW3rcBqPyNUY_TGPtUUDijiS3q04/iTIi5Ft7APx0L4NJA6-gl5UoMo2GlDQpZ9Kj4YRdUq0",
+        "filename": "Clack-WS3-2869.pdf",
+        "size": 1477327,
+        "type": "application/pdf",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/z0aFJskq4_qSgXQvI5u7mg/vGddKEZYMB8VdKl1x9HqlB5zmGzMJGf-TNSXZqlmA2tWhE71nco1OfTvrWj-9plt8R4nzRoTsvdBB-4xg4fI-YFhr9nZ_-SAaNScfT1zU3Wgrdeygzabdd17tN080_B4chYXPxmg5MV0uLN3JRZhrQ/2N9j9nwm9rOR7Oq8NJk3eMchyleLM461T67az_WqrUE",
+            "width": 28,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/bG40-vfzhcG8TO4Me6VlFA/ub01nWo8-dNqi_vpc9Fvy3pQXad1EWpdxpnSka09iv0uAIta7vrdmlyA0cnueRRqWJEvyuiGH8g9q0X4zn01A_xIc7INA7oVd8od87BlsoSz0-3VVuQXWNN42RUJ4rgSqPg3-CTQA2eGqO1uv3dEVQ/62PYtgQBBj34rgG9T7mZ08h5GCDEif6UPYIWP7N2hMw",
+            "width": 512,
+            "height": 663
+          }
         }
       }
-    }
-  ],
-  "Extended Description": "TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT\n",
-  "Operating Temperatures": "40°F – 100°F (4°C – 37°C)",
-  "Installation Type": "Point of Use Indoor",
-  "Operating Environment": "Indoor installation, protected from direct sunlight",
-  "Estimated Installation Time": "TEST TEST TEST \n",
-  "Delivery & Returns": "# **AQUALIVIA™ Shipping Policy**\n**Effective Date:** 10.17.2025\n **Last Updated:** 10.17.2025\n **Applies to:** All purchases made directly through AQUALIVIA™ or authorized distributors.\n## **1. General Overview**\nAt AQUALIVIA™, we take pride in ensuring your water treatment systems are built, packaged, and shipped with the highest level of care. Because most of our products are made-to-order or assembled at our Florida facility, please allow **an additional 1–2 business days for production and handling** before shipment.\nOur factory and fulfillment center operate **Monday through Friday, 8:00 AM to 4:00 PM (Eastern Time)**, excluding weekends and federal holidays. Orders placed outside operating hours will be processed on the next business day.\n## **2. Order Processing and Handling Time**\n- **Standard Orders:** Processed and shipped within **2–4 business days** after order confirmation.\n- \n- **Custom or Special Orders:** May require up to **7–10 business days** for assembly and quality testing prior to shipment.\n- \n- **Pre-Orders or Backorders:** Customers will be notified by email with the estimated ship date before payment is processed.\n- \n- Orders received **after 12:00 PM EST** are processed the following business day.\n- \nPlease note: Weekends and holidays are not considered business days.\n## **3. Shipping Options and Delivery Times**\nWe offer a range of shipping options through trusted carriers such as **UPS, FedEx, and USPS**. Estimated transit times apply **after the order has shipped** (not including handling time):\n**Shipping Method**\n**Estimated Delivery (U.S.)**\nStandard Ground\n4–7 business days\nExpedited (2-Day)\n2 business days\nExpress / Overnight\n1 business day\nFreight or Palletized Shipments\n5–10 business days\nInternational (FedEx or DHL)\n7–17 business days\nDelivery times may vary depending on your location, weather conditions, carrier delays, or customs clearance.\n## **4. Free Shipping Policy**\n- Free standard shipping applies to **orders over $99** within the **continental United States (48 contiguous states)**.\n- \n- Orders under $99 or requiring expedited service will incur shipping charges shown at checkout.\n- \n- **Hawaii, Alaska, Puerto Rico, and international destinations** are excluded from free shipping and will be charged the actual shipping rate based on weight and destination.\n- \n## **5. Freight Shipments (Large Equipment)**\nSome large systems (such as commercial units or whole-house filters) are shipped on pallets via freight carrier.\n**Freight delivery terms:**\n- The carrier will contact you to schedule delivery.\n- \n- Someone **18 years or older** must be present to inspect and sign for the shipment.\n- \n- The delivery address must be accessible to large trucks.\n- \n- Liftgate service can be requested for an additional fee.\n- \n## **6. Inspection and Damaged Shipments**\nCustomers are responsible for inspecting all shipments **at the time of delivery**.\n If there is any visible damage, note it on the carrier’s delivery receipt **before signing** and take photos of the box, label, and damaged areas.\n**To report damage:**\n1. Contact AQUALIVIA™ Customer Support within **3 business days** of delivery at 727-236-7161.\n2. \n3. Provide your order number, photos, and a brief description of the issue.\n4. \n5. Keep all original packaging until your claim is resolved.\n6. \nFailure to report damage within 5 business days may void your eligibility for a shipping claim or replacement.\n## **7. Lost or Missing Packages**\nIf tracking information shows “delivered” but the package is not received:\n- Verify the shipping address on your order confirmation.\n- \n- Check with neighbors or your local carrier office.\n- \n- Contact AQUALIVIA™ Customer Support within **7 business days** of the marked delivery date.\n- \nWe will work with the carrier to investigate. AQUALIVIA™ is **not responsible for packages stolen after confirmed delivery**.\n## **8. International Shipping**\nWe proudly ship to select international destinations via **FedEx International or DHL Express**.\n- Delivery time: **7–17 business days**, depending on customs processing.\n- \n- Customers are responsible for **all duties, taxes, import fees, and brokerage charges** imposed by their local authorities.\n- \n- We do not accept returns or exchanges on international orders unless covered under our warranty policy.\n- \n- Refused or unclaimed international shipments will be refunded **minus all shipping, customs, and handling fees**.\n- \n## **9. Refused or Undeliverable Shipments**\nIf an order is refused, undeliverable, or returned due to an incorrect address:\n- The customer is responsible for **all shipping charges (to and from)** and a **restocking fee of up to 25%**.\n- \n- These charges will be deducted from any applicable refund.\n- \n## **10. Delays and Force Majeure**\nAQUALIVIA™ is not responsible for delays caused by events beyond our control, including but not limited to natural disasters, weather conditions, labor strikes, pandemics, customs delays, or carrier errors.\nWe will make every effort to notify customers of significant delays.\n## **11. Order Changes and Cancellations**\n- Orders can be canceled or modified **before they enter the shipping process**.\n- \n- Once an order has shipped, standard **Return Policy** terms apply.\n- \n- Custom-built or made-to-order systems cannot be canceled once production begins.\n- \n## **12. Title and Risk of Loss**\nAll products become the property of the buyer **once shipped**. Title and risk of loss pass to the customer upon carrier pickup at our Florida facility.\n## **13. Governing Law**\nThis Shipping Policy is governed by the laws of the **State of Florida**. Any disputes relating to shipment or delivery will be resolved under the same **binding arbitration and venue provisions** described in the AQUALIVIA™ Terms and Conditions.\n\n",
-  "From field: Addons copy": [
-    "recSKecXeJ6zsnzrj",
-    "recpgq1iEWsBUz7X4",
-    "recdh2waRWqrRfNcd",
-    "rec59SBimbIROyLbq",
-    "recSXgtm7lTCB8Koy"
-  ],
-  "Partial or Conditional Reductions": [
-    "PFAS Forever Chemicals",
-    "Lead",
-    "Cadmium (Cd²⁺)",
-    "Arsenic (As³⁺, As⁵⁺)",
-    "Chromium (Cr³⁺, Cr⁶⁺)",
-    "Mercury (Hg²⁺)",
-    "Fluoride (F⁻)",
-    "Uranium (U⁴⁺, U⁶⁺)",
-    "Radium (Ra²⁺)",
-    "Cyanide (CN⁻)",
-    "Pharmaceuticals",
-    "Hormones",
-    "Pesticides",
-    "Herbicides",
-    "Volatile Organic Compounds (VOCs)",
-    "TDS (Total Dissolved Solids)",
-    "Turbidity",
-    "Bacteria",
-    "Viruses",
-    "Giardia",
-    "Cryptosporidium"
-  ],
-  "From field: Addons copy 2": [
-    "recdh2waRWqrRfNcd",
-    "recSKecXeJ6zsnzrj",
-    "recpgq1iEWsBUz7X4"
-  ],
-  "Sync Status": "Processing",
-  "available": true
-}]
+    ],
+    "Extended Description": "The EVOSOFT™ Cabinet Style 32K brings advanced softening technology to homes that demand performance without bulk. Its compact, all-in-one cabinet design integrates the brine tank and resin tank into a single sleek unit, making it perfect for tight spaces while maintaining full efficiency.\nAt its core, the system features **Aldex C-800 10% crosslinked resin**, engineered to resist chlorine degradation and provide long-term performance on city water. By removing hardness minerals like calcium and magnesium, it prevents scale buildup that damages plumbing, fixtures, and appliances. The result is softer skin, shinier hair, brighter laundry, and longer-lasting home equipment.\nThe EVOSOFT™ Cabinet 32K also includes a **smart metered valve** that regenerates only when needed, conserving both salt and water for maximum efficiency. Designed for easy installation and low maintenance, it delivers reliable, professional-grade performance — direct from the factory to your home.\n",
+    "Power Requirement": "110V Standard (Plug-In Transformer Included)",
+    "Drain Line": "¾” or 1” NPT",
+    "Bypass Valve Included": "Yes",
+    "Installation Type": "Indoor or Outdoor (Whole-House Point of Entry)",
+    "Maintenance Requirement": "Add Salt\n",
+    "Estimated Installation Time": "A professional water softener installation typically takes 2 to 4 hours, but this can vary depending on the complexity of the job and the type of system. Replacing an existing unit might take less time, sometimes as little as an hour, while a new installation with additional plumbing will take longer. \n",
+    "Delivery & Returns": "# **AQUALIVIA™ Shipping Policy**\n**Effective Date:** 10.17.2025\n **Last Updated:** 10.17.2025\n **Applies to:** All purchases made directly through AQUALIVIA™ or authorized distributors.\n## **1. General Overview**\nAt AQUALIVIA™, we take pride in ensuring your water treatment systems are built, packaged, and shipped with the highest level of care. Because most of our products are made-to-order or assembled at our Florida facility, please allow **an additional 1–2 business days for production and handling** before shipment.\nOur factory and fulfillment center operate **Monday through Friday, 8:00 AM to 4:00 PM (Eastern Time)**, excluding weekends and federal holidays. Orders placed outside operating hours will be processed on the next business day.\n## **2. Order Processing and Handling Time**\n- **Standard Orders:** Processed and shipped within **2–4 business days** after order confirmation.\n- \n- **Custom or Special Orders:** May require up to **7–10 business days** for assembly and quality testing prior to shipment.\n- \n- **Pre-Orders or Backorders:** Customers will be notified by email with the estimated ship date before payment is processed.\n- \n- Orders received **after 12:00 PM EST** are processed the following business day.\n- \nPlease note: Weekends and holidays are not considered business days.\n## **3. Shipping Options and Delivery Times**\nWe offer a range of shipping options through trusted carriers such as **UPS, FedEx, and USPS**. Estimated transit times apply **after the order has shipped** (not including handling time):\n**Shipping Method**\n**Estimated Delivery (U.S.)**\nStandard Ground\n4–7 business days\nExpedited (2-Day)\n2 business days\nExpress / Overnight\n1 business day\nFreight or Palletized Shipments\n5–10 business days\nInternational (FedEx or DHL)\n7–17 business days\nDelivery times may vary depending on your location, weather conditions, carrier delays, or customs clearance.\n## **4. Free Shipping Policy**\n- Free standard shipping applies to **orders over $99** within the **continental United States (48 contiguous states)**.\n- \n- Orders under $99 or requiring expedited service will incur shipping charges shown at checkout.\n- \n- **Hawaii, Alaska, Puerto Rico, and international destinations** are excluded from free shipping and will be charged the actual shipping rate based on weight and destination.\n- \n## **5. Freight Shipments (Large Equipment)**\nSome large systems (such as commercial units or whole-house filters) are shipped on pallets via freight carrier.\n**Freight delivery terms:**\n- The carrier will contact you to schedule delivery.\n- \n- Someone **18 years or older** must be present to inspect and sign for the shipment.\n- \n- The delivery address must be accessible to large trucks.\n- \n- Liftgate service can be requested for an additional fee.\n- \n## **6. Inspection and Damaged Shipments**\nCustomers are responsible for inspecting all shipments **at the time of delivery**.\n If there is any visible damage, note it on the carrier’s delivery receipt **before signing** and take photos of the box, label, and damaged areas.\n**To report damage:**\n1. Contact AQUALIVIA™ Customer Support within **3 business days** of delivery at 727-236-7161.\n2. \n3. Provide your order number, photos, and a brief description of the issue.\n4. \n5. Keep all original packaging until your claim is resolved.\n6. \nFailure to report damage within 5 business days may void your eligibility for a shipping claim or replacement.\n## **7. Lost or Missing Packages**\nIf tracking information shows “delivered” but the package is not received:\n- Verify the shipping address on your order confirmation.\n- \n- Check with neighbors or your local carrier office.\n- \n- Contact AQUALIVIA™ Customer Support within **7 business days** of the marked delivery date.\n- \nWe will work with the carrier to investigate. AQUALIVIA™ is **not responsible for packages stolen after confirmed delivery**.\n## **8. International Shipping**\nWe proudly ship to select international destinations via **FedEx International or DHL Express**.\n- Delivery time: **7–17 business days**, depending on customs processing.\n- \n- Customers are responsible for **all duties, taxes, import fees, and brokerage charges** imposed by their local authorities.\n- \n- We do not accept returns or exchanges on international orders unless covered under our warranty policy.\n- \n- Refused or unclaimed international shipments will be refunded **minus all shipping, customs, and handling fees**.\n- \n## **9. Refused or Undeliverable Shipments**\nIf an order is refused, undeliverable, or returned due to an incorrect address:\n- The customer is responsible for **all shipping charges (to and from)** and a **restocking fee of up to 25%**.\n- \n- These charges will be deducted from any applicable refund.\n- \n## **10. Delays and Force Majeure**\nAQUALIVIA™ is not responsible for delays caused by events beyond our control, including but not limited to natural disasters, weather conditions, labor strikes, pandemics, customs delays, or carrier errors.\nWe will make every effort to notify customers of significant delays.\n## **11. Order Changes and Cancellations**\n- Orders can be canceled or modified **before they enter the shipping process**.\n- \n- Once an order has shipped, standard **Return Policy** terms apply.\n- \n- Custom-built or made-to-order systems cannot be canceled once production begins.\n- \n## **12. Title and Risk of Loss**\nAll products become the property of the buyer **once shipped**. Title and risk of loss pass to the customer upon carrier pickup at our Florida facility.\n## **13. Governing Law**\nThis Shipping Policy is governed by the laws of the **State of Florida**. Any disputes relating to shipment or delivery will be resolved under the same **binding arbitration and venue provisions** described in the AQUALIVIA™ Terms and Conditions.\n\n",
+    "Partial or Conditional Reductions": [
+      "Lead (Pb²⁺)",
+      "Ferrous Iron (Fe²⁺)",
+      "Organically Bound Iron",
+      "Manganese (Mn²⁺) at low oxidation states",
+      "Radium (Ra²⁺)",
+      "Ammonium (NH₄⁺)",
+      "Chromium (Cr³⁺)",
+      "Cobalt (Co²⁺)"
+    ],
+    "Sync Status": "Processing",
+    "available": true,
+    "Charger": true
+  }
+]
