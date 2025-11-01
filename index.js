@@ -1305,18 +1305,9 @@ async function buildProductDocumentationMetafield(product, options = {}) {
     });
   }
 
-  let metafieldType = 'file_reference';
-  let metafieldValue = fileIds[0];
-  let unusedFileIds = [];
-
-  if (fileIds.length > 1) {
-    unusedFileIds = fileIds.slice(1);
-    console.warn('Multiple documentation files provided, but Shopify metafield definition expects a single file reference. Using the first file only.', {
-      productName,
-      usedFileId: metafieldValue,
-      unusedFileIds,
-    });
-  }
+  // Support both single and multiple file references
+  const metafieldType = fileIds.length > 1 ? 'list.file_reference' : 'file_reference';
+  const metafieldValue = fileIds.length > 1 ? JSON.stringify(fileIds) : fileIds[0];
 
   return {
     metafield: {
@@ -1326,7 +1317,6 @@ async function buildProductDocumentationMetafield(product, options = {}) {
       value: metafieldValue,
     },
     fileIds,
-    unusedFileIds,
     entries: results,
     errors,
     skipped,
@@ -1373,6 +1363,7 @@ function buildMetafields(product, options = {}) {
     { key: 'ozone_output', source: product['Ozone Output'] },
     { key: 'operating_voltage', source: product['Operating Voltage'] },
     { key: 'power_consumption', source: product['Power Consumption'] },
+    { key: 'service_life', source: product['Service Life'] },
   ];
 
   for (const mapping of singleLineMappings) {
