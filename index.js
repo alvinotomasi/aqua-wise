@@ -1305,16 +1305,13 @@ async function buildProductDocumentationMetafield(product, options = {}) {
     });
   }
 
-  // Support both single and multiple file references
-  const metafieldType = fileIds.length > 1 ? 'list.file_reference' : 'file_reference';
-  const metafieldValue = fileIds.length > 1 ? JSON.stringify(fileIds) : fileIds[0];
-
+  // Always use list.file_reference to match Shopify metafield definition
   return {
     metafield: {
       namespace: 'custom',
       key: 'product_documentation',
-      type: metafieldType,
-      value: metafieldValue,
+      type: 'list.file_reference',
+      value: JSON.stringify(fileIds),
     },
     fileIds,
     entries: results,

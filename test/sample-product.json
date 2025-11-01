@@ -170,9 +170,9 @@
     "Feed Water Pressure": "Standard water pressure 50–70 PSI",
     "Brand": "AQUALIVIA",
     "Sub Brand": "EVOSOFT™",
-    "Warranty": "At AQUALIVIA™, we stand behind the quality of our water treatment systems. Every product is carefully built to last, and we’re proud to offer strong warranty coverage to give you peace of mind.\n### What’s Covered\n- **Mineral Tanks:** 10 years (up to 13\" × 54\"), 5 years for larger tanks.\n- **Control Valves:** 5 years.\n- **Brine Tanks:** 5 years.\n- **Accessories & Components:** 1 year.\n- **AQUAREX™ Whole House Filter:** 5 years.\n- **OZONEX™ Ozone Systems:** 1 year.\n- **AquaVRay™ UV Systems: **1 year.\n- **HydroClear™: **1 year** **(system only)\n- **AquaRevive™ RO Systems:** 1 year** **(system only)\n### What’s Not Covered\n- Regular-use consumables (filters, resins, membranes, UV lamps, cartridges).\n- Damage caused by misuse, freezing, flooding, power surges, or improper installation.\n- Products used with non-AQUALIVIA™ parts or outside normal water conditions.\n### \n### Our Promise\nWe’ll repair, replace, or provide a comparable solution if your system has a covered defect. Our goal is to make sure your AQUALIVIA™ system works the way it should, so you can enjoy clean, pure water with confidence.\n👉 For warranty support, please contact AquaLiviaUSA@gmail.com.\n",
+    "Warranty": "At AQUALIVIA™, we stand behind the quality of our water treatment systems. Every product is carefully built to last, and we’re proud to offer strong warranty coverage to give you peace of mind.\n### What’s Covered\n- **Mineral Tanks:** 10 years (up to 13\" × 54\"), 5 years for larger tanks.\n- **Control Valves:** 5 years.\n- **Brine Tanks:** 5 years.\n- **Accessories & Components:** 1 year.\n- **AQUAREX™ Whole House Filter:** 5 years.\n- **OZONEX™ Ozone Systems:** 1 year.\n- **AquaVRay™ UV Systems: **1 year.\n- **HydroClear™: **1 year** **(system only)\n- **AquaRevive™ RO Systems:** 1 year** **(system only)\n### What’s Not Covered\n- Regular-use consumables (filters, resins, membranes, UV lamps, cartridges).\n- Damage caused by misuse, freezing, flooding, power surges, or improper installation.\n- Products used with non-AQUALIVIA™ parts or outside normal water conditions.\n\n### Disclaimer\nAll service life values provided by AQUALIVIA are general estimates based on typical field conditions and are not performance guarantees. Actual media life depends on water quality, oxidant levels, flow rates, maintenance, and system design.\nResults will vary for different applications and environments.\n### Our Promise\nWe’ll repair, replace, or provide a comparable solution if your system has a covered defect. Our goal is to make sure your AQUALIVIA™ system works the way it should, so you can enjoy clean, pure water with confidence.\n👉 For warranty support, please contact Info@AquaLivia.com.\n",
     "Shopify Product Id": "gid://shopify/Product/9102772469999",
-    "Water Problems Solved": "Hard water and limescale buildup\nWhite spots on faucets, dishes, and shower glass\nDry skin, dull hair, and soap that doesn’t lather\nScale damage in water heaters and appliances\nClogged plumbing from mineral deposits\nLow water pressure caused by scale buildup\nRust stains from high iron levels in city water\nBlue-green stains from low pH or corrosion\nMetallic or salty taste from unconditioned water\nHigh hardness minerals (calcium and magnesium)\n\n",
+    "Water Problems Solved": "Hard water and limescale buildup\nWhite spots on faucets, dishes, and shower glass\nDry skin, dull hair, and soap that doesn’t lather well\nScale damage in water heaters and appliances\nClogged plumbing from mineral deposits\nLow water pressure caused by scale buildup\nHigh hardness minerals (calcium and magnesium)\n\n",
     "Operating Pressure": "20 - 125 psi (1.4 - 8.6 bar)",
     "Optional Upgrades": [
       "recSKecXeJ6zsnzrj",
@@ -198,7 +198,7 @@
       "label": "Sync All Data",
       "url": "https://primary-production-dae8.up.railway.app/webhook/sync-all"
     },
-    "Last Modified": "2025-11-01T14:01:54.000Z",
+    "Last Modified": "2025-11-01T15:13:04.000Z",
     "Product Documentation": [
       {
         "id": "attgYnBidEqfiajND",
@@ -237,10 +237,30 @@
             "height": 663
           }
         }
+      },
+      {
+        "id": "attLOVbB3JT1eEA3W",
+        "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/zUO_UdPQs1kugxm64obKCQ/ymUh1XkfinTlhLLDOCCPDZtFNQZ5RhBB0_GarztbjEV6oz2wfBdAViRDWymRbIJUw5teyVXq2pN7xAVrfkFCHNvM44DrvKuMu2VRmNUORJf5Ccd8Fg3ADFiqDvqI-_-beaHJMP3yYFWVFHfZQ8GoSurMqq09tJE0FGRWrSrtfHk/V24LpJnMWcwCGenGsaRPafzGOwN0RowNVTKvzc-hSc0",
+        "filename": "AquaVRay UV 18GPM.pdf",
+        "size": 882940,
+        "type": "application/pdf",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/vnqpH53jRyce35TT-S_XJw/wXstQbe2mbhj965D0sA4hQKgU345xVS9LfY2nsZWFEoq5mwwAmeZbT77FbMKYXF-b-sr4JklsqLwsJNVGlLajLOA-qlgTOcuAyTwNfn-IOnlrjImJdhCIUEzcQhyf2aOjPR3_a2UqZgoYoiNfD1t9A/cIGUicBFgtBHQJOdT-F7OtCP2FhWUX25taRaBYfLZFs",
+            "width": 29,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/46/46/1762020000000/lfuXktvkZvjHouFOHbSobg/Pc27H1XUHqyqsbtdt43S8JWmjYDYgkFXrh_YTJHf5fZvG7WwzBl8u9LmyDvA6DeQRc3rKX8BQ-NW9gLJI_LAwb_lDUwtXbud2kGXoNkux8_KtpbGCyMJEtzeUIItPlGb-Q_SScZdIjtb_sV0fCnT_g/BK7lJ831ms_jFliVirlBYKon9iVcetN03W6hSOVXZwY",
+            "width": 512,
+            "height": 645
+          }
+        }
       }
     ],
     "Extended Description": "The EVOSOFT™ Cabinet Style 32K brings advanced softening technology to homes that demand performance without bulk. Its compact, all-in-one cabinet design integrates the brine tank and resin tank into a single sleek unit, making it perfect for tight spaces while maintaining full efficiency.\nAt its core, the system features **Aldex C-800 10% crosslinked resin**, engineered to resist chlorine degradation and provide long-term performance on city water. By removing hardness minerals like calcium and magnesium, it prevents scale buildup that damages plumbing, fixtures, and appliances. The result is softer skin, shinier hair, brighter laundry, and longer-lasting home equipment.\nThe EVOSOFT™ Cabinet 32K also includes a **smart metered valve** that regenerates only when needed, conserving both salt and water for maximum efficiency. Designed for easy installation and low maintenance, it delivers reliable, professional-grade performance — direct from the factory to your home.\n",
     "Power Requirement": "110V Standard (Plug-In Transformer Included)",
+    "Operating Temperatures": "40° - 110° F",
     "Drain Line": "¾” or 1” NPT",
     "Bypass Valve Included": "Yes",
     "Installation Type": "Indoor or Outdoor (Whole-House Point of Entry)",
@@ -259,6 +279,7 @@
     ],
     "Sync Status": "Processing",
     "available": true,
+    "Service Life": "~ 10 years",
     "Charger": true
   }
 ]
