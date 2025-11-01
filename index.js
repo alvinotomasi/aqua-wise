@@ -1054,14 +1054,26 @@ async function uploadViaStagedUpload(trimmedUrl, documentEntry) {
   }
 
   // Step 4: Create file reference in Shopify
+  const fileInput = {
+    originalSource: stagedTarget.resourceUrl,
+    contentType: 'FILE',
+    filename,
+  };
+
+  // Set alt text from description or fallback to filename
+  if (documentEntry && typeof documentEntry === 'object') {
+    const alt = documentEntry.description || documentEntry.filename || filename;
+    if (alt) {
+      fileInput.alt = String(alt).trim();
+    }
+  } else if (filename) {
+    fileInput.alt = filename;
+  }
+
   const fileCreateResponse = await callShopify(
     FILE_CREATE_MUTATION,
     {
-      files: [{
-        originalSource: stagedTarget.resourceUrl,
-        contentType: 'FILE',
-        filename,
-      }],
+      files: [fileInput],
     },
     'fileCreate'
   );
@@ -1086,6 +1098,7 @@ async function uploadViaStagedUpload(trimmedUrl, documentEntry) {
     fileId: createdFile.id,
     filename,
     mimeType,
+    alt: fileInput.alt || '(none)',
   });
 
   return createdFile.id;
@@ -1173,11 +1186,14 @@ async function ensureShopifyFileReference(documentEntry, options = {}) {
         }
       }
 
-      if (documentEntry && typeof documentEntry === 'object' && documentEntry.description) {
-        const alt = String(documentEntry.description).trim();
+      // Set alt text from description or fallback to filename
+      if (documentEntry && typeof documentEntry === 'object') {
+        const alt = documentEntry.description || documentEntry.filename || fileInput.filename;
         if (alt) {
-          fileInput.alt = alt;
+          fileInput.alt = String(alt).trim();
         }
+      } else if (fileInput.filename) {
+        fileInput.alt = fileInput.filename;
       }
 
       const response = await callShopify(
