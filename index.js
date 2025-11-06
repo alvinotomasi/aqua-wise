@@ -1793,7 +1793,7 @@ function buildProductInput(product, options = {}) {
   const input = {
     title: product['Product Name'] ? String(product['Product Name']) : undefined,
     descriptionHtml,
-    status: product['Sell on Website'] === false ? 'DRAFT' : 'ACTIVE',
+    status: product['Sell on Website'] !== true ? 'DRAFT' : 'ACTIVE',
     productType: asSingleLineValue(product.Category),
     vendor: asSingleLineValue(product['Sub Brand'] || product['Brand'] || product.Vendor),
     metafields: buildMetafields(product, { addonMetafieldResult, optionalUpgradesMetafieldResult, replacementsMetafieldResult, documentationMetafieldResult }),
@@ -2688,7 +2688,7 @@ async function shopifyProductSync(req, res) {
 
     try {
       const existingProductId = base['Shopify Product Id'] || base['shopify_product_id'];
-      const shouldDelete = base['Sell on Website'] === false;
+      const shouldDelete = base['Sell on Website'] !== true;
 
       // If product should be deleted and exists in Shopify, delete it
       if (shouldDelete && existingProductId) {
