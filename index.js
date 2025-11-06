@@ -2688,36 +2688,6 @@ async function shopifyProductSync(req, res) {
 
     try {
       const existingProductId = base['Shopify Product Id'] || base['shopify_product_id'];
-      const shouldDelete = base['Sell on Website'] !== true;
-
-      // If product should be deleted and exists in Shopify, delete it
-      if (shouldDelete && existingProductId) {
-        const normalizedProductId = normaliseShopifyProductGid(existingProductId);
-        if (normalizedProductId) {
-          const deleteResult = await deleteProduct(normalizedProductId);
-          results.push({
-            ...context,
-            productId: normalizedProductId,
-            productTitle: base['Product Name'] || 'Unknown',
-            status: 'success',
-            operation: 'deleted',
-            deletedProductId: deleteResult.deletedProductId,
-          });
-          continue;
-        }
-      }
-
-      // If product should be deleted but doesn't exist in Shopify, skip it
-      if (shouldDelete && !existingProductId) {
-        results.push({
-          ...context,
-          productTitle: base['Product Name'] || 'Unknown',
-          status: 'skipped',
-          operation: 'delete_skipped',
-          reason: 'No Shopify Product Id provided for deletion',
-        });
-        continue;
-      }
 
       // Determine option name if we have multiple variants
       const groupHasMultiple = group.length > 1;
