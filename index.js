@@ -755,6 +755,16 @@ function asMultiLineValue(input) {
   return value.length > 0 ? value : undefined;
 }
 
+function asBooleanFlag(input) {
+  if (input === true) return true;
+  if (input === false || input === undefined || input === null) return false;
+  const text = String(input).trim().toLowerCase();
+  if (!text) return false;
+  if (text === 'true' || text === '1' || text === 'yes' || text === 'y' || text === 'on') return true;
+  if (text === 'false' || text === '0' || text === 'no' || text === 'n' || text === 'off') return false;
+  return false;
+}
+
 // --- Numeric parsing helpers for metafields ---
 function firstNumber(input) {
   if (input === undefined || input === null) return undefined;
@@ -1793,7 +1803,7 @@ function buildProductInput(product, options = {}) {
   const input = {
     title: product['Product Name'] ? String(product['Product Name']) : undefined,
     descriptionHtml,
-    status: product['Sell on Website'] !== true ? 'DRAFT' : 'ACTIVE',
+    status: asBooleanFlag(product['Sell on Website']) ? 'ACTIVE' : 'DRAFT',
     productType: asSingleLineValue(product.Category),
     vendor: asSingleLineValue(product['Sub Brand'] || product['Brand'] || product.Vendor),
     metafields: buildMetafields(product, { addonMetafieldResult, optionalUpgradesMetafieldResult, replacementsMetafieldResult, documentationMetafieldResult }),
