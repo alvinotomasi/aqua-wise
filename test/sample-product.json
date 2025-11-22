@@ -1,139 +1,191 @@
 [
   {
-    "id": "recAEY58tqV7VnKSq",
-    "createdTime": "2024-11-13T14:25:54.000Z",
-    "Product Name": "EVOSOFT™ Cabinet Style 32K Grain City Water Softener",
-    "Product ID": 82,
+    "id": "recNqbXrtWQzjmoiY",
+    "createdTime": "2024-10-05T16:04:55.000Z",
+    "Product Name": "EVOSOFT™ Prime 32K Grain City Water Softener",
+    "Product ID": 1,
     "Image": [
       {
-        "id": "attl1KVkgwH7KRhTD",
+        "id": "attqL2LTOD8umwgH7",
         "width": 2048,
         "height": 2048,
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/vuDfhGJndck1ENRsqhARiA/blEx1M2HftpjSrEzQcTTOZFxI9TzglZzfmt3NekSep9Ne-kbLJaH6JEX-R552MMRw1f_FTJVCxmXUQhglfvzXbNyDk-ETVmNmZTpIFVgms9Kpjx8QVIG__xukIIhnlb-kPypJlYAJwKcTBfLUWxXTHRlmUaw0JEOWIiO_6kLk6bmJqKeFymmidUWiIpnzXQpcTkw6nEyUFLlLaEETanqwg/DcE-l__nzN47OVdl32Vi4zW1pP-Z7jMJ6PNRcIX-r4g",
-        "filename": "AQUALIVIA™ EVOSOFT™ City Water Softener 32K Cabinet.jpg",
-        "size": 677799,
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/3Ta0rehaH7lOI6ZJD0eLCQ/aTWj7zbExJPOQCdJhOo7zmc7IAwRcXqTkuO_nqAmG87oxIhUGuGfWGV4hGKlNc1H-YXOn4Dg2g8a1L0P9ktakD7q4qYvAN44AIzwXcCuXk306ZkZ7sTOrvnnWxF24kVSPOQ_YG5whn48ot8LkRJsQ6eKwAP1Bv_QBGIxJviErumPvsw18WnOrlZZHKcrixgF/lE2BVlYPQ9NfaDz2_KESQNAdVhQzkNwg3H8UBo-znqg",
+        "filename": "AQUALIVIA EVOSOFT™ City Water Softener-1.jpg",
+        "size": 1283001,
         "type": "image/jpeg",
         "thumbnails": {
           "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/zQIFw8YYQT74rJ3OEk_oDw/olVR2WWT9-QkymA2cMRslcKNGhhawevf-JYb56FRoLhND0xpx5c1v5d7J1msCx1BBLcEZ0B2sCjHc4dvyL3QIT7qmEXH7mLbyc4u139FKXNMbIACVMkzPA9lb8-KonrRxUHfcfEyUSAH6tLtBGe5jw/YesudBF8PMPdOX2sRl6_uvFT6bIHD5EEPsGbZkBQ93E",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/TdGdCpkZWPjhmOn7c3MKcA/ijWSAeBRzEeM9p203blNKqAlyH205xOvmHjwh1jr9Ij1kaneBR3t7mBNJbBBzHzAE5vvABPMr_4Kxvv95Z3vNsHKjzqwYmk8OyPFWC8UOSq6j1p0zytXkDLebFTkAAIHnG8hcxjZoMihQcXqrNQGMw/ifyvLM1YL6EmIdtJNb695X3hkp9u0pEk11YbJihlrE4",
             "width": 36,
             "height": 36
           },
           "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/7FsWKmQbK_wZh5ZtAmgBHg/8YDmNUP11OcCQLtDYlgKLi8P4WWtA5hTaamZAx25VqJHHnlWYSb7Y2fussIBsoTdyB6vuS-VBDLmem84_Rc1yD-uQcKYACBsEynKJ_4WjsWS7eexwhtrDdWu8ogm1ejgu8BQZBMZzhMq9oDUnJSiQg/Z8nq0PyPwsZHiTOT6kX2I65VopABJAGfLEkSpqc8z0E",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/tYvG23yC_mpIbV7mpgTh1A/QQDi1i-TkTn1ollmN_npLxctrCUVMK2p79S8a5AkitPjV15Lfj7Uuy_X8aEUssCmhCWQph8Aeg8Ktv3JT4K-rqOalpzi1lZyHRTjmTomisBhVtrvH1M3BE1dOGsh9ZLzpg_yGfJxZvZ5faszu1Vg9w/XjQkdhVMVuCFGNybFr0Lm9x_Wqza_SuuOimw4MqbBsE",
             "width": 512,
             "height": 512
           },
           "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/r9-2f0_MtkJ-bWvIyNHHBg/PasGi24e6p1neuuWJ3qT0_WrJKaateiF3B-P4oTwp0U6GEIDadwcYiGCm9i999a9xo-hHrdgHxJzL0jzRCmU5er-GWPvAChvUTYCBt19_MEA-sWvspRgwzR_A47QQQa30xXmdMthdgc65P8O5auc1Q/-RkxZibPZ2X7NTZTxxj9s0QKEtFuCFTWstOplFpoamo",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/jf_kAX1bs67dzk4PVh58wQ/Frj6YWZIeXYYh44c84I_m9JCONcO83iGHEtbhlJdwNbaLom7VNh7GFV-2Az6ImdHU0zv4Xx7zhyg2kwrplKYehrBGTfh7Uao0cTuL_2HhQlcayFZt6axkHPVefBr-k8QP-zjEE8_V7tKMJjSsFAl2w/P1IQB5cGcKdXsjRNIZEogMUUijLW-yqoIAz6DZIS1I0",
             "width": 2048,
             "height": 2048
           }
         }
       },
       {
-        "id": "atteHXeksmYGhAXos",
+        "id": "attYMNDfyymdfp9Xy",
         "width": 2048,
         "height": 2048,
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/sMmyPMaYAWEZ9quMHXBzbg/vN-OSJj7N1BSJBpjGGP7NEIqZe0x1yxnNYWDAj9V7FAo50SSOsa4B8EWb8Hj4PuLIlj5-eLgmYuzIxK6XA-cMOsIat23tUIpKuWHy5NSxvJRKHhXrsl7qTpHIVoKSfS_cD7xwEDcUjblySrnd4cBewB9hQDkFltTgHlMrLuMsPQfvmEjOkx99pTP4OMS26RX1U22hhRmYOaSNA94_zoFTw/W5MzZUddr8fH-J4Fi39RX9kTEoIyQINYbVfVu-31lZ8",
-        "filename": "AQUALIVIA™ EVOSOFT™ City Water Softener 32000K Cabinet Style.jpg",
-        "size": 771717,
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/n_CYhKOVaRD4BlM7OOJxQA/78FYsMzP_nGVAFK-FQL-aTKmZdJcoTZJh9c5WUbKCe0l6Vf77unYpit1HCwZE-2TsLLD_eyT4vVy8FPqvnbt9bqB-I1W817OC0ITwQagYBsat_E-nwYSMTFJfK2lCuEGUY-7jkmCuS3dV_pyRTj-xGimkwL73etj-QHIUvhBaArUurxMD_53Dgxx6yKYrxfG/xGm_3Ok5yid69DTGCjyAgMexJxpYAVu3Aijwpcsvb1w",
+        "filename": "AQUALIVIA EVOSOFT™ City Water Softener.jpg",
+        "size": 973318,
         "type": "image/jpeg",
         "thumbnails": {
           "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/bZaDL2qzdo37-81_ZW6w6w/bGhJx5QmMJsYU4F7cVmI45ndENzmxU6U0stjuMSsToCnRriLgAMqICbU4lrcHYnt0DueOVTSCP_QqjvV_TJ87WLtpnJ02AVQzVucDsboRafyrY33w_tKYLM20aczCjJ5bqOVhguWR6gpj9zdev7zcw/7eVb-f-xCgqemOcHrw_8GXFCkhb3khrIul72g899pGU",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/YHGOEJQWWWKHxNcM1LQGWw/NsfC8sNn0_K8N6E417xZDtXljsEoM4YUBViuhsKcfS_EQsliK0_-aDNocpLFj_0DnksLKoSwup5Xgx7V8b8U1iryB6pOHcXrO0yVpmoBJnM1aA9sg643Q_tplfp_xdPcETel-QUxy0yteMvuUkk3eA/peZ4yZnOrZSTfEdE24P70VFHFik4KstisuAerDO0o_A",
             "width": 36,
             "height": 36
           },
           "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/jZH35-hDfNB-7OW0s0wYNQ/i0N9Zx2SQA9zsif2tkn5193Wi852i5X0U1RhR2xLJivQEyRv-wNVZEN9oZfvsIsyxZfvlOAU7cunQpufJZU5jqAHCdKt6nYocWvSbsCKOlBx22EHQjojS6fpDM7CIlWLzg83w44VJCs2A6ZbWeq8uw/lctJJnclZBe33gKBSAe3D9dqr8RwFkBj2671lgbKbxY",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/zfnWqRCtDhYWZKZHKGVKgg/zNdE6FNQ9tGQR_M6PFLeqGfevDh1uSt5UHuYHr84VRhbKsiVUEezZ1fINrQcw64owLAc7-bXoW3a47CLpT0mizeuMYwopkpCK7mBZ1jWk_Y0UrkZN2hCwKu7ZAx5MNCqR5fkSdTenkfGkEnNHTzKNg/qSuyOztJvCLX_RnQHInE-F03qcHPh_BrVksDpRn2LdY",
             "width": 512,
             "height": 512
           },
           "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/uDnUJSLhuvs4BvVfyXF4EA/VLutRmMAwylLhPBNB3CF2eSgOtjJnYdOwQFit9uopD3RVyOG1YD8y3XUuyxxCeEmDB_Txk0vmaOdNblFogeK7H2GRy82-1oCxQHOeuBre6K8MjvxZ31c5w896vss8ZPzFhhGpSrpuhaEHk4RpuJESA/eYabew-1_UTAEmVJEi9ALvP7bNeXwQ650oV5e-jjmF8",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/Vn0q2qzUcNrgOYNT_GeqiA/KGJYzlhO_rGJJ__rMnFemDx_UfJSQ0ZH9jn4qhVZSzO7nVMOEBCBLyH3IuHLI4GakqJNzsrQsxl9knzDDZcZQwu7uOQveYOUiX0QCmL4cQZOubSJcgHaAdkH11DcHKSXb-AfsRc4Tm_FBo7tawG2zQ/KWq8DBa04ANheCTwr2_Y0QDGOtJ5bLM_h2Uuek3s4WQ",
             "width": 2048,
             "height": 2048
           }
         }
       },
       {
-        "id": "attzL5s1el34bYsy6",
+        "id": "att5F16k3hSVp1k5s",
         "width": 2048,
         "height": 2048,
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/kJKgtJ-ibCTJFLmdtYYwwg/O_Zkjp4eO3h0kuwXsN3Dpk11LPBJ4qE0ilT6Jjv_IDOXHzDcxcz1YczAxavgMfz_7gWFU3iY-3Alm48B9qSguv4OKKfgx1Xz6uC9IfX3bJQP-fPViQF-uITUas-FuoEvvbBXTv2RAwURQ_z3A5lz7QEVzECPf3I6m_34C5eSuFxf9N4Xgjq81-HIAvqgGW4Ea240F4qml8AT2r6fgvJURQ/N6wTk02N_zOjctQHyIwwFfBgfXhN2VHcQwXjtTSBqp0",
-        "filename": "AQUALIVIA™ EVOSOFT™ City Water Softener 32K Cabinet Style.jpg",
-        "size": 1175541,
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/xoiHmNSNKMzlmdZSjKVQTg/-qYGvCjIbI6-DofxabwLoefu4YCGsMnK5YAwZa7AwggBLt3EFYJ4ZWm3wDlHrugIYPeMx_P1bNb-Dj4AJ0KWsdwTFxJuYWxLt8uqnJR_pFyU7g8eoAw_zXeWd8akLlpUDngxX4EJnT7JkE19ZwcIYnoxJIUK30Tk-G26vBMEXQo/5Ssz0TQgl-oh5xufM7HU_VmHaLHG_YnI4abtvudkz-c",
+        "filename": "AQUALIVIA UV JACKET.jpg",
+        "size": 1023276,
         "type": "image/jpeg",
         "thumbnails": {
           "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/55z3-EfRBZtyKo1M2haFbA/yse4ittDB5viO-3OKhw0kRKulHLwMAHtTcKAahhpct5VrsdHu-P8fOKMsSspmFEltVHS6L5PCnYiyBel_KKLhDVnDB2Ziz2dsOdadsj9lKLKULMM1dZl3tMwYuZeIHm_bS3JTqCfbvF6RgKiA1JsuA/SZs7cXVdHuDnxoptJFSawO95B0aMbk7Q47NSTJl0yRU",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/-iNP7iACz1zm0vW2TFKRDA/M1c_MPfT97hIRSJsU_LGYAKnvcNsfuNVmHIZvIKo-3jmq2xu3KP8UqmglbR6IaXHB7m_8Xmzgw_OIhuTqIBr6b_n-3Qrp-0bw47VZiNDJqBlYzwpY9iHZ-_QB2pApP488V199vg-uuZ9P7NgioLhIA/v6uxPWNcMyV8x64HaGE_uqdwrgaWj9s5RYCIngcLoyI",
             "width": 36,
             "height": 36
           },
           "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/aqT26iUnPwcfVi36VV_wkQ/MWihT6StSfY4qbFYSil-0HT5fM7jCUYu500gmO-Jvpof8kDy-umblGg2e7e22YCkoAuJBNeQRvbn3bTybEHiO7VlMOEegPvou-vpKNDRauoXGivfgqp0x3hzuo0J4OIzO56Elxv10hlm5Rfr8R71NA/SBpVNszQCdVjQsv_TFmnNJ5qpaqiHI59cznIqGpwyXg",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/MzDgGVd7LtkYtT0LO5u2lw/w85zvyPlIKyMkr_S49JTpJN3VcugbZvOju9s6X-PMVq_U9mWFEYJDh3n43XreGFticPjZUXJfuiQjU6hmLcgtZqKO30QzvWN9ol0xZXiW4UTqsNCY6ZJCI1diPU_S2vbhzWlxByRjS4N7Pfo09xv4w/syAoAoDbSVVwPEjEdG-SDXwtGahMnzynDXmYKPkeMMs",
             "width": 512,
             "height": 512
           },
           "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/f31--Hxzd5CsL0dC8yvKrg/0bYLm3tEpI31LAG-mmxFCplnAA0Wj2o3BEp3Pj86q7s_nlhFKx3bruY2J5Mkpufi1oJ7bNfp418G71jFcqZO40Pc3yqHzRckqx6zyhtvz0EI4AqiPJmW1_UHaj9jnbpi3z3hOfUp9xaVw39mRjBjvA/EYeEcPzbBIz0z-ovECCvMIK_V9jsVFJMWibOjYXi1K0",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/0MMUGC-po3raxnDyBy8DTA/8pyQof6POKQnT7mvbOZXj0gqC0v5YfSNe-R8wueis0j5zoSUSfrwBg7Yi_b3RTYEnjD8iIf87cmOymNPutJx7BdV-D6BqBRRkHQtgRX_BxLsQfMoDBCsMAQgdF_zMZhEBXwGdwkaN3QEzANsa6ZPEA/j4zpIXaY9H2lljoEoFwe0orBu-mopO6nNMrGRaxp0oI",
             "width": 2048,
             "height": 2048
+          }
+        }
+      },
+      {
+        "id": "attiXBCGhGA7mb2sJ",
+        "width": 2048,
+        "height": 2048,
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/04ZkQvYXQeTX7cKmeuRcfQ/rgkMSQSSC99MA7N-s7_wXG8NOUlr1NSqFmLWDMpGxWLzjhwLrEZ3QqwtRawE_s4QB0Ls_3uJRThIOprDbVSRdKo8xWP7tJeRJi3B9NjF2sAuR2yv1d0J6Zj2NTs3OTUG0ssMRDc616anb2wVZrgF-BW7TWvnM4Iq8vXITZAYJv9KF06CDbzd7Pf7HK8jJTcH7jAkaQpn7tImr8ML0-OXNw/jxDfQ9pN6p5wnjady2doGYQf1bobbS1IPfomDohJMFc",
+        "filename": "AQUALIVIA EVOSOFT™ City Water Softener Explode.jpg",
+        "size": 1314817,
+        "type": "image/jpeg",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/RCgwy5oUrxRKDtgg8CM_Cw/ssYxCyV6BJZmGjoCiUf9RQQH_3SJA_RJA88hpEGA88Vu5Tyyx8GMp5kBWlWUnQyd-_IgfaGSQkenGEpb--1yRktB1MV9vpLQvAeMdJ-VbDOrR2q9MumOCxCfvzNQEycP38StuLyjo6ZjJalPqSPG-A/cEHNRb4SJYzBb-jVWHqaclQp3XplR7TeQoZjC77qRlQ",
+            "width": 36,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/UCI7jf5NOWZP6XImlCwmPQ/y8QH2skgVHC9bTIAFzeivB-oirTIpvxvDQvg9TT9Dwu2raR9XawPVxwia-GEaYGGzy0xwZlxgPqdeaNlgPtXIy2bzPWJorPiwC-USWsvSZ5Zbu-GzX6V5h-UW22ECqowiOf1XNbli3RLJYMaaPPWtg/DsPz_FUwBdFOfFwk_KyTHS994WYys5vIyIZ349tE-Bw",
+            "width": 512,
+            "height": 512
+          },
+          "full": {
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/7Lp8AaOf05fIeUos2oEQDA/JygD1YlqywaaOtwc3DVHE3M0XDTPkfIgji6Y_nS-dK6a1kSulHjxlfEppKFs07ffdl88unG2hG00aoRhKAGUqfptTHM6yBZkZGdtE4HccNnZOCa6nDns4tDhWhZWbuZUmxBl0JRaBsMHNvjrtED19Q/RWGtwRER77eFJUb0d4KgeMjTcQ3IA69H26JNBpmLUZg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      },
+      {
+        "id": "attGrw31aok3vNNPW",
+        "width": 1536,
+        "height": 1024,
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/nOG9Xds5ZvlCtc_vXk-Slg/2zBeocFUbDZvreiMShenJM-F3gFX2ZCPLf_QHuWHi35sv026E85e9fRB9JgP4a9nT08P4LrcePGKdE4TjHymLnxlj8L-4sUiF5VD6m68SyovqSAxsnb6aQvUBdPjt7Z6KNS--1HOPTK6DeTTcE2C3w/Zk9AZ6T7tW6Xh5DIBFWAGJKw5iKKTGcfwfj7-cGX1Bc",
+        "filename": "SIZE.jpg",
+        "size": 751282,
+        "type": "image/jpeg",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/jtm1FUKbCKXb-YPKU05e6Q/7rdDARtg6847gWzvxkC6VpmGJBMkVUXWl_9JSqgVslFxRmeDoTZIBg81OmO9XtS_eqIWAN155bTm5hdwakR_5JGqcriuDJJBjpvmIuL8iti18118VdQgE3jMxqkFusd2bHPODMSGgyjukbq_d7-K4g/W7hMRRyW0JUw6y1-ZEB2_t5CaKvkhS04TNopSeOzeYo",
+            "width": 54,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/hPBiIEHQo0YoN1Uk-trgAg/DC4xYiONAFZgMdYwcn4pmf4bge53xpgvrA5Ec6SB8NVYy98Ou7hyVzUEIO9SVqbrZ8P-UP2GK9e-qamZHcLT_-_QxBQcE37WUKHce2RBS7TK0s0RHeNxjFddc3DQMdUH5aAu0B6FeScbTFg83Tm9lQ/kTaKPlADr-z-bWvHfIqppcTuuWxUjhAe0BQ5kpVz-W4",
+            "width": 768,
+            "height": 512
+          },
+          "full": {
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/GipIXoF0xuScYV86rQBk4Q/DuX4FfTNeJm6cCTGvla6fF6vdBx7ZQ3qQTpc4s7TxW2LkbR7u-BsNI0LtnsoUhj_ee32G3u1dHV3mAmNwFZ4TAHFwHs9nKcp_uCv-csIpmvEkrxCie20liQgh2px2WYiDbw7tK487Uvd9wsqJ79bcg/m9GZNckabrJwTS2ER_kddNAt7RzK385ZgcdvIz-UlsM",
+            "width": 1536,
+            "height": 1024
           }
         }
       }
     ],
     "Category": "Water Softener",
     "Vendor": "Charger",
-    "Vendor Price": 650,
+    "Vendor Price": 600,
     "URL": "https://www.aqua-wise.com/water-softeners-in-tampa",
-    "Gross Profit": 1099,
+    "Gross Profit": 1149,
     "Line Items": [
-      "rec6rh9JXb4wYgErV",
-      "recepIrSTP7t0i85z",
-      "recJ3PD1umzQ1Sl93",
-      "reclvQi629c4RuNuX",
-      "reck7qh79d7drmlTt",
-      "recvYJrEBtkH6e83Q",
-      "recsXdQKGQ8GDhWHK",
-      "recHJRdOf2LbooMLg",
-      "recBcvhAu8dRhiQ1K",
-      "reckoTSmGpKZXvUg0",
-      "recVG1WSIJhIWdvQn",
-      "rec6TTGUPfkr1ePy1",
-      "rec6zWKQx5ILVsQBM"
+      "rec6yE2323AOKBHhW",
+      "recsE7lMxWlJbk2U5",
+      "recN6Mp6Y9VGQaKAd",
+      "recTEulbpp9ILXJDJ",
+      "recqkhpQGnQKkVLgX",
+      "recsFPC0i0TTs9lOQ",
+      "recVdHCky0u4xjnLI",
+      "recbKCSuA9clQfpGw",
+      "recsE58hgqlFKwuNv",
+      "recdd3vWr7C6SY7af",
+      "recLwbOEO80nvJ0Eg",
+      "recXscOddDPOuxyY0",
+      "recCrRJEmH2nolDLY"
     ],
     "QTY": 10,
-    "Shipping Price": 200,
-    "Website Retail Price": 2199,
+    "Shipping Price": 300,
+    "Website Retail Price": 2299,
     "System Capacity": "32,000 Grains",
-    "Tank Dimensions": "9x48 Cabinet",
+    "Tank Dimensions": "9\"x48\"",
     "Cu.Ft. (Media Volume)": "1 Cu.Ft",
     "Certifications": [
       "NSF/ANSI 44 Certification ",
       "NSF/ANSI/CAN Standard 61",
       "WQA Gold Seal Certified",
-      "NSF/ANSI standard 372",
-      "CSA B483.1: Plumbing materials standard"
+      "NSF/ANSI standard 372"
     ],
-    "Max Flow Rate GPM": "27 GPM at 15 psi drop",
-    "SKU": "EVO-CWS-001",
-    "Product Weight lb": "105 lb",
-    "Product Dimensions": "20\"L × 13\"W × 45\"H",
+    "Max Flow Rate gpm": "27 gpm at 15 psi drop",
+    "SKU": "EVO-CWS-002",
+    "Product Weight lb": "101 lb, 46 kg",
+    "Product Dimensions": "9\"L × 9\"W × 55\"H",
     "Occupants": "1-2",
     "Ideal For": "One-story homes (with standard water pressure 50–70 PSI)",
-    "Link to Product Page": "https://www.aqualivia.com/collections/city-water-systems/products/evosoft™-cabinet-style-32k-grain-city-water-softener-2",
-    "Key Product Features": "- Compact cabinet-style design – combines high efficiency and modern aesthetics.\n- 32,000-grain capacity ideal for small to mid-size households on city water.\n- Uses premium Aldex C-800 10% crosslinked resin for longer life and chlorine resistance.\n- Reduces hardness minerals that cause scale buildup and soap scum.\n- Efficient regeneration system for lower salt and water consumption.\n\n",
+    "Link to Product Page": "https://www.aqualivia.com/collections/city-water-systems/products/evosoft™-prime-32k-grain-city-water-softener",
+    "Key Product Features": "- **Premium Aldex C-800 10% Crosslinked Resin**: Engineered for superior hardness removal and long-lasting resistance to chlorine degradation.\n- **Perfect for City Water Homes**: Ideal for 1–2 occupants with one bathroom, providing consistent soft water for up to 1,000 sq. ft. of living space.\n- **Smart Metered Regeneration**: Minimizes salt and water usage through precision-demand regeneration technology.\n- **Compact, Elegant Design**: Sleek cabinet configuration fits seamlessly into modern spaces without sacrificing performance.\n- **10-Year Service Life**: Built with industry-grade components and backed by AQUALIVIA’s commitment to longevity and reliability.\n- **Quiet and Efficient Operation**: Experience luxury comfort with whisper-soft regeneration cycles and consistent flow under standard pressure (60–70 PSI).\n\n",
+    "Sell on Website": true,
     "Media Type": [
       "Aldex C-800 10% Crosslinked Resin"
     ],
     "Household Size": "Up to ~1,000 sq ft",
     "Margin": 0.5,
     "Buffer (7%)": 0.07,
-    "True Web Cost": 1100,
+    "True Web Cost": 1150,
     "CAC": 250,
-    "MSRP": 2859,
+    "MSRP": 2989,
     "Engineered to Reduce": [
       "Hard water stains",
       "Hardness (Ca²⁺ Mg²⁺)",
@@ -153,8 +205,8 @@
     "Perfect For Homes With": [
       "City Water"
     ],
-    "Backwash (DLFC) (gpm)": "27 GPM at 25 psi drop",
-    "Description": "The EVOSOFT™ Cabinet Style 32K is a space-saving, high-performance water softener designed for modern homes on city water. It eliminates hard water problems, protects your plumbing and appliances, and delivers silky-smooth water for your entire household — all in a clean, compact design.\n",
+    "Backwash (DLFC) (gpm)": "2.2 gpm",
+    "Description": "The EVOSOFT™ 32K brings luxury water treatment to smaller homes, condos, or apartments. Its advanced Aldex C-800 10% crosslinked resin offers superior chlorine resistance and a longer lifespan, ensuring soft, silky water every day. Enjoy spotless dishes, softer laundry, and healthier skin and hair, while extending the life of plumbing and appliances.\n",
     "Number of Bathroom": [
       "1"
     ],
@@ -166,45 +218,55 @@
       "Best Seller"
     ],
     "Input & Output Line Size": "¾” or 1” NPT",
-    "Feed Water Pressure": "Standard water pressure 50–70 PSI",
+    "Brine Tank Size": "18\"X36\" Gray",
+    "Feed Water Pressure": "Standard water pressure 50–70 psi",
     "Brand": "AQUALIVIA",
     "Sub Brand": "EVOSOFT™",
-    "Warranty": "At AQUALIVIA™, we stand behind the quality of our water treatment systems. Every product is carefully built to last, and we’re proud to offer strong warranty coverage to give you peace of mind.\n### What’s Covered\n- **Mineral Tanks:** 10 years (up to 13\" × 54\"), 5 years for larger tanks.\n- **Control Valves:** 5 years.\n- **Brine Tanks:** 5 years.\n- **Accessories & Components:** 1 year.\n- **AQUAREX™ Whole House Filter:** 5 years.\n- **OZONEX™ Ozone Systems:** 1 year.\n- **AquaVRay™ UV Systems: **1 year.\n- **HydroClear™: **1 year** **(system only)\n- **AquaRevive™ RO Systems:** 1 year** **(system only)\n### What’s Not Covered\n- Regular-use consumables (filters, resins, membranes, UV lamps, cartridges).\n- Damage caused by misuse, freezing, flooding, power surges, or improper installation.\n- Products used with non-AQUALIVIA™ parts or outside normal water conditions.\n\n### Disclaimer\nAll service life values provided by AQUALIVIA are general estimates based on typical field conditions and are not performance guarantees. Actual media life depends on water quality, oxidant levels, flow rates, maintenance, and system design.\nResults will vary for different applications and environments.\n### Our Promise\nWe’ll repair, replace, or provide a comparable solution if your system has a covered defect. Our goal is to make sure your AQUALIVIA™ system works the way it should, so you can enjoy clean, pure water with confidence.\n👉 For warranty support, please contact Info@AquaLivia.com.\n",
-    "Shopify Product Id": "gid://shopify/Product/9128627011823",
+    "Meta Description": "Discover the AQUALIVIA EVOSOFT™ Prime 32K City Water Softener with Aldex C-800 resin. Compact, efficient, and built for luxury homes seeking pure, silky water.",
+    "Warranty": "At AQUALIVIA™, we stand behind the quality of our water treatment systems. Every product is carefully built to last, and we’re proud to offer strong warranty coverage to give you peace of mind.\n### What’s Covered\n- **Mineral Tanks:** 10 years (up to 13\" × 54\"), 5 years for larger tanks.\n- **Control Valves:** 5 years.\n- **Brine Tanks:** 5 years.\n- **Accessories & Components:** 1 year.\n- **AQUAREX™ Whole House Filter:** 5 years.\n- **OZONEX™ Ozone Systems:** 1 year.\n- **AquaVRay™ UV Systems: **1 year.\n- **HydroClear™: **1 year** **(system only)\n- **AquaRevive™ RO Systems:** 1 year** **(system only)\n### What’s Not Covered\n- Regular-use consumables (filters, resins, membranes, UV lamps, cartridges).\n- Damage caused by misuse, freezing, flooding, power surges, or improper installation.\n- Products used with non-AQUALIVIA™ parts or outside normal water conditions.\n### \n### Our Promise\nWe’ll repair, replace, or provide a comparable solution if your system has a covered defect. Our goal is to make sure your AQUALIVIA™ system works the way it should, so you can enjoy clean, pure water with confidence.\n👉 For warranty support, please contact Info@AquaLivia.com.\n",
+    "Shopify Product Id": "gid://shopify/Product/9144895013103",
     "Water Problems Solved": "Hard water and limescale buildup\nWhite spots on faucets, dishes, and shower glass\nDry skin, dull hair, and soap that doesn’t lather well\nScale damage in water heaters and appliances\nClogged plumbing from mineral deposits\nLow water pressure caused by scale buildup\nHigh hardness minerals (calcium and magnesium)\n\n",
-    "Operating Pressure": "20 - 125 psi (1.4 - 8.6 bar)",
+    "Operating Pressures": "20 - 125 psi (1.4 - 8.6 bar)",
     "Optional Upgrades": [
+      "rec1NUEaQWzKizm3c",
       "recsaTQEJfcSqhhhE",
-      "recw46ojY6K8f02qV"
+      "recSKecXeJ6zsnzrj",
+      "recw46ojY6K8f02qV",
+      "recpgq1iEWsBUz7X4",
+      "rec59SBimbIROyLbq",
+      "recSXgtm7lTCB8Koy"
     ],
     "Shopify Product Id (from Optional Upgrades)": [
-      "gid://shopify/Product/9128627765487",
-      "gid://shopify/Product/9128627798255"
+      "gid://shopify/Product/9144894226671",
+      "gid://shopify/Product/9144897470703",
+      "gid://shopify/Product/9144895144175",
+      "gid://shopify/Product/9144897536239",
+      "gid://shopify/Product/9144894357743"
     ],
     "Sync": {
       "label": "Sync",
-      "url": "https://primary-production-dae8.up.railway.app/webhook/sync?recordId=recAEY58tqV7VnKSq"
+      "url": "https://primary-production-dae8.up.railway.app/webhook/sync?recordId=recNqbXrtWQzjmoiY"
     },
     "Sync All": {
       "label": "Sync All Data",
       "url": "https://primary-production-dae8.up.railway.app/webhook/sync-all"
     },
-    "Last Modified": "2025-11-06T09:18:17.000Z",
+    "Last Modified": "2025-11-22T15:11:22.000Z",
     "Product Documentation": [
       {
         "id": "attwoIto2uHnB8gso",
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/XK7GzJ6HEND-wP73XUwR8w/tjiq8GbD4Phvet3fTdNOcVBhaxfNodmUM87LE3mUS9-7k1QB_N_pb7UlNVIBPGPgBA7im3Wl_fz_dSueZyYWkGQHoF2Ia4KmpNTGOXWMIKrCSjGIU9pJcr71T-SUnDjk-QNXtTIWGVoRb0cvp6PuJqNHbSFeJzONObIM_pRC5RpyfR5EXTy4Q1UIwPS69aLE/1OYa4JZjqGEjGnBZP03vblMsI-PqL90x56fyGghs5pw",
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/t6VNdgcjScczu8m4sJS2Rw/W2-VNogoRcbmMvaLiM1KOSQeonj-KKgTlW5W-uJZm68be6ObWba0g7VcoyHzZj9LoEB4Bc_UIR0I7mhZihmSscFigI_0LoNA0vxwsxWW7zxlkHMkSAzAO0Z2tJfGmMEtrHR4t-I9R4Nr2uFHQeftSqtli6IjlHCPaGnLz0cBl-R_pW0GSsjeRw_WKfVRMLtT/GQRDVBqmlAVzEum1kq7Dku5UF6eUxD3vxlJiTRCpnDs",
         "filename": "Media Aldex-C800X10-Safety Data Sheet.pdf",
         "size": 106860,
         "type": "application/pdf",
         "thumbnails": {
           "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/LhgpgZon4W6tQTbyHDU9Mg/De9HolcruK5B9V_UloEGeJlPaFJBmB2jSDpUBEshWB-gFLCk_Ame4cDMxoeTktxp8rLetb1HXqxANgwK-qMt1VOFC-wH3wVDwVCxes5gtNEKpd2aodrFg6o0YHz8JgqfgfbEI_4_ilbJw-iflZ5rag/J68u093c17HGIPKiGC4NMUCOKiDbdmhqzBm5tk_5pP0",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/a_RoPoIMoSext84OwtehOA/mo_ed30qM8BIXoRIgVNHdaRVLivVm83xBL8FFiASAKXnzL1hO2hJc6f7ZqpaconSLWIw8-gLa0w6_-k4ocMwuUSukOxLVTYQM9NVSSMv8Vcm6oSeaKB5QY_w0RNNBgPfMuhtMmt-DhfmzzCss3ksig/8PW368tn0UbNCSYW4GxpDxb_bkmS_gYIBi_sgaPdyME",
             "width": 28,
             "height": 36
           },
           "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/SNHk4Lf3RzK8gZHYt9ZK2w/lmo1jnfjYrjV5Vgg_B71JOtQ5bR8e2WLseNQasJmbv6sxAWxKgLbmWKXIzJ37vE0g9ZX4zL1tcrDVCydUlLhr75c4Y_NZZLj2KUttnQhNA_ra27QwTCOSjvtW7U5hu5rrabpJ5a2LPCzLB-R4_mzWA/aychk0PbIy9e3h0eK_9w-5ZkguF2PfHu1hkQdapqMaw",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/5cx8YGDBJbI90AzWX0zaCg/tg1QbqQcXLem2cXibEGnCIFsOzJUwEMbLT78-awlVpoafq-lpws7acvl97O6vySKYPJLDNP13eiOkoqqyc66ZSe_pVtgvONtRBByl1hO1JHKhoeM664aOoeb29V5687Wj7IAO7z8b7dg1xAaHHRTDA/kcoQtkn-P8CBCcAcxMDmWNUJjFF5J5TxP44VpxNOupM",
             "width": 512,
             "height": 663
           }
@@ -212,31 +274,32 @@
       },
       {
         "id": "attBg7sCsE9OLNgyb",
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/B2K7WiIFCMb0VSTD6FRBVA/nC32-Y-RbW8ChsPSMxNoxyD0upuHT8dAKnhbjSUQcuAIl5DS-k-ppQ1IH76Yy4PmjkhiIz_x8icUm7QdsYaJwWedWS9xYMDwskCVy4mWu8B5yKPvIPTTkINNkgzJVcr_8RcKlNAbnSO_TqYf9Ow3p1He6-tl13hM5iDjNVaDdMBp9hd0MU64B4XjplRX2r7QPQ-RzVUmaMwiDGHbpKUPh0x7qd-dPVLwvRkk1CKrH7Q/M5RLKHb-38T7-wvKr9AQq50e5bZTnyXh1D9Ky41S6LM",
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/rs-sEpT2etyjlNmiWnrYfA/6bZ7Bwo_H6CufmXdmEUCPtoJV6go8_Z3lUEeg8gHZo8Sk6ZtyoZWefMpTGHU7xnoAKDik800QPY225BmyBtuvd8Pr9yxnKjaB1TCqiAEvVqxciac1z5G4hvxQt9iQlTaMZn7YGGu2Wr79Oni2wbGLL6JDDuLY8C_CP_LDc5SPBYLkjII6EiPS65kAFa-qweBdD0nKzz0GgPw5FZ52lyw4KcP4v_kWiVB_CaBv7xCWTg/zPqodnVOBgZDI9qzaTpgvH4VKyIr02B2mTmxS6Ta3Hc",
         "filename": "Media Aldex-C-800x10-Water-Softening-Resin-Sodium-Form-US.pdf",
         "size": 242582,
         "type": "application/pdf",
         "thumbnails": {
           "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/UJdluIjyceg5Xh_8fZ10oQ/IElC0N6kzj4mWeOcawlVp8qg-fyr49EHtnVOF6BTrmPcy9Ruo2AOpN6obNtHh2vbiVEe3DFY6L9o_-emYxVYKWgVjrhA7hK3d5QKppOBCKfwRehYGM2iA5_UCoUpcE2PhHK1XV7QCo3neuC0xfaraQ/gvZBgVxoThoN9McixqJZ9nrAHI3Sb3hwoPrDjESd1Gc",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/x3p7VrzjYDeE5Y42INM7-w/PHkldGMvuNWDJqoXzsh1UHjRHJ5MvqW6tiTbteh2Z6SFNI4rLIMvVumACmMDDmtTFWBqjn2XJrDc5UAoIeNCwZt1_pBzAEykHgENi1JFjJam3RmIcr9_t6njWov0lKLg--fBU5YaV85qbQdYaUZmoQ/IUjE5d13XCx1pKY3Ews8eFvVnSXSouzNrrh0gEAByr8",
             "width": 28,
             "height": 36
           },
           "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1762430400000/k9IqV__O2rSt7gHpUuPFoA/lJjEdGQdmyigKm_QgQadL-i30miEr9Zl4fEsZ9EvPB-oLfW4BjJUVxtW5ey49oKQ9jbTwMlnCvC24BVTcS_DYj62E1uZyk-r0uQO9qz96eps3u6QtolqZ6O7Os5wTK7-cvfL423Z0AppVsqmbaHENw/dtWm329mcH5Nzcy58cZK8IgA5F2k4JnADiXU35JvpI8",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1763834400000/nUAWprLGRK5KjkBbZ1NhMw/0dIPF8N7R6sIoR3_MRS3ogpd6QOUCmQl8Ju7wvRciji82F9hAd6GTPxSARoC_yZ7QpOGgE8Art30AVfAusBhNn3WvpUDa7KUfAosm_m-uisPjqlcWUS8Ko0XRMbInkzvw5o8cqvOxbvKbobzmOqgdw/Rwxae7yMChxgmuNxdspnnr2M8_8mt-_Uh0NEKxwNT5Q",
             "width": 512,
             "height": 663
           }
         }
       }
     ],
-    "Extended Description": "The EVOSOFT™ Cabinet Style 32K brings advanced softening technology to homes that demand performance without bulk. Its compact, all-in-one cabinet design integrates the brine tank and resin tank into a single sleek unit, making it perfect for tight spaces while maintaining full efficiency.\nAt its core, the system features **Aldex C-800 10% crosslinked resin**, engineered to resist chlorine degradation and provide long-term performance on city water. By removing hardness minerals like calcium and magnesium, it prevents scale buildup that damages plumbing, fixtures, and appliances. The result is softer skin, shinier hair, brighter laundry, and longer-lasting home equipment.\nThe EVOSOFT™ Cabinet 32K also includes a **smart metered valve** that regenerates only when needed, conserving both salt and water for maximum efficiency. Designed for easy installation and low maintenance, it delivers reliable, professional-grade performance — direct from the factory to your home.\n",
+    "Extended Description": "Refine your water experience with the **EVOSOFT™ Prime 32K Grain City Water Softener**: the hallmark of AQUALIVIA craftsmanship for modern urban homes. Designed specifically for **municipal water**, this compact yet powerful system ensures a flawless balance of performance, reliability, and sophistication.\nAt its core lies **Aldex C-800 10% cross-linked resin**, a premium-grade ion exchange media engineered for exceptional chlorine resistance and long-term durability. This resin delivers superior hardness removal, extending the life of your plumbing, fixtures, and appliances while maintaining the velvety texture of softened water that defines luxury living.\nPerfect for **1–2 occupants** and **one bathroom homes up to 1,000 sq. ft.**, EVOSOFT™ Prime 32K combines intelligent metered regeneration with quiet operation and sleek design. Its optimized valve system maximizes efficiency, reducing salt and water consumption without compromising performance.\nBuilt for **standard city water pressure (60–70 PSI)** and backed by a **10-year service life**, this model embodies AQUALIVIA’s promise of engineering excellence and enduring value. From the first touch of softened water to the final rinse, every moment reflects purity, care, and precision.\nExperience the EVOSOFT™ Prime difference: a water softening solution that performs with intelligence and looks the part of elegance.\n",
     "Power Requirement": "110V Standard (Plug-In Transformer Included)",
     "Operating Temperatures": "40° - 110° F",
     "Drain Line": "¾” or 1” NPT",
     "Bypass Valve Included": "Yes",
-    "Installation Type": "Indoor or Outdoor (Whole-House Point of Entry)",
-    "Maintenance Requirement": "Add Salt\n",
+    "Installation Type": "Whole-House Point of Entry",
+    "Maintenance Requirement": "Add salt as needed\nClean brine tank once per year\nCheck valve settings every 12 months\nInspect resin for channeling every 3 to 5 years\nReplace resin every 10 to 15 years depending on water quality\n\n",
+    "Operating Environment": "Indoor or outdoor safe",
     "Estimated Installation Time": "A professional water softener installation typically takes 2 to 4 hours, but this can vary depending on the complexity of the job and the type of system. Replacing an existing unit might take less time, sometimes as little as an hour, while a new installation with additional plumbing will take longer. \n",
     "Delivery & Returns": "# **AQUALIVIA™ Shipping Policy**\n**Effective Date:** 10.17.2025\n **Last Updated:** 10.17.2025\n **Applies to:** All purchases made directly through AQUALIVIA™ or authorized distributors.\n## **1. General Overview**\nAt AQUALIVIA™, we take pride in ensuring your water treatment systems are built, packaged, and shipped with the highest level of care. Because most of our products are made-to-order or assembled at our Florida facility, please allow **an additional 1–2 business days for production and handling** before shipment.\nOur factory and fulfillment center operate **Monday through Friday, 8:00 AM to 4:00 PM (Eastern Time)**, excluding weekends and federal holidays. Orders placed outside operating hours will be processed on the next business day.\n## **2. Order Processing and Handling Time**\n- **Standard Orders:** Processed and shipped within **2–4 business days** after order confirmation.\n- \n- **Custom or Special Orders:** May require up to **7–10 business days** for assembly and quality testing prior to shipment.\n- \n- **Pre-Orders or Backorders:** Customers will be notified by email with the estimated ship date before payment is processed.\n- \n- Orders received **after 12:00 PM EST** are processed the following business day.\n- \nPlease note: Weekends and holidays are not considered business days.\n## **3. Shipping Options and Delivery Times**\nWe offer a range of shipping options through trusted carriers such as **UPS, FedEx, and USPS**. Estimated transit times apply **after the order has shipped** (not including handling time):\n**Shipping Method**\n**Estimated Delivery (U.S.)**\nStandard Ground\n4–7 business days\nExpedited (2-Day)\n2 business days\nExpress / Overnight\n1 business day\nFreight or Palletized Shipments\n5–10 business days\nInternational (FedEx or DHL)\n7–17 business days\nDelivery times may vary depending on your location, weather conditions, carrier delays, or customs clearance.\n## **4. Free Shipping Policy**\n- Free standard shipping applies to **orders over $99** within the **continental United States (48 contiguous states)**.\n- \n- Orders under $99 or requiring expedited service will incur shipping charges shown at checkout.\n- \n- **Hawaii, Alaska, Puerto Rico, and international destinations** are excluded from free shipping and will be charged the actual shipping rate based on weight and destination.\n- \n## **5. Freight Shipments (Large Equipment)**\nSome large systems (such as commercial units or whole-house filters) are shipped on pallets via freight carrier.\n**Freight delivery terms:**\n- The carrier will contact you to schedule delivery.\n- \n- Someone **18 years or older** must be present to inspect and sign for the shipment.\n- \n- The delivery address must be accessible to large trucks.\n- \n- Liftgate service can be requested for an additional fee.\n- \n## **6. Inspection and Damaged Shipments**\nCustomers are responsible for inspecting all shipments **at the time of delivery**.\n If there is any visible damage, note it on the carrier’s delivery receipt **before signing** and take photos of the box, label, and damaged areas.\n**To report damage:**\n1. Contact AQUALIVIA™ Customer Support within **3 business days** of delivery at 727-236-7161.\n2. \n3. Provide your order number, photos, and a brief description of the issue.\n4. \n5. Keep all original packaging until your claim is resolved.\n6. \nFailure to report damage within 5 business days may void your eligibility for a shipping claim or replacement.\n## **7. Lost or Missing Packages**\nIf tracking information shows “delivered” but the package is not received:\n- Verify the shipping address on your order confirmation.\n- \n- Check with neighbors or your local carrier office.\n- \n- Contact AQUALIVIA™ Customer Support within **7 business days** of the marked delivery date.\n- \nWe will work with the carrier to investigate. AQUALIVIA™ is **not responsible for packages stolen after confirmed delivery**.\n## **8. International Shipping**\nWe proudly ship to select international destinations via **FedEx International or DHL Express**.\n- Delivery time: **7–17 business days**, depending on customs processing.\n- \n- Customers are responsible for **all duties, taxes, import fees, and brokerage charges** imposed by their local authorities.\n- \n- We do not accept returns or exchanges on international orders unless covered under our warranty policy.\n- \n- Refused or unclaimed international shipments will be refunded **minus all shipping, customs, and handling fees**.\n- \n## **9. Refused or Undeliverable Shipments**\nIf an order is refused, undeliverable, or returned due to an incorrect address:\n- The customer is responsible for **all shipping charges (to and from)** and a **restocking fee of up to 25%**.\n- \n- These charges will be deducted from any applicable refund.\n- \n## **10. Delays and Force Majeure**\nAQUALIVIA™ is not responsible for delays caused by events beyond our control, including but not limited to natural disasters, weather conditions, labor strikes, pandemics, customs delays, or carrier errors.\nWe will make every effort to notify customers of significant delays.\n## **11. Order Changes and Cancellations**\n- Orders can be canceled or modified **before they enter the shipping process**.\n- \n- Once an order has shipped, standard **Return Policy** terms apply.\n- \n- Custom-built or made-to-order systems cannot be canceled once production begins.\n- \n## **12. Title and Risk of Loss**\nAll products become the property of the buyer **once shipped**. Title and risk of loss pass to the customer upon carrier pickup at our Florida facility.\n## **13. Governing Law**\nThis Shipping Policy is governed by the laws of the **State of Florida**. Any disputes relating to shipment or delivery will be resolved under the same **binding arbitration and venue provisions** described in the AQUALIVIA™ Terms and Conditions.\n\n",
     "Partial or Conditional Reductions": [
@@ -249,9 +312,31 @@
       "Chromium (Cr³⁺)",
       "Cobalt (Co²⁺)"
     ],
+    "Occupants Variants": [
+      "recSb4gSFoAyRNTP5",
+      "rech4a4IpvoK3NGlP",
+      "rechL8AixqB2py71s"
+    ],
     "Sync Status": "Processing",
     "available": true,
     "Service Life": "~ 10 years",
-    "Charger": true
+    "Charger": true,
+    "Variants": [
+      "recNqbXrtWQzjmoiY",
+      "recSb4gSFoAyRNTP5",
+      "rech4a4IpvoK3NGlP",
+      "rechL8AixqB2py71s"
+    ],
+    "From field: Replacements copy": [
+      "recNqbXrtWQzjmoiY",
+      "recSb4gSFoAyRNTP5",
+      "rech4a4IpvoK3NGlP",
+      "rechL8AixqB2py71s"
+    ],
+    "Shopify Product Id (From Occupants Variants)": [
+      "gid://shopify/Product/9144895176943",
+      "gid://shopify/Product/9144896028911",
+      "gid://shopify/Product/9144896979183"
+    ]
   }
 ]
