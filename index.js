@@ -1495,9 +1495,11 @@ function buildMetafields(product, options = {}) {
     }
   }
 
-  const contaminants = asMultiLineValue(product['Contaminants removed']);
-  if (contaminants) {
-    const listValues = contaminants.split('\n').map(line => line.trim()).filter(Boolean);
+  const contaminantsRaw =
+    asMultiLineValue(product['Engineered to Reduce']) ||
+    asMultiLineValue(product['Contaminants removed']);
+  if (contaminantsRaw) {
+    const listValues = contaminantsRaw.split('\n').map(line => line.trim()).filter(Boolean);
     if (listValues.length > 0) {
       metafields.push({
         namespace: 'custom',
@@ -1594,16 +1596,6 @@ function buildMetafields(product, options = {}) {
         value: JSON.stringify(listValues),
       });
     }
-  }
-
-  const sayGoodbyeTo = asMultiLineValue(product['Engineered to Reduce']);
-  if (sayGoodbyeTo) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'say_goodbye_to',
-      type: 'multi_line_text_field',
-      value: sayGoodbyeTo,
-    });
   }
 
   const perfectForHomesWith = asMultiLineValue(product['Perfect For Homes With']);
