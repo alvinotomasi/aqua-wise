@@ -1447,10 +1447,12 @@ function buildMetafields(product, options = {}) {
     { key: 'occupants', source: product.Occupants },
     { key: 'household_size', source: product['Household Size'] },
     { key: 'stories_max', source: product['Stories Max'] },
-    { key: 'max_flow_gpm', source: product['Max Flow Rate GPM'] || product['Max Flow GPM'] || product['Max Flow Rate (GPM)'] },
-    { key: 'cu_ft', source: product['Cu.Ft'] || product['Cu.Ft. (Media Volume)'] },
+    { key: 'max_flow_gpm', source: product['Max Flow Rate GPM'] || product['Max Flow GPM'] || product['Max Flow Rate (GPM)'] || product['Max Flow Rate gpm'] },
+    { key: 'cu_ft', source: product['Cu.Ft'] },
+    { key: 'media_volume', source: product['Cu.Ft. (Media Volume)'] || product['Media Volume'] },
     { key: 'tank_size', source: product['Tank Size'] },
     { key: 'media_type', source: product['Media Type'] },
+    { key: 'material', source: product.Material || product['Material'] || product['Materials'] },
     { key: 'capacity', source: product.Capacity },
     { key: 'valve', source: product.Valve },
     { key: 'city_or_well', source: product['City/Well'] },
@@ -1526,6 +1528,16 @@ function buildMetafields(product, options = {}) {
       key: 'included_products',
       type: 'multi_line_text_field',
       value: includedProducts,
+    });
+  }
+
+  const replacementsText = asMultiLineValue(product.Replacements || product['Replacements']);
+  if (replacementsText) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'Replacements',
+      type: 'multi_line_text_field',
+      value: replacementsText,
     });
   }
 
@@ -1830,7 +1842,7 @@ function buildMetafields(product, options = {}) {
   if (brineTankSizeText) {
     metafields.push({
       namespace: 'custom',
-      key: 'brine_tank_size_l',
+      key: 'brine_tank_size',
       type: 'single_line_text_field',
       value: brineTankSizeText,
     });
