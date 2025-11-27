@@ -1451,7 +1451,6 @@ function buildMetafields(product, options = {}) {
     { key: 'max_flow_rate', source: product['Max Flow Rate'] || product['Max Flow Rate GPM'] || product['Max Flow GPM'] || product['Max Flow Rate (GPM)'] || product['Max Flow Rate gpm'] },
     { key: 'cu_ft', source: product['Cu.Ft'] },
     { key: 'media_volume', source: product['Cu.Ft. (Media Volume)'] || product['Media Volume'] },
-    { key: 'tank_size', source: product['Tank Size'] },
     { key: 'membrane_size', source: product['Membrane Size'] },
     { key: 'media_type', source: product['Media Type'] },
     { key: 'material', source: product.Material || product['Material'] || product['Materials'] },
@@ -1544,6 +1543,16 @@ function buildMetafields(product, options = {}) {
       key: 'included_products',
       type: 'multi_line_text_field',
       value: includedProducts,
+    });
+  }
+
+  const tankSizeHtml = markdownToDivHtml(product['Tank Size']);
+  if (tankSizeHtml) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'tank_size',
+      type: 'multi_line_text_field',
+      value: tankSizeHtml,
     });
   }
 
