@@ -1531,16 +1531,6 @@ function buildMetafields(product, options = {}) {
     });
   }
 
-  const replacementsText = asMultiLineValue(product.Replacements || product['Replacements']);
-  if (replacementsText) {
-    metafields.push({
-      namespace: 'custom',
-      key: 'Replacements',
-      type: 'multi_line_text_field',
-      value: replacementsText,
-    });
-  }
-
   const keyProductFeaturesRaw = asMultiLineValue(product['Key Product Features']);
   if (keyProductFeaturesRaw) {
     const listValues = keyProductFeaturesRaw
