@@ -1495,15 +1495,26 @@ function buildMetafields(product, options = {}) {
     }
   }
 
-  const contaminantsRaw =
-    asMultiLineValue(product['Engineered to Reduce']) ||
-    asMultiLineValue(product['Contaminants removed']);
+  const contaminantsRaw = asMultiLineValue(product['Engineered to Reduce']);
   if (contaminantsRaw) {
     const listValues = contaminantsRaw.split('\n').map(line => line.trim()).filter(Boolean);
     if (listValues.length > 0) {
       metafields.push({
         namespace: 'custom',
         key: 'contaminants_removed',
+        type: 'list.single_line_text_field',
+        value: JSON.stringify(listValues),
+      });
+    }
+  }
+
+  const partialReductionsRaw = asMultiLineValue(product['Partial Reductions']);
+  if (partialReductionsRaw) {
+    const listValues = partialReductionsRaw.split('\n').map(line => line.trim()).filter(Boolean);
+    if (listValues.length > 0) {
+      metafields.push({
+        namespace: 'custom',
+        key: 'partial_or_conditional_reductions',
         type: 'list.single_line_text_field',
         value: JSON.stringify(listValues),
       });

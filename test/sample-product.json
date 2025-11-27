@@ -252,7 +252,7 @@
       "label": "Sync All Data",
       "url": "https://primary-production-dae8.up.railway.app/webhook/sync-all"
     },
-    "Last Modified": "2025-11-27T15:36:21.000Z",
+    "Last Modified": "2025-11-27T15:57:12.000Z",
     "Product Documentation": [
       {
         "id": "attwoIto2uHnB8gso",
@@ -312,7 +312,7 @@
     "Shopify Product Id (from Replacements)": [
       "gid://shopify/Product/9158887637231"
     ],
-    "Partial or Conditional Reductions": [
+    "Partial Reductions": [
       "Lead (Pb²⁺)",
       "Ferrous Iron (Fe²⁺)",
       "Organically Bound Iron",
