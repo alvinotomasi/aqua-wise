@@ -1514,7 +1514,7 @@ function buildMetafields(product, options = {}) {
     if (listValues.length > 0) {
       metafields.push({
         namespace: 'custom',
-        key: 'partial_or_conditional_reductions',
+        key: 'partial_reductions',
         type: 'list.single_line_text_field',
         value: JSON.stringify(listValues),
       });
