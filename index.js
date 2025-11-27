@@ -1448,9 +1448,11 @@ function buildMetafields(product, options = {}) {
     { key: 'household_size', source: product['Household Size'] },
     { key: 'stories_max', source: product['Stories Max'] },
     { key: 'max_flow_gpm', source: product['Max Flow Rate GPM'] || product['Max Flow GPM'] || product['Max Flow Rate (GPM)'] || product['Max Flow Rate gpm'] },
+    { key: 'max_flow_rate', source: product['Max Flow Rate'] || product['Max Flow Rate GPM'] || product['Max Flow GPM'] || product['Max Flow Rate (GPM)'] || product['Max Flow Rate gpm'] },
     { key: 'cu_ft', source: product['Cu.Ft'] },
     { key: 'media_volume', source: product['Cu.Ft. (Media Volume)'] || product['Media Volume'] },
     { key: 'tank_size', source: product['Tank Size'] },
+    { key: 'membrane_size', source: product['Membrane Size'] },
     { key: 'media_type', source: product['Media Type'] },
     { key: 'material', source: product.Material || product['Material'] || product['Materials'] },
     { key: 'capacity', source: product.Capacity },
@@ -1477,6 +1479,7 @@ function buildMetafields(product, options = {}) {
     { key: 'operating_environment', source: product['Operating Environment'] },
     { key: 'tank_dimensions', source: product['Tank Dimensions'] },
     { key: 'maximum_pressure', source: product['Maximum Pressure'] },
+    { key: 'rejection_rate', source: product['Rejection Rate'] },
     { key: 'ozone_output', source: product['Ozone Output'] },
     { key: 'operating_voltage', source: product['Operating Voltage'] },
     { key: 'power_consumption', source: product['Power Consumption'] },
@@ -1541,6 +1544,16 @@ function buildMetafields(product, options = {}) {
       key: 'included_products',
       type: 'multi_line_text_field',
       value: includedProducts,
+    });
+  }
+
+  const additionalComponentsHtml = markdownToDivHtml(product['Additional Components']);
+  if (additionalComponentsHtml) {
+    metafields.push({
+      namespace: 'custom',
+      key: 'additional_components',
+      type: 'multi_line_text_field',
+      value: additionalComponentsHtml,
     });
   }
 
@@ -1685,7 +1698,13 @@ function buildMetafields(product, options = {}) {
     metafields.push(occupantVariantsMetafieldResult.metafield);
   }
 
-  // optional_upgrades and replacements metafields are built upstream and passed via options
+  if (optionalUpgradesMetafieldResult?.metafield) {
+    metafields.push(optionalUpgradesMetafieldResult.metafield);
+  }
+
+  if (replacementsMetafieldResult?.metafield) {
+    metafields.push(replacementsMetafieldResult.metafield);
+  }
 
   // --- New Shopify Product namespace metafields (namespace: "product") ---
 

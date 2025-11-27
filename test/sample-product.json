@@ -1,352 +1,467 @@
 [
   {
-    "id": "recNqbXrtWQzjmoiY",
-    "createdTime": "2024-10-05T16:04:55.000Z",
-    "Product Name": "EVOSOFT™ Prime 32K Grain City Water Softener",
-    "Product ID": 1,
+    "id": "recSKecXeJ6zsnzrj",
+    "createdTime": "2024-10-05T16:05:28.000Z",
+    "Product Name": "HydroClear™ Reverse Osmosis 50 Gallons per day 5 Stage",
+    "Product ID": 24,
     "Image": [
       {
-        "id": "attqL2LTOD8umwgH7",
-        "width": 2048,
-        "height": 2048,
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/joWJOdYXRf5pjfDPlVMkCQ/a-iPGLd6-JwvVB8vza6mgPuNvNtKQeKmvP56epx1kofRGhA2Nww_E9lL78jxd4k-RlD3VLadnQzebIs2u7pVJHJu7ERyBOXGpAiDmsXsGHbgXswvGI62zyFpADpqltwMcuFK9WUFOTJydn2WYGSiLw-gmFs-k4F-D8JTEcsn-yih_2yqHT-qIpDYglKMLwnq/WmsAeSRXd1K5f8dE0I58JyGz25M1_VN2Y0uIiPD0he8",
-        "filename": "AQUALIVIA EVOSOFT™ City Water Softener-1.jpg",
-        "size": 1283001,
+        "id": "attGGaw71rw85NtSI",
+        "width": 1024,
+        "height": 1024,
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/I-emP9JhnP-pxFRfVR5rNA/NfR8pmTGA7AUrFu72ypmkjFQ-24N07A2F1e4nCJzOxy2_QdfUbqmpaqjvo8AaDmDtNRoteM4WOwmIJF9BJsW6WRd66wD3BoBV1fkEPJxyXiKxF23ubQ53R5hDU4AjrV2Y2f0SOfhlerJ4KWNSt8ZwxEursXfRBoJCRu2KMpxo0g/JWkl31pOCs_sF3OSpKLg_nacY37eTtzOsdxwR54QT7o",
+        "filename": "RO2 copy.jpg",
+        "size": 651702,
         "type": "image/jpeg",
         "thumbnails": {
           "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/KBY4hK6XiGZ7_VS9iuc4lw/bdSW6G26vKXmJvOC-V1cVtzD6HlHEOvUjLFVzxsniApNJ7Mq-27FFXBGKwkFxc526gylYiyvOcPIUbqEFeh-eVJaQ6gTk-Gs1Cs81NQ57pUGT9yMX27UPS_A6TxFpnyu9ZZ-VW1eDozoWdTd61vA0A/7BGjqtbhsikx8kXpCnCiuID-xaNzQh2uptJp5JsC5W8",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/Y1XTV-vvDPCzOaRrjuClSw/4e3ekLmP6cn1yLe26G7N-VUT-asI-z3sJh635KbcP2rH_ByZXQhdjFtG7KqXm4ev8J1CfTegFkzEIR3VRGDniSejthzSifrG2yZE85jqz_A4dclfwIgB7y3558sjxA1YLOdyU7O82Z5K6-FeZsr9Kw/9TfeL2zfHi0EB3o2fJ6MNcb1riZrNa7B2ry_BAR_YA8",
             "width": 36,
             "height": 36
           },
           "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/UqT8PswbGw-R1hytVWe4ZA/sN2eoscSOQGwAG1COcWBvsqIR6U0E0zpZ_VMzYiNYvpG9Ec75HzD4sP_XQoCQKkCvEWEzHWRrTx5RRDBtw_ROMZBqRQtT8SXYyeDyXb1CoW2qrSIWklX7kyyoxqfHeCphRNHdFfQrWhY0T-BRcCkLQ/G28eQkRGnfYrpRHjm6D2ipvJDVZCBZxBiMZn-rC5RA4",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/SEM1tVR8hym8DqnLS3XloA/gl7fCm8a1v35v60EmpxhSZjrnK8RdP_fTQAcGrtePMBh2Ttwb3SmJSaNskMyPIWX4EZeL6J3yJPMaeYpCGw3jLVhBaK9w8-Mx97-kV0fOelaP4b3iX-PvG2DdvQ6_lirubFkFt3AnfrJf5drmRBxaA/06gYrw0SNVdFLlzb-p9JCwjmvwSkXzIIy7QexPfTtsk",
             "width": 512,
             "height": 512
           },
           "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/O_27l_DzI2zFNtHVhRT0BQ/zrwA1qb_94Av8831iXVgV5Twg1QbRdxv-g6q-t7bA6Q__6r6JFjp2xmGwg3fVrS5-BixR0bdBmK0yCzwjgIXzm-XGzngIUi6LP-u4IzEgPDKuJxcBHM8liO7yBwx6eU0UncRHMqgQjLQs0dTGyVKRQ/VGxQGq0yj1GFrHeNphopSFADhtnugcPILHQmavlEl1o",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/fboQtkjIGiQ_OpOMbXniFA/6S746ofgdj7jTNry5taa2N3donyPmmkaNDMoNyFNt9dSDazS2szWF-8aNWa8k8lWQAmJ554qsqCrgzvtVgWK9Mg6JMJFiGbhMJ44a0nXvaCHw_yTCRjurXLH2cMuwPZRuiO5MIiaAy8QiIy4p4fk1A/WfeosvCAHHMpYwhVVE4I4dVYSntXjIgxohgE9bmlgDQ",
+            "width": 1024,
+            "height": 1024
+          }
+        }
+      },
+      {
+        "id": "attYZpSKKIkCBePfM",
+        "width": 2048,
+        "height": 2048,
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/ej1qGH2NQRasmAhVh5nbMQ/iWKy8wTBv_FFCvOod2SUf6OiLaI2gokdO3XrK58h-sqJzMU4fFvSKhxMnp13SS6_Kk9Jxae8JAaoYdaRYsOk7Cp-RSHgtrNzNPIY34afE77tyaB9qsPuVscyq1cRmCof0BwEbdwY8aBYBXqsggpYwFwHQkhaKBg97iF2bV8f54Nlk8KH9mTFsg1jXqH5GdX6/Wd5dVFPCiuqLD00XQ8tsJZ9ZBuAHNvusc4Rq8XjGjZs",
+        "filename": "AQUALIVIA™ HydroClear™ RO SEDIMENT FILTER.jpg",
+        "size": 1382560,
+        "type": "image/jpeg",
+        "thumbnails": {
+          "small": {
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/2znuS4oFqboMkrEvL3UA3g/cFZpaZzSkSVZJjRbHR-CA_vID3wfu06Rsa8iQgfGHOBbo_VWIA5eloIiwz0pScIwSavNS-3E0ukSqkXg4P3c7ToJkEew0c2KkaIGsQb9KXK0KpQu9CzNTgMdWb-2JSpckxz7V6cShLqADKRSon5rGA/UCtiXLgC9TC2webPFjM7BwoPpT4YfzMnFwUWnhADWy0",
+            "width": 36,
+            "height": 36
+          },
+          "large": {
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/NCCkF5Wolgo2IHNiy5wJEw/ma5sfNZI3iqCTFn8LxuN0rQeL32Nkv7i14yJ8huwpAGKlGg0EvpBxOHsSQqPkk1OFHfyvuku6A7CIy7ZV4pbsDYft5GPqzUBW10mWrV52ad0nG3FyQlWe1ZHLDQO5Vi0lAPZQnOegGMgBrOcf7Vz2Q/5pno_kUeDjprU78EGYb0KZD2M77qGP_8mSAVqtgbJ5A",
+            "width": 512,
+            "height": 512
+          },
+          "full": {
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/D8oWt0u3xX3igAEgwINzew/BzKq345ox3AF9XHRE8YxkjCSmYxnurBWZ8L1U-PzknPy6SB5Xj3sPZVZFImeXG8-4VzOJvQmnJX6cunO-R_XY18ibSmbJoS4PJG-1qLKhx6r4GsUbjM5OtkGEKAbQT1QADMQzw_itQeJVmWfQO4cSg/xVxOACn4DL1b0SpUEhLJhZwmYSB23zrUSRZptMedkDI",
             "width": 2048,
             "height": 2048
           }
         }
       },
       {
-        "id": "attYMNDfyymdfp9Xy",
+        "id": "attimUVwR7MED7whw",
         "width": 2048,
         "height": 2048,
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/jaT1sxb9eoH_8sgoDTks9Q/-8C21BGvBEioxcpSLul7qF4Q5MuXvOqnEM8_veBwO-wSM8GEpnw9OfdiJ2p-5cnOb8RfHJkigEqJR2pQ68jPx2rueY58Smt4wH2OCpG-TjPCALiM-XLAAlTfMGHHMzNx0RSwcPWaWqN5jAcwSS2EotYYCYChkDCuGxr9hgvv6DVdsa3khjpHPOZuXzMR2Z1x/BRJnP5qTB277LrgKc3kO0za-Qb5wagg5oVVZjvnrlBs",
-        "filename": "AQUALIVIA EVOSOFT™ City Water Softener.jpg",
-        "size": 973318,
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/gTOLU3NZXOvG-Awy6DrcNA/MMKskE11_lwIaZ7MZR_QKZXIBM05CinollMgGrO94NNaMoMWFtKtQkRfEfmEFht36OdL66OZ_jsfVgDgl48NJWMyY1wNjkx5Cer4kV2-VBb_yH2V4sozVgAGQVheqdpmWbb5Qo7n5qY-a3_B8jPoR5BPfR3RbgcQL33ukZ20DNKxxtAbVWPAkK9WWFSpNXoH5yi9YlR9G5y6yjLxcwU8WB398eGU00CwDe5OknslhLPpk--iHFgWVQopKKxOspwb/ZcTTGUuN3wQLZHNLRXhdy11g50NjU0a0AbtXlWPSRfQ",
+        "filename": "AQUALIVIA™ HydroClear™ Reverse Osmosis Activated Carbon Block For Reverse Osmosis.jpg",
+        "size": 1600759,
         "type": "image/jpeg",
         "thumbnails": {
           "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/Y9Uq52EiWWJzU9U2Jp664w/UsmrslnWaO1JdTg8Uin59euBOy6UuUwoKbukZGTvYyPIRnNANw711AlK5-2LlqMH4ogCc8iEG0KzFmSOoIS5b4AODJG_HLyj8nvwgJmJW2U9GTZuB1cWCSfkZm3LXiyBsqqJNBBR3oxzsZHdfeyrpg/N-hRDWwAi47HsPx4WRZZQicg7rsAjp7QtC9bfnyH5P4",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/nzjvFEYP2DIfocgc4iI17w/sGPC0RmX_Yjlx1h3FSUZ37vIou9QnqC3s1QVp9lXzHlw01UtT-0_dvJW2J_W3UQhz9zSMHgIoibjvml1gYpH7U-7Zimg78bK8UwH8c3QH_aT7meg-L73_88Kutc-YT0gfdo-I_Nv7BnBJJpYgWNOuA/LILjMbBDrN7OcvWhaOZhJyKnYcMNJwIWvQEHkeNFI2o",
             "width": 36,
             "height": 36
           },
           "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/M-Rrzq8JriaycCvug9ueOg/fhpb3BcDZYFtwcTqMkPQZN-XA6XqsQWkMnAPLdyyEt8w0QGLfxGPV7YHzqWcm_fOIS24niy7vIqRvP8nbi0-s2EYyGv7OKKWPdzGU4Kfx1kwxTYWqK7UBjHkg-_oQgw1rnw_RCWyAZnkJCdyaZp0Vg/Wtfv-fHHz4exEiOqNoVyfIQ2_VXHoKx3KOtmOimcH_0",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/PIkOX7JhuEu3YBevsCu6xg/FS_ibzLad8efQa5iqbrGxqnHf44KC5i7ycYXXv_Sh2cSXE1hCEBcaq5hJyhmIUBc3_ex7WH-jZoE0lnD3gpHGv3Kwnhe8g_MEZpc0pUhoMnoDUxcq6Jw18o9iatrLObdJfc77Dw__Ktt6ccHN3QP6Q/rD4pQvok5ijJao6R3BApTMvCqqvm6HEVnQBRqC7FGgw",
             "width": 512,
             "height": 512
           },
           "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/sKrVE9phGUE8XRgWSBNrJw/F-rloc-JEUHFVTkmf72Vk0cYf612WbHSb3JCHWEbPXWRsCmbF-zZt7OFPNQTdwMh6CuZaABS90rch9q9R0Rhxj-_gbixeud7CdYnskans_AOOSBmDUyw0e5I70Fv4aQffdpvUxSYvqtol7nBpzFQtg/TlCIDkU2igp2QukPuFZuzYu_5LOupsFR4heJj_ppxPU",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/Z5DYwRl447ROdwXgv_T8kw/5xjlthuCq9IktLeFGzHcFoUxl4TI3Q9OIcuQvVxH4wdv__MxeENZTqMUmJhPfbiT6wzix2Xql2VmqkV7JiGN4HSYIuyYXCOi-uKCT0oaeX8BtBSGHFx-qInZ39jiDJJzcxQrjF9AINu3eACJvM40TQ/JyLDBtjK_XmgdwWTA_jlKUGTw7Cah5G2vBVgj-bxFvg",
             "width": 2048,
             "height": 2048
           }
         }
       },
       {
-        "id": "att5F16k3hSVp1k5s",
+        "id": "attwhspOVMVd5RH9o",
         "width": 2048,
         "height": 2048,
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/822yRzgqhx_PPnTkWNoYTA/QWbM_4NV55OqsSJm-vbVzeMgJ7iVx1HvjgPtFR-6QGJiW_Ws_w844QIALTjTscU31NXgOwsNEiejnictfYW864PloteNkbfKKbKoyGu1mQoy2hQq2u9DO-1GdWId0F3UFwOE3CKG13f0nMtuaKW0KLw4b0GIZyMnjgB_vQ9k87U/NYpqfk4fFg3aswBVIrq7IrLnOmjyrzMRdOirzYiLgLg",
-        "filename": "AQUALIVIA UV JACKET.jpg",
-        "size": 1023276,
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/NjPW5UOwzAVe05x1fpxXSA/UK39CTR9IKBs_oObUa41bpkbkMLO0otVXTYSu-qjU5Pbyic1Iwl63n1O5aoIs9t41Y5HBP_YAdICSiawCo7HswcCP31FNWDyGY95v0PZyZ4FBBIONP2Arr4rGw8C3esfE2MesM67q-FAlTxzqycuaBzcUqbjtQVllBqYbU6ms3Et4kZjQ9nRQbQ7CPvCJTcM/kwggfyavcfgRAGs9h7BmJUnj8QDupj4RPUokS0bP8Fk",
+        "filename": "AQUALIVIA™ HydroClear™ Membrane for RO.jpg",
+        "size": 1284028,
         "type": "image/jpeg",
         "thumbnails": {
           "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/DqGRUhTAZ7clMwVcxXicmw/yVDNhLRNFKZ4uwd_HOBau2ccdg_KSiofkKByCvMlgM97h0BL7b3jSLXb8AK4SCwrfHL0sbE7bvJSi1loi8UKroLxgFkXkncrPa1wZi7xu6ZGqaL3sVC9y8YbLj6tcVcr2Or0dwMivKAEbiizCWA5Bg/ckRmg8wLUcq_iovBRCc2hLHmg2r6Dlq0UmyaRmHm4_E",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/N91Agdun-fZDpuPF7y_BBQ/Y7-g97dPcXDzIkIg-rHIAqnezxf5tQctcuw-KxCVHSd_2MHQ-NeuEyByAhv0DfjUjkleJSSreQPRK1ZxlYR-eUPtfGSv6EqQ6tdb3ky_TsNeISsfKYrFSccfG2P4Mt9HErtfq90F0TMk2hUIBHGk4Q/cAYKboMJuGLJIkm-DGXfkHuVH2E4x2-0NO6-Aegv6rI",
             "width": 36,
             "height": 36
           },
           "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/KSpQhv4VINl9uB69jKj7tQ/8EYSBm9FnoMIshVB6sGB4r5OBQ2P8tc00aG-htJkUky7bC0WufFEPSajdSpxuix0o5mOYwH_ypslSiMaXbWoLwz92BZ3CZE43QIsnQMrkOX5sC0H2pA4w0BPF5Zw4k_j-jS4GVmrBqk17t0STZWa5A/czH3gWxw4WJttbRN753gLhk4U9Upd8FR-Fyr6P2cxxU",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/nnqi0AKKNpVZacZ5I7vcKw/jwt55uNaVn8o0b_lbpTdkxFYr0yKWso1_rSddME0dOXOoIYW7cWBga8EP9dMc6YTmKcxiiQ5NMAQ3IUjXhySdLNXXQooMIzcwjLEWv1L7SW7Baqnjs1g_r315kFFHlIDUzityv87cFbAAMVIjsJ7iQ/nuDlurQv6BKSS38JN7dwLum5Py3Y3LKKvb9Jm82yuoI",
             "width": 512,
             "height": 512
           },
           "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/JefUBu_Y_zPzrp_9SFwvjA/TQT1kfhXq5LGG4raqj_pr_i5FEzj9Ung9V4LvVXaZJsxX_k4_7BUXf_UEBare-ygxXv066LTgYEXszgIYRq6DOGpNK-HXSNDw4HNifB6ULTFhf8i-gz51giuy6SBmQdi0hAdKpt9-46o93U0nZMpoA/liTAtcfa2zwopW3gXxqTrL-q4XImReIh-l7Amd2t7-o",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/QGe0C5pEOHHhdchjUAV0OA/Gx2tFFxbkQxBuTDFbmcnw2UHAT-e3YdqZh7rk_yGn0vtABdBKLgyx25ZA3f5Xx3sqRZ9ZVVZu4ZQ4WaVUxO90zRQGlS6JbKWDw3kjiNLLJHT8dqzIFH8-bId1Phxlk4QCDBHk7kIZc4lza6ENSIORg/kmXAcBNPYEaBjnMxuQXFMM4axyBxTUFfS3vUBY4F2YE",
             "width": 2048,
             "height": 2048
           }
         }
       },
       {
-        "id": "attiXBCGhGA7mb2sJ",
+        "id": "attsWIAFF4cLtRSyE",
         "width": 2048,
         "height": 2048,
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/qt7vlyrjmzJlo2lM4JDnZw/NillA-XktDppMsWWmUhiOc3SN9lBPyV-d2ZC3tvFEDSq9dE5X4F5SuL_N7IY3VfskvtbXmYugW1z7pHFHVYSl0nEqF_dTgSGlzhfBAm8dkaFXG0mZfAjrFeM9om1ncZha1TQNRls9hinTEcc9wpcN9SrmUbac-4B-fOGpuK4IAQ6UZBvH1FHO6zvqg14CDBsOzjObp6PL0njBGIdAh7fJA/0nLTFgjGLxwp3zIhjTn0kQL7H1bY5QOpu_1KnRzroj0",
-        "filename": "AQUALIVIA EVOSOFT™ City Water Softener Explode.jpg",
-        "size": 1314817,
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/fuBbRqwxWX-A41DDb_ILbg/eryhZOJFGpCyw1Q4yoCvT-n_vSFgIqU98fUTsuwiuGv1lO-FKyHjpC-RbQEoPbLWX7wSHs9DGy-p_wuwB0M37XPvUBo6Poj7IE0IsC4mS_qSwjMk93Vyo5VS9jMp1nJ8VoNshQmFnSSXzHFxhgxT-YFOvH6EnAwt7t5RNPTT2Iql0GXZN7AcnrSx5UxFLMv4/HQgm0c0E7taLJ-lznP19BmVsjgsogU9O4cidYMdwABY",
+        "filename": "AQUALIVIA™ HydroClear™ COONUT CARBON FILTER.jpg",
+        "size": 1223934,
         "type": "image/jpeg",
         "thumbnails": {
           "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/ntcNYasSma8E8bT1CD8jmA/J9LkXFIbvNfsI3wIywu2vSWZaU7wCikgA2Ayi2GZ2OHzOUXTnwrmSQEN26TVuSgTGnVN08FbfDCT6FQ2bnNeVQyhXpMiIDx2ORxBxuSuxvH48XKV3lRLG8oh14lAarhZUMC1AzN8rF_d1euIXqpKeA/BqDnFYqd9t9hu9Kv6hhFmahcTRRW7tXlkWqeeghfvSw",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/AD6zD7knAOvbILTabE0kzQ/Rh32JEihcQ8uUpSND5xcmk5t4hv6HOv-fSArKRt7qwcVMmtgR7Z0N7kAIxTEO1HjT8w46aaMT7kAbR1_ryaDt-uFcyyXK6uO5mQnn33QAqtZ0ZxqzROxzd_oDjFph_a0MtmDAtXVILrCbLo3imEhhQ/i9zLnfl08WcwKQN3XDnQyEjfD3Rivtpj-pmjreNTQkA",
             "width": 36,
             "height": 36
           },
           "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/hodZuGry5pidRm58e7b8ZQ/d7o5no8QGW9KaXYJWd07mNGs46ULG-jXuaNwY80-xY7ZHwFF3Z0o5fpRN3hfVwLrEBY6sJ8j0P5v45rTc-Xr9BNnLVnjwh1knh129gEBcbJgRECdggbb68dl433s1lB5qvZ0KJTGsfxRmGINZp4P2A/ez_NfTZt20Cy96KJhYxTJc6t5VKiHfCF-vc1UXp1wIM",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/p0wrncEPqPBuTd7DTIzelA/Kk12Dkp4Ub5zd_cAJDHnNhYnzEAFb16-hF7vuGvKxLNp3dnDpIgXNLQtvwxMoM4Tsz6lYWGVsJ5hOyA8PpNE11KSiNIHFwX43C5dUgyD9G86pMw-mzVBpj7jaG6-jAu6qTE44uKHUoeck7KkpJp5_w/fwvo1acJ9VUhJYmeDOc_LWXlev9-Wrhffy9mUEXu6rA",
             "width": 512,
             "height": 512
           },
           "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/CR3BbKb3sCmW7vtgYNlXmg/YTRZrUUbYUDTC_z2-oHee5RQMeSbEt-LQ--LndpK6kRzjHWepNGKOw6-POjOeEnGNTUM_70WQQgG9b3ajPp9k2C6uRxulGBBpCC3hnvABbGtHWu9dmy2FEkAlf0DQ-zNXzs4kGRoZLEUZsAz6cr9ag/v37HzyySDnam0G12mzIIokIFsyi6qbon012VD26YAV0",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/lOfMKRHz1-EvVke8rvu57g/k1j1A9issQH5CwAZMwrOlLNdaaqBnwB8xwUmF0wdfDb7qK1Lj8pIb4GiSwItZX3-eKh5Q19EDBo3e5UOD0HHFwcvdmphLx-liuMizHrJDU5YFt3noDAwbowwDeBjsWq_M9DsYBpj2AckRaplQo2i4w/qGAGuQoqgyDJsFI5B79a73HRtfo8Zr7fb1VIZWga6lc",
             "width": 2048,
             "height": 2048
           }
         }
       },
       {
-        "id": "attGrw31aok3vNNPW",
+        "id": "attpM2cKbw6gMiArQ",
         "width": 1536,
         "height": 1024,
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/7cuTT95U_RmYpsjJ7b8zog/6q0CwdNyWEtdH_xoowmixzyNlRjWeayo1DyOLyHkf-Bisb7zS-IevgcJjAqqNM8oI6zmRA4YmpuLKqeST9wSPbpSCEbWMoAmJRw6FHkUxcwpTLMxHTcomcxQ4wFEzSEGl2dzb30oHzXcbov19naHdA/G_hHXKwteKbVINqwAf7rkxf4fjVR25boZMWByYd5PL4",
-        "filename": "SIZE.jpg",
-        "size": 751282,
+        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/4R-h_dmtg0hqnOomBk0PTg/DReWJod_B3cAPdsQYT8aIIYvoSb_oJ3GHQ-sdIEBH6g4ih8V2q9j34l21Ff1whiBbyyy_aY2emCyRmWqa0EjfbusZKVaPB2ZpKCaLjoEW48U610irzdtCKGSZCW13QkaIwkqHp-GGv2PIwIjvMfIE9WAsMp5aGv6ftXZNCjvszUkxB51J4IACHj97a3rjHO_GDG6kysMVf_7RcfXoyXjo2nI2C6TdFgpa5qnFL9MCGc/41Gpzj4NLJwJcIZxnrnyVqKW_VMFLF9bo754-BruSlI",
+        "filename": "AQUALIVIA™ HydroClear™ Reverse Osmosis Installation Instructions.jpg",
+        "size": 720128,
         "type": "image/jpeg",
         "thumbnails": {
           "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/HfjJQzABNI5-_6sz66ZJUg/aKNGL3ihaIOAHTyvCf-wj1rI1W0JVekzhYdu_hEPoNQMUwoQPTkrPmHydvtVclHwIhCDmxfb4NxPrlF2bjLweDJHubx3ilxUqYKWj_cP_dPt5c_67U8b2TEAeNpTewpqzRnMVCu2e_7jrIFvxsAzPw/J688cQYRFRl35JXpRC8vnN3NcNxb10oA5Ko368uEogw",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/uVQcVb47zgrlInMXtt0v6Q/JjskNYSn3-MsYsMxCqZAsRHo9WtkfRasAmWqA0GxGp28_smcqwkvHXSIfZFaOftPmU9vBFhEIZcxhK34byaS6ouxIHq4VdAGIX4HC70Svpk3lFQ9kAq50Sbb5NccoyMSGrkHtnsf-Er6vdNwu7EYWg/ScYIfloKWcs1yc_dBouFRflcYtjFd4mqaGpg1y0cp2g",
             "width": 54,
             "height": 36
           },
           "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/YJI9vc1ULgadQFqZMIrKYQ/A7lmiyWGkiAWWxcGtDAH-aL8iAt2CYkhOAzeBy4SV3mPxNLSdG_Wfq1_Ur08g7oOh7QPPxBxRRVZPC7MXp-7wCNIjqfVHBLmTFUz9q-N5R6ujYiIr-fDe-DVOke6TelXB9hfY8LBs1yqGxCivWMcCw/sD-FdXbaFNXHvW0OEdtkVMsmCdKbsPJn2HKdq37rvag",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/t4iFnN61anjzBNHFrW6X0g/Epw8wSXi86Mczfh2ESwmEAW3G6gRIlf8viVcP6l_Sjlkp6YwGT2-RM3M4M_4SFFLhuL4KKpXNdpkWqSsTiIvAFRln5jqoxGgYCUi2tK6UK_wAEe-38d48Ebem1QcC849fBHirKgeiWC7MIuGR1TRmg/vNV2aZcpe5sJSJUYJ-LK1iTt60HUR71bCal39hcbDiM",
             "width": 768,
             "height": 512
           },
           "full": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/W4TflunowZvbrpJnbBtimw/5KTxId37t_-toUs27gg5vrO_EoxmRFPW-6uyBSkuWVnq4M1_QXeOJrCJKTLIjGB5LMgJo3ecV5rH6dAM3CxtblaEXvA9CploCkx6oo_bmcLKPgmLa3o2QtVUL2_SQrC7BKz-5bYPaVTx-h9EkB2pCA/c7VKCZmqr3zgh4AfMoyf5gwPCFBq4S2FDLMuWdUmG20",
+            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764273600000/n2OpvacDonoZ1PJK2BJCGQ/JgoxLmEymb0NH7U36uLCccv0PRqwJDM5Em0ZL92hx6vZow3ZUkM_oQJGYKXNvWSE4XRX1QA8HBh0Phrfx4LzY5dX4OcqDHVceiv3YirLIfZ4t4pBcnXVxI-C9ROIcPOO0PmNJaN_9o1l4WqtKTfHOA/nHij1xD3YiHihOOUTbP9oW2Xw9fj8HbZ3Pk8lTUUHvw",
             "width": 1536,
             "height": 1024
           }
         }
       }
     ],
-    "Category": "Water Softener",
-    "Vendor": "Charger",
-    "Vendor Price": 600,
-    "URL": "https://www.aqua-wise.com/water-softeners-in-tampa",
-    "Gross Profit": 1149,
+    "Category": "Reverse Osmosis",
+    "Vendor": "Amazon",
+    "Vendor Price": 300,
+    "Gross Profit": 432,
     "Line Items": [
-      "rec6yE2323AOKBHhW",
-      "recsE7lMxWlJbk2U5",
-      "recN6Mp6Y9VGQaKAd",
-      "recTEulbpp9ILXJDJ",
-      "recqkhpQGnQKkVLgX",
-      "recsFPC0i0TTs9lOQ",
-      "recVdHCky0u4xjnLI",
-      "recbKCSuA9clQfpGw",
-      "recsE58hgqlFKwuNv",
-      "recdd3vWr7C6SY7af",
-      "recLwbOEO80nvJ0Eg",
-      "recXscOddDPOuxyY0",
-      "recCrRJEmH2nolDLY"
+      "recIWiLtOyT43YJdx",
+      "rec0eXjOyinHdVec2",
+      "recYLibs7XK1XDGJc",
+      "recID0HaH0Q7TXWS9",
+      "recgYYILn11P1sWhX",
+      "recEnvig5J2iMsVEp",
+      "recU2tsAwwd6sOgpU",
+      "recrE0IEaRwbFBIUo",
+      "recFUC3cC0VV2VNhb",
+      "recdUAKrF6fphiYVZ",
+      "recLuTKujj8xkOjsw",
+      "reckFmBhipoZSHLAT",
+      "rec6zIQ0OwBz5YHNN",
+      "recqVkep7tr0f9zCK",
+      "rec55HrnP4rDI7ZX4",
+      "recAY47Z2y4RQm2CY",
+      "recDTFhwGWSHhj27I",
+      "recVuoUnHZwaohTGL",
+      "recWAhQfjuTqg0Fr0",
+      "reczuhjs5W1NEUrFf",
+      "recuP94tRFKROHXHW",
+      "rec0HQS1ULhGmiM9E",
+      "recsd3ZFbikitLRAE",
+      "recizyuFztwqquL7B",
+      "recl9OqSRWF2rpGfW",
+      "rec1PGDc1gEFPQ3cW",
+      "recm7SQQ5ZERmCeti",
+      "recec63M3YzLkGFVN",
+      "recCn7nx5C2iEayxW",
+      "rec2jSF7sWUISC4mS",
+      "recqTGyBWQoi2BO2v",
+      "recSg9otDh3FeFPUx"
     ],
-    "QTY": 10,
-    "Shipping Price": 300,
-    "Website Retail Price": 2299,
-    "System Capacity": "32,000 Grains",
-    "Tank Dimensions": "9\"x48\"",
-    "Cu.Ft. (Media Volume)": "1 Cu.Ft",
+    "Shipping Price": 100,
+    "Website Retail Price": 1082,
+    "System Capacity": "50 gallons per day @ 60 psi, 30 gallons/day @50 psi and 77 deg F",
+    "Tank Dimensions": "4 Gallons 11\" x 11\" x 15\"",
     "Certifications": [
-      "NSF/ANSI 44 Certification ",
-      "NSF/ANSI/CAN Standard 61",
       "WQA Gold Seal Certified",
-      "NSF/ANSI standard 372"
+      "NSF/ANSI standard 58",
+      "NSF/ANSI standard 372",
+      "BPA-free and lead-free materials",
+      "Lead-free"
     ],
-    "Max Flow Rate gpm": "27 gpm at 15 psi drop",
-    "SKU": "EVO-CWS-002",
-    "Product Weight lb": "101 lb, 46 kg",
-    "Product Dimensions": "9\"L × 9\"W × 55\"H",
-    "Occupants": "1-2",
-    "Ideal For": "One-story homes (with standard water pressure 50–70 PSI)",
-    "Link to Product Page": "https://www.aqualivia.com/collections/city-water-systems/products/evosoft™-prime-32k-grain-city-water-softener",
-    "Key Product Features": "- **Premium Aldex C-800 10% Crosslinked Resin**: Engineered for superior hardness removal and long-lasting resistance to chlorine degradation.\n- **Perfect for City Water Homes**: Ideal for 1–2 occupants with one bathroom, providing consistent soft water for up to 1,000 sq. ft. of living space.\n- **Smart Metered Regeneration**: Minimizes salt and water usage through precision-demand regeneration technology.\n- **Compact, Elegant Design**: Sleek cabinet configuration fits seamlessly into modern spaces without sacrificing performance.\n- **10-Year Service Life**: Built with industry-grade components and backed by AQUALIVIA’s commitment to longevity and reliability.\n- **Quiet and Efficient Operation**: Experience luxury comfort with whisper-soft regeneration cycles and consistent flow under standard pressure (60–70 PSI).\n\n",
+    "Max Flow Rate gpm": "0.03 gpm",
+    "SKU": "ARO-0009",
+    "Product Weight lb": "26 lb",
+    "Product Dimensions": "16\"L x 5.25\"W x 17.5\"H",
+    "Occupants": "4-6",
+    "Ideal For": "N/A",
+    "Link to Product Page": "https://www.aqualivia.com/collections/reverse-osmosis/products/hydroclear™-reverse-osmosis-50-gallons-per-day-5-stage",
+    "Key Product Features": "50 gallons per day RO production capacity\n\n5-stage comprehensive filtration system\n\nRemoves dissolved solids, minerals, and contaminants\n\nHigh purity drinking water production\n\nLaboratory and equipment feed water quality\n\nProfessional-grade reverse osmosis technology\n\nMulti-stage protection from particulates to membrane\n\nIdeal for residential and commercial applications\n\n",
     "Sell on Website": true,
     "Media Type": [
-      "Aldex C-800 10% Crosslinked Resin"
+      "N/A"
     ],
-    "Household Size": "Up to ~1,000 sq ft",
-    "Margin": 0.5,
+    "Micron": "0.0001 µm",
+    "Margin": 0.4,
     "Buffer (7%)": 0.07,
-    "True Web Cost": 1150,
+    "True Web Cost": 650,
     "CAC": 250,
-    "MSRP": 2989,
+    "MSRP": 1407,
     "Engineered to Reduce": [
-      "Hard water stains",
-      "Hardness (Ca²⁺ Mg²⁺)",
+      "PFAS Forever Chemicals",
+      "Lead",
+      "Cadmium (Cd²⁺)",
+      "Arsenic (As³⁺, As⁵⁺)",
+      "Chromium (Cr³⁺, Cr⁶⁺)",
+      "Mercury (Hg²⁺)",
+      "Fluoride (F⁻)",
+      "Uranium (U⁴⁺, U⁶⁺)",
+      "Radium (Ra²⁺)",
+      "Cyanide (CN⁻)",
+      "Pharmaceuticals",
+      "Hormones",
+      "Pesticides",
+      "Herbicides",
+      "Volatile Organic Compounds (VOCs)",
+      "TDS (Total Dissolved Solids)",
+      "Turbidity",
+      "Bacteria",
+      "Viruses",
+      "Giardia",
+      "Cryptosporidium",
+      "Aluminum (Al³⁺)",
+      "Ameobic",
+      "Arsenic Plus 3 (As³⁺)",
+      "Arsenic Plus 5 (As⁵⁺)",
+      "Asbestos",
+      "Barium (Ba²⁺)",
+      "Bicarbonate (HCO₃⁻)",
+      "Boron (B³⁺)",
+      "Chloride (Cl⁻)",
+      "Chloramine (NH₂Cl)",
       "Calcium (Ca²⁺)",
-      "Magnesium",
-      "Scale",
-      "Limescale",
+      "Chlorine (Cl₂)",
+      "Chromate (CrO₄²⁻)",
+      "Copper (Cu²⁺)",
+      "Cysts",
+      "GenX",
+      "Haloacetic Acids (HAAs / HAA5)",
+      "Pesticides & Herbicides",
       "Iron (Fe²⁺)",
       "Manganese (Mn²⁺)",
-      "Barium (Ba²⁺)",
-      "Strontium (Sr²⁺)",
-      "Copper (Cu²⁺)",
+      "Magnesium",
       "Nickel (Ni²⁺)",
+      "Nitrate (NO₃⁻)",
+      "Nitrite (NO₂⁻)",
+      "Perfluorooctanesulfonic Acid (PFOS)",
+      "Perfluorooctanoic Acid (PFOA)",
+      "Potassium (K⁺)",
+      "Protozoa",
+      "Radioactivity",
+      "Sediment",
+      "Selenium (Se⁴⁺, Se⁶⁺)",
+      "Silver (Ag⁺)",
+      "Sodium (Na⁺)",
+      "Strontium (Sr²⁺)",
+      "Sulfate",
+      "Total Trihalomethanes (TTHM)",
       "Zinc (Zn²⁺)"
     ],
-    "Valve": "Clack WS1",
     "Perfect For Homes With": [
+      "Well Water",
       "City Water"
     ],
-    "Backwash (DLFC) (gpm)": "2.2 gpm",
-    "Description": "The EVOSOFT™ 32K brings luxury water treatment to smaller homes, condos, or apartments. Its advanced Aldex C-800 10% crosslinked resin offers superior chlorine resistance and a longer lifespan, ensuring soft, silky water every day. Enjoy spotless dishes, softer laundry, and healthier skin and hair, while extending the life of plumbing and appliances.\n",
-    "Number of Bathroom": [
-      "1"
-    ],
+    "Bundles": "WellFusion™ Bundle 96K Iron Remover, WellFusion™ Bundle 64K Iron Remover copy",
+    "Description": "**HydroClear™ 50 GPD 5-Stage Reverse Osmosis System** delivers clean, fresh, and great-tasting water for your home or office. Its advanced 5-stage filtration removes chlorine, sediments, and dissolved impurities with precision. Compact, efficient, and easy to maintain, HydroClear™ provides reliable performance for families seeking everyday purity and long-term water confidence.\n",
     "Collection": [
+      "Reverse Osmosis",
       "City Water Systems",
-      "Whole House Water Softeners",
-      "City Water Softeners",
-      "Water Softeners",
-      "Best Seller"
+      "Under Sink Water Filters",
+      "Well Water Systems",
+      "Drinking Water System"
     ],
-    "Input & Output Line Size": "¾” or 1” NPT",
-    "Brine Tank Size": "18\"X36\" Gray",
-    "Feed Water Pressure": "Standard water pressure 50–70 psi",
+    "Input & Output Line Size": "N/A",
+    "Feed Water Pressure": "40-85 psi",
     "Brand": "AQUALIVIA",
-    "Sub Brand": "EVOSOFT™",
-    "Meta Description": "Discover the AQUALIVIA EVOSOFT™ Prime 32K City Water Softener with Aldex C-800 resin. Compact, efficient, and built for luxury homes seeking pure, silky water.",
-    "Warranty": "At AQUALIVIA™, we stand behind the quality of our water treatment systems. Every product is carefully built to last, and we’re proud to offer strong warranty coverage to give you peace of mind.\n### What’s Covered\n- **Mineral Tanks:** 10 years (up to 13\" × 54\"), 5 years for larger tanks.\n- **Control Valves:** 5 years.\n- **Brine Tanks:** 5 years.\n- **Accessories & Components:** 1 year.\n- **AQUAREX™ Whole House Filter:** 5 years.\n- **OZONEX™ Ozone Systems:** 1 year.\n- **AquaVRay™ UV Systems: **1 year.\n- **HydroClear™: **1 year** **(system only)\n- **AquaRevive™ RO Systems:** 1 year** **(system only)\n### What’s Not Covered\n- Regular-use consumables (filters, resins, membranes, UV lamps, cartridges).\n- Damage caused by misuse, freezing, flooding, power surges, or improper installation.\n- Products used with non-AQUALIVIA™ parts or outside normal water conditions.\n### \n### Our Promise\nWe’ll repair, replace, or provide a comparable solution if your system has a covered defect. Our goal is to make sure your AQUALIVIA™ system works the way it should, so you can enjoy clean, pure water with confidence.\n👉 For warranty support, please contact Info@AquaLivia.com.\n",
-    "Shopify Product Id": "gid://shopify/Product/9144895013103",
-    "Water Problems Solved": "Hard water and limescale buildup White spots on faucets, dishes, and shower glass Dry skin, dull hair, and soap that doesn’t lather well Scale damage in water heaters and appliances Clogged plumbing from mineral deposits Low water pressure caused by scale buildup High hardness minerals (calcium and magnesium) \n",
-    "Operating Pressures": "20 - 125 psi (1.4 - 8.6 bar)",
+    "Sub Brand": "HydroClear™",
+    "Meta Description": "AQUALIVIA HydroClear™ Reverse Osmosis 50 Gallons per da. High purity drinking water. Shop premium water filtration systems.",
+    "Maximum Pressure Drop": "N/A",
+    "Warranty": "At AQUALIVIA™, we stand behind the quality of our water treatment systems. Every product is carefully built to last, and we’re proud to offer strong warranty coverage to give you peace of mind.\n### What’s Covered\n- **Mineral Tanks:** 10 years (up to 13\" × 54\"), 5 years for larger tanks.\n- **Control Valves:** 5 years.\n- **Brine Tanks:** 5 years.\n- **Accessories & Components:** 1 year.\n- **AQUAREX™ Whole House Filter:** 5 years.\n- **OZONEX™ Ozone Systems:** 1 year.\n- **AquaVRay™ UV Systems: **1 year.\n- **HydroClear™: **1 year** **(system only)\n- **AquaRevive™ RO Systems:** 1 year** **(system only)\n### What’s Not Covered\n- Regular-use consumables (filters, resins, membranes, UV lamps, cartridges).\n- Damage caused by misuse, freezing, flooding, power surges, or improper installation.\n- Products used with non-AQUALIVIA™ parts or outside normal water conditions.\n### \n### Our Promise\nWe’ll repair, replace, or provide a comparable solution if your system has a covered defect. Our goal is to make sure your AQUALIVIA™ system works the way it should, so you can enjoy clean, pure water with confidence.\n👉 For warranty support, please contact AquaLiviaUSA@gmail.com.\n",
+    "Products copy": [
+      "recOa8cVaFOYJCrLK"
+    ],
+    "Shopify Product Id": "gid://shopify/Product/9144895144175",
+    "Water Problems Solved": "Bad taste and odor in tap water Chlorine and chloramine removal for clean drinking water PFAS (“forever chemicals”) and PFOA contamination Heavy metals such as lead, mercury, arsenic, and chromium Fluoride reduction for improved taste and safety Nitrates and sulfates from agricultural runoff Bacteria, viruses, and cysts (with post-filtration UV option) Cloudy or turbid water (sediment, silt, and rust) Total Dissolved Solids (TDS) for ultra-pure water Scale buildup inside coffee makers, ice machines, and appliances \n",
+    "Maximum Pressure": "N/A",
+    "Operating Pressures": "40–85 psi",
     "Material": "N/A",
+    "Bundles 2": [
+      "recaMk4zsAeTNKo1Q",
+      "rec91UoOMpIuWTizn"
+    ],
     "Optional Upgrades": [
-      "rec1NUEaQWzKizm3c",
-      "recsaTQEJfcSqhhhE",
-      "recSKecXeJ6zsnzrj",
-      "recw46ojY6K8f02qV",
-      "recpgq1iEWsBUz7X4",
-      "rec59SBimbIROyLbq",
-      "recSXgtm7lTCB8Koy"
+      "rec2439kslGPOGmck",
+      "rec2jnDcWAdQgZSLw",
+      "rec1mj2AbszvXldCa"
+    ],
+    "From field: Addons": [
+      "recNqbXrtWQzjmoiY",
+      "reczvthAd2eRjxYMg",
+      "reczOVM9czwAwI65u",
+      "recMF5heparsOVj1t",
+      "recrA31kjjKOdhnpa",
+      "reckPMbrY8k3Yn4kA",
+      "recXjWwhfzyfuZwJe",
+      "reck74jlNyFgYJk37"
     ],
     "Shopify Product Id (from Optional Upgrades)": [
-      "gid://shopify/Product/9144894226671",
-      "gid://shopify/Product/9144897470703",
-      "gid://shopify/Product/9144895144175",
-      "gid://shopify/Product/9144897536239",
-      "gid://shopify/Product/9144894357743"
+      "gid://shopify/Product/9158887637231",
+      "gid://shopify/Product/9144894324975",
+      "gid://shopify/Product/9144894259439"
     ],
     "Sync": {
       "label": "Sync",
-      "url": "https://primary-production-dae8.up.railway.app/webhook/sync?recordId=recNqbXrtWQzjmoiY"
+      "url": "https://primary-production-dae8.up.railway.app/webhook/sync?recordId=recSKecXeJ6zsnzrj"
     },
     "Sync All": {
       "label": "Sync All Data",
       "url": "https://primary-production-dae8.up.railway.app/webhook/sync-all"
     },
-    "Last Modified": "2025-11-27T15:57:12.000Z",
-    "Product Documentation": [
-      {
-        "id": "attwoIto2uHnB8gso",
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/lBQqSasLltqXmznW8LRJ1Q/xkm6qSOL45EoMPp-rW36GlfY2DHFY16XjEBODD0B3C963mNB6TdEs6HInfnNsCBOPuwwD0bNzNEHeDy2JvHST5HI6eQUbYteA1ODfDRGia__BdIjg-ZiHt-XfWdK6j07JCLl8yVbYyxAE-yySQ4Wg_GOxMiivHrJo8kbT0dYYqyqeCsq9D1k-7kdqIv6x7Kb/2yMZ0jsqNk-gLGQP5wIZ-dliA3csfNfY_OQzOUnKAtc",
-        "filename": "Media Aldex-C800X10-Safety Data Sheet.pdf",
-        "size": 106860,
-        "type": "application/pdf",
-        "thumbnails": {
-          "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/HyhagyLYfbZ-Fl2l7VT9Yg/sFvZVOhPmeKJgzS2kQuckRqAA983DLdRUiCmKsjbfvMt7o4H9VFU3zL5rqCK9Moy-g2Sw1TB5EMKzfdyKddjlUhvnrpSG0zh1DjCgcD_tlGDSmVdaFZHjLoSWbgQHkw5BO8HEZLl2OhAmFXN2pShqA/gEiwOVfIfswRPJyaWfZxQxjhogx0Uk-0Wt9helo4fDM",
-            "width": 28,
-            "height": 36
-          },
-          "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/InP3Sr1Kq4ihs5ALK-Pq9g/g-niTSeYE50mA82tsX2LqCCUaXcCMW9Y8iWuU9FhDVUNikPj2K2alP6WpMeDNvcmemTPmTrUC8-T8FIis8TWVHEeFKBhGNQtIg9pM8rG0wXwoNJ8BFN9lbxtnzZWgvQulwsrhcD1rgWPiDdatsmQGQ/SM48woHVs2mAZi7v_D42-jnmNomEE41J3gtc53a5qNs",
-            "width": 512,
-            "height": 663
-          }
-        }
-      },
-      {
-        "id": "attBg7sCsE9OLNgyb",
-        "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/cfrNUPuYzshYH3IoK791lg/fhrZXHEJqbtsye9FrqMOpTNEN_e3ik2bdlwv3NEmlN94k2oNu8T43n_uilMVufALS2BYix1mSqrC5HHX9AtoEqlC7oGx24mA-6d0Tyec8Ond4WlKWYWQ4fF5iFPpzNAa6WmxmsSSstyOLUyAytVkC1gb5zQxNDW_w1MnPslOilxYaa6wUXb_8CTfF66tK1wR3qe5qPmrORl5y6PEXcPaaBXvQSXJakGpe9i8qs2nEmg/kajp11wEdemysFLqcW4PxwcEgDT9q2QBmsCEsx8t9e4",
-        "filename": "Media Aldex-C-800x10-Water-Softening-Resin-Sodium-Form-US.pdf",
-        "size": 242582,
-        "type": "application/pdf",
-        "thumbnails": {
-          "small": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/eukCIb-bV2XzLAa2JJTQ3g/iVgM_nuHsMq9PEJ365exhfrkQqiUj7JCPXKh0JRqHQeZxzhfnchsq-qXLUJV5xvX7Nhb11mxcnVXcylOz6rgCw7HFrPKgcc5adf47s04XTvBwhZ7zoeaAMfN4I5YrNaIf9DJSfk2xt-hf9b7HkJX7A/bkAx4VPt9OBODMrq8Jpm1Mg7PhVUxjjEoIVLwpXC-zg",
-            "width": 28,
-            "height": 36
-          },
-          "large": {
-            "url": "https://v5.airtableusercontent.com/v3/u/47/47/1764266400000/LRvjmpValBF7niN0ztWShg/mNn1zVGdOk1jxcapDmcoa9jKMb2DtKOf8CkGSQJlPZrk03pN_wLT69x9w_0VNUMkETayqAMG8HYwceNdhI4YV7Vb1BTo4zDHJqvOf7ukwzUWuDqnY_UL31jiOPoPykqRB5l3fF00-lyQe7nriiWcEA/K5Zhj8ioLicKukY-pzriFxZwVwiCY4NN6skBx2HwtSQ",
-            "width": 512,
-            "height": 663
-          }
-        }
-      }
-    ],
-    "Extended Description": "Refine your water experience with the **EVOSOFT™ Prime 32K Grain City Water Softener**: the hallmark of AQUALIVIA craftsmanship for modern urban homes. Designed specifically for **municipal water**, this compact yet powerful system ensures a flawless balance of performance, reliability, and sophistication.\nAt its core lies **Aldex C-800 10% cross-linked resin**, a premium-grade ion exchange media engineered for exceptional chlorine resistance and long-term durability. This resin delivers superior hardness removal, extending the life of your plumbing, fixtures, and appliances while maintaining the velvety texture of softened water that defines luxury living.\nPerfect for **1–2 occupants** and **one bathroom homes up to 1,000 sq. ft.**, EVOSOFT™ Prime 32K combines intelligent metered regeneration with quiet operation and sleek design. Its optimized valve system maximizes efficiency, reducing salt and water consumption without compromising performance.\nBuilt for **standard city water pressure (60–70 PSI)** and backed by a **10-year service life**, this model embodies AQUALIVIA’s promise of engineering excellence and enduring value. From the first touch of softened water to the final rinse, every moment reflects purity, care, and precision.\nExperience the EVOSOFT™ Prime difference: a water softening solution that performs with intelligence and looks the part of elegance.\n",
-    "Power Requirement": "110V Standard (Plug-In Transformer Included)",
-    "Operating Temperatures": "40° - 110° F",
-    "Drain Line": "¾” or 1” NPT",
-    "Bypass Valve Included": "Yes",
-    "Installation Type": "Whole-House Point of Entry",
-    "Maintenance Requirement": "Add salt as needed\nClean brine tank once per year\nCheck valve settings every 12 months\nInspect resin for channeling every 3 to 5 years\nReplace resin every 10 to 15 years depending on water quality\n\n",
-    "Operating Environment": "Indoor or outdoor safe",
-    "Additional Components": "N/A\n",
-    "Estimated Installation Time": "A professional water softener installation typically takes 2 to 4 hours, but this can vary depending on the complexity of the job and the type of system. Replacing an existing unit might take less time, sometimes as little as an hour, while a new installation with additional plumbing will take longer. \n",
+    "Last Modified": "2025-11-27T17:27:43.000Z",
+    "Extended Description": "The **HydroClear™ 50 Gallons per Day 5-Stage Reverse Osmosis System** provides efficient and dependable water purification for homes that value quality and simplicity. With a production rate of 50 gallons per day, this compact system delivers consistently clean water directly from your kitchen tap.\nEach stage is engineered for precision filtration: the sediment and carbon pre-filters capture rust, dirt, and chlorine; the high-rejection RO membrane removes microscopic impurities and dissolved solids; and the post-carbon polishing filter refines taste and clarity. Together, these five stages ensure crisp, refreshing water ideal for drinking, cooking, and preparing beverages.\nDesigned for quiet operation and easy maintenance, the HydroClear™ 50 GPD system fits neatly under most sinks. Its durable components and quick-connect fittings make installation straightforward, while the long-lasting filters reduce replacement frequency and cost.\nPerfect for small households, apartments, or offices, this system offers a smart balance of performance, efficiency, and value. Enjoy the peace of mind that comes with continuous access to clean, safe, and better-tasting water.\nChoose **HydroClear™** for lasting quality, refined performance, and water you can truly trust.\n",
+    "Power Requirement": "None (non-pump model)",
+    "Operating Temperatures": "40°F – 100°F (4°C – 37°C)",
+    "Drain Line": "N/A",
+    "Installation Type": "Point of Use Indoor",
+    "Maintenance Requirement": "- **Stages 1–3 (Pre-Filters):** Replace every 6–12 months\n- **Stage 4 (Membrane):** Replace every 2–4 years\n- **Stage 5 (Post Carbon Filter):** Replace every 2–4 years\n- **Tank Sanitization:** Once a year\n- **Filter Housing O-rings:** Replace annually\n\n",
+    "Rejection Rate": "90–99% of total dissolved solids (TDS)",
+    "Feed Water TDS Limit": "Up to 2000 ppm",
+    "Recovery Rate": "~30%",
+    "Waste-to-Pure Ratio": "~3:1 (standard, varies with pressure and temperature)",
+    "Storage Tank Capacity": "4-gallon nominal (3.2 gallons usable at 80 psi)",
+    "Feed Water pH Range": "2–11",
+    "Operating Environment": "Indoor installation, protected from direct sunlight",
+    "Additional Components": "- 100% lead-free chrome faucet\n- 3.2-gallon pressurized storage tank\n- Automatic shut-off valve (ASO)\n- Feed water adapter and drain saddle\n- Quick-connect tubing and fittings\n\n",
+    "Estimated Installation Time": "- **Estimated Installation Time:** 1–2 hours for standard residential installation.\n- **Skill Level:** Beginner to intermediate DIY or professional plumber.\n\n",
     "Delivery & Returns": "# **AQUALIVIA™ Shipping Policy**\n**Effective Date:** 10.17.2025\n **Last Updated:** 10.17.2025\n **Applies to:** All purchases made directly through AQUALIVIA™ or authorized distributors.\n## **1. General Overview**\nAt AQUALIVIA™, we take pride in ensuring your water treatment systems are built, packaged, and shipped with the highest level of care. Because most of our products are made-to-order or assembled at our Florida facility, please allow **an additional 1–2 business days for production and handling** before shipment.\nOur factory and fulfillment center operate **Monday through Friday, 8:00 AM to 4:00 PM (Eastern Time)**, excluding weekends and federal holidays. Orders placed outside operating hours will be processed on the next business day.\n## **2. Order Processing and Handling Time**\n- **Standard Orders:** Processed and shipped within **2–4 business days** after order confirmation.\n- \n- **Custom or Special Orders:** May require up to **7–10 business days** for assembly and quality testing prior to shipment.\n- \n- **Pre-Orders or Backorders:** Customers will be notified by email with the estimated ship date before payment is processed.\n- \n- Orders received **after 12:00 PM EST** are processed the following business day.\n- \nPlease note: Weekends and holidays are not considered business days.\n## **3. Shipping Options and Delivery Times**\nWe offer a range of shipping options through trusted carriers such as **UPS, FedEx, and USPS**. Estimated transit times apply **after the order has shipped** (not including handling time):\n**Shipping Method**\n**Estimated Delivery (U.S.)**\nStandard Ground\n4–7 business days\nExpedited (2-Day)\n2 business days\nExpress / Overnight\n1 business day\nFreight or Palletized Shipments\n5–10 business days\nInternational (FedEx or DHL)\n7–17 business days\nDelivery times may vary depending on your location, weather conditions, carrier delays, or customs clearance.\n## **4. Free Shipping Policy**\n- Free standard shipping applies to **orders over $99** within the **continental United States (48 contiguous states)**.\n- \n- Orders under $99 or requiring expedited service will incur shipping charges shown at checkout.\n- \n- **Hawaii, Alaska, Puerto Rico, and international destinations** are excluded from free shipping and will be charged the actual shipping rate based on weight and destination.\n- \n## **5. Freight Shipments (Large Equipment)**\nSome large systems (such as commercial units or whole-house filters) are shipped on pallets via freight carrier.\n**Freight delivery terms:**\n- The carrier will contact you to schedule delivery.\n- \n- Someone **18 years or older** must be present to inspect and sign for the shipment.\n- \n- The delivery address must be accessible to large trucks.\n- \n- Liftgate service can be requested for an additional fee.\n- \n## **6. Inspection and Damaged Shipments**\nCustomers are responsible for inspecting all shipments **at the time of delivery**.\n If there is any visible damage, note it on the carrier’s delivery receipt **before signing** and take photos of the box, label, and damaged areas.\n**To report damage:**\n1. Contact AQUALIVIA™ Customer Support within **3 business days** of delivery at 727-236-7161.\n2. \n3. Provide your order number, photos, and a brief description of the issue.\n4. \n5. Keep all original packaging until your claim is resolved.\n6. \nFailure to report damage within 5 business days may void your eligibility for a shipping claim or replacement.\n## **7. Lost or Missing Packages**\nIf tracking information shows “delivered” but the package is not received:\n- Verify the shipping address on your order confirmation.\n- \n- Check with neighbors or your local carrier office.\n- \n- Contact AQUALIVIA™ Customer Support within **7 business days** of the marked delivery date.\n- \nWe will work with the carrier to investigate. AQUALIVIA™ is **not responsible for packages stolen after confirmed delivery**.\n## **8. International Shipping**\nWe proudly ship to select international destinations via **FedEx International or DHL Express**.\n- Delivery time: **7–17 business days**, depending on customs processing.\n- \n- Customers are responsible for **all duties, taxes, import fees, and brokerage charges** imposed by their local authorities.\n- \n- We do not accept returns or exchanges on international orders unless covered under our warranty policy.\n- \n- Refused or unclaimed international shipments will be refunded **minus all shipping, customs, and handling fees**.\n- \n## **9. Refused or Undeliverable Shipments**\nIf an order is refused, undeliverable, or returned due to an incorrect address:\n- The customer is responsible for **all shipping charges (to and from)** and a **restocking fee of up to 25%**.\n- \n- These charges will be deducted from any applicable refund.\n- \n## **10. Delays and Force Majeure**\nAQUALIVIA™ is not responsible for delays caused by events beyond our control, including but not limited to natural disasters, weather conditions, labor strikes, pandemics, customs delays, or carrier errors.\nWe will make every effort to notify customers of significant delays.\n## **11. Order Changes and Cancellations**\n- Orders can be canceled or modified **before they enter the shipping process**.\n- \n- Once an order has shipped, standard **Return Policy** terms apply.\n- \n- Custom-built or made-to-order systems cannot be canceled once production begins.\n- \n## **12. Title and Risk of Loss**\nAll products become the property of the buyer **once shipped**. Title and risk of loss pass to the customer upon carrier pickup at our Florida facility.\n## **13. Governing Law**\nThis Shipping Policy is governed by the laws of the **State of Florida**. Any disputes relating to shipment or delivery will be resolved under the same **binding arbitration and venue provisions** described in the AQUALIVIA™ Terms and Conditions.\n\n",
     "Replacements": [
-      "rec2439kslGPOGmck"
+      "recmDmljjTnW3OaX3",
+      "recAw80Eo2M92EdWv",
+      "rec2jnDcWAdQgZSLw",
+      "rec8ILHivDiAyHEWz"
     ],
     "Operating Voltage": "N/A",
     "Power Consumption": "N/A",
     "Shopify Product Id (from Replacements)": [
-      "gid://shopify/Product/9158887637231"
+      "gid://shopify/Product/9144897175791",
+      "gid://shopify/Product/9144894324975",
+      "gid://shopify/Product/9144894456047"
     ],
+    "UV Chamber Length": "N/A",
+    "UV Controller Size": "N/A",
     "Partial Reductions": [
-      "Lead (Pb²⁺)",
-      "Ferrous Iron (Fe²⁺)",
-      "Organically Bound Iron",
-      "Manganese (Mn²⁺) at low oxidation states",
+      "PFAS Forever Chemicals",
+      "Lead",
+      "Cadmium (Cd²⁺)",
+      "Arsenic (As³⁺, As⁵⁺)",
+      "Chromium (Cr³⁺, Cr⁶⁺)",
+      "Mercury (Hg²⁺)",
+      "Fluoride (F⁻)",
+      "Uranium (U⁴⁺, U⁶⁺)",
       "Radium (Ra²⁺)",
-      "Ammonium (NH₄⁺)",
-      "Chromium (Cr³⁺)",
-      "Cobalt (Co²⁺)"
+      "Cyanide (CN⁻)",
+      "Pharmaceuticals",
+      "Hormones",
+      "Pesticides",
+      "Herbicides",
+      "Volatile Organic Compounds (VOCs)",
+      "TDS (Total Dissolved Solids)",
+      "Turbidity",
+      "Bacteria",
+      "Viruses",
+      "Giardia",
+      "Cryptosporidium",
+      "Aluminum (Al³⁺)",
+      "Ameobic",
+      "Arsenic Plus 3 (As³⁺)",
+      "Arsenic Plus 5 (As⁵⁺)",
+      "Asbestos",
+      "Barium (Ba²⁺)",
+      "Bicarbonate (HCO₃⁻)",
+      "Boron (B³⁺)",
+      "Chloride (Cl⁻)",
+      "Chloramine (NH₂Cl)",
+      "Calcium (Ca²⁺)",
+      "Chlorine (Cl₂)",
+      "Chromate (CrO₄²⁻)",
+      "Copper (Cu²⁺)",
+      "Cysts",
+      "GenX",
+      "Haloacetic Acids (HAAs / HAA5)",
+      "Pesticides & Herbicides",
+      "Iron (Fe²⁺)",
+      "Manganese (Mn²⁺)",
+      "Magnesium",
+      "Nickel (Ni²⁺)",
+      "Nitrate (NO₃⁻)",
+      "Nitrite (NO₂⁻)",
+      "Perfluorooctanesulfonic Acid (PFOS)",
+      "Perfluorooctanoic Acid (PFOA)",
+      "Potassium (K⁺)",
+      "Protozoa",
+      "Radioactivity",
+      "Sediment",
+      "Selenium (Se⁴⁺, Se⁶⁺)",
+      "Silver (Ag⁺)",
+      "Sodium (Na⁺)",
+      "Strontium (Sr²⁺)",
+      "Sulfate",
+      "Total Trihalomethanes (TTHM)",
+      "Zinc (Zn²⁺)"
     ],
     "Occupants Variants": [
-      "recSb4gSFoAyRNTP5",
-      "rech4a4IpvoK3NGlP",
-      "rechL8AixqB2py71s"
+      "rec2439kslGPOGmck",
+      "rec2jnDcWAdQgZSLw",
+      "rec1mj2AbszvXldCa"
+    ],
+    "From field: Addons copy 2": [
+      "reczvthAd2eRjxYMg",
+      "reczOVM9czwAwI65u",
+      "recMF5heparsOVj1t",
+      "recrA31kjjKOdhnpa",
+      "reckPMbrY8k3Yn4kA",
+      "recXjWwhfzyfuZwJe",
+      "reck74jlNyFgYJk37"
     ],
     "Sync Status": "Processing",
     "available": true,
-    "Service Life": "~ 10 years",
-    "Charger": true,
-    "Variants": [
-      "recNqbXrtWQzjmoiY",
-      "recSb4gSFoAyRNTP5",
-      "rech4a4IpvoK3NGlP",
-      "rechL8AixqB2py71s"
-    ],
-    "From field: Replacements copy": [
-      "recNqbXrtWQzjmoiY",
-      "recSb4gSFoAyRNTP5",
-      "rech4a4IpvoK3NGlP",
-      "rechL8AixqB2py71s"
-    ],
+    "Membrane Size": "N/A",
     "Shopify Product Id (From Occupants Variants)": [
-      "gid://shopify/Product/9144895176943",
-      "gid://shopify/Product/9144896028911",
-      "gid://shopify/Product/9144896979183"
+      "gid://shopify/Product/9158887637231",
+      "gid://shopify/Product/9144894324975",
+      "gid://shopify/Product/9144894259439"
     ]
   }
 ]
